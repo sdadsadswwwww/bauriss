@@ -198,8 +198,14 @@ def main(argv=None):
             sys.exit('IG_ACCESS_TOKEN ist nicht gesetzt.')
         basis = f'{HOST}/{config["api_version"]}'
         beschreibe_token(basis, token)
-        finde_konto(basis, token, config)
-        print(f'Zugang in Ordnung: Das Token gibt @{config["konto"]} frei.')
+        konto_id = finde_konto(basis, token, config)
+        print(f'Lesen in Ordnung: Das Token gibt @{config["konto"]} frei.')
+        # Diese Abfrage verlangt dieselbe Berechtigung wie das Veröffentlichen, ändert aber nichts.
+        limit = frage_still(f'{basis}/{konto_id}/content_publishing_limit?fields=quota_usage', token)
+        if 'fehler' in limit:
+            sys.exit(f'Veröffentlichen ist nicht erlaubt: {limit["fehler"]}')
+        nutzung = (limit.get('data') or [{}])[0].get('quota_usage')
+        print(f'Veröffentlichen in Ordnung: {nutzung} Beiträge in den letzten 24 Stunden über die Schnittstelle.')
         return
     plan = lies(PLAN)
     protokoll = lies(PROTOKOLL)
