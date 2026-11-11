@@ -109,18 +109,23 @@ def warte_bis_fertig(basis, container, token):
     sys.exit(f'Container {container} wurde nicht rechtzeitig fertig.')
 
 
+def frage_still(url, token):
+    """Wie anfrage('GET', ...), bricht bei einem Fehler aber nicht ab, sondern liefert {'fehler': ...}."""
+    try:
+        req = urllib.request.Request(url, headers={'Authorization': f'Bearer {token}'})
+        with urllib.request.urlopen(req, timeout=60) as antwort:
+            return json.loads(antwort.read().decode('utf-8'))
+    except urllib.error.HTTPError as fehler:
+        try:
+            return {'fehler': json.loads(fehler.read().decode('utf-8'))['error']['message']}
+        except (ValueError, KeyError, TypeError):
+            return {'fehler': f'HTTP {fehler.code}'}
+
+
 def beschreibe_token(basis, token):
     """Gibt aus, was das Token ist und darf. Keine Namen von Personen: die Protokolle sind öffentlich."""
     def versuche(pfad):
-        try:
-            req = urllib.request.Request(f'{basis}/{pfad}', headers={'Authorization': f'Bearer {token}'})
-            with urllib.request.urlopen(req, timeout=60) as antwort:
-                return json.loads(antwort.read().decode('utf-8'))
-        except urllib.error.HTTPError as fehler:
-            try:
-                return {'fehler': json.loads(fehler.read().decode('utf-8'))['error']['message']}
-            except (ValueError, KeyError, TypeError):
-                return {'fehler': f'HTTP {fehler.code}'}
+        return frage_still(f'{basis}/{pfad}', token)
 
     info = versuche('debug_token?input_token=' + urllib.parse.quote(token)).get('data') or {}
     if info:
@@ -143,10 +148,18 @@ def beschreibe_token(basis, token):
             print(f'{name}: {len(antwort.get("data", []))} Eintrag/Einträge')
 
 
-def finde_konto(basis, token, konto):
+def finde_konto(basis, token, config):
+    konto = config['konto']
     # Mit Unified Login steht /me für den Systemnutzer; die freigegebenen Instagram-Konten hängen darunter.
     konten = anfrage('GET', f'{basis}/me/assigned_instagram_accounts?fields=id,username', token).get('data', [])
     konto_id = next((k['id'] for k in konten if k.get('username') == konto), None)
+    if not konto_id and config.get('konto_id'):
+        # Die Liste kann leer bleiben, obwohl die App Zugriff hat. Dann das Konto direkt über seine ID ansprechen.
+        direkt = frage_still(f'{basis}/{config["konto_id"]}?fields=username', token)
+        if direkt.get('username') == konto:
+            konto_id = config['konto_id']
+        else:
+            print(f'Direkter Zugriff auf Konto-ID {config["konto_id"]}: {direkt.get("fehler") or "anderes Konto"}')
     if not konto_id:
         namen = ', '.join('@' + k.get('username', '?') for k in konten) or 'keines'
         sys.exit(f'Das Token gibt @{konto} nicht frei (freigegeben: {namen}).')
@@ -185,7 +198,7 @@ def main(argv=None):
             sys.exit('IG_ACCESS_TOKEN ist nicht gesetzt.')
         basis = f'{HOST}/{config["api_version"]}'
         beschreibe_token(basis, token)
-        finde_konto(basis, token, config['konto'])
+        finde_konto(basis, token, config)
         print(f'Zugang in Ordnung: Das Token gibt @{config["konto"]} frei.')
         return
     plan = lies(PLAN)
@@ -224,7 +237,7 @@ def main(argv=None):
     pruefe_bildadressen(adressen)
 
     basis = f'{HOST}/{config["api_version"]}'
-    konto_id = finde_konto(basis, token, config['konto'])
+    konto_id = finde_konto(basis, token, config)
 
     # Schutz vor Doppelposts, falls ein früherer Lauf nach dem Veröffentlichen abgebrochen ist
     letzte = anfrage('GET', f'{basis}/{konto_id}/media?fields=caption,permalink&limit=10', token).get('data', [])
