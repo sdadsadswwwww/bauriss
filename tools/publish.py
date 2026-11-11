@@ -109,6 +109,40 @@ def warte_bis_fertig(basis, container, token):
     sys.exit(f'Container {container} wurde nicht rechtzeitig fertig.')
 
 
+def beschreibe_token(basis, token):
+    """Gibt aus, was das Token ist und darf. Keine Namen von Personen: die Protokolle sind öffentlich."""
+    def versuche(pfad):
+        try:
+            req = urllib.request.Request(f'{basis}/{pfad}', headers={'Authorization': f'Bearer {token}'})
+            with urllib.request.urlopen(req, timeout=60) as antwort:
+                return json.loads(antwort.read().decode('utf-8'))
+        except urllib.error.HTTPError as fehler:
+            try:
+                return {'fehler': json.loads(fehler.read().decode('utf-8'))['error']['message']}
+            except (ValueError, KeyError, TypeError):
+                return {'fehler': f'HTTP {fehler.code}'}
+
+    info = versuche('debug_token?input_token=' + urllib.parse.quote(token)).get('data') or {}
+    if info:
+        ablauf = info.get('expires_at')
+        print(f'Token-Art: {info.get("type")}, gültig: {info.get("is_valid")}, '
+              f'Ablauf: {"nie" if ablauf == 0 else dt.datetime.fromtimestamp(ablauf, dt.timezone.utc).date() if ablauf else "unbekannt"}')
+        print('Berechtigungen: ' + (', '.join(info.get('scopes', [])) or 'keine'))
+        for g in info.get('granular_scopes', []):
+            print(f'  {g.get("scope")}: {len(g.get("target_ids", []))} Ziel(e)')
+    else:
+        print('Token-Auskunft nicht verfügbar.')
+    ich = versuche('me?fields=id,client_business_id')
+    print('Kunden-Portfolio am Token: ' + ('ja' if ich.get('client_business_id') else 'nein') + (f' ({ich["fehler"]})' if 'fehler' in ich else ''))
+    for kante in ('me/assigned_instagram_accounts?fields=username', 'me/instagram_accounts?fields=username', 'me/accounts?fields=instagram_business_account{username}'):
+        antwort = versuche(kante)
+        name = kante.split('?')[0]
+        if 'fehler' in antwort:
+            print(f'{name}: {antwort["fehler"]}')
+        else:
+            print(f'{name}: {len(antwort.get("data", []))} Eintrag/Einträge')
+
+
 def finde_konto(basis, token, konto):
     # Mit Unified Login steht /me für den Systemnutzer; die freigegebenen Instagram-Konten hängen darunter.
     konten = anfrage('GET', f'{basis}/me/assigned_instagram_accounts?fields=id,username', token).get('data', [])
@@ -149,7 +183,9 @@ def main(argv=None):
         token = os.environ.get('IG_ACCESS_TOKEN')
         if not token:
             sys.exit('IG_ACCESS_TOKEN ist nicht gesetzt.')
-        finde_konto(f'{HOST}/{config["api_version"]}', token, config['konto'])
+        basis = f'{HOST}/{config["api_version"]}'
+        beschreibe_token(basis, token)
+        finde_konto(basis, token, config['konto'])
         print(f'Zugang in Ordnung: Das Token gibt @{config["konto"]} frei.')
         return
     plan = lies(PLAN)
