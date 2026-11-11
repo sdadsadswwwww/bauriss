@@ -128,6 +128,9 @@ p em { font-style: normal; color: var(--acc); }
 .fig .af { fill: var(--acc); stroke: var(--acc); stroke-width: 2.4; }
 .fig .lf { fill: var(--bg); stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; }
 .fig .hs { fill: url(#schraffur); stroke: none; }
+/* Unterlage in Blattfarbe, damit Linien und Text über Schraffur lesbar bleiben */
+.fig .bgl { fill: none; stroke: var(--bg); stroke-width: 12; stroke-linejoin: round; stroke-linecap: round; }
+.fig text.hell { paint-order: stroke; stroke: var(--bg); stroke-width: 9px; stroke-linejoin: round; }
 .fig .akzent .lf { stroke: var(--acc); stroke-width: 3; }
 .fig .ph { stroke: var(--ink); stroke-width: 1.3; opacity: 0.6; vector-effect: none; }
 .fig .punkt { fill: var(--ink); }

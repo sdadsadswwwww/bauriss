@@ -1,6 +1,10 @@
 {
   "uhrzeit": "18:30",
   "posts": [
-    { "datum": "2026-11-16", "post": "001-koelner-dom", "freigabe": false }
+    { "datum": "2026-11-16", "post": "001-koelner-dom", "freigabe": false },
+    { "datum": "2026-11-17", "post": "002-elbphilharmonie", "freigabe": false },
+    { "datum": "2026-11-18", "post": "003-berliner-fernsehturm", "freigabe": false },
+    { "datum": "2026-11-19", "post": "004-goeltzschtalbruecke", "freigabe": false },
+    { "datum": "2026-11-20", "post": "005-gotthard-basistunnel", "freigabe": false }
   ]
 }

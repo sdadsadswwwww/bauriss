@@ -2,9 +2,10 @@
 
 Aufruf:  python tools/publish.py               regulärer Lauf aus dem Zeitplan
          python tools/publish.py --probelauf   prüft alles, ruft die Schnittstelle aber nicht auf
+         python tools/publish.py --zugang      prüft nur, ob das Token das Konto freigibt
 
 Umgebung:
-  IG_ACCESS_TOKEN   langlebiges Instagram-Zugriffstoken (GitHub-Secret)
+  IG_ACCESS_TOKEN   Systemnutzer-Zugriffstoken aus Metas App-Dashboard (GitHub-Secret)
   IMAGE_BASE_URL    öffentliche Adresse, unter der out/ erreichbar ist
 
 Ein Post geht nur raus, wenn er in plan.json für heute eingetragen ist, "freigabe": true trägt
@@ -24,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PLAN = ROOT / 'plan.json'
 PROTOKOLL = ROOT / 'veroeffentlicht.json'
-HOST = 'https://graph.instagram.com'
+HOST = 'https://graph.facebook.com'  # Instagram API mit Unified Login
 WARTEN_SEKUNDEN = 5
 WARTEN_VERSUCHE = 60
 
@@ -108,6 +109,16 @@ def warte_bis_fertig(basis, container, token):
     sys.exit(f'Container {container} wurde nicht rechtzeitig fertig.')
 
 
+def finde_konto(basis, token, konto):
+    # Mit Unified Login steht /me für den Systemnutzer; die freigegebenen Instagram-Konten hängen darunter.
+    konten = anfrage('GET', f'{basis}/me/assigned_instagram_accounts?fields=id,username', token).get('data', [])
+    konto_id = next((k['id'] for k in konten if k.get('username') == konto), None)
+    if not konto_id:
+        namen = ', '.join('@' + k.get('username', '?') for k in konten) or 'keines'
+        sys.exit(f'Das Token gibt @{konto} nicht frei (freigegeben: {namen}).')
+    return konto_id
+
+
 def waehle_eintrag(plan, erledigt, heute, wunsch):
     if wunsch:
         treffer = [e for e in plan['posts'] if e['post'] == wunsch]
@@ -130,9 +141,17 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('--probelauf', action='store_true', help='nur prüfen, nichts veröffentlichen')
     parser.add_argument('--post', help='diesen Post statt des heute fälligen nehmen')
+    parser.add_argument('--zugang', action='store_true', help='nur prüfen, ob das Token das Konto freigibt')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
+    if args.zugang:
+        token = os.environ.get('IG_ACCESS_TOKEN')
+        if not token:
+            sys.exit('IG_ACCESS_TOKEN ist nicht gesetzt.')
+        finde_konto(f'{HOST}/{config["api_version"]}', token, config['konto'])
+        print(f'Zugang in Ordnung: Das Token gibt @{config["konto"]} frei.')
+        return
     plan = lies(PLAN)
     protokoll = lies(PROTOKOLL)
     jetzt = berlin_jetzt()
@@ -169,10 +188,7 @@ def main(argv=None):
     pruefe_bildadressen(adressen)
 
     basis = f'{HOST}/{config["api_version"]}'
-    ich = anfrage('GET', f'{basis}/me?fields=user_id,username', token)
-    if ich.get('username') != config['konto']:
-        sys.exit(f'Das Token gehört zu @{ich.get("username")}, erwartet ist @{config["konto"]}.')
-    konto_id = ich['user_id']
+    konto_id = finde_konto(basis, token, config['konto'])
 
     # Schutz vor Doppelposts, falls ein früherer Lauf nach dem Veröffentlichen abgebrochen ist
     letzte = anfrage('GET', f'{basis}/{konto_id}/media?fields=caption,permalink&limit=10', token).get('data', [])

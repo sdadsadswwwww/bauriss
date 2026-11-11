@@ -12,6 +12,10 @@ on:
         description: Nur prüfen, nichts veröffentlichen
         type: boolean
         default: true
+      zugang:
+        description: Nur das Zugriffstoken prüfen
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,7 +36,7 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}
-        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && inputs.probelauf && '--probelauf' || '' }}
+        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.probelauf && '--probelauf') || '' }}
       - name: Protokoll sichern
         run: |
           git config user.name "bauriss-bot"

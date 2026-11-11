@@ -23,7 +23,7 @@ Ohne Freigabe wird nichts veröffentlicht. Ein Post, der in `veroeffentlicht.jso
 | `plan.json` | Zeitplan und Freigaben |
 | `veroeffentlicht.json` | Protokoll, wird vom Workflow geschrieben |
 | `config.json` | Konto, API-Version |
-| `.github/workflows/` | Zeitplan (`post.yml`) und Token-Verlängerung (`token.yml`) |
+| `.github/workflows/` | Zeitplan (`post.yml`) |
 
 ## Einrichtung
 
@@ -33,8 +33,7 @@ Im Repo unter Settings → Secrets and variables → Actions:
 
 | Secret | Wofür |
 |---|---|
-| `IG_ACCESS_TOKEN` | Langlebiges Instagram-Zugriffstoken mit `instagram_business_basic` und `instagram_business_content_publish` |
-| `GH_PAT` | GitHub-Token mit Schreibrecht auf Secrets dieses Repos, nur für die Token-Verlängerung |
+| `IG_ACCESS_TOKEN` | Systemnutzer-Zugriffstoken aus Metas App-Dashboard (Instagram API mit Unified Login) mit `instagram_basic` und `instagram_content_publish` |
 
 Das Repo muss öffentlich sein: Instagram holt die Bilder über ihre Adresse ab, sie müssen also ohne Anmeldung erreichbar sein. Die Secrets bleiben trotzdem privat.
 
