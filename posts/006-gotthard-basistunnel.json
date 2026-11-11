@@ -1,0 +1,107 @@
+{
+  "nr": "006",
+  "titel": "Gotthard-Basistunnel",
+  "zeichnungen": "gotthard",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 006",
+      "zahl": "57",
+      "headline": "Kilometer durch den Berg",
+      "text": ["Der Gotthard-Basistunnel ist der längste Eisenbahntunnel der Welt. Bezahlt haben ihn vor allem die Lastwagen."],
+      "figur": { "fn": "gotthardProfil" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Problem",
+      "headline": "Die alte Strecke klettert",
+      "text": [
+        "Seit 1882 fahren Züge über den Gotthard: hinauf auf 1151 Meter und durch einen 15 Kilometer langen Scheiteltunnel. Für schwere Güterzüge ist das mühsam.",
+        "Der Basistunnel bleibt unten. Sein höchster Punkt liegt auf <em>549 Metern</em>."
+      ],
+      "figur": { "fn": "gotthardVergleich" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Unter dem Berg",
+      "headline": "Zwei Kilometer Fels darüber",
+      "text": ["An der tiefsten Stelle liegen mehr als 2000 Meter Gestein über den Gleisen – so viel wie bei keinem anderen Eisenbahntunnel."],
+      "figur": { "fn": "gotthardProfil", "beschriftet": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Aufbau",
+      "headline": "Zwei Röhren, 176 Querschläge",
+      "text": [
+        "Jede Fahrtrichtung hat ihre eigene Röhre. Alle 325 Meter verbindet ein Querschlag die beiden – als Fluchtweg.",
+        "Mit allen Stollen und Schächten sind es <em>152 Kilometer</em> Tunnel."
+      ],
+      "figur": { "fn": "roehrenPlan" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2010 · Der Durchschlag",
+      "headline": "Acht Zentimeter daneben",
+      "text": [
+        "Gebaut wird von mehreren Stellen zugleich. Als am 15. Oktober 2010 die letzte Felswand der Oströhre fällt, passen die Vortriebe fast genau aufeinander.",
+        "28,2 Millionen Tonnen Gestein kommen insgesamt aus dem Berg."
+      ],
+      "figur": { "fn": "durchschlag" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "17 Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1992,
+        "bis": 2016.8,
+        "phasen": [
+          { "von": 1999.85, "bis": 2010.79, "art": "bau" },
+          { "von": 2010.79, "bis": 2016.42, "art": "schluss" }
+        ],
+        "marken": [
+          { "jahr": 1992.74, "label": "1992", "text": "Volk sagt Ja zur Alpentransversale" },
+          { "jahr": 1999.85, "label": "1999", "text": "Anstich" },
+          { "jahr": 2010.79, "label": "2010", "text": "Durchschlag" },
+          { "jahr": 2016.42, "label": "2016", "text": "Eröffnung am 1. Juni" }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Finanzierung",
+      "headline": "Wer hat bezahlt?",
+      "text": ["Der Tunnel kostet <em>12,2 Milliarden Franken</em>. Das Geld kommt aus einem Fonds, den das Volk 1998 an der Urne beschlossen hat. Er hat drei Quellen:"],
+      "punkte": [
+        { "wert": "LSVA", "name": "Schwerverkehrsabgabe", "zusatz": "Lastwagen zahlen pro Kilometer – die größte Quelle" },
+        { "wert": "MwSt.", "name": "Mehrwertsteuer", "zusatz": "ein kleiner Anteil fließt in den Fonds" },
+        { "wert": "Öl", "name": "Mineralölsteuer", "zusatz": "ein Teil der Abgabe auf Treibstoff" }
+      ]
+    },
+    {
+      "typ": "balken",
+      "kicker": "Der Rekord",
+      "headline": "Der längste der Welt",
+      "text": ["Eisenbahntunnel im Vergleich:"],
+      "balken": [
+        { "wert": 57.1, "anzeige": "57,1 km", "name": "Gotthard-Basistunnel", "zusatz": "Schweiz, 2016", "akzent": true },
+        { "wert": 53.9, "anzeige": "53,9 km", "name": "Seikan-Tunnel", "zusatz": "Japan, 1988" },
+        { "wert": 50.5, "anzeige": "50,5 km", "name": "Eurotunnel", "zusatz": "Frankreich–Großbritannien, 1994" }
+      ],
+      "fuss": "Zürich–Lugano dauert heute 1 Stunde 59 Minuten, 40 Minuten weniger als zuvor."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Gotthard-Basistunnel", "Bundesamt für Verkehr", "Statista", "Abruf 11/2026"],
+  "caption": [
+    "57 Kilometer, 17 Jahre Bauzeit, 12,2 Milliarden Franken: Der Gotthard-Basistunnel ist der längste Eisenbahntunnel der Welt.",
+    "Bezahlt wurde er aus einem Fonds, den vor allem eine Abgabe auf Lastwagen füllt – beschlossen per Volksabstimmung.",
+    "Bist du schon durchgefahren?"
+  ],
+  "hashtags": ["gotthard", "gotthardbasistunnel", "schweiz", "eisenbahn", "tunnelbau", "baugeschichte", "ingenieurbau", "bauwerke"]
+}

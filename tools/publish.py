@@ -224,8 +224,10 @@ def main(argv=None):
     if not eintrag.get('freigabe'):
         print('Nicht freigegeben ("freigabe": false in plan.json). Nichts veröffentlicht.')
         return
-    if not args.probelauf and jetzt.strftime('%H:%M') < plan['uhrzeit']:
-        print(f'Es ist {jetzt:%H:%M} Uhr, geplant ist {plan["uhrzeit"]} Uhr. Der nächste Lauf übernimmt.')
+    # Ein Eintrag kann eine eigene Uhrzeit tragen, etwa "00:00" für einen Post, der sofort raus soll.
+    uhrzeit = eintrag.get('uhrzeit', plan['uhrzeit'])
+    if not args.probelauf and jetzt.strftime('%H:%M') < uhrzeit:
+        print(f'Es ist {jetzt:%H:%M} Uhr, geplant ist {uhrzeit} Uhr. Der nächste Lauf übernimmt.')
         return
 
     bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')

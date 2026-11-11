@@ -1,10 +1,11 @@
 {
   "uhrzeit": "18:30",
   "posts": [
-    { "datum": "2026-11-16", "post": "001-koelner-dom", "freigabe": true },
-    { "datum": "2026-11-17", "post": "002-elbphilharmonie", "freigabe": true },
-    { "datum": "2026-11-18", "post": "003-berliner-fernsehturm", "freigabe": true },
-    { "datum": "2026-11-19", "post": "004-goeltzschtalbruecke", "freigabe": true },
-    { "datum": "2026-11-20", "post": "005-gotthard-basistunnel", "freigabe": true }
+    { "datum": "2026-11-12", "post": "001-eiffelturm", "freigabe": true, "uhrzeit": "00:00" },
+    { "datum": "2026-11-16", "post": "002-koelner-dom", "freigabe": true },
+    { "datum": "2026-11-17", "post": "003-elbphilharmonie", "freigabe": true },
+    { "datum": "2026-11-18", "post": "004-berliner-fernsehturm", "freigabe": true },
+    { "datum": "2026-11-19", "post": "005-goeltzschtalbruecke", "freigabe": true },
+    { "datum": "2026-11-20", "post": "006-gotthard-basistunnel", "freigabe": true }
   ]
 }

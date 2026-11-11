@@ -1,0 +1,227 @@
+{
+  "nr": "001",
+  "titel": "Eiffelturm",
+  "zeichnungen": "eiffelturm",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Bauwerk Nr. 001",
+      "zahl": "26",
+      "headline": "Monate für 300&nbsp;Meter",
+      "text": [
+        "Der Eiffelturm besteht aus 18.038 Eisenteilen. Den größten Teil der Kosten muss sein Erbauer selbst aufbringen – und hat sie nach einem Sommer fast wieder drin."
+      ],
+      "figur": {
+        "fn": "eiffelturm"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1884 · Die Idee",
+      "headline": "Die Idee hat nicht Eiffel",
+      "text": [
+        "Zwei Ingenieure aus seinem Büro, Maurice Koechlin und Émile Nouguier, skizzieren 1884 einen 300 Meter hohen Mast auf vier Füßen.",
+        "Der Architekt Stephen Sauvestre ergänzt die großen Bögen. <em>Tragen müssen sie nichts</em> – sie sollen den Turm gefälliger machen."
+      ],
+      "figur": {
+        "fn": "eiffelFuss"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Der Baukasten",
+      "headline": "Alles kommt fertig aus der Fabrik",
+      "text": [
+        "Jedes Teil wird in Eiffels Werk bei Paris vorgefertigt und vorgebohrt. Auf der Baustelle wird nur noch montiert – was nicht passt, geht zurück."
+      ],
+      "punkte": [
+        {
+          "wert": "18.038",
+          "name": "Eisenteile",
+          "zusatz": "jedes einzeln berechnet und gezeichnet"
+        },
+        {
+          "wert": "2,5 Mio.",
+          "name": "Niete",
+          "zusatz": "nur ein Drittel wird auf der Baustelle gesetzt"
+        },
+        {
+          "wert": "4",
+          "name": "Mann für einen Niet",
+          "zusatz": "einer erhitzt, einer hält, einer formt den Kopf, einer schlägt"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Bau",
+      "headline": "Vier Füße müssen sich treffen",
+      "text": [
+        "Die Füße wachsen schräg nach oben, gestützt von Holzgerüsten. Sandkästen und hydraulische Pressen richten sie <em>auf den Millimeter</em> aus, bevor die erste Etage sie verbindet."
+      ],
+      "figur": {
+        "fn": "eiffelBau"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "26 Monate bis zur Spitze",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1887.0,
+        "bis": 1889.3,
+        "phasen": [
+          {
+            "von": 1887.07,
+            "bis": 1887.5,
+            "art": "bau"
+          },
+          {
+            "von": 1887.5,
+            "bis": 1889.25,
+            "art": "schluss"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1887.07,
+            "label": "1/1887",
+            "text": "Baubeginn, Künstler protestieren"
+          },
+          {
+            "jahr": 1887.5,
+            "label": "7/1887",
+            "text": "Fundamente fertig, Montage beginnt"
+          },
+          {
+            "jahr": 1888.25,
+            "label": "4/1888",
+            "text": "erste Etage"
+          },
+          {
+            "jahr": 1888.62,
+            "label": "8/1888",
+            "text": "zweite Etage"
+          },
+          {
+            "jahr": 1889.25,
+            "label": "3/1889",
+            "text": "fertig am 31. März"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Finanzierung",
+      "headline": "Wer hat bezahlt?",
+      "text": [
+        "Geschätzt waren 3,2 Millionen Francs. Am Ende kostet der Turm <em>mehr als das Zweieinhalbfache</em> – und die öffentliche Hand gibt nur einen Zuschuss."
+      ],
+      "punkte": [
+        {
+          "wert": "5 Mio.",
+          "name": "Francs von der Turmgesellschaft",
+          "zusatz": "zur Hälfte von Eiffel, zur Hälfte von zwei Banken"
+        },
+        {
+          "wert": "1,5 Mio.",
+          "name": "Francs Zuschuss",
+          "zusatz": "mehr öffentliches Geld gibt es nicht"
+        },
+        {
+          "wert": "20 Jahre",
+          "name": "gehören Eiffel die Einnahmen",
+          "zusatz": "so steht es im Vertrag vom Januar 1887"
+        }
+      ],
+      "fuss": "Den Vertrag unterschreibt Eiffel persönlich, nicht seine Firma."
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1889 · Der Rekord",
+      "headline": "Fast doppelt so hoch wie alles davor",
+      "text": [
+        "Mit Fahnenmast misst der Turm 312 Meter. Bis 1930 bleibt er das <em>höchste Bauwerk der Welt</em>."
+      ],
+      "figur": {
+        "fn": "hoehenvergleich",
+        "bauten": [
+          {
+            "form": "koeln",
+            "name": "Kölner Dom",
+            "jahr": 1880,
+            "hoehe": 157
+          },
+          {
+            "form": "washington",
+            "name": "Washington",
+            "jahr": 1884,
+            "hoehe": 169
+          },
+          {
+            "form": "eiffelturm",
+            "name": "Eiffelturm",
+            "jahr": 1889,
+            "hoehe": 312,
+            "akzent": true
+          }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Der erste Sommer",
+      "headline": "Nach einer Saison fast bezahlt",
+      "text": [
+        "Zur Weltausstellung 1889 kostet die Fahrt bis zur Spitze fünf Francs, der Eintritt in die Ausstellung nur einen."
+      ],
+      "punkte": [
+        {
+          "wert": "1,9 Mio.",
+          "name": "Besucher im ersten Jahr",
+          "zusatz": "genau 1.896.987, von Mai bis November 1889"
+        },
+        {
+          "wert": "3/4",
+          "name": "der Baukosten wieder drin",
+          "zusatz": "nach nur einer Saison"
+        },
+        {
+          "wert": "1910",
+          "name": "Konzession verlängert",
+          "zusatz": "um 70 Jahre – der Turm wird als Funkmast gebraucht"
+        }
+      ],
+      "fuss": "Geplant war der Turm nur für 20 Jahre."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "quellen": [
+    "Wikipedia: Eiffelturm",
+    "toureiffel.paris",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "300 Meter in 26 Monaten: Der Eiffelturm kam als Bausatz aus der Fabrik – 18.038 Teile, 2,5 Millionen Niete.",
+    "Künstler nannten ihn eine »wirklich tragische Straßenlaterne«. Gustave Eiffel musste den größten Teil der Kosten selbst aufbringen und hatte nach einem Sommer drei Viertel davon wieder eingenommen.",
+    "Treppe oder Aufzug – wie würdest du hochkommen?"
+  ],
+  "hashtags": [
+    "eiffelturm",
+    "paris",
+    "toureiffel",
+    "baugeschichte",
+    "architektur",
+    "geschichte",
+    "ingenieurbau",
+    "bauwerke"
+  ]
+}
