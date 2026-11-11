@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bauriss Übersicht</title>
+<style>
+  body { margin: 0; background: #2a2a2a; }
+  #raster { display: grid; grid-template-columns: repeat(4, 540px); gap: 20px; padding: 30px 20px; }
+  img { width: 540px; height: 675px; display: block; }
+</style>
+</head>
+<body>
+<div id="raster"></div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const n = +q.get('n') || 8;
+  let html = '';
+  for (let i = 1; i <= n; i++) html += `<img src="../out/${q.get('post')}/${String(i).padStart(2, '0')}.jpg">`;
+  document.getElementById('raster').innerHTML = html;
+</script>
+</body>
+</html>

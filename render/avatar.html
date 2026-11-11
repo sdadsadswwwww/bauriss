@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bauriss Profilbild</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Instagram schneidet das Profilbild rund zu und zeigt es bis hinunter auf etwa 40 px:
+     Marke groß und mittig, alles Wichtige im inneren Kreis. */
+  #sheet { width: 1080px; height: 1080px; display: flex; align-items: center; justify-content: center; }
+  #sheet .marke { width: 1060px; height: 1060px; }
+</style>
+</head>
+<body>
+<div id="sheet"></div>
+<script src="drawings.js"></script>
+<script>
+  document.getElementById('sheet').innerHTML = Zeichnung.marke({ riss: true });
+</script>
+</body>
+</html>

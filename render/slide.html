@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bauriss Blatt</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="sheet"></div>
+<script src="drawings.js"></script>
+<script src="render.js"></script>
+<script>
+  // Aufruf über tools/render.py: slide.html?post=<name>&konto=<handle>&slide=<nr>
+  const q = new URLSearchParams(location.search);
+  // Erst zeichnen, wenn alle Schriftschnitte geladen sind – sonst fehlt Text in der Aufnahme.
+  const schriften = ['600 10px "Barlow Condensed"', '700 10px "Barlow Condensed"', '400 10px Barlow', '600 10px Barlow',
+    '400 10px "IBM Plex Mono"', '500 10px "IBM Plex Mono"'];
+  // Zeichnungen eines Themas liegen in zeichnungen/<name>.js; der Post nennt die Datei unter "zeichnungen".
+  const ladeSkript = name => new Promise((fertig, fehler) => {
+    const s = document.createElement('script');
+    s.src = 'zeichnungen/' + name + '.js';
+    s.onload = fertig;
+    s.onerror = fehler;
+    document.head.appendChild(s);
+  });
+  fetch('../posts/' + q.get('post') + '.json')
+    .then(r => r.json())
+    .then(post => Promise.all([post, post.zeichnungen && ladeSkript(post.zeichnungen), ...schriften.map(s => document.fonts.load(s))]))
+    .then(([post]) => render({ ...post, konto: '@' + q.get('konto') }, +q.get('slide') || 1));
+</script>
+</body>
+</html>

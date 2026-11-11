@@ -1,0 +1,28 @@
+name: Zugriffstoken verlängern
+
+# Das Instagram-Token läuft nach 60 Tagen ab. Dieser Lauf verlängert es zweimal im Monat
+# und legt den neuen Wert wieder als Secret ab. Dafür braucht er ein GitHub-Token mit
+# Schreibrecht auf Secrets (Secret GH_PAT), weil das Standard-Token das nicht darf.
+
+on:
+  schedule:
+    - cron: '0 5 1,15 * *'
+  workflow_dispatch:
+
+jobs:
+  verlaengern:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Token verlängern und speichern
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          neu=$(curl -fsS "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}" | jq -r '.access_token // empty')
+          if [ -z "$neu" ]; then
+            echo "Instagram hat kein neues Token geliefert." >&2
+            exit 1
+          fi
+          echo "::add-mask::$neu"
+          gh secret set IG_ACCESS_TOKEN --repo "${{ github.repository }}" --body "$neu"
+          echo "Token verlängert."
