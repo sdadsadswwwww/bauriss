@@ -1,0 +1,118 @@
+{
+  "nr": "007",
+  "titel": "Berliner Fernsehturm",
+  "zeichnungen": "fernsehturm",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Bauwerk Nr. 007",
+      "zahl": "368",
+      "headline": "Meter in 53&nbsp;Monaten",
+      "text": ["Die DDR beginnt ihr höchstes Bauwerk ohne Baugenehmigung – und zahlt am Ende viermal so viel wie geplant."],
+      "figur": { "fn": "fernsehturm" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1964 · Die Entscheidung",
+      "headline": "Der Standort ist Chefsache",
+      "text": [
+        "Ein erster Turm in den Müggelbergen scheitert an der Flugsicherheit. 1964 legt Walter Ulbricht fest: Der neue Turm kommt mitten ins Zentrum.",
+        "Bei der Eröffnung ist er der <em>zweithöchste Fernsehturm der Welt</em>."
+      ],
+      "figur": {
+        "fn": "hoehenvergleich",
+        "klein": true,
+        "bauten": [
+          { "form": "funkturm", "name": "Funkturm", "jahr": 1926, "hoehe": 147 },
+          { "form": "koeln", "name": "Kölner Dom", "jahr": 1880, "hoehe": 157 },
+          { "form": "fernsehturm", "name": "Fernsehturm", "jahr": 1969, "hoehe": 365, "akzent": true },
+          { "form": "ostankino", "name": "Moskau", "jahr": 1967, "hoehe": 540 }
+        ]
+      }
+    },
+    {
+      "typ": "bild-rechts",
+      "kicker": "1965–1967 · Der Schaft",
+      "headline": "Beton, der klettert",
+      "text": [
+        "Im August 1965 beginnen die Arbeiten am Fundament – ohne Baugenehmigung.",
+        "Der Schaft wächst in Kletterbauweise auf fast <em>249 Meter</em> und wird dabei schlanker: unten 16 Meter Durchmesser, oben 9."
+      ],
+      "figur": {
+        "fn": "fernsehturm",
+        "stufe": 1,
+        "marken": [
+          { "h": 248.78, "text": "249 m", "sub": "Juni 1967" },
+          { "h": 100, "text": "100 m", "sub": "Okt. 1966" }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1968 · Die Kugel",
+      "headline": "Eine Kugel aus 120 Teilen",
+      "text": [
+        "Die Hülle wird am Boden an einem Probeschaft vormontiert und dann Stück für Stück nach oben gehoben. Der erste Hub dauert 22 Minuten.",
+        "Der Edelstahl dafür kommt aus <em>Westdeutschland</em>."
+      ],
+      "figur": { "fn": "turmKugel", "bau": true }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Die Rechnung",
+      "headline": "Viermal so teuer",
+      "text": ["Geplant sind 33 Millionen Mark. Vor allem Bauteile, die gegen Devisen eingekauft werden, treiben die Kosten."],
+      "balken": [
+        { "wert": 33, "anzeige": "33 Mio.", "name": "Plan", "zusatz": "veranschlagte Gesamtkosten in Mark der DDR" },
+        { "wert": 95, "anzeige": "95 Mio.", "name": "Stand Ende 1967", "zusatz": "der Schaft steht, die Kugel fehlt noch" },
+        { "wert": 132, "anzeige": "132 Mio.", "name": "Eröffnung 1969", "zusatz": "über 132 Millionen, ohne die Pavillons am Fuß", "akzent": true }
+      ],
+      "fuss": "Eine Schlussrechnung wurde nie aufgestellt."
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Bau",
+      "headline": "Vom Fundament zur Eröffnung",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1965.4,
+        "bis": 1969.9,
+        "phasen": [
+          { "von": 1965.6, "bis": 1967.46, "art": "bau" },
+          { "von": 1967.46, "bis": 1968.83, "art": "schluss" },
+          { "von": 1968.83, "bis": 1969.75, "art": "bau" }
+        ],
+        "marken": [
+          { "jahr": 1965.6, "label": "8/1965", "text": "Fundament" },
+          { "jahr": 1966.76, "label": "10/1966", "text": "100 Meter erreicht" },
+          { "jahr": 1967.46, "label": "6/1967", "text": "Schaft fertig" },
+          { "jahr": 1968.24, "label": "3/1968", "text": "erstes Kugelsegment" },
+          { "jahr": 1968.83, "label": "10/1968", "text": "Antenne montiert" },
+          { "jahr": 1969.75, "label": "10/1969", "text": "Eröffnung" }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Nach der Eröffnung",
+      "headline": "Die Rache des Papstes",
+      "text": [
+        "Scheint die Sonne auf die Kugel, spiegelt sie ein Kreuz – ausgerechnet auf dem Prestigebau eines Staates, der die Kirchen kleinhält.",
+        "1997 bekommt der Turm eine neue Antennenspitze. Seitdem misst er 368 statt 365 Meter."
+      ],
+      "figur": { "fn": "turmKugel", "kreuz": true }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Berliner Fernsehturm", "structurae.net", "Berliner Kurier", "Abruf 11/2026"],
+  "caption": [
+    "Begonnen ohne Baugenehmigung, fertig nach 53 Monaten, viermal so teuer wie geplant: der Berliner Fernsehturm.",
+    "Die Kugel aus Edelstahl sollte den Sozialismus glänzen lassen. Bei Sonne spiegelt sie stattdessen ein Kreuz.",
+    "Warst du schon oben?"
+  ],
+  "hashtags": ["berlinerfernsehturm", "berlin", "ddr", "baugeschichte", "architektur", "geschichte", "alexanderplatz", "bauwerke"]
+}

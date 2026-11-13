@@ -1,0 +1,76 @@
+{
+  "nr": "002",
+  "titel": "Alter Elbtunnel",
+  "zeichnungen": "elbtunnel",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 002",
+      "zahl": "24",
+      "headline": "Meter unter der Elbe",
+      "text": ["1911 bekommt Hamburg einen Tunnel ohne Rampen: Fuhrwerke und Autos fahren mit dem Aufzug nach unten. Gebaut wird er für die Hafenarbeiter."],
+      "figur": { "fn": "elbtunnelSchnitt" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Problem",
+      "headline": "45.000 Arbeiter, zu wenig Fähren",
+      "text": [
+        "1895 arbeiten im Hamburger Hafen 20.000 Werft- und 25.000 Hafenarbeiter – die meisten auf der anderen Seite der Elbe.",
+        "Zum Schichtwechsel kommen die Fähren nicht hinterher. Viele können sich die Überfahrt nicht leisten, und bei Eis fällt sie aus."
+      ],
+      "figur": { "fn": "elbQuerung" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Lösung",
+      "headline": "Ein Tunnel ohne Rampen",
+      "text": ["Zufahrtsrampen gibt es nicht. Stattdessen steht an jedem Ufer ein Schacht mit <em>vier Aufzügen</em> für Fahrzeuge. Die beiden mittleren heben je zehn Tonnen."],
+      "figur": { "fn": "elbtunnelSchacht" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1907–1911 · Der Bau",
+      "headline": "Graben unter Überdruck",
+      "text": [
+        "Die Röhren entstehen im Schildvortrieb. Druckluft hält das Wasser draußen, denn zwischen Tunnel und Flussbett liegen nur <em>drei Meter Schlick</em>."
+      ],
+      "figur": { "fn": "elbtunnelQuerschnitt" }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Der Preis",
+      "headline": "Die Krankheit aus der Druckluft",
+      "text": ["Wer zu schnell aus dem Überdruck kommt, wird krank. Zwei Ärzte, Arthur und Adele Bornstein, schicken die Arbeiter deshalb nach jeder Schicht 90 Minuten in eine Druckluftschleuse."],
+      "punkte": [
+        { "wert": "4400", "name": "Arbeitskräfte", "zusatz": "insgesamt am Bau beschäftigt" },
+        { "wert": "3", "name": "Tote durch Caissonkrankheit", "zusatz": "zwei weitere sterben bei Unfällen" },
+        { "wert": "10,7 Mio.", "name": "Goldmark Baukosten", "zusatz": "nach heutigem Geld rund 75 Millionen Euro" }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Maut",
+      "headline": "Arbeiter frei, Hunde zehn Pfennig",
+      "text": ["Über die Gebühren streitet die Bürgerschaft. Am Ende gilt: Wer zu Fuß zur Arbeit geht, zahlt nichts."],
+      "punkte": [
+        { "wert": "0 Pf.", "name": "Fußgänger", "zusatz": "bis heute kostenlos" },
+        { "wert": "50 Pf.", "name": "Droschken und Autos", "zusatz": "beladene Lastwagen zahlen nach Gewicht" },
+        { "wert": "10 Pf.", "name": "Hunde", "zusatz": "pro mitgeführtem Tier" }
+      ],
+      "fuss": "Nach der Eröffnung gehen 20 Millionen Menschen im Jahr hindurch."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: St. Pauli-Elbtunnel", "hamburg.de: Alter Elbtunnel", "Abruf 11/2026"],
+  "caption": [
+    "Ein Tunnel ohne Rampen: Im Alten Elbtunnel fahren Fahrzeuge seit 1911 mit dem Aufzug 24 Meter in die Tiefe.",
+    "Gebaut wurde er für die Hafenarbeiter, die morgens nicht mehr auf die Fähren passten. Fußgänger zahlten nichts, Hunde zehn Pfennig.",
+    "Bist du schon einmal durchgelaufen?"
+  ],
+  "hashtags": ["alterelbtunnel", "elbtunnel", "hamburg", "stpauli", "baugeschichte", "ingenieurbau", "hafen", "bauwerke"]
+}

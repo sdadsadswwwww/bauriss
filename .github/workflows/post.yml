@@ -2,10 +2,11 @@ name: Post veröffentlichen
 
 on:
   schedule:
-    # 18:30 Uhr deutscher Zeit, angegeben in UTC: im Sommer greift der erste Lauf, im Winter der zweite.
+    # Täglich zwei Läufe, angegeben in UTC. GitHub startet sie erfahrungsgemäß 40 bis 55 Minuten später,
+    # im Winter also gegen 18:25 und 19:10 Uhr deutscher Zeit.
     # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
-    - cron: '30 16 * * 1-5'
-    - cron: '30 17 * * 1-5'
+    - cron: '30 16 * * *'
+    - cron: '30 17 * * *'
   workflow_dispatch:
     inputs:
       probelauf:
