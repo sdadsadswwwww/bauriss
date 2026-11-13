@@ -1,16 +1,17 @@
 # Bauriss
 
-Automatisierter Instagram-Kanal: ein Bauwerk pro Werktag, erklärt in Zeichnungen. Jeder Post ist ein Carousel, das vollständig aus Code gerendert wird.
+Automatisierter Instagram-Kanal: ein Bauwerk pro Tag, erklärt in Zeichnungen. Jeder Post ist ein Carousel, das vollständig aus Code gerendert wird.
 
 ## Ablauf
 
-1. **Post schreiben:** eine JSON-Datei in `posts/` (Texte, Zahlen, Verweis auf die Zeichnungen).
-2. **Rendern:** `python tools/render.py` erzeugt die Blätter als JPEG in `out/<post>/` und eine `uebersicht.jpg` zum Durchsehen.
-3. **Einplanen:** Eintrag in `plan.json` mit Datum. Neue Einträge stehen auf `"freigabe": false`.
-4. **Freigeben:** nach der Durchsicht `"freigabe": true` setzen und ins Repo übertragen.
-5. **Veröffentlichen:** GitHub Actions ruft Mo–Fr um 18:30 Uhr `tools/publish.py` auf. Das Skript postet den für heute freigegebenen Post und trägt ihn in `veroeffentlicht.json` ein.
+Seit dem 13.11.2026 läuft der Kanal automatisch: Ein täglicher Lauf erstellt den Post für den Folgetag und plant ihn freigegeben ein. Die vollständige Arbeitsanweisung dafür steht in [AUTOMATIK.md](AUTOMATIK.md).
 
-Ohne Freigabe wird nichts veröffentlicht. Ein Post, der in `veroeffentlicht.json` steht, wird nie ein zweites Mal gepostet.
+1. **Post schreiben:** eine JSON-Datei in `posts/` (Texte, Zahlen, Verweis auf die Zeichnungen), dazu die Zeichnungen in `render/zeichnungen/`.
+2. **Rendern:** `python tools/render.py <post>` erzeugt die Blätter als JPEG in `out/<post>/` und eine `uebersicht.jpg` zum Durchsehen.
+3. **Einplanen:** `python tools/automatik.py einplanen <post> <datum> --thema "<Name>"` prüft den Post und trägt ihn in `plan.json` ein.
+4. **Veröffentlichen:** GitHub Actions ruft täglich (Mo–So) `tools/publish.py` auf, gegen 18:25 Uhr und zur Reserve gegen 19:10 und 22:15 Uhr. Das Skript postet den für heute freigegebenen Post und trägt ihn in `veroeffentlicht.json` ein.
+
+Ein Eintrag mit `"freigabe": false` wird nicht veröffentlicht; so lässt sich ein einzelner Post zurückhalten. Ein Post, der in `veroeffentlicht.json` steht, wird nie ein zweites Mal gepostet.
 
 ## Aufbau
 
@@ -20,6 +21,10 @@ Ohne Freigabe wird nichts veröffentlicht. Ein Post, der in `veroeffentlicht.jso
 | `render/` | Vorlage: `slide.html`, `style.css`, Zeichnungen in `drawings.js` |
 | `tools/render.py` | Rendert Posts über einen lokalen Chrome ohne Fenster |
 | `tools/publish.py` | Veröffentlicht über die Instagram Graph API |
+| `tools/automatik.py` | Stand, Prüfung, Einplanen und Aufräumen für den täglichen Lauf |
+| `tools/wiki.py` | Holt Wikipedia-Artikel für die Recherche |
+| `AUTOMATIK.md` | Arbeitsanweisung für den täglichen Lauf |
+| `themen.json` | Themenliste: erschienene und offene Bauwerke |
 | `plan.json` | Zeitplan und Freigaben |
 | `veroeffentlicht.json` | Protokoll, wird vom Workflow geschrieben |
 | `config.json` | Konto, API-Version |
@@ -40,7 +45,7 @@ Das Repo muss öffentlich sein: Instagram holt die Bilder über ihre Adresse ab,
 ## Prüfen ohne zu posten
 
 ```bash
-python tools/publish.py --probelauf --post 001-koelner-dom
+python tools/publish.py --probelauf --post 005-koelner-dom
 ```
 
 Im Repo: Actions → „Post veröffentlichen" → Run workflow, Haken bei „Nur prüfen" gesetzt lassen.

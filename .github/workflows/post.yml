@@ -2,11 +2,13 @@ name: Post veröffentlichen
 
 on:
   schedule:
-    # Täglich zwei Läufe, angegeben in UTC. GitHub startet sie erfahrungsgemäß 40 bis 55 Minuten später,
-    # im Winter also gegen 18:25 und 19:10 Uhr deutscher Zeit.
+    # Täglich (Mo–So) drei Läufe, angegeben in UTC. GitHub startet sie erfahrungsgemäß 40 bis 55 Minuten später,
+    # im Winter also gegen 18:25, 19:10 und 22:15 Uhr deutscher Zeit. Der dritte ist Reserve, falls die
+    # ersten beiden scheitern oder der Post des Tages erst am Abend fertig wird.
     # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
     - cron: '30 16 * * *'
     - cron: '30 17 * * *'
+    - cron: '30 20 * * *'
   workflow_dispatch:
     inputs:
       probelauf:
@@ -43,4 +45,5 @@ jobs:
           git config user.name "bauriss-bot"
           git config user.email "bauriss-bot@users.noreply.github.com"
           git add veroeffentlicht.json
-          git diff --cached --quiet || (git commit -m "Veröffentlicht am $(date -u +%F)" && git push)
+          # Vor dem Übertragen den Stand des Servers holen: Die Automatik kann zwischendurch einen neuen Post eingestellt haben.
+          git diff --cached --quiet || (git commit -m "Veröffentlicht am $(date -u +%F)" && git pull --rebase && git push)
