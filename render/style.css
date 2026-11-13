@@ -200,3 +200,12 @@ em { font-style: normal; font-weight: 600; color: var(--acc); }
 /* Marke: T-Konto mit doppeltem Abschlussstrich */
 .marke .mt { fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: square; }
 .marke .ma { fill: none; stroke: var(--acc); stroke-width: 4.5; stroke-linecap: square; }
+
+/* Stempel auf Textblättern: unten rechts über dem Ornament */
+.inhalt.text .stempel { right: 16px; bottom: 10px; transform: rotate(-8deg); }
+
+/* Drei und mehr Balken: enger setzen, damit der Fußsatz Platz hat */
+.reihe.eng { margin-top: 26px; }
+.reihe.eng .wert { font-size: 100px; }
+.reihe.eng .bahn { height: 38px; margin-top: 10px; }
+.reihe.eng .zusatz { margin-top: 8px; }

@@ -106,7 +106,7 @@ function render(post, nr) {
   } else if (sl.typ === 'balken') {
     // Die Werte sind Prozent.
     const reihen = sl.balken.map(b =>
-      `<div class="reihe${b.akzent ? ' akz' : ''}"><div class="kopf"><span class="wert">${b.wert.toLocaleString('de-DE')} %</span><span class="wer">${b.name}</span></div>` +
+      `<div class="reihe${b.akzent ? ' akz' : ''}${sl.balken.length > 2 ? ' eng' : ''}"><div class="kopf"><span class="wert">${b.wert.toLocaleString('de-DE')} %</span><span class="wer">${b.name}</span></div>` +
       `<div class="bahn"><i style="width:${b.wert}%"></i></div><div class="zusatz">${b.zusatz}</div></div>`).join('');
     inhalt = `${kopf}${reihen}${fuss}`;
   } else if (sl.typ === 'punkte') {
@@ -118,7 +118,7 @@ function render(post, nr) {
       s.posten.map(p => `<div class="posten"><div class="wer">${p.name}</div><div class="zusatz">${p.zusatz}</div></div>`).join('') + `</div>`;
     inhalt = `${kopf}<div class="tkonto">${seite(sl.soll)}${seite(sl.haben)}</div>${stmp}`;
   } else if (sl.typ === 'gleichung') {
-    inhalt = `${rosette()}${kopf}<div class="gleichung-block"><div class="wert">${sl.oben.wert}<span class="weg">${sl.oben.gestrichen || ''}</span></div><div class="wer">${sl.oben.name}</div>` +
+    inhalt = `${rosette()}${kopf}<div class="gleichung-block"><div class="wert">${sl.oben.wert}${sl.oben.gestrichen ? `<span class="weg">${sl.oben.gestrichen}</span>` : ''}</div><div class="wer">${sl.oben.name}</div>` +
       `<div class="ist">=</div><div class="unten"><div class="wert">${sl.unten.wert}<span>${sl.unten.name}</span></div></div></div>${fuss}`;
   } else if (sl.typ === 'outro') {
     inhalt = `<div class="siegel">${rosette()}${marke()}</div><h2>${sl.headline}</h2>${absaetze}<div class="konto">Folgen: ${post.konto}</div>` +

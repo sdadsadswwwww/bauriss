@@ -1,0 +1,107 @@
+{
+  "nr": "003",
+  "titel": "Währungsreform 1948",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Buchung Nr. 003 · Westzonen 1948",
+      "zahl": "40",
+      "einheit": "Deutsche Mark",
+      "headline": "für jeden, am selben Tag",
+      "spalten": ["Datum", "Posten", "Betrag"],
+      "zeilen": [
+        { "datum": "20.06.1948", "text": "Kopfgeld, erste Rate", "betrag": "40 DM", "akzent": true },
+        { "datum": "Aug. 1948", "text": "Kopfgeld, zweite Rate", "betrag": "20 DM" }
+      ],
+      "stempel": { "umschrift": "KASSENBUCH · GEBUCHT · KASSENBUCH · GEBUCHT ·", "oben": "WESTZONEN", "mitte": "20. Juni 1948", "unten": "NR. 003" }
+    },
+    {
+      "typ": "text",
+      "kicker": "1945–1948 · Vorher",
+      "headline": "Viel Geld, <i>nichts zu kaufen</i>",
+      "text": [
+        "Das NS-Regime hat die Rüstung mit der Notenpresse bezahlt. Nach dem Krieg ist Geld im Überfluss da, aber kaum Ware.",
+        "Die Reichsmark ist fast wertlos. Gekauft wird auf Bezugsschein, getauscht auf dem Schwarzmarkt. Die heimliche Währung sind <em>Zigaretten</em>."
+      ]
+    },
+    {
+      "typ": "text",
+      "kicker": "1947–1948 · Die Vorbereitung",
+      "headline": "Operation <i>Bird Dog</i>",
+      "text": [
+        "Die neuen Scheine werden ab 1947 in New York und Washington gedruckt.",
+        "Von Februar bis April 1948 kommen sie in einem <em>geheimen Transport</em> nach Deutschland. Erst am 18. Juni erfährt die Öffentlichkeit, dass es in zwei Tagen losgeht."
+      ]
+    },
+    {
+      "typ": "journal",
+      "kicker": "Die Umstellung",
+      "headline": "Was aus 100 Reichsmark <i>wird</i>",
+      "spalten": ["Kurs", "Was", "Neu in DM"],
+      "zeilen": [
+        { "datum": "1 : 1", "text": "Löhne, Mieten, Renten", "betrag": "100,00" },
+        { "datum": "10 : 1", "text": "Schulden, Hypotheken", "betrag": "10,00" },
+        { "datum": "100 : 6,5", "text": "Bargeld und Sparguthaben", "betrag": "6,50", "akzent": true }
+      ],
+      "fuss": "Zuerst heißt es 10 : 1. Im Oktober 1948 wird die Hälfte der Guthaben fast ganz gestrichen."
+    },
+    {
+      "typ": "gleichung",
+      "kicker": "Oktober 1948 · Das Sparbuch",
+      "headline": "Erspartes, <i>fast weg</i>",
+      "oben": { "wert": "100", "name": "Reichsmark auf dem Sparbuch" },
+      "unten": { "wert": "6,50", "name": "DM" },
+      "fuss": "Die neue Geldmenge: 13,2 Milliarden DM ersetzen 145 Milliarden Reichsmark."
+    },
+    {
+      "typ": "konto",
+      "kicker": "Die Bilanz",
+      "headline": "Wer verliert, <i>wer gewinnt?</i>",
+      "soll": {
+        "titel": "Soll",
+        "wort": "Verlierer",
+        "posten": [
+          { "name": "Sparer", "zusatz": "Von 1.000 Reichsmark bleiben 65 DM." },
+          { "name": "Gläubiger des Reichs", "zusatz": "Der Staat wird von seinen alten Schulden befreit." }
+        ]
+      },
+      "haben": {
+        "titel": "Haben",
+        "wort": "Gewinner",
+        "posten": [
+          { "name": "Sachwertbesitzer", "zusatz": "Häuser, Fabriken und Warenlager behalten ihren Wert." },
+          { "name": "Schuldner", "zusatz": "Private Schulden schrumpfen auf <em>ein Zehntel</em>." }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Sommer 1948 · Danach",
+      "headline": "Über Nacht <i>volle Läden</i>",
+      "text": ["Händler, die Ware zurückgehalten haben, stellen sie jetzt ins Schaufenster. Es lohnt sich wieder zu produzieren:"],
+      "punkte": [
+        { "wert": "+25 %", "name": "Industrieproduktion", "zusatz": "in zwei Monaten bis August 1948" },
+        { "wert": "+23 %", "name": "noch einmal obendrauf", "zusatz": "bis zum Jahresende 1948" },
+        { "wert": "1949", "name": "Stand von 1936 erreicht", "zusatz": "im November, in Westdeutschland" }
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Eine Buchung <i>pro Werktag</i>",
+      "text": ["Wirtschaftsgeschichte in Zahlen: Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?"]
+    }
+  ],
+  "quellen": [
+    "Deutsche Bundesbank: Währungsreform 1948",
+    "bpb: Deutschland-Chronik, 20./21. Juni 1948",
+    "Bundesarchiv: Währungsreform und Berlin-Blockade",
+    "KAS: 50 Jahre Währungsreform",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Am 20. Juni 1948 bekommt jeder in den Westzonen 40 D-Mark. Am Tag darauf ist die Reichsmark Geschichte.",
+    "Löhne und Mieten werden 1 : 1 umgestellt, Schulden 10 : 1 – und vom Ersparten bleiben am Ende 6,50 DM je 100 Reichsmark.",
+    "Kennst du Geschichten aus deiner Familie vom Tag X?"
+  ],
+  "hashtags": ["währungsreform", "dmark", "1948", "wirtschaftswunder", "ludwigerhard", "wirtschaftsgeschichte", "nachkriegszeit", "deutschegeschichte"]
+}

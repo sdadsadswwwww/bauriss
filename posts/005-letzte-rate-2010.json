@@ -1,0 +1,102 @@
+{
+  "nr": "005",
+  "titel": "Die letzte Rate 2010",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Buchung Nr. 005 · Berlin 2010",
+      "zahl": "91",
+      "einheit": "Jahre später",
+      "headline": "ist der Erste Weltkrieg bezahlt",
+      "spalten": ["Datum", "Posten", "Stand"],
+      "zeilen": [
+        { "datum": "28.06.1919", "text": "Versailler Vertrag", "betrag": "offen" },
+        { "datum": "03.10.2010", "text": "letzte Zahlung des Bundes", "betrag": "beglichen", "akzent": true }
+      ],
+      "stempel": { "umschrift": "KASSENBUCH · GEBUCHT · KASSENBUCH · GEBUCHT ·", "oben": "BERLIN", "mitte": "3. Okt. 2010", "unten": "NR. 005" }
+    },
+    {
+      "typ": "journal",
+      "kicker": "1921–1932 · Die Pläne",
+      "headline": "Vier Anläufe, <i>eine Rechnung</i>",
+      "spalten": ["Jahr", "Plan", "Forderung"],
+      "zeilen": [
+        { "datum": "1921", "text": "Londoner Zahlungsplan", "betrag": "132 Mrd." },
+        { "datum": "1924", "text": "Dawes-Plan: Jahresraten", "betrag": "bis 2,5 Mrd." },
+        { "datum": "1929", "text": "Young-Plan, Laufzeit bis 1988", "betrag": "112 Mrd." },
+        { "datum": "1932", "text": "Lausanne: Schlussstrich", "betrag": "Rest 3 Mrd.", "akzent": true }
+      ],
+      "fuss": "Beträge in Goldmark, 1932 in Reichsmark. Tatsächlich gezahlt wird nur ein Bruchteil, geschätzt rund 25 Milliarden."
+    },
+    {
+      "typ": "text",
+      "kicker": "1924 und 1930 · Die Anleihen",
+      "headline": "Geld leihen, <i>um zu zahlen</i>",
+      "text": [
+        "Damit Deutschland überhaupt zahlen kann, bekommt es Kredit: Anleger im Ausland zeichnen die <em>Dawes-Anleihe</em> von 1924 und die <em>Young-Anleihe</em> von 1930.",
+        "Aus Reparationen an Staaten werden so Schulden bei privaten Sparern und Banken."
+      ]
+    },
+    {
+      "typ": "text",
+      "kicker": "1933–1953 · Die Pause",
+      "headline": "Zwanzig Jahre <i>Funkstille</i>",
+      "text": [
+        "Das NS-Regime stellt die Zahlungen ein.",
+        "1953 übernimmt die Bundesrepublik im <em>Londoner Schuldenabkommen</em> die alten Auslandsschulden. Die Anleihen selbst zahlt sie bis 1980 zurück.",
+        "Ein Rest bleibt liegen: die Zinsen der Jahre 1945 bis 1952. Fällig erst, wenn Deutschland wiedervereint ist."
+      ]
+    },
+    {
+      "typ": "journal",
+      "kicker": "3. Oktober 1990 · Die Klausel greift",
+      "headline": "Die Rechnung <i>von gestern</i>",
+      "text": ["Mit der Einheit werden die gestundeten Zinsen fällig:"],
+      "spalten": ["Anleihe", "von", "Mio. DM"],
+      "zeilen": [
+        { "datum": "Dawes", "text": "1924", "betrag": "40,2" },
+        { "datum": "Young", "text": "1930", "betrag": "175,8" },
+        { "datum": "Kreuger", "text": "1930", "betrag": "23,4" },
+        { "datum": "Summe", "text": "Zinsrückstände", "betrag": "239,4", "akzent": true }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1990–2010 · Die Tilgung",
+      "headline": "Abbezahlt in <i>zwanzig Jahren</i>",
+      "text": ["Der Bund gibt für die alten Zinsen neue Schuldscheine aus:"],
+      "punkte": [
+        { "wert": "20", "name": "Jahre Laufzeit", "zusatz": "ab dem 3. Oktober 1990" },
+        { "wert": "3 %", "name": "Zinsen pro Jahr", "zusatz": "auf die Schuldverschreibungen" },
+        { "wert": "2010", "name": "letzte Rate", "zusatz": "fällig am 3. Oktober, dem Tag der Einheit" }
+      ]
+    },
+    {
+      "typ": "text",
+      "kicker": "Genau genommen",
+      "headline": "Reparationen <i>waren es nicht</i>",
+      "text": [
+        "Was 2010 endet, sind Zinsen auf Anleihen, mit denen Deutschland einst seine Reparationen finanziert hat.",
+        "Die Reparationen selbst wurden schon 1932 in Lausanne beendet. Geblieben war die <em>Rechnung der Geldgeber</em>."
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Eine Buchung <i>pro Werktag</i>",
+      "text": ["Wirtschaftsgeschichte in Zahlen: Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?"]
+    }
+  ],
+  "quellen": [
+    "Deutscher Bundestag, Wissenschaftliche Dienste: WD 1 – 088/08",
+    "BADV: Auslandsschulden",
+    "DHM LeMO: Reparationen",
+    "Uni Wuppertal: Reparationszahlungen des Ersten Weltkrieges",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Am 3. Oktober 2010 überweist die Bundesrepublik die letzte Rate, die auf den Ersten Weltkrieg zurückgeht – 91 Jahre nach dem Versailler Vertrag.",
+    "Es waren keine Reparationen mehr, sondern Zinsen auf Anleihen aus den 1920er-Jahren, gestundet bis zur Wiedervereinigung.",
+    "Hättest du gedacht, dass das so lange lief?"
+  ],
+  "hashtags": ["ersterweltkrieg", "reparationen", "versaillervertrag", "weimarerrepublik", "wirtschaftsgeschichte", "geschichte", "schulden", "deutscheeinheit"]
+}
