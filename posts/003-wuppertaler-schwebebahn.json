@@ -1,0 +1,87 @@
+{
+  "nr": "003",
+  "titel": "Wuppertaler Schwebebahn",
+  "zeichnungen": "schwebebahn",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 003",
+      "zahl": "13",
+      "headline": "Kilometer hängend durch die Stadt",
+      "text": ["Ab 1898 baut man im Tal der Wupper eine Bahn, die an ihrer Schiene hängt – zehn Kilometer davon direkt über dem Fluss."],
+      "figur": { "fn": "schwebebahnSeite" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Problem",
+      "headline": "Kein Platz im Tal",
+      "text": [
+        "Barmen und Elberfeld wachsen entlang der Wupper zusammen. Das Tal ist eng und dicht bebaut, für eine Schnellbahn am Boden ist kein Raum.",
+        "1892 schlägt der Kölner Erfinder Eugen Langen vor, die Wagen aufzuhängen. Frei ist nur der Platz <em>über dem Fluss</em>."
+      ],
+      "figur": { "fn": "schwebebahnQuer" }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Das Gerüst",
+      "headline": "Eine Brücke, 13 Kilometer lang",
+      "text": ["Vier Stahlbaufirmen teilen sich die Strecke. In den ersten Jahren gilt das Gerüst als längste Brückenkonstruktion der Welt."],
+      "punkte": [
+        { "wert": "472", "name": "Stützen", "zusatz": "tragen die Schienen über Fluss und Straße" },
+        { "wert": "19.200 t", "name": "Eisen", "zusatz": "genietet und geschraubt" },
+        { "wert": "16 Mio.", "name": "Goldmark Baukosten", "zusatz": "gerundet, nach Angabe des Betreibers" }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "Erst der Kaiser, dann alle anderen",
+      "text": ["Im Oktober 1900 fährt Kaiser Wilhelm II. zur Probe mit. Für Fahrgäste öffnet die Bahn 1901 – in drei Etappen."],
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1891,
+        "bis": 1904,
+        "phasen": [
+          { "von": 1898.3, "bis": 1901.17, "art": "bau" },
+          { "von": 1901.17, "bis": 1903.49, "art": "schluss" }
+        ],
+        "marken": [
+          { "jahr": 1892.5, "label": "1892", "text": "Langens Idee" },
+          { "jahr": 1898.3, "label": "1898", "text": "Baubeginn" },
+          { "jahr": 1901.17, "label": "1901", "text": "erster Abschnitt eröffnet" },
+          { "jahr": 1903.49, "label": "1903", "text": "ganze Strecke in Betrieb" }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Privat gebaut, heute städtisch",
+      "text": ["Bauherrin ist kein Rathaus, sondern eine Aktiengesellschaft: die Continentale Gesellschaft für elektrische Unternehmungen. Sie baut und betreibt die Bahn selbst."],
+      "punkte": [
+        { "wert": "10 Pf.", "name": "Fahrpreis 1901", "zusatz": "günstigste Klasse auf dem ersten Abschnitt" },
+        { "wert": "1922", "name": "Verkauf", "zusatz": "die Gesellschaft gibt ihre Anteile ab" },
+        { "wert": "1 Mrd.", "name": "Fahrgäste bis 1966", "zusatz": "heute fahren die Wuppertaler Stadtwerke" }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1950 · Der Zwischenfall",
+      "headline": "Ein Elefant springt ab",
+      "text": ["Für eine Zirkuswerbung fährt die junge Elefantenkuh Tuffi mit. Unterwegs bricht sie aus dem fahrenden Wagen aus und springt in die Wupper. <em>Sie überlebt.</em>"],
+      "figur": { "fn": "schwebebahnSeite", "tuffi": true }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Wuppertaler Schwebebahn", "WSW: Die Geschichte der Wuppertaler Schwebebahn", "Abruf 11/2026"],
+  "caption": [
+    "Weil im Tal kein Platz war, hängte Wuppertal seine Bahn auf: 13 Kilometer, zehn davon über dem Fluss, getragen von 472 Stützen.",
+    "Gebaut hat sie eine private Aktiengesellschaft. Der Kaiser fuhr 1900 zur Probe, ein Elefant sprang 1950 hinaus.",
+    "Bist du schon einmal mitgefahren?"
+  ],
+  "hashtags": ["schwebebahn", "wuppertal", "wuppertalerschwebebahn", "baugeschichte", "ingenieurbau", "nahverkehr", "geschichte", "bauwerke"]
+}

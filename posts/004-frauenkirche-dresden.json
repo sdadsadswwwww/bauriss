@@ -1,0 +1,98 @@
+{
+  "nr": "004",
+  "titel": "Frauenkirche Dresden",
+  "zeichnungen": "frauenkirche",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Bauwerk Nr. 004",
+      "zahl": "180",
+      "headline": "Millionen für eine Ruine",
+      "text": ["Die Dresdner Frauenkirche liegt 48 Jahre in Trümmern. Den Wiederaufbau bezahlen zum größeren Teil Spender aus aller Welt."],
+      "figur": { "fn": "frauenkircheAnsicht" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1726–1743 · Der Bau",
+      "headline": "Die steinerne Glocke",
+      "text": [
+        "Ratszimmermeister George Bähr setzt eine Kuppel ganz aus Sandstein auf die Kirche. Unten schwingt sie aus wie eine Glocke.",
+        "Bezahlt wird vor allem aus <em>Spenden der Dresdner</em> – gesammelt worden waren sie eigentlich für vertriebene Salzburger Protestanten."
+      ],
+      "figur": {
+        "fn": "frauenkircheAnsicht",
+        "ab": 27,
+        "marken": [
+          { "h": 72, "text": "Laterne" },
+          { "h": 52, "text": "Kuppel", "sub": "26 m breit" },
+          { "h": 36, "text": "Treppenturm" }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Februar 1945",
+      "headline": "Erst am zweiten Tag stürzt sie ein",
+      "text": [
+        "In der Nacht zum 14. Februar 1945 brennt die Kirche bei den Luftangriffen aus. Am Vormittag des 15. Februar geben die überhitzten Pfeiler nach.",
+        "In der DDR bleibt der Trümmerberg liegen – als Mahnmal gegen den Krieg."
+      ],
+      "figur": { "fn": "frauenkircheRuine" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "48 Jahre Ruine",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1720,
+        "bis": 2010,
+        "phasen": [
+          { "von": 1726.6, "bis": 1743.4, "art": "schluss" },
+          { "von": 1743.4, "bis": 1945.1, "art": "bau", "text": "202 Jahre Wahrzeichen" },
+          { "von": 1945.1, "bis": 1993, "art": "pause", "text": "48 Jahre Ruine" },
+          { "von": 1993, "bis": 2005.8, "art": "schluss" }
+        ],
+        "marken": [
+          { "jahr": 1726.6, "label": "1726", "text": "Grundstein" },
+          { "jahr": 1743.4, "label": "1743", "text": "vollendet" },
+          { "jahr": 1945.1, "label": "1945", "text": "eingestürzt" },
+          { "jahr": 2005.8, "label": "2005", "text": "wieder geweiht" }
+        ]
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Mehr Spenden als Steuergeld",
+      "text": ["Der Wiederaufbau kostet rund <em>180 Millionen Euro</em>."],
+      "balken": [
+        { "wert": 115, "anzeige": "115 Mio. €", "name": "Spenden", "zusatz": "aus aller Welt; je nach Quelle 100 bis 115 Millionen", "akzent": true },
+        { "wert": 65, "anzeige": "65 Mio. €", "name": "Öffentliche Hand", "zusatz": "Stadt Dresden, Freistaat Sachsen und Bund, etwa zu gleichen Teilen" }
+      ],
+      "fuss": "Allein die Stifterbriefe einer Bank bringen rund 75 Millionen Euro."
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1993–2005 · Der Wiederaufbau",
+      "headline": "Alte Steine an alter Stelle",
+      "text": [
+        "Die Trümmer werden vermessen und katalogisiert. Was sich retten lässt, kommt zurück in die Mauern – erkennbar an der dunklen Patina.",
+        "Das neue Kuppelkreuz schmiedet ein Londoner, dessen Vater 1945 einen der Bomber flog."
+      ],
+      "figur": { "fn": "steinmosaik" }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Werktag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Frauenkirche (Dresden)", "structurae.net", "evangelisch.de", "Abruf 11/2026"],
+  "caption": [
+    "48 Jahre lang war die Dresdner Frauenkirche ein Trümmerberg. Ihr Wiederaufbau kostete rund 180 Millionen Euro, der größere Teil kam aus Spenden.",
+    "Die dunklen Steine in der Fassade sind Originale von 1743, zurückgesetzt an ihren alten Platz.",
+    "Hast du sie schon einmal von innen gesehen?"
+  ],
+  "hashtags": ["frauenkirche", "dresden", "frauenkirchedresden", "baugeschichte", "architektur", "barock", "geschichte", "bauwerke"]
+}

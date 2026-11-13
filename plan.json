@@ -3,6 +3,8 @@
   "posts": [
     { "datum": "2026-11-12", "post": "001-eiffelturm", "freigabe": true, "uhrzeit": "00:00" },
     { "datum": "2026-11-13", "post": "002-alter-elbtunnel", "freigabe": true },
+    { "datum": "2026-11-14", "post": "003-wuppertaler-schwebebahn", "freigabe": true },
+    { "datum": "2026-11-15", "post": "004-frauenkirche-dresden", "freigabe": true },
     { "datum": "2026-11-16", "post": "005-koelner-dom", "freigabe": true },
     { "datum": "2026-11-17", "post": "006-elbphilharmonie", "freigabe": true },
     { "datum": "2026-11-18", "post": "007-berliner-fernsehturm", "freigabe": true },
