@@ -1,0 +1,239 @@
+{
+ "nr": "002",
+ "titel": "Strom aus Erneuerbaren",
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 002",
+   "zahl": "55,1 %",
+   "headline": "des Stroms sind erneuerbar",
+   "text": [
+    "2025 decken Wind, Sonne, Biomasse und Wasser mehr als die Hälfte des deutschen Stromverbrauchs."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 65,
+    "reihen": [
+     {
+      "von": 2005,
+      "werte": [
+       10.3,
+       11.7,
+       14.4,
+       15.3,
+       16.6,
+       17.2,
+       20.6,
+       23.8,
+       25.3,
+       27.5,
+       31.6,
+       31.8,
+       36.2,
+       37.9,
+       42.2,
+       45.4,
+       41.8,
+       46.4,
+       53.0,
+       54.4,
+       55.1
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     2005,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Anteil am Stromverbrauch · 2005 bis 2025",
+   "headline": "In 20 Jahren verfünffacht",
+   "text": [
+    "2005 liegt der Anteil bei <em>10,3 Prozent</em>. Seitdem ist er nur ein einziges Mal gesunken: im Jahr 2021."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 65,
+    "reihen": [
+     {
+      "von": 2005,
+      "werte": [
+       10.3,
+       11.7,
+       14.4,
+       15.3,
+       16.6,
+       17.2,
+       20.6,
+       23.8,
+       25.3,
+       27.5,
+       31.6,
+       31.8,
+       36.2,
+       37.9,
+       42.2,
+       45.4,
+       41.8,
+       46.4,
+       53.0,
+       54.4,
+       55.1
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     2005,
+     2010,
+     2015,
+     2020,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0 %"
+     },
+     {
+      "wert": 20,
+      "text": "20 %"
+     },
+     {
+      "wert": 40,
+      "text": "40 %"
+     },
+     {
+      "wert": 60,
+      "text": "60 %"
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2021,
+      "text": "2021: 41,8 %",
+      "seite": "unten"
+     },
+     {
+      "jahr": 2025,
+      "text": "2025: 55,1 %",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Anteil erneuerbarer Energien am Bruttostromverbrauch in Deutschland."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Das Jahr 2025 nach Quellen",
+   "headline": "Die Quellen im Detail",
+   "text": [
+    "Wind an Land bleibt die größte Quelle. Die Photovoltaik liegt nur noch <em>3 Prozentpunkte</em> dahinter."
+   ],
+   "balken": [
+    {
+     "wert": 20.4,
+     "anzeige": "20,4 %",
+     "name": "Wind an Land",
+     "akzent": true
+    },
+    {
+     "wert": 17.4,
+     "anzeige": "17,4 %",
+     "name": "Photovoltaik",
+     "akzent": false
+    },
+    {
+     "wert": 5.0,
+     "anzeige": "5,0 %",
+     "name": "Wind auf See",
+     "akzent": false
+    },
+    {
+     "wert": 3.2,
+     "anzeige": "3,2 %",
+     "name": "Wasserkraft",
+     "akzent": false
+    },
+    {
+     "wert": 9.1,
+     "anzeige": "9,1 %",
+     "name": "Übrige, vor allem Biomasse"
+    }
+   ],
+   "fuss": "Datenstand Februar 2026. Übrige als Rest zu 55,1 % berechnet."
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Gestern, heute, Ziel",
+   "headline": "Der Weg bis 2030",
+   "punkte": [
+    {
+     "wert": "55,1 %",
+     "name": "im Jahr 2025",
+     "zusatz": "0,7 Prozentpunkte mehr als 2024"
+    },
+    {
+     "wert": "6,3 %",
+     "name": "im Jahr 2000",
+     "zusatz": "ein Vierteljahrhundert zuvor"
+    },
+    {
+     "wert": "80 %",
+     "name": "Ziel für 2030",
+     "zusatz": "mindestens, laut Erneuerbare-Energien-Gesetz"
+    }
+   ],
+   "fuss": "Für das Ziel müsste der Anteil bis 2030 jedes Jahr um rund 5 Prozentpunkte steigen."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Umweltbundesamt / AGEE-Stat: Zeitreihen zur Entwicklung der erneuerbaren Energien, Stand 9/2026",
+  "UBA: Erneuerbare Energien in Deutschland 2025, Stand 2/2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "55,1 Prozent des deutschen Stromverbrauchs kamen 2025 aus erneuerbaren Quellen. 2005 waren es 10,3 Prozent.",
+  "Das gesetzliche Ziel für 2030 liegt bei mindestens 80 Prozent.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "energiewende",
+  "erneuerbareenergien",
+  "ökostrom",
+  "windkraft",
+  "photovoltaik",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen"
+ ]
+}

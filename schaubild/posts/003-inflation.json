@@ -1,0 +1,264 @@
+{
+ "nr": "003",
+ "titel": "Inflation seit 1992",
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 003",
+   "zahl": "2,2 %",
+   "headline": "Inflation im Jahr 2025",
+   "text": [
+    "Nach den Preissprüngen von 2022 und 2023 hat sich die Teuerung wieder beruhigt."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 7.5,
+    "reihen": [
+     {
+      "von": 1992,
+      "werte": [
+       5.0,
+       4.5,
+       2.7,
+       1.9,
+       1.4,
+       1.9,
+       0.8,
+       0.7,
+       1.3,
+       2.0,
+       1.4,
+       1.0,
+       1.6,
+       1.6,
+       1.6,
+       2.3,
+       2.6,
+       0.3,
+       1.0,
+       2.2,
+       1.9,
+       1.5,
+       1.0,
+       0.5,
+       0.5,
+       1.5,
+       1.8,
+       1.4,
+       0.5,
+       3.1,
+       6.9,
+       5.9,
+       2.2,
+       2.2
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1992,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Inflationsrate · 1992 bis 2025",
+   "headline": "Zwei Gipfel in 34 Jahren",
+   "text": [
+    "Nach der Einheit steigen die Preise 1992 um 5,0 Prozent. Übertroffen wird das erst 2022: <em>6,9 Prozent</em>."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 8,
+    "reihen": [
+     {
+      "von": 1992,
+      "werte": [
+       5.0,
+       4.5,
+       2.7,
+       1.9,
+       1.4,
+       1.9,
+       0.8,
+       0.7,
+       1.3,
+       2.0,
+       1.4,
+       1.0,
+       1.6,
+       1.6,
+       1.6,
+       2.3,
+       2.6,
+       0.3,
+       1.0,
+       2.2,
+       1.9,
+       1.5,
+       1.0,
+       0.5,
+       0.5,
+       1.5,
+       1.8,
+       1.4,
+       0.5,
+       3.1,
+       6.9,
+       5.9,
+       2.2,
+       2.2
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1992,
+     2000,
+     2010,
+     2020,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0 %"
+     },
+     {
+      "wert": 2,
+      "text": "2 %"
+     },
+     {
+      "wert": 4,
+      "text": "4 %"
+     },
+     {
+      "wert": 6,
+      "text": "6 %"
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 1992,
+      "text": "1992: 5,0 %",
+      "anker": "start"
+     },
+     {
+      "jahr": 2022,
+      "text": "2022: 6,9 %",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Veränderung des Verbraucherpreisindex gegenüber dem Vorjahr, Deutschland."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Rangliste seit 1992",
+   "headline": "Die fünf teuersten Jahre",
+   "text": [
+    "Drei der fünf Jahre mit der höchsten Inflation liegen in den <em>2020ern</em>."
+   ],
+   "balken": [
+    {
+     "wert": 6.9,
+     "anzeige": "6,9 %",
+     "name": "2022 · Höchststand",
+     "akzent": true
+    },
+    {
+     "wert": 5.9,
+     "anzeige": "5,9 %",
+     "name": "2023",
+     "akzent": false
+    },
+    {
+     "wert": 5.0,
+     "anzeige": "5,0 %",
+     "name": "1992 · nach der Einheit",
+     "akzent": false
+    },
+    {
+     "wert": 4.5,
+     "anzeige": "4,5 %",
+     "name": "1993",
+     "akzent": false
+    },
+    {
+     "wert": 3.1,
+     "anzeige": "3,1 %",
+     "name": "2021",
+     "akzent": false
+    }
+   ]
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Was das mit dem Geld macht",
+   "headline": "Aus 100 werden 197 Euro",
+   "punkte": [
+    {
+     "wert": "+97 %",
+     "name": "Preise seit 1991",
+     "zusatz": "Verbraucherpreisindex 1991: 61,9 · 2025: 121,9"
+    },
+    {
+     "wert": "+21,9 %",
+     "name": "Preise seit 2020",
+     "zusatz": "in nur fünf Jahren"
+    },
+    {
+     "wert": "0,3 %",
+     "name": "niedrigste Rate",
+     "zusatz": "im Jahr 2009"
+    }
+   ],
+   "fuss": "Ein Warenkorb, der 1991 für 100 Euro zu haben war, kostet 2025 rund 197 Euro."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Statistisches Bundesamt (Destatis): Verbraucherpreisindex für Deutschland, Tabelle 61111-0001, Stand 8/2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "2,2 Prozent Inflation im Jahr 2025 – nach 6,9 Prozent im Jahr 2022 und 5,9 Prozent im Jahr 2023.",
+  "Seit 1991 haben sich die Verbraucherpreise in Deutschland fast verdoppelt.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "inflation",
+  "preise",
+  "wirtschaft",
+  "verbraucherpreise",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen"
+ ]
+}

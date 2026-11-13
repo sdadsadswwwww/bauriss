@@ -1,0 +1,128 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow: hidden; }
+
+/* Design „Schwarz-Rot-Gold": dunkler Grund, Gold als Hauptakzent, Rot sparsam */
+:root {
+  --f-kopf: 'Barlow Condensed', sans-serif;
+  --f-text: 'Barlow', sans-serif;
+  --f-mono: 'IBM Plex Mono', monospace;
+  --bg: #131313;
+  --ink: #f2eee6;
+  --leise: #a09c92;
+  --netz: #302f2c;
+  --neben: #9aa0a8;
+  --acc: #f5b82e;
+  --rot: #e5382d;
+  --acc-hell: rgba(245, 184, 46, 0.16);
+}
+
+/* Blatt: 1080 x 1350 */
+#sheet {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-text);
+}
+
+/* Leiste unten */
+.leiste {
+  position: absolute;
+  left: 60px; right: 60px; bottom: 44px;
+  height: 84px;
+  border-top: 4px solid var(--rot);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 30px;
+  font-family: var(--f-mono);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.leiste > div { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
+.leiste .name { font-family: var(--f-kopf); font-size: 40px; font-weight: 700; letter-spacing: 0.06em; }
+.leiste .marke { width: 46px; height: 46px; flex: none; }
+.leiste .thema { color: var(--leise); overflow: hidden; }
+
+.inhalt {
+  position: absolute;
+  left: 60px; right: 60px; top: 64px; bottom: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.kicker {
+  font-family: var(--f-mono);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 20px;
+}
+h1, h2 { font-family: var(--f-kopf); font-weight: 700; text-transform: uppercase; letter-spacing: 0.005em; }
+h2 { font-size: 92px; line-height: 0.96; }
+p { font-size: 36px; line-height: 1.36; margin-top: 24px; }
+p em { font-style: normal; font-weight: 600; color: var(--acc); }
+.figur { flex: 1; min-height: 0; position: relative; margin-top: 26px; }
+.figur > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fuss { font-family: var(--f-mono); font-size: 23px; line-height: 1.45; color: var(--leise); margin-top: 18px; }
+
+/* Titelblatt */
+.cover .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 250px; line-height: 0.86; letter-spacing: -0.01em; margin-left: -6px; white-space: nowrap; color: var(--acc); }
+.cover h1 { font-size: 104px; line-height: 0.94; margin-top: 14px; }
+.cover p { font-size: 38px; }
+
+/* Balken */
+.balkenfeld { margin-top: 26px; }
+.reihe { margin-top: 30px; }
+.reihe .kopf { display: flex; align-items: baseline; gap: 22px; }
+.reihe .wert { font-family: var(--f-kopf); font-size: 84px; font-weight: 700; line-height: 0.9; white-space: nowrap; }
+.reihe .wer { font-size: 34px; font-weight: 600; }
+.reihe .bahn { height: 30px; margin-top: 12px; background: var(--netz); }
+.reihe .bahn i { display: block; height: 100%; background: var(--ink); }
+.reihe.akz .wert { color: var(--acc); }
+.reihe.akz .bahn i { background: var(--acc); }
+.balken .fuss, .punkte .fuss { margin-top: auto; }
+
+/* Kennzahlen untereinander */
+.kennzahlen { margin-top: 34px; }
+.punkt { display: grid; grid-template-columns: 400px 1fr; align-items: center; column-gap: 30px; padding: 50px 0; border-top: 2px solid var(--netz); }
+.punkt .wert { font-family: var(--f-kopf); font-size: 108px; font-weight: 700; line-height: 0.9; white-space: nowrap; }
+.punkt:first-child .wert { color: var(--acc); }
+.punkt .wer { font-size: 38px; font-weight: 600; line-height: 1.2; }
+.punkt .zusatz { font-family: var(--f-mono); font-size: 23px; line-height: 1.4; color: var(--leise); margin-top: 10px; }
+
+/* Schlussblatt */
+.inhalt.outro { justify-content: center; }
+.inhalt.outro > .marke { width: 260px; height: 260px; flex: none; margin: auto 0 44px; }
+.outro .konto { font-family: var(--f-mono); font-size: 38px; font-weight: 500; color: var(--acc); margin-top: 34px; }
+.outro .quellen { font-family: var(--f-mono); font-size: 22px; line-height: 1.5; color: var(--leise); margin-top: auto; }
+
+/* Diagramme */
+.fig .netz { fill: none; stroke: var(--netz); stroke-width: 2; }
+.fig .grund { fill: none; stroke: var(--ink); stroke-width: 3; }
+.fig .kurve { fill: none; stroke: var(--neben); stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
+.fig .kurve.akz { stroke: var(--acc); stroke-width: 8; }
+.fig .flaeche { fill: var(--acc-hell); stroke: none; }
+.fig .punkt { fill: var(--bg); stroke: var(--neben); stroke-width: 6; }
+.fig .punkt.akz { stroke: var(--rot); }
+.fig .saeule { fill: var(--ink); }
+.fig .saeule.akz { fill: var(--acc); }
+.fig text { font-family: var(--f-mono); font-size: 24px; fill: var(--ink); }
+.fig text.achse { fill: var(--leise); }
+.fig text.achse.y { paint-order: stroke; stroke: var(--bg); stroke-width: 7px; stroke-linejoin: round; }
+.fig text.marke { font-family: var(--f-text); font-size: 30px; font-weight: 600; paint-order: stroke; stroke: var(--bg); stroke-width: 8px; stroke-linejoin: round; }
+.fig text.marke.leise { font-family: var(--f-mono); font-size: 23px; font-weight: 400; fill: var(--leise); }
+.fig text.reihe { font-family: var(--f-text); font-size: 30px; font-weight: 600; fill: var(--neben); paint-order: stroke; stroke: var(--bg); stroke-width: 8px; stroke-linejoin: round; }
+.fig text.reihe.akz { fill: var(--acc); }
+.fig text.wert { font-family: var(--f-kopf); font-size: 52px; font-weight: 700; }
+.fig text.wert.akz { fill: var(--acc); }
+
+/* Marke: drei steigende Säulen in Schwarz, Rot, Gold auf einer Grundlinie */
+.marke .m1 { fill: #000; stroke: var(--ink); stroke-width: 3; }
+.marke .m2 { fill: var(--rot); }
+.marke .m3 { fill: var(--acc); }
+.marke .mb { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: square; }

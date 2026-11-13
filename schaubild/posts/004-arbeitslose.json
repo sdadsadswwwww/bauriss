@@ -1,0 +1,253 @@
+{
+ "nr": "004",
+ "titel": "Arbeitslose seit 1991",
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 004",
+   "zahl": "2,95 Mio.",
+   "headline": "Arbeitslose im Jahr 2025",
+   "text": [
+    "Der höchste Stand seit 2013 – und trotzdem weit entfernt vom Rekord."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 5500000,
+    "reihen": [
+     {
+      "von": 1991,
+      "werte": [
+       2602203,
+       2978570,
+       3419141,
+       3698057,
+       3611921,
+       3965064,
+       4384456,
+       4280630,
+       4100499,
+       3889695,
+       3852564,
+       4061345,
+       4376795,
+       4381281,
+       4860909,
+       4487305,
+       3760586,
+       3258954,
+       3414992,
+       3238965,
+       2976488,
+       2897126,
+       2950338,
+       2898388,
+       2794664,
+       2690975,
+       2532837,
+       2340082,
+       2266720,
+       2695444,
+       2613489,
+       2418133,
+       2608672,
+       2787112,
+       2948092
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1991,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Arbeitslose · 1991 bis 2025",
+   "headline": "Erst der Gipfel, dann das Tal",
+   "text": [
+    "2005 sind <em>4,86 Millionen</em> Menschen arbeitslos gemeldet. Bis 2019 sinkt die Zahl auf weniger als die Hälfte."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 5500000,
+    "reihen": [
+     {
+      "von": 1991,
+      "werte": [
+       2602203,
+       2978570,
+       3419141,
+       3698057,
+       3611921,
+       3965064,
+       4384456,
+       4280630,
+       4100499,
+       3889695,
+       3852564,
+       4061345,
+       4376795,
+       4381281,
+       4860909,
+       4487305,
+       3760586,
+       3258954,
+       3414992,
+       3238965,
+       2976488,
+       2897126,
+       2950338,
+       2898388,
+       2794664,
+       2690975,
+       2532837,
+       2340082,
+       2266720,
+       2695444,
+       2613489,
+       2418133,
+       2608672,
+       2787112,
+       2948092
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1991,
+     2000,
+     2010,
+     2020,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 2000000,
+      "text": "2 Mio."
+     },
+     {
+      "wert": 4000000,
+      "text": "4 Mio."
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2005,
+      "text": "2005: 4 860 909"
+     },
+     {
+      "jahr": 2019,
+      "text": "2019: 2 266 720",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Registrierte Arbeitslose im Jahresdurchschnitt. Ab 2005 wegen der Hartz-IV-Reform nur eingeschränkt mit früheren Jahren vergleichbar."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Arbeitslosenquote in vier Jahren",
+   "headline": "Von 11,7 auf 6,3 Prozent",
+   "text": [
+    "Die Quote ist heute etwa <em>halb so hoch</em> wie auf dem Höhepunkt 2005."
+   ],
+   "balken": [
+    {
+     "wert": 11.4,
+     "anzeige": "11,4 %",
+     "name": "1997"
+    },
+    {
+     "wert": 11.7,
+     "anzeige": "11,7 %",
+     "name": "2005 · Höchststand"
+    },
+    {
+     "wert": 5.0,
+     "anzeige": "5,0 %",
+     "name": "2019 · Tiefststand"
+    },
+    {
+     "wert": 6.3,
+     "anzeige": "6,3 %",
+     "name": "2025",
+     "akzent": true
+    }
+   ],
+   "fuss": "Arbeitslosenquote bezogen auf alle zivilen Erwerbspersonen."
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Der Trend seit 2022",
+   "headline": "Drei Jahre Anstieg",
+   "punkte": [
+    {
+     "wert": "+530 000",
+     "name": "Arbeitslose mehr",
+     "zusatz": "als im Jahr 2022"
+    },
+    {
+     "wert": "+5,8 %",
+     "name": "gegenüber 2024",
+     "zusatz": "2024: 2 787 112 · 2025: 2 948 092"
+    },
+    {
+     "wert": "6,6 | 6,0",
+     "name": "Quote in Prozent",
+     "zusatz": "Männer | Frauen im Jahr 2025"
+    }
+   ]
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Bundesagentur für Arbeit, zitiert nach Statistisches Bundesamt (Destatis): Arbeitslose und Arbeitslosenquote ab 1991, Stand 9.1.2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "2,95 Millionen Menschen waren 2025 im Jahresdurchschnitt arbeitslos gemeldet – der höchste Stand seit 2013.",
+  "Vom Rekord ist das weit entfernt: 2005 waren es 4,86 Millionen.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "arbeitsmarkt",
+  "arbeitslosigkeit",
+  "wirtschaft",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen",
+  "konjunktur"
+ ]
+}

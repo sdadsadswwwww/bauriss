@@ -1,0 +1,50 @@
+name: Schaubild veröffentlichen
+
+# Zweiter Kanal im selben Repository: liegt im Ordner schaubild/ und nutzt ein eigenes Token.
+on:
+  schedule:
+    # 18:30 Uhr deutscher Zeit, angegeben in UTC: im Sommer greift der erste Lauf, im Winter der zweite.
+    # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
+    - cron: '30 16 * * *'
+    - cron: '30 17 * * *'
+  workflow_dispatch:
+    inputs:
+      probelauf:
+        description: Nur prüfen, nichts veröffentlichen
+        type: boolean
+        default: true
+      zugang:
+        description: Nur das Zugriffstoken prüfen
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Dieselbe Gruppe wie der Bauriss-Workflow: beide schreiben ihr Protokoll ins Repository und laufen deshalb nacheinander.
+concurrency:
+  group: post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: schaubild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Veröffentlichen
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN_SCHAUBILD }}
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/schaubild
+        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.probelauf && '--probelauf') || '' }}
+      - name: Protokoll sichern
+        run: |
+          git config user.name "schaubild-bot"
+          git config user.email "schaubild-bot@users.noreply.github.com"
+          git add veroeffentlicht.json
+          git diff --cached --quiet || (git commit -m "Schaubild veröffentlicht am $(date -u +%F)" && git pull --rebase && git push)

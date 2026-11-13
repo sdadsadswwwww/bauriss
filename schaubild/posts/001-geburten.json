@@ -1,0 +1,569 @@
+{
+ "nr": "001",
+ "titel": "Geburten seit 1950",
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 001",
+   "zahl": "654 241",
+   "headline": "Geburten im Jahr 2025",
+   "text": [
+    "So wenige Kinder kamen in Deutschland seit 1950 in keinem Jahr zur Welt."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 1500000,
+    "reihen": [
+     {
+      "von": 1950,
+      "werte": [
+       1116701,
+       1106380,
+       1105084,
+       1095029,
+       1109743,
+       1113408,
+       1137169,
+       1165555,
+       1175870,
+       1243922,
+       1261614,
+       1313505,
+       1316534,
+       1355595,
+       1357304,
+       1325386,
+       1318303,
+       1272276,
+       1214968,
+       1142366,
+       1047737,
+       1013396,
+       901657,
+       815969,
+       805500,
+       782310,
+       798334,
+       805496,
+       808619,
+       817217,
+       865789,
+       862100,
+       861275,
+       827933,
+       812292,
+       813803,
+       848232,
+       867969,
+       892993,
+       880459,
+       905675,
+       830019,
+       809114,
+       798447,
+       769603,
+       765221,
+       796013,
+       812173,
+       785034,
+       770744,
+       766999,
+       734475,
+       719250,
+       706721,
+       705622,
+       685795,
+       672724,
+       684862,
+       682514,
+       665126,
+       677947,
+       662685,
+       673544,
+       682069,
+       714927,
+       737575,
+       792141,
+       784901,
+       787523,
+       778090,
+       773144,
+       795492,
+       738819,
+       692989,
+       677117,
+       654241
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1950,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Geburten pro Jahr · 1950 bis 2025",
+   "headline": "Vom Babyboom ins Tal",
+   "text": [
+    "1964 werden <em>1,36 Millionen</em> Kinder geboren. Zehn Jahre später sind es nur noch gut 800 000."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 1500000,
+    "reihen": [
+     {
+      "von": 1950,
+      "werte": [
+       1116701,
+       1106380,
+       1105084,
+       1095029,
+       1109743,
+       1113408,
+       1137169,
+       1165555,
+       1175870,
+       1243922,
+       1261614,
+       1313505,
+       1316534,
+       1355595,
+       1357304,
+       1325386,
+       1318303,
+       1272276,
+       1214968,
+       1142366,
+       1047737,
+       1013396,
+       901657,
+       815969,
+       805500,
+       782310,
+       798334,
+       805496,
+       808619,
+       817217,
+       865789,
+       862100,
+       861275,
+       827933,
+       812292,
+       813803,
+       848232,
+       867969,
+       892993,
+       880459,
+       905675,
+       830019,
+       809114,
+       798447,
+       769603,
+       765221,
+       796013,
+       812173,
+       785034,
+       770744,
+       766999,
+       734475,
+       719250,
+       706721,
+       705622,
+       685795,
+       672724,
+       684862,
+       682514,
+       665126,
+       677947,
+       662685,
+       673544,
+       682069,
+       714927,
+       737575,
+       792141,
+       784901,
+       787523,
+       778090,
+       773144,
+       795492,
+       738819,
+       692989,
+       677117,
+       654241
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1950,
+     1970,
+     1990,
+     2010,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 500000,
+      "text": "0,5 Mio."
+     },
+     {
+      "wert": 1000000,
+      "text": "1,0 Mio."
+     },
+     {
+      "wert": 1500000,
+      "text": "1,5 Mio."
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 1964,
+      "text": "1964: 1 357 304",
+      "anker": "start"
+     },
+     {
+      "jahr": 2025,
+      "text": "2025: 654 241",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Lebendgeborene in Deutschland, vor 1990 Bundesrepublik und DDR zusammen."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Fünf Jahre im Vergleich",
+   "headline": "Weniger als die Hälfte",
+   "text": [
+    "2025 kommen <em>48 Prozent</em> so viele Kinder zur Welt wie im Rekordjahr 1964."
+   ],
+   "balken": [
+    {
+     "wert": 1357304,
+     "anzeige": "1 357 304",
+     "name": "1964 · Höchststand"
+    },
+    {
+     "wert": 905675,
+     "anzeige": "905 675",
+     "name": "1990 · Jahr der Einheit"
+    },
+    {
+     "wert": 662685,
+     "anzeige": "662 685",
+     "name": "2011 · bisheriges Tief"
+    },
+    {
+     "wert": 795492,
+     "anzeige": "795 492",
+     "name": "2021 · letztes Hoch"
+    },
+    {
+     "wert": 654241,
+     "anzeige": "654 241",
+     "name": "2025 · neues Tief",
+     "akzent": true
+    }
+   ]
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Geburten und Sterbefälle",
+   "headline": "Seit 1972 im Minus",
+   "text": [
+    "1971 gibt es zum letzten Mal mehr Geburten als Sterbefälle. Seitdem ist die Bilanz <em>jedes Jahr negativ</em>."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 1500000,
+    "reihen": [
+     {
+      "von": 1950,
+      "werte": [
+       748329,
+       752697,
+       767639,
+       790654,
+       775291,
+       795938,
+       812111,
+       840195,
+       818418,
+       835402,
+       876721,
+       850300,
+       878814,
+       895070,
+       870319,
+       907882,
+       911984,
+       914417,
+       976521,
+       988092,
+       975664,
+       965623,
+       965689,
+       962988,
+       956573,
+       989649,
+       966873,
+       931155,
+       955550,
+       944474,
+       952371,
+       954436,
+       943832,
+       941032,
+       917299,
+       929649,
+       925426,
+       901291,
+       900627,
+       903441,
+       921445,
+       911245,
+       885443,
+       897270,
+       884661,
+       884588,
+       882843,
+       860389,
+       852382,
+       846330,
+       838797,
+       828541,
+       841686,
+       853946,
+       818271,
+       830227,
+       821627,
+       827155,
+       844439,
+       854544,
+       858768,
+       852328,
+       869582,
+       893825,
+       868356,
+       925200,
+       910902,
+       932272,
+       954874,
+       939520,
+       985572,
+       1023687,
+       1066341,
+       1028206,
+       1007758,
+       1006588
+      ],
+      "name": "Sterbefälle",
+      "nameBei": {
+       "jahr": 2000,
+       "dy": -30
+      }
+     },
+     {
+      "von": 1950,
+      "werte": [
+       1116701,
+       1106380,
+       1105084,
+       1095029,
+       1109743,
+       1113408,
+       1137169,
+       1165555,
+       1175870,
+       1243922,
+       1261614,
+       1313505,
+       1316534,
+       1355595,
+       1357304,
+       1325386,
+       1318303,
+       1272276,
+       1214968,
+       1142366,
+       1047737,
+       1013396,
+       901657,
+       815969,
+       805500,
+       782310,
+       798334,
+       805496,
+       808619,
+       817217,
+       865789,
+       862100,
+       861275,
+       827933,
+       812292,
+       813803,
+       848232,
+       867969,
+       892993,
+       880459,
+       905675,
+       830019,
+       809114,
+       798447,
+       769603,
+       765221,
+       796013,
+       812173,
+       785034,
+       770744,
+       766999,
+       734475,
+       719250,
+       706721,
+       705622,
+       685795,
+       672724,
+       684862,
+       682514,
+       665126,
+       677947,
+       662685,
+       673544,
+       682069,
+       714927,
+       737575,
+       792141,
+       784901,
+       787523,
+       778090,
+       773144,
+       795492,
+       738819,
+       692989,
+       677117,
+       654241
+      ],
+      "akzent": true,
+      "name": "Geburten",
+      "nameBei": {
+       "jahr": 1999,
+       "dy": 56
+      }
+     }
+    ],
+    "jahre": [
+     1950,
+     1970,
+     1990,
+     2010,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 500000,
+      "text": "0,5 Mio."
+     },
+     {
+      "wert": 1000000,
+      "text": "1,0 Mio."
+     },
+     {
+      "wert": 1500000,
+      "text": "1,5 Mio."
+     }
+    ],
+    "marken": [
+     {
+      "reihe": 1,
+      "jahr": 1972,
+      "text": "1972",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Ohne Zuwanderung würde die Bevölkerung seit über 50 Jahren schrumpfen."
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Das Jahr 2025 in drei Zahlen",
+   "headline": "Wo Deutschland steht",
+   "punkte": [
+    {
+     "wert": "−352 347",
+     "name": "Geburtendefizit",
+     "zusatz": "Sterbefälle minus Geburten, größter Wert seit 1950"
+    },
+    {
+     "wert": "1,32",
+     "name": "Kinder je Frau",
+     "zusatz": "zusammengefasste Geburtenziffer, 2024: 1,35"
+    },
+    {
+     "wert": "30,5",
+     "name": "Jahre alt",
+     "zusatz": "Mütter im Schnitt beim ersten Kind"
+    }
+   ],
+   "fuss": "Für eine stabile Bevölkerung ohne Zuwanderung wären rund 2,1 Kinder je Frau nötig."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Statistisches Bundesamt (Destatis): Lebendgeborene und Gestorbene ab 1950, Stand 1.9.2026",
+  "Destatis: Themenseite Geburten",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "654 241 Kinder wurden 2025 in Deutschland geboren – so wenige wie in keinem Jahr seit 1950.",
+  "Zum Vergleich: 1964, auf dem Höhepunkt des Babybooms, waren es 1 357 304. Seit 1972 sterben jedes Jahr mehr Menschen, als geboren werden.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "geburten",
+  "demografie",
+  "datenvisualisierung",
+  "infografik",
+  "bevölkerung",
+  "babyboom",
+  "zahlen",
+  "wissen"
+ ]
+}

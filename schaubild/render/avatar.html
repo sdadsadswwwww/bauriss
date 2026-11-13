@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schaubild Profilbild</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Instagram schneidet das Profilbild rund zu und zeigt es bis hinunter auf etwa 40 px:
+     Marke mittig, alles Wichtige im inneren Kreis. */
+  #sheet { width: 1080px; height: 1080px; display: flex; align-items: center; justify-content: center; }
+  #sheet .marke { width: 640px; height: 640px; }
+</style>
+</head>
+<body>
+<div id="sheet"></div>
+<script src="charts.js"></script>
+<script>
+  document.getElementById('sheet').innerHTML = Diagramm.marke();
+</script>
+</body>
+</html>

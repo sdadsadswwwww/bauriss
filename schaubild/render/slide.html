@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schaubild Blatt</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="sheet"></div>
+<script src="charts.js"></script>
+<script src="render.js"></script>
+<script>
+  // Aufruf über tools/render.py: slide.html?post=<name>&konto=<handle>&slide=<nr>
+  const q = new URLSearchParams(location.search);
+  // Erst zeichnen, wenn alle Schriftschnitte geladen sind – sonst fehlt Text in der Aufnahme.
+  const schriften = ['600 10px "Barlow Condensed"', '700 10px "Barlow Condensed"', '400 10px Barlow', '600 10px Barlow',
+    '400 10px "IBM Plex Mono"', '500 10px "IBM Plex Mono"'];
+  fetch('../posts/' + q.get('post') + '.json')
+    .then(r => r.json())
+    .then(post => Promise.all([post, ...schriften.map(s => document.fonts.load(s))]))
+    .then(([post]) => render({ ...post, konto: '@' + q.get('konto') }, +q.get('slide') || 1));
+</script>
+</body>
+</html>

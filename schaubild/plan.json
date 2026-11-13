@@ -1,0 +1,10 @@
+{
+  "uhrzeit": "18:30",
+  "posts": [
+    { "datum": "2026-11-13", "post": "001-geburten", "freigabe": true, "uhrzeit": "00:00" },
+    { "datum": "2026-11-14", "post": "002-oekostrom", "freigabe": true },
+    { "datum": "2026-11-15", "post": "003-inflation", "freigabe": true },
+    { "datum": "2026-11-16", "post": "004-arbeitslose", "freigabe": true },
+    { "datum": "2026-11-17", "post": "005-bier", "freigabe": true }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+ "nr": "005",
+ "titel": "Bierabsatz seit 1993",
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 005",
+   "zahl": "7,8 Mrd.",
+   "headline": "Liter Bier im Jahr 2025",
+   "text": [
+    "Zum ersten Mal seit Beginn der Statistik 1993 setzen die Brauereien weniger als 8 Milliarden Liter ab."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 13,
+    "reihen": [
+     {
+      "von": 1993,
+      "werte": [
+       11.214,
+       11.566,
+       11.525,
+       11.281,
+       11.267,
+       10.938,
+       11.015,
+       10.98,
+       10.781,
+       10.777,
+       10.557,
+       10.586,
+       10.537,
+       10.684,
+       10.397,
+       10.291,
+       9.998,
+       9.835,
+       9.829,
+       9.653,
+       9.465,
+       9.567,
+       9.577,
+       9.588,
+       9.355,
+       9.401,
+       9.219,
+       8.717,
+       8.532,
+       8.77,
+       8.376,
+       8.268,
+       7.771
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1993,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Bierabsatz · 1993 bis 2025",
+   "headline": "Ein Drittel weniger",
+   "text": [
+    "1994 verkaufen die Brauereien <em>11,6 Milliarden Liter</em>. 2025 sind es noch 7,8 Milliarden."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 13,
+    "reihen": [
+     {
+      "von": 1993,
+      "werte": [
+       11.214,
+       11.566,
+       11.525,
+       11.281,
+       11.267,
+       10.938,
+       11.015,
+       10.98,
+       10.781,
+       10.777,
+       10.557,
+       10.586,
+       10.537,
+       10.684,
+       10.397,
+       10.291,
+       9.998,
+       9.835,
+       9.829,
+       9.653,
+       9.465,
+       9.567,
+       9.577,
+       9.588,
+       9.355,
+       9.401,
+       9.219,
+       8.717,
+       8.532,
+       8.77,
+       8.376,
+       8.268,
+       7.771
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1993,
+     2000,
+     2010,
+     2020,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 5,
+      "text": "5 Mrd. Liter"
+     },
+     {
+      "wert": 10,
+      "text": "10 Mrd. Liter"
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 1994,
+      "text": "1994: 11,6 Mrd. Liter",
+      "anker": "start"
+     },
+     {
+      "jahr": 2025,
+      "text": "2025: 7,8 Mrd. Liter",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Absatz der Brauereien und Bierlager in Deutschland, ohne alkoholfreies Bier. 2025 vorläufig."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Verbrauch pro Kopf und Jahr",
+   "headline": "Von 133 auf 77 Liter",
+   "text": [
+    "Rechnerisch trinkt jede Person in Deutschland <em>56 Liter</em> weniger Bier im Jahr als 1994."
+   ],
+   "balken": [
+    {
+     "wert": 132.7,
+     "anzeige": "132,7 Liter",
+     "name": "1994 · Höchststand",
+     "akzent": false
+    },
+    {
+     "wert": 111.0,
+     "anzeige": "111,0 Liter",
+     "name": "2005",
+     "akzent": false
+    },
+    {
+     "wert": 97.6,
+     "anzeige": "97,6 Liter",
+     "name": "2015",
+     "akzent": false
+    },
+    {
+     "wert": 76.9,
+     "anzeige": "76,9 Liter",
+     "name": "2025 · Tiefststand",
+     "akzent": true
+    }
+   ],
+   "fuss": "Annähernder Verbrauch je Einwohner, alle Altersgruppen eingerechnet."
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Das Jahr 2025 in drei Zahlen",
+   "headline": "Weniger Bier, mehr Brauereien",
+   "punkte": [
+    {
+     "wert": "−6,0 %",
+     "name": "Absatz gegenüber 2024",
+     "zusatz": "stärkster Rückgang seit 1993"
+    },
+    {
+     "wert": "82,5 %",
+     "name": "bleiben im Inland",
+     "zusatz": "der Rest geht vor allem in den Export"
+    },
+    {
+     "wert": "1 415",
+     "name": "Braustätten",
+     "zusatz": "1993 waren es 1 311"
+    }
+   ]
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Statistisches Bundesamt (Destatis): Biersteuerstatistik, Tabelle 73421-0001, Stand 9/2026",
+  "Destatis: Pressemitteilung Nr. 037 vom 2.2.2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "7,8 Milliarden Liter Bier haben die deutschen Brauereien 2025 abgesetzt – erstmals seit 1993 weniger als 8 Milliarden.",
+  "Pro Kopf sind das rechnerisch 77 Liter im Jahr. 1994 waren es 133.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "bier",
+  "brauerei",
+  "wirtschaft",
+  "konsum",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen"
+ ]
+}
