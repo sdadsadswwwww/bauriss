@@ -1,20 +1,21 @@
 # Automatik: jeden Tag ein Post
 
-Diese Datei ist die Arbeitsanweisung für den täglichen Lauf. Wer sie liest, hat kein Vorwissen aus früheren Läufen; alles Nötige steht hier oder in den genannten Dateien.
+Diese Datei ist die Arbeitsanweisung für den Lauf, der den Vorrat an Posts auffüllt. Wer sie liest, hat kein Vorwissen aus früheren Läufen; alles Nötige steht hier oder in den genannten Dateien.
 
 ## Auftrag
 
-Der Betreiber des Kanals `@der.bauriss` hat am 13.11.2026 festgelegt:
+Der Betreiber des Kanals `@der.bauriss` hat am 14.11.2026 ein Playbook für alle seine Kanäle festgelegt (es ersetzt den Auftrag vom 13.11.2026 mit dem Enddatum 13.11.2029):
 
-- Drei Jahre lang, bis einschließlich 13.11.2029, erscheint **jeden Tag** ein Post, Montag bis Sonntag.
-- Der Post für einen Tag wird **am Vortag** erstellt.
+- **Jeden Tag** erscheint ein Bauwerk, Montag bis Sonntag, ohne Enddatum, in drei Formen: um 12:15 Uhr das **Reel** mit Musik, um 18:00 Uhr der **Post** (Carousel), fünf Minuten später die **Story** (Titelblatt mit Hinweis auf den Post).
+- **Vorrat:** Für die nächsten **7 Tage** ab morgen soll immer ein fertiger Post im Plan stehen. Jeder Lauf füllt den Vorrat auf, **höchstens 2 Posts je Lauf**. `tools/automatik.py stand` rechnet das aus.
+- Sinkt der Vorrat unter 3 Tage, steht das als Warnung im Bericht. Ist er leer, wiederholt der Zeitplan von selbst einen älteren Beitrag (`tools/zeitplan.py`); dafür ist hier nichts zu tun.
 - **Alles bleibt im gleichen Stil**, bis der Betreiber etwas anderes sagt.
 
 Damit sind die Posts vorab freigegeben: Niemand sieht sie vor der Veröffentlichung durch. Die Durchsicht in Schritt 6 ist deshalb die einzige Kontrolle und darf nicht abgekürzt werden. Lieber bleibt ein Tag leer, als dass ein Post mit falschen Zahlen oder kaputten Blättern erscheint.
 
 ## Feste Regeln
 
-1. **Nicht selbst veröffentlichen.** Kein `gh workflow run post.yml`, kein `tools/publish.py` ohne `--probelauf`. Veröffentlicht wird allein durch den Zeitplan in `.github/workflows/post.yml` (täglich gegen 18:25 Uhr, zwei spätere Läufe als Reserve). Erlaubt ist nur das Anstoßen von `reel.yml`: Dieser Workflow rendert ein Video und veröffentlicht nichts.
+1. **Nicht selbst veröffentlichen.** Kein `gh workflow run post.yml`, kein `tools/publish.py` ohne `--probelauf`. Veröffentlicht wird allein durch den Zeitplan in `.github/workflows/post.yml` (Reel 12:15 Uhr, Post 18:00 Uhr, Story danach, zwei spätere Läufe als Reserve). Erlaubt ist nur das Anstoßen von `reel.yml`: Dieser Workflow rendert ein Video und veröffentlicht nichts.
 2. **Stil nicht anfassen.** Unverändert bleiben: `render/style.css`, `render/render.js`, `render/slide.html`, `render/sheet.html`, `render/fonts*`, `render/drawings.js`, `tools/`, `.github/`, `config.json`, `KONTO.md`. Neu entstehen pro Lauf nur `posts/<post>.json`, `render/zeichnungen/<thema>.js` und `out/<post>/`; geändert werden nur `plan.json` und `themen.json` (über `tools/automatik.py`). Fehlt der Vorlage etwas, wird es in der Zeichnungsdatei des Themas gelöst oder das Blatt anders aufgebaut.
 3. **Erschienene Posts bleiben, wie sie sind.** Nichts ändern, was in `veroeffentlicht.json` steht.
 4. **Der Ordner `schaubild/` ist ein anderer Kanal.** Nicht lesen, nicht ändern.
@@ -31,14 +32,14 @@ Alle Befehle laufen im Ordner des Repositorys. In PowerShell zuerst den Suchpfad
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 ```
 
-1. **Stand holen.** `git status --short` muss leer sein. Liegen dort Dateien, stammen sie aus einem abgebrochenen Lauf: einen Post, dem nur noch Durchsicht und Einplanen fehlen, fertigstellen (ab Schritt 6, Fakten anhand von `belege` stichprobenartig nachprüfen); alles andere entfernen (`posts/<post>.json`, `render/zeichnungen/<thema>.js`, `out/<post>/`). Dann `git pull --rebase` und `python tools/automatik.py stand`. Die Ausgabe nennt unter `ZU ERSTELLEN` die Tage, für die ein Post fehlt (morgen, und heute, falls der Vortag ausgefallen ist), die nächste freie Nummer, einen Themenvorschlag und Warnungen. Steht dort „nichts", sind nur noch die Warnungen zu bearbeiten (Abschnitt „Wenn etwas schiefgeht"), dann Bericht und Ende. Fehlen zwei Tage, zuerst den früheren erstellen und übertragen, dann den späteren.
+1. **Stand holen.** `git status --short` muss leer sein. Liegen dort Dateien, stammen sie aus einem abgebrochenen Lauf: einen Post, dem nur noch Durchsicht und Einplanen fehlen, fertigstellen (ab Schritt 6, Fakten anhand von `belege` stichprobenartig nachprüfen); alles andere entfernen (`posts/<post>.json`, `render/zeichnungen/<thema>.js`, `out/<post>/`). Dann `git pull --rebase` und `python tools/automatik.py stand`. Die Ausgabe nennt den Vorrat (wie viele der nächsten 7 Tage belegt sind) und unter `ZU ERSTELLEN` die frühesten freien Tage, höchstens zwei je Lauf, dazu die nächste freie Nummer, einen Themenvorschlag und Warnungen. Steht dort „nichts", sind nur noch die Warnungen zu bearbeiten (Abschnitt „Wenn etwas schiefgeht"), dann Bericht und Ende. Stehen dort zwei Tage, zuerst den früheren Post ganz fertigstellen und übertragen (Schritte 2 bis 11), dann den späteren.
 2. **Thema wählen** (Abschnitt „Thema und Recherche").
 3. **Recherchieren** und die Fakten mit Fundstelle notieren, bevor ein Blatt entsteht. Die Notizen stehen im Post selbst, im Feld `belege`.
 4. **Post schreiben:** `posts/<nr>-<kurzname>.json` (Abschnitt „Aufbau eines Posts").
 5. **Zeichnungen schreiben:** `render/zeichnungen/<thema>.js` (Abschnitt „Zeichnungen").
-6. **Rendern und durchsehen:** `python tools/render.py <post>` (schreibt nebenbei `out/profilbild.png` neu, ohne Änderung), danach `out/<post>/uebersicht.jpg` und jedes einzelne Blatt `out/<post>/01.jpg` … ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
+6. **Rendern und durchsehen:** `python tools/render.py <post>` (schreibt nebenbei `out/profilbild.png` neu, ohne Änderung), dann `python tools/reel.py <post>` (baut `out/<post>/story.jpg`, das Bild der Story; die Meldung „kein ffmpeg gefunden" ist in Ordnung). Danach `out/<post>/uebersicht.jpg`, jedes einzelne Blatt `out/<post>/01.jpg` … und `out/<post>/story.jpg` ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
 7. **Prüfen:** `python tools/automatik.py pruefen <post>`. Das Skript prüft Aufbau, Längen, Belege und Bilder; es ersetzt die Durchsicht nicht. Die Bilder in `out/<post>/` müssen aus dem letzten Stand von Post und Zeichnung stammen: nach jeder Änderung, auch der kleinsten, neu rendern und die geänderten Blätter noch einmal ansehen.
-8. **Einplanen:** `python tools/automatik.py einplanen <post> <datum> --thema "<Name aus themen.json>"`. Das trägt den Post freigegeben in `plan.json` ein und hakt das Thema ab. Für ein Thema, das nicht in der Liste steht, zusätzlich `--art` und `--region` angeben.
+8. **Einplanen:** `python tools/automatik.py einplanen <post> <datum> --thema "<Name aus themen.json>"`. Das trägt den Post freigegeben und mit dem Zeitpunkt der Erstellung in `plan.json` ein und hakt das Thema ab. `<datum>` ist der Tag aus `ZU ERSTELLEN`. Für ein Thema, das nicht in der Liste steht, zusätzlich `--art` und `--region` angeben.
 9. **Aufräumen und übertragen:**
    ```powershell
    python tools/automatik.py aufraeumen
@@ -64,14 +65,14 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Env
 
 Der Betreiber will seit dem 14.11.2026, dass Veröffentlichungen Musik haben. Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an, nicht zu Bildern. Deshalb entsteht zu jedem Post ein Reel: die Blätter nacheinander als Video im Hochformat, dazu ein ruhiges Klangbett.
 
-- **Du musst dafür nichts erstellen.** Sobald ein Post übertragen ist, baut der Workflow „Reel rendern" aus `out/<post>/NN.jpg` das Video (`tools/reel.py`) und legt es in die Ablage auf GitHub (Release „medien", Datei `<post>.mp4`), nicht ins Repository. Dort holt Instagram es ab; einige Tage nach dem Erscheinen wird es gelöscht. Den Release nie löschen oder umbenennen. Jedes Blatt steht so lange, wie sein Text zum Lesen braucht (5 bis 8,5 Sekunden).
+- **Du musst dafür nichts erstellen.** Sobald ein Post übertragen ist, baut der Workflow „Reel rendern" aus `out/<post>/NN.jpg` das Video (`tools/reel.py`) und legt es in die Ablage auf GitHub (Release „medien", Datei `<post>.mp4`), nicht ins Repository. Dort holt Instagram es ab; es bleibt dort liegen, weil der Zeitplan bei leerem Vorrat ältere Beiträge wiederholt. Den Release nie löschen oder umbenennen. Jedes Blatt steht so lange, wie sein Text zum Lesen braucht (5 bis 8,5 Sekunden).
 - **Die Musik** berechnet `tools/musik.py` vollständig aus Code, passend zur Länge des Videos. Es ist immer dasselbe Stück, das Erkennungszeichen des Kanals. Keine andere Musik einsetzen, keine Aufnahmen und keine Musikdateien aus dem Netz: An fremder Musik hängen Rechte.
 - **Was erscheint,** legt `plan.json` mit `"reel"` fest: `"aus"` nur das Carousel, `"zusaetzlich"` das Reel zur `reel_uhrzeit` und das Carousel am Abend, `"statt"` nur das Reel am Abend (fehlt das Video, erscheint ersatzweise das Carousel). Diese Einstellung ändert nur der Betreiber.
 - Für die Blätter heißt das: Sie müssen auch als Standbild in einem Video funktionieren. Die Grenzen für Textmengen gelten deshalb ohne Ausnahme.
 
 ## Thema und Recherche
 
-**Thema.** `themen.json` ist die Liste; Einträge mit `"post"` sind erschienen. Nimm den ersten Vorschlag aus `stand`. Weiche nur ab, wenn sich für das Thema keine zwei brauchbaren Quellen finden oder wenn es nichts zu erzählen gibt; dann den nächsten Vorschlag nehmen. Kein Bauwerk erscheint zweimal. Sind weniger als 30 Themen offen, die Liste im selben Lauf um mindestens 60 ergänzen (gleiche Felder, Arten und Regionen mischen, etwa die Hälfte aus Deutschland, Österreich und der Schweiz).
+**Thema.** Lies zuerst `themenwahl.md`, falls die Datei existiert: Dort hält der Wochenbericht fest, welche Bauwerke und Aufmacher bei den Lesern besser ankommen. Diese Hinweise gehen dem Vorschlag aus `stand` vor, nie den Regeln für Recherche und Belege. Prüfe außerdem für den Tag, den du füllst, ob sich an genau diesem Tag etwas zu einem Bauwerk der Liste jährt (Eröffnung, Grundsteinlegung, Einsturz, Wiederaufbau); wenn ja und es ist mit zwei Quellen belegt, bekommt dieser Tag dieses Bauwerk. Sonst gilt: `themen.json` ist die Liste; Einträge mit `"post"` sind erschienen. Nimm den ersten Vorschlag aus `stand`. Weiche nur ab, wenn sich für das Thema keine zwei brauchbaren Quellen finden oder wenn es nichts zu erzählen gibt; dann den nächsten Vorschlag nehmen. Kein Bauwerk erscheint zweimal. Sind weniger als 30 Themen offen, die Liste im selben Lauf um mindestens 60 ergänzen (gleiche Felder, Arten und Regionen mischen, etwa die Hälfte aus Deutschland, Österreich und der Schweiz).
 
 Was ein Thema braucht: ein einzelnes, benennbares Bauwerk; eine Zahl, die staunen lässt; eine Antwort auf mindestens zwei der drei Fragen des Kanals: **Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?**
 
@@ -236,7 +237,6 @@ Trifft ein Punkt zu, nachbessern und neu rendern. Nach drei Runden ohne sauberes
 - **Warnung „liegt im Ordner, steht aber nicht im Plan":** Rest eines abgebrochenen Laufs, siehe Schritt 1.
 - **`git push` wird abgewiesen:** `git pull --rebase`, dann erneut. Bei einem Konflikt in `plan.json` oder `veroeffentlicht.json` die Fassung des Servers übernehmen und den eigenen Eintrag mit `einplanen` neu setzen. Nie `--force`.
 - **Kein Netz, kein Chrome, kein Python-Paket `pillow`:** nicht improvisieren, im Bericht nennen.
-- **Nach dem 13.11.2029:** nichts mehr erstellen; im Bericht den Betreiber fragen, wie es weitergeht.
 
 ## Bericht
 
