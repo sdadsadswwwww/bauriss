@@ -28,6 +28,10 @@ on:
         description: Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen
         type: boolean
         default: false
+      story_test:
+        description: Story-Behälter anlegen, ohne zu veröffentlichen
+        type: boolean
+        default: false
       post:
         description: Dieser Post statt des heute fälligen (z. B. 001-geburten)
         type: string
@@ -57,7 +61,7 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN_SCHAUBILD }}
           IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/schaubild
           POST: ${{ inputs.post }}
-        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf') || (contains(github.event.schedule, ' 10 ') || contains(github.event.schedule, ' 11 ')) && '--reel' || '' }} ${POST:+--post "$POST"}
+        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.story_test && '--story-test' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf') || (contains(github.event.schedule, ' 10 ') || contains(github.event.schedule, ' 11 ')) && '--reel' || '' }} ${POST:+--post "$POST"}
       - name: Protokoll sichern
         run: |
           git config user.name "schaubild-bot"

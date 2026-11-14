@@ -5,6 +5,7 @@ Aufruf:  python tools/publish.py               regulärer Lauf aus dem Zeitplan
          python tools/publish.py --zugang      prüft nur, ob das Token das Konto freigibt
          python tools/publish.py --reel        veröffentlicht das Reel zum heute fälligen Post (out/<post>/reel.mp4)
          python tools/publish.py --reel-test   lässt Instagram das Reel abrufen und verarbeiten, veröffentlicht aber nichts
+         python tools/publish.py --story-test  legt einen Story-Behälter mit dem Titelblatt an, veröffentlicht aber nichts
 
 Umgebung:
   IG_ACCESS_TOKEN   Systemnutzer-Zugriffstoken aus Metas App-Dashboard (GitHub-Secret)
@@ -174,6 +175,30 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute):
     PROTOKOLL.write_text(json.dumps(protokoll, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
+def story_test(args, config, plan, heute):
+    """Legt einen Story-Behälter mit dem Titelblatt an und veröffentlicht nichts.
+
+    Klärt, ob Instagram Stories für dieses Konto über die Schnittstelle annimmt.
+    """
+    name = args.post or next((e['post'] for e in plan['posts'] if e['datum'] == heute), None)
+    if not name:
+        sys.exit(f'Für {heute} ist kein Post geplant. Bitte --post angeben.')
+    token = os.environ.get('IG_ACCESS_TOKEN')
+    bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')
+    if not token or not bild_basis:
+        sys.exit('IG_ACCESS_TOKEN und IMAGE_BASE_URL müssen gesetzt sein.')
+    adresse = f'{bild_basis}/out/{name}/01.jpg'
+    pruefe_bildadressen([adresse])
+    basis = f'{HOST}/{config["api_version"]}'
+    konto_id = finde_konto(basis, token, config)
+    art = frage_still(f'{basis}/{konto_id}?fields=account_type', token)
+    print(f'Kontotyp laut Instagram: {art.get("account_type") or art.get("fehler")}')
+    container = anfrage('POST', f'{basis}/{konto_id}/media', token, {'media_type': 'STORIES', 'image_url': adresse})['id']
+    print(f'Story-Behälter angelegt: {container}')
+    warte_bis_fertig(basis, container, token)
+    print('Story-Test: Instagram hat den Behälter angenommen und verarbeitet. Nichts veröffentlicht.')
+
+
 def pruefe_bildadressen(adressen):
     for adresse in adressen:
         try:
@@ -278,6 +303,7 @@ def main(argv=None):
     parser.add_argument('--zugang', action='store_true', help='nur prüfen, ob das Token das Konto freigibt')
     parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen')
     parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen')
+    parser.add_argument('--story-test', action='store_true', help='Story-Behälter anlegen, ohne zu veröffentlichen')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
@@ -301,6 +327,9 @@ def main(argv=None):
     jetzt = berlin_jetzt()
     heute = jetzt.date().isoformat()
 
+    if args.story_test:
+        story_test(args, config, plan, heute)
+        return
     if args.reel or args.reel_test:
         reel_lauf(args, config, plan, protokoll, jetzt, heute)
         return
