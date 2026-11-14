@@ -137,8 +137,9 @@ def rendere(post_name, ffmpeg):
         kette.append(f'{vorher}format=yuv420p[bild]')
         video = ordner / 'reel.mp4'
         befehl += ['-filter_complex', ';'.join(kette), '-map', '[bild]', '-map', f'{len(zeiten)}:a',
-                   '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-r', str(BILDER_JE_SEKUNDE), '-g', '60',
-                   '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-t', f'{dauer:.2f}', '-movflags', '+faststart', str(video)]
+                   # Stehende Bilder: wenige Schlüsselbilder halten die Datei klein (rund 2 MB statt 7 MB je Video)
+                   '-c:v', 'libx264', '-preset', 'slow', '-tune', 'stillimage', '-crf', '23', '-r', str(BILDER_JE_SEKUNDE), '-g', '300',
+                   '-c:a', 'aac', '-b:a', '112k', '-ar', '48000', '-t', f'{dauer:.2f}', '-movflags', '+faststart', str(video)]
         subprocess.run(befehl, check=True)
         pruefe_video(video, dauer)
         print(f'{post_name}: {video.stat().st_size / 1e6:.1f} MB -> out/{post_name}/reel.mp4')
