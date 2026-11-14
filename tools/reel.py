@@ -162,6 +162,11 @@ def rendere(seite, basis, post, ffmpeg, nur_vorschau):
         vorschau.paste(einzel.resize((540, 960), Image.LANCZOS), (i * 560, 0))
     vorschau.save(ziel / 'reel-vorschau.jpg', 'JPEG', quality=88)
     print(f'{post}: Vorschau -> out/{post}/reel-vorschau.jpg')
+    # Story (Playbook): das Schlussbild des Reels mit dem Hinweis auf den neuen Beitrag, erscheint nach dem Carousel
+    seite.werte('document.getElementById("sheet").classList.add("story"); window.zeige(window.dauer)')
+    Image.open(io.BytesIO(base64.b64decode(seite.befehl('Page.captureScreenshot', format='png')['data']))).convert('RGB')         .save(ziel / 'story.jpg', 'JPEG', quality=90)
+    seite.werte('document.getElementById("sheet").classList.remove("story"); window.zeige(0)')
+    print(f'{post}: Story -> out/{post}/story.jpg')
     if nur_vorschau:
         return
     if not ffmpeg:

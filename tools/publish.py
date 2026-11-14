@@ -109,7 +109,7 @@ def pruefe_videoadresse(adresse):
 
 def reel_lauf(args, config, plan, protokoll, jetzt, heute):
     """Veröffentlicht das Reel zum heute fälligen Post. Fehlt das Video, passiert nichts."""
-    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel'}
+    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel' and not e.get('wiederholung')}
     treffer = [e for e in plan['posts'] if (e['post'] == args.post if args.post else e['datum'] == heute)]
     offen = [e for e in treffer if e['post'] not in erledigt]
     if not treffer:
@@ -305,7 +305,7 @@ def main(argv=None):
         reel_lauf(args, config, plan, protokoll, jetzt, heute)
         return
 
-    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if e.get('art') != 'reel'}, heute, args.post)
+    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if not e.get('art') and not e.get('wiederholung')}, heute, args.post)
     if not eintrag:
         return
     name = eintrag['post']

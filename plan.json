@@ -1,5 +1,6 @@
 {
   "uhrzeit": "18:15",
+  "reel_uhrzeit": "12:30",
   "posts": [
     { "datum": "2026-11-14", "post": "001-hyperinflation-1923", "freigabe": true, "uhrzeit": "00:00" },
     { "datum": "2026-11-15", "post": "002-kaiserwahl-1519", "freigabe": true },
