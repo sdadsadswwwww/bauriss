@@ -1,0 +1,111 @@
+{
+  "nr": "007",
+  "titel": "Löwenherz 1193",
+  "reel": { "frage": "Was kostet die Freiheit <i>eines Königs</i>?", "stimmung": "neutral" },
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Buchung Nr. 007 · Worms 1193",
+      "zahl": "23",
+      "einheit": "Tonnen Silber",
+      "headline": "für einen König",
+      "spalten": ["Datum", "Posten", "Mark"],
+      "zeilen": [
+        { "datum": "29.06.1193", "text": "Lösegeld, vorab fällig", "betrag": "100.000", "akzent": true },
+        { "datum": "29.06.1193", "text": "gestundet gegen Geiseln", "betrag": "50.000" }
+      ],
+      "stempel": { "umschrift": "KASSENBUCH · GEBUCHT · KASSENBUCH · GEBUCHT ·", "oben": "MAINZ", "mitte": "4. Febr. 1194", "unten": "NR. 007" }
+    },
+    {
+      "typ": "text",
+      "kicker": "Dezember 1192 · Die Festnahme",
+      "headline": "Ein König <i>in Verkleidung</i>",
+      "text": [
+        "Richard Löwenherz, König von England, kehrt vom Kreuzzug heim. Frankreichs Häfen sind ihm versperrt, also reist er verkleidet über Land.",
+        "Kurz vor Weihnachten 1192 wird er in Erdberg bei Wien erkannt. Herzog <em>Leopold V.</em> von Österreich nimmt ihn fest – obwohl Kreuzfahrer unter dem Schutz der Kirche stehen."
+      ]
+    },
+    {
+      "typ": "journal",
+      "kicker": "1192–1194 · Der Handel",
+      "headline": "Vom Herzog <i>zum Kaiser</i>",
+      "spalten": ["Datum", "Was geschieht", "Ort"],
+      "zeilen": [
+        { "datum": "Dez. 1192", "text": "Festnahme durch Leopold V.", "betrag": "Erdberg" },
+        { "datum": "14.02.1193", "text": "Herzog und Kaiser einigen sich", "betrag": "Würzburg" },
+        { "datum": "28.03.1193", "text": "Übergabe an Heinrich VI.", "betrag": "Speyer" },
+        { "datum": "29.06.1193", "text": "Vertrag über das Lösegeld", "betrag": "Worms" },
+        { "datum": "04.02.1194", "text": "Freilassung", "betrag": "Mainz", "akzent": true }
+      ],
+      "fuss": "Gefangen sitzt Richard unter anderem auf der Reichsburg Trifels in der Pfalz."
+    },
+    {
+      "typ": "gleichung",
+      "kicker": "29. Juni 1193 · Die Rechnung",
+      "headline": "Was ein König <i>wiegt</i>",
+      "oben": { "wert": "100.000", "name": "Mark Silber, Kölner Gewicht" },
+      "unten": { "wert": "23", "name": "Tonnen" },
+      "fuss": "Eine Kölner Mark wiegt rund 234 Gramm. Mit den gestundeten 50.000 Mark sind es rund 35 Tonnen."
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1193 · England zahlt",
+      "headline": "Ein Reich <i>legt zusammen</i>",
+      "text": ["Richards Mutter Eleonore von Aquitanien lässt das Silber eintreiben:"],
+      "punkte": [
+        { "wert": "¼", "name": "Sondersteuer", "zusatz": "auf Einkommen und bewegliche Habe" },
+        { "wert": "× 2", "name": "Jahreseinnahmen der Krone", "zusatz": "mindestens so viel kostet das Lösegeld" },
+        { "wert": "1194", "name": "Eleonore liefert selbst", "zusatz": "sie begleitet das Silber an den Rhein" }
+      ],
+      "fuss": "Auch die Kirchen geben Kelche und Silbergerät ab."
+    },
+    {
+      "typ": "konto",
+      "kicker": "Die Bilanz",
+      "headline": "Wer zahlt, <i>wer verdient?</i>",
+      "soll": {
+        "titel": "Soll",
+        "wort": "Zahler",
+        "posten": [
+          { "name": "England", "zusatz": "Steuerzahler, Klöster und Kirchen bringen das Silber auf." },
+          { "name": "Richard Löwenherz", "zusatz": "Er muss sein Reich vom Kaiser zu Lehen nehmen." }
+        ]
+      },
+      "haben": {
+        "titel": "Haben",
+        "wort": "Empfänger",
+        "posten": [
+          { "name": "Kaiser Heinrich VI.", "zusatz": "Er bezahlt damit die Eroberung <em>Siziliens</em>." },
+          { "name": "Herzog Leopold V.", "zusatz": "Sein Anteil: 50.000 Mark Silber." }
+        ]
+      }
+    },
+    {
+      "typ": "text",
+      "kicker": "1194 · Was aus dem Silber wird",
+      "headline": "Eine Mauer <i>für Wien</i>",
+      "text": [
+        "Leopold lässt mit seinem Anteil Wien erweitern und neu ummauern. Er gründet <em>Wiener Neustadt</em> und befestigt Enns und Hainburg.",
+        "Der Papst hat ihn für die Festnahme exkommuniziert. Ende 1194 stirbt der Herzog nach einem Sturz vom Pferd."
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Eine Buchung <i>pro Werktag</i>",
+      "text": ["Wirtschaftsgeschichte in Zahlen: Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?"]
+    }
+  ],
+  "quellen": [
+    "Wien Museum Magazin: Richard Löwenherz und das Geld",
+    "Wien Geschichte Wiki: Leopold V.; Richard I. Löwenherz",
+    "WDR Stichtag: 4. Februar 1194",
+    "Encyclopaedia Britannica: Richard I",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Im Juni 1193 steht der Preis für die Freiheit von Richard Löwenherz fest: 100.000 Mark Silber, rund 23 Tonnen. Weitere 50.000 Mark werden gegen Geiseln gestundet.",
+    "England erhebt dafür eine Sondersteuer von einem Viertel. Kaiser Heinrich VI. bezahlt mit dem Silber seinen Zug nach Sizilien, Herzog Leopold V. die neue Stadtmauer von Wien.",
+    "Kanntest du die Geschichte bisher nur aus Robin Hood?"
+  ],
+  "hashtags": ["richardlöwenherz", "lösegeld", "mittelalter", "staufer", "trifels", "wirtschaftsgeschichte", "geschichte", "wien"]
+}
