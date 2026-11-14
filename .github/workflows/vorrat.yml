@@ -1,0 +1,47 @@
+name: Vorrat zählen
+
+# Playbook vom 14.11.2026: zählt, für wie viele Tage ab morgen Karussell, Reel und Story fertig bereitliegen (Soll: 7),
+# und schreibt das nach vorrat.csv. Die Playbook-Tabelle des Betreibers liest diese Datei ein. Veröffentlicht nichts.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plan.json'
+      - 'out/**'
+      - 'schaubild/plan.json'
+      - 'schaubild/out/**'
+      - 'tools/vorrat.py'
+      - 'schaubild/tools/vorrat.py'
+  schedule:
+    # alle zwei Stunden, damit auch neu gerenderte Reels und der Tageswechsel ankommen
+    - cron: '10 */2 * * *'
+    - cron: '5 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  vorrat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Zählen
+        run: |
+          python tools/vorrat.py
+          python schaubild/tools/vorrat.py
+      - name: Sichern
+        run: |
+          git config user.name "bauriss-bot"
+          git config user.email "bauriss-bot@users.noreply.github.com"
+          git add vorrat.csv schaubild/vorrat.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "Vorrat gezählt am $(date -u +%F)"
+          for versuch in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 10
+          done
+          exit 1
