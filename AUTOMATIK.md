@@ -57,14 +57,14 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Env
     python tools/publish.py --probelauf --post <post>
     ```
     Erwartet: „Alle Bilder sind öffentlich erreichbar." Schlägt das direkt nach dem Übertragen fehl, zwei Minuten später einmal wiederholen.
-11. **Reel mit Musik abwarten:** Nach dem Übertragen baut GitHub von selbst das Video mit Musik (Abschnitt „Musik und Reel"). `gh run list --workflow reel.yml --limit 1` zeigt den Lauf; nach etwa drei Minuten steht er auf `completed success`. Dann `git pull --rebase` und `python tools/automatik.py stand`: Beim neuen Post muss „Reel mit Musik liegt bereit" stehen. Scheitert der Lauf, einmal neu anstoßen (`gh workflow run reel.yml -f post=<post>`, das veröffentlicht nichts); scheitert er wieder, Ursache mit `gh run view <id> --log-failed` in den Bericht schreiben.
+11. **Reel mit Musik abwarten:** Nach dem Übertragen baut GitHub von selbst das Video mit Musik (Abschnitt „Musik und Reel"). `gh run list --workflow reel.yml --limit 1` zeigt den Lauf; nach etwa drei Minuten steht er auf `completed success`. Dann `python tools/automatik.py stand`: Beim neuen Post muss „Reel mit Musik liegt bereit" stehen. Scheitert der Lauf, einmal neu anstoßen (`gh workflow run reel.yml -f post=<post>`, das veröffentlicht nichts); scheitert er wieder, Ursache mit `gh run view <id> --log-failed` in den Bericht schreiben.
 12. **Bericht** (Abschnitt „Bericht").
 
 ## Musik und Reel
 
 Der Betreiber will seit dem 14.11.2026, dass Veröffentlichungen Musik haben. Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an, nicht zu Bildern. Deshalb entsteht zu jedem Post ein Reel: die Blätter nacheinander als Video im Hochformat, dazu ein ruhiges Klangbett.
 
-- **Du musst dafür nichts erstellen.** Sobald ein Post übertragen ist, baut der Workflow „Reel rendern" aus `out/<post>/NN.jpg` das Video `out/<post>/reel.mp4` (`tools/reel.py`) und legt es ins Repository. Jedes Blatt steht so lange, wie sein Text zum Lesen braucht (5 bis 8,5 Sekunden).
+- **Du musst dafür nichts erstellen.** Sobald ein Post übertragen ist, baut der Workflow „Reel rendern" aus `out/<post>/NN.jpg` das Video (`tools/reel.py`) und legt es in die Ablage auf GitHub (Release „medien", Datei `<post>.mp4`), nicht ins Repository. Dort holt Instagram es ab; einige Tage nach dem Erscheinen wird es gelöscht. Den Release nie löschen oder umbenennen. Jedes Blatt steht so lange, wie sein Text zum Lesen braucht (5 bis 8,5 Sekunden).
 - **Die Musik** berechnet `tools/musik.py` vollständig aus Code, passend zur Länge des Videos. Es ist immer dasselbe Stück, das Erkennungszeichen des Kanals. Keine andere Musik einsetzen, keine Aufnahmen und keine Musikdateien aus dem Netz: An fremder Musik hängen Rechte.
 - **Was erscheint,** legt `plan.json` mit `"reel"` fest: `"aus"` nur das Carousel, `"zusaetzlich"` das Reel zur `reel_uhrzeit` und das Carousel am Abend, `"statt"` nur das Reel am Abend (fehlt das Video, erscheint ersatzweise das Carousel). Diese Einstellung ändert nur der Betreiber.
 - Für die Blätter heißt das: Sie müssen auch als Standbild in einem Video funktionieren. Die Grenzen für Textmengen gelten deshalb ohne Ausnahme.

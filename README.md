@@ -15,7 +15,7 @@ Ein Eintrag mit `"freigabe": false` wird nicht veröffentlicht; so lässt sich e
 
 ## Musik
 
-Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an. Deshalb baut der Workflow „Reel rendern" zu jedem Post ein Reel (`out/<post>/reel.mp4`): die Blätter nacheinander im Hochformat, dazu ein Klangbett, das `tools/musik.py` vollständig aus Code berechnet (keine fremden Aufnahmen, keine Rechte Dritter).
+Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an. Deshalb baut der Workflow „Reel rendern" zu jedem Post ein Reel: die Blätter nacheinander im Hochformat, dazu ein Klangbett, das `tools/musik.py` vollständig aus Code berechnet (keine fremden Aufnahmen, keine Rechte Dritter). Die Videos liegen nicht im Repository, sondern als Dateien im Release „medien" (`<post>.mp4`); so wächst das Repository nicht. Einige Tage nach dem Erscheinen löscht der Workflow sie dort wieder.
 
 Was erscheint, steht in `plan.json` unter `"reel"`:
 
