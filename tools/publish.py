@@ -110,14 +110,31 @@ def baue_reel_caption(post, modus):
     return '\n\n'.join(teile)
 
 
-def pruefe_videoadresse(adresse):
-    try:
-        with urllib.request.urlopen(urllib.request.Request(adresse, method='HEAD'), timeout=30) as antwort:
-            laenge = int(antwort.headers.get('Content-Length') or 0)
-    except (urllib.error.URLError, OSError) as fehler:
-        sys.exit(f'Video nicht öffentlich erreichbar: {adresse} ({fehler})')
-    if not laenge:
-        sys.exit(f'Video ist leer: {adresse}')
+def finde_video(name, config):
+    """Sucht das Reel zu einem Post und liefert (Adresse, Größe in Bytes) oder (None, 0).
+
+    Neue Videos liegen in der Ablage auf GitHub (Release "medien"), damit das Repository nicht wächst;
+    die ersten Videos (Posts 003 bis 010) lagen noch als out/<post>/reel.mp4 im Repository.
+    """
+    repo = config.get('repository')
+    kandidaten = []
+    if repo:
+        kandidaten.append(f'https://github.com/{repo}/releases/download/medien/{name}.mp4')
+    if (ROOT / 'out' / name / 'reel.mp4').exists():
+        basis = os.environ.get('IMAGE_BASE_URL') or f'https://raw.githubusercontent.com/{repo}/main'
+        kandidaten.append(f'{basis.rstrip("/")}/out/{name}/reel.mp4')
+    for adresse in kandidaten:
+        try:
+            # Nur das erste Byte anfordern: genügt, um Erreichbarkeit und Größe zu erfahren
+            req = urllib.request.Request(adresse, headers={'Range': 'bytes=0-0'})
+            with urllib.request.urlopen(req, timeout=30) as antwort:
+                bereich = antwort.headers.get('Content-Range', '')
+                groesse = int(bereich.rsplit('/', 1)[-1]) if '/' in bereich else int(antwort.headers.get('Content-Length') or 0)
+        except (urllib.error.URLError, OSError, ValueError):
+            continue
+        if groesse > 100_000:
+            return adresse, groesse
+    return None, 0
 
 
 def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
@@ -134,14 +151,15 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
     eintrag = (offen or treffer)[0]
     name = eintrag['post']
     post = lies(ROOT / 'posts' / f'{name}.json')
-    video = ROOT / 'out' / name / 'reel.mp4'
-    if not video.exists():
-        print(f'Zu {name} gibt es kein Reel (out/{name}/reel.mp4 fehlt).')
+    adresse, groesse = finde_video(name, config)
+    if not adresse:
+        print(f'Zu {name} gibt es kein Reel: weder in der Ablage auf GitHub noch im Repository.')
         return False
     caption = baue_reel_caption(post, modus)
     if len(caption) > 2200:
         sys.exit(f'Text zu lang: {len(caption)} Zeichen, erlaubt sind 2200.')
-    print(f'Fällig: Reel zu {name}, {video.stat().st_size / 1e6:.1f} MB, Text {len(caption)} Zeichen.')
+    print(f'Fällig: Reel zu {name}, {groesse / 1e6:.1f} MB, Text {len(caption)} Zeichen.')
+    print(f'Video: {adresse}')
     if not eintrag.get('freigabe'):
         print('Nicht freigegeben ("freigabe": false in plan.json). Nichts veröffentlicht.')
         return True
@@ -150,18 +168,12 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
         print(f'Es ist {jetzt:%H:%M} Uhr, das Reel ist für {uhrzeit} Uhr geplant. Der nächste Lauf übernimmt.')
         return True
 
-    bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')
-    adresse = f'{bild_basis}/out/{name}/reel.mp4'
     if args.probelauf:
-        if bild_basis:
-            pruefe_videoadresse(adresse)
-            print('Das Video ist öffentlich erreichbar.')
-        print('Probelauf: alles in Ordnung, nichts veröffentlicht.')
+        print('Probelauf: Das Video ist öffentlich erreichbar, nichts veröffentlicht.')
         return True
     token = os.environ.get('IG_ACCESS_TOKEN')
-    if not token or not bild_basis:
-        sys.exit('IG_ACCESS_TOKEN und IMAGE_BASE_URL müssen gesetzt sein.')
-    pruefe_videoadresse(adresse)
+    if not token:
+        sys.exit('IG_ACCESS_TOKEN muss gesetzt sein.')
     basis = f'{HOST}/{config["api_version"]}'
     konto_id = finde_konto(basis, token, config)
 

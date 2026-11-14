@@ -1,6 +1,7 @@
 name: Reel rendern
 
-# Baut zu jedem geplanten Post das Reel mit Musik (out/<post>/reel.mp4) und legt es ins Repository.
+# Baut zu jedem geplanten Post das Reel mit Musik und legt es in die Ablage auf GitHub (Release "medien").
+# Die Videos stehen bewusst nicht im Repository: Es würde sonst jedes Jahr um mehr als ein Gigabyte wachsen.
 # Das Video entsteht hier, weil dafür ffmpeg nötig ist; veröffentlicht wird es vom Workflow "Post veröffentlichen".
 on:
   push:
@@ -27,6 +28,8 @@ concurrency:
 jobs:
   reel:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,15 +43,23 @@ jobs:
         env:
           POST: ${{ inputs.post }}
         run: python tools/reel.py ${POST:---fehlende}
-      - name: Sichern
+      - name: Ablegen
         run: |
-          git config user.name "bauriss-bot"
-          git config user.email "bauriss-bot@users.noreply.github.com"
-          git add out
-          git diff --cached --quiet && exit 0
-          git commit -m "Reel gerendert"
-          for versuch in 1 2 3; do
-            git pull --rebase && git push && exit 0
-            sleep 10
-          done
-          exit 1
+          ls reels/*.mp4 >/dev/null 2>&1 || { echo "Nichts abzulegen."; exit 0; }
+          gh release view medien >/dev/null 2>&1 || gh release create medien --latest=false \
+            --title "Medien" --notes "Videos zu den geplanten Posts. Dieser Eintrag wird vom Workflow „Reel rendern“ gepflegt; bitte nicht löschen."
+          gh release upload medien reels/*.mp4 --clobber
+      - name: Alte Videos entfernen
+        run: |
+          # Videos, deren Reel seit mehr als drei Tagen erschienen ist, braucht Instagram nicht mehr.
+          python - <<'EOF' > alt.txt
+          import datetime as dt, json
+          grenze = (dt.date.today() - dt.timedelta(days=3)).isoformat()
+          for e in json.load(open('veroeffentlicht.json', encoding='utf-8')):
+              if e.get('art') == 'reel' and e['datum'] < grenze:
+                  print(e['post'] + '.mp4')
+          EOF
+          vorhanden=$(gh release view medien --json assets --jq '.assets[].name' 2>/dev/null || true)
+          while read -r name; do
+            if echo "$vorhanden" | grep -qx "$name"; then gh release delete-asset medien "$name" -y; fi
+          done < alt.txt

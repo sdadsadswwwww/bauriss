@@ -300,13 +300,13 @@ def befehl_stand(_args):
         if modus != 'aus':
             if e['post'] in reels:
                 zustand += f', Reel veröffentlicht um {reels[e["post"]]["zeit"]} Uhr'
-            elif (ROOT / 'out' / e['post'] / 'reel.mp4').exists():
+            elif publish.finde_video(e['post'], lies(ROOT / 'config.json'))[0]:
                 zustand += ', Reel mit Musik liegt bereit'
             else:
                 zustand += ', REEL FEHLT'
-                warnungen.append(f'{e["post"]}: out/{e["post"]}/reel.mp4 fehlt. Das Video rendert GitHub nach dem Übertragen '
-                                 '(Workflow "Reel rendern", einige Minuten). Danach git pull --rebase; '
-                                 'fehlt es weiter: gh run list --workflow reel.yml --limit 3')
+                warnungen.append(f'{e["post"]}: Das Reel fehlt in der Ablage auf GitHub. Das Video rendert GitHub nach dem Übertragen '
+                                 '(Workflow "Reel rendern", einige Minuten). Fehlt es danach weiter: '
+                                 'gh run list --workflow reel.yml --limit 3')
         print(f'{wort:6} {tag.isoformat()}: {e["post"]} – {zustand}')
         if e['post'] not in protokoll:
             for f in pruefe(e['post']):

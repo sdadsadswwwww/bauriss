@@ -4,7 +4,8 @@ Aufruf:  python tools/reel.py 010-schloss-neuschwanstein   ein Post
          python tools/reel.py --fehlende                    alle geplanten Posts ab heute, denen das Video fehlt
 
 Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an, nicht zu Bildern.
-Deshalb entsteht aus den fertigen Blättern (out/<post>/NN.jpg) ein Video out/<post>/reel.mp4:
+Deshalb entsteht aus den fertigen Blättern (out/<post>/NN.jpg) ein Video reels/<post>.mp4, das der
+Workflow in die Ablage auf GitHub hochlädt (Release "medien", nicht im Repository, damit es klein bleibt):
 jedes Blatt steht so lange, wie man zum Lesen braucht, dazwischen eine kurze Überblendung.
 Die Musik berechnet tools/musik.py passend zur Länge des Videos.
 
@@ -29,6 +30,7 @@ import musik  # noqa: E402
 import publish  # noqa: E402
 
 ROOT = publish.ROOT
+ABLAGE = ROOT / 'reels'                    # fertige Videos; der Workflow lädt sie in die Ablage auf GitHub hoch
 BREITE, HOEHE, BLATT_HOEHE = 1080, 1920, 1350
 RAND = (HOEHE - BLATT_HOEHE) // 2          # blauer Streifen über und unter dem Blatt
 BILDER_JE_SEKUNDE = 30
@@ -135,14 +137,15 @@ def rendere(post_name, ffmpeg):
             kette.append(f'{vorher}[{nr}:v]xfade=transition=fade:duration={BLENDE}:offset={beginn:.2f}[v{nr}]')
             vorher = f'[v{nr}]'
         kette.append(f'{vorher}format=yuv420p[bild]')
-        video = ordner / 'reel.mp4'
+        ABLAGE.mkdir(exist_ok=True)
+        video = ABLAGE / f'{post_name}.mp4'
         befehl += ['-filter_complex', ';'.join(kette), '-map', '[bild]', '-map', f'{len(zeiten)}:a',
                    # Stehende Bilder: wenige Schlüsselbilder halten die Datei klein (rund 2 MB statt 7 MB je Video)
                    '-c:v', 'libx264', '-preset', 'slow', '-tune', 'stillimage', '-crf', '23', '-r', str(BILDER_JE_SEKUNDE), '-g', '300',
                    '-c:a', 'aac', '-b:a', '112k', '-ar', '48000', '-t', f'{dauer:.2f}', '-movflags', '+faststart', str(video)]
         subprocess.run(befehl, check=True)
         pruefe_video(video, dauer)
-        print(f'{post_name}: {video.stat().st_size / 1e6:.1f} MB -> out/{post_name}/reel.mp4')
+        print(f'{post_name}: {video.stat().st_size / 1e6:.1f} MB -> reels/{post_name}.mp4')
     finally:
         shutil.rmtree(arbeit, ignore_errors=True)
 
@@ -157,8 +160,9 @@ def main():
     if args.fehlende:
         heute = publish.berlin_jetzt().date().isoformat()
         plan = publish.lies(publish.PLAN)
+        config = publish.lies(ROOT / 'config.json')
         posts += [e['post'] for e in plan['posts']
-                  if e['datum'] >= heute and e['post'] not in posts and not (ROOT / 'out' / e['post'] / 'reel.mp4').exists()]
+                  if e['datum'] >= heute and e['post'] not in posts and not publish.finde_video(e['post'], config)[0]]
     if not posts:
         print('Kein Reel zu rendern.')
         return
