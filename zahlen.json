@@ -1,0 +1,30 @@
+{
+  "stand": "2026-11-14T14:58",
+  "konto": {
+    "follower": 2,
+    "beitraege": 3
+  },
+  "medien": [
+    {
+      "post": "001-eiffelturm",
+      "art": "carousel",
+      "datum": "2026-11-12",
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "002-alter-elbtunnel",
+      "art": "carousel",
+      "datum": "2026-11-13",
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "003-wuppertaler-schwebebahn",
+      "art": "reel",
+      "datum": "2026-11-14",
+      "fehler": "(#10) Application does not have permission for this action"
+    }
+  ],
+  "fehler": [
+    "(#10) Application does not have permission for this action"
+  ]
+}
