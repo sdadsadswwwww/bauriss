@@ -1,5 +1,5 @@
 {
-  "stand": "2026-11-14T14:59",
+  "stand": "2026-11-14T16:49",
   "konto": {
     "follower": 1,
     "beitraege": 2
@@ -9,12 +9,16 @@
       "post": "001-geburten",
       "art": "carousel",
       "datum": "2026-11-14",
+      "likes": 1,
+      "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
     {
       "post": "001-geburten",
       "art": "reel",
       "datum": "2026-11-14",
+      "likes": 1,
+      "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     }
   ],
