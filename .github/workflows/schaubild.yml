@@ -7,6 +7,9 @@ on:
     # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
     - cron: '30 16 * * *'
     - cron: '30 17 * * *'
+    # 12:30 Uhr deutscher Zeit: das Reel zum Post des Tages (tools/publish.py --reel)
+    - cron: '30 10 * * *'
+    - cron: '30 11 * * *'
   workflow_dispatch:
     inputs:
       probelauf:
@@ -17,6 +20,18 @@ on:
         description: Nur das Zugriffstoken prüfen
         type: boolean
         default: false
+      reel:
+        description: Reel statt Carousel
+        type: boolean
+        default: false
+      reel_test:
+        description: Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen
+        type: boolean
+        default: false
+      post:
+        description: Dieser Post statt des heute fälligen (z. B. 001-geburten)
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -41,7 +56,8 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN_SCHAUBILD }}
           IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/schaubild
-        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.probelauf && '--probelauf') || '' }}
+          POST: ${{ inputs.post }}
+        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf') || (contains(github.event.schedule, ' 10 ') || contains(github.event.schedule, ' 11 ')) && '--reel' || '' }} ${POST:+--post "$POST"}
       - name: Protokoll sichern
         run: |
           git config user.name "schaubild-bot"

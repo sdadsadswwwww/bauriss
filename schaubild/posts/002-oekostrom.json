@@ -1,6 +1,9 @@
 {
  "nr": "002",
  "titel": "Strom aus Erneuerbaren",
+ "reel": {
+  "frage": "Wie viel Strom ist schon erneuerbar?"
+ },
  "slides": [
   {
    "typ": "cover",

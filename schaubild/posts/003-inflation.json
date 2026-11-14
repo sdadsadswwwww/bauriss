@@ -1,6 +1,9 @@
 {
  "nr": "003",
  "titel": "Inflation seit 1992",
+ "reel": {
+  "frage": "Wie stark steigen die Preise?"
+ },
  "slides": [
   {
    "typ": "cover",

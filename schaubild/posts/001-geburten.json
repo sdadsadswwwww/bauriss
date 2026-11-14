@@ -1,6 +1,9 @@
 {
  "nr": "001",
  "titel": "Geburten seit 1950",
+ "reel": {
+  "frage": "Wie viele Kinder kommen in Deutschland zur Welt?"
+ },
  "slides": [
   {
    "typ": "cover",

@@ -1,6 +1,9 @@
 {
  "nr": "005",
  "titel": "Bierabsatz seit 1993",
+ "reel": {
+  "frage": "Wie viel Bier verkaufen die Brauereien?"
+ },
  "slides": [
   {
    "typ": "cover",

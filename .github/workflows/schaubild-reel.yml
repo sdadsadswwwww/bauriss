@@ -1,0 +1,51 @@
+name: Schaubild Reel rendern
+
+# Rendert zu jedem geplanten Post das Reel (out/<post>/reel.mp4) und legt es ins Repository.
+# Das Video entsteht hier, weil dafür ffmpeg nötig ist; veröffentlicht wird es vom Workflow "Schaubild veröffentlichen".
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'schaubild/posts/**'
+      - 'schaubild/plan.json'
+      - 'schaubild/render/reel.html'
+      - 'schaubild/tools/reel.py'
+  workflow_dispatch:
+    inputs:
+      post:
+        description: Nur dieser Post, auch wenn das Video schon da ist (z. B. 001-geburten)
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: post
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: schaubild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Werkzeuge
+        run: |
+          pip install -r requirements.txt
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+      - name: Rendern
+        env:
+          POST: ${{ inputs.post }}
+        run: python tools/reel.py ${POST:---fehlende}
+      - name: Sichern
+        run: |
+          git config user.name "schaubild-bot"
+          git config user.email "schaubild-bot@users.noreply.github.com"
+          git add out
+          git diff --cached --quiet || (git commit -m "Schaubild: Reel gerendert" && git pull --rebase && git push)

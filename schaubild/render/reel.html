@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schaubild Reel</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Reel: 1080 x 1920. Oben 230 px und unten 330 px bleiben frei, dort liegt die Bedienung von Instagram. */
+  #sheet { height: 1920px; }
+  .reel { position: absolute; left: 60px; right: 60px; top: 240px; bottom: 330px; display: flex; flex-direction: column; }
+  .reel > * { flex: none; }
+  .reel .frage { font-family: var(--f-kopf); font-weight: 700; text-transform: uppercase; font-size: 88px; line-height: 0.98; min-height: 172px; }
+  .reel .figur { flex: none; height: 540px; margin-top: 20px; }
+  .reel .buehne { position: relative; height: 300px; margin-top: 10px; }
+  .reel .buehne > div { position: absolute; left: 0; right: 0; top: 0; }
+  .reel .jahr { font-family: var(--f-kopf); font-weight: 700; font-size: 200px; line-height: 0.9; color: var(--netz); letter-spacing: -0.01em; }
+  .reel .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 200px; line-height: 0.9; color: var(--acc); white-space: nowrap; margin-left: -6px; transform-origin: left bottom; }
+  .reel .unter { font-family: var(--f-kopf); font-weight: 700; text-transform: uppercase; font-size: 72px; line-height: 0.96; margin-top: 12px; }
+  .reel .satz { font-size: 38px; line-height: 1.34; min-height: 110px; margin-top: 10px; }
+  .reel .satz em { font-style: normal; }
+  .reel .marke-zeile { margin-top: auto; border-top: 4px solid var(--rot); padding-top: 22px; display: flex; align-items: center; gap: 16px;
+    font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--leise); white-space: nowrap; }
+  .reel .marke-zeile .marke { width: 54px; height: 54px; flex: none; }
+  .reel .marke-zeile .name { font-family: var(--f-kopf); font-size: 48px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink); margin-right: 14px; }
+</style>
+</head>
+<body>
+<div id="sheet"></div>
+<script src="charts.js"></script>
+<script>
+  // Aufruf über tools/reel.py: reel.html?post=<name>&konto=<handle>
+  // Die Seite läuft nicht von selbst ab. tools/reel.py ruft für jedes Bild window.zeige(sekunde) auf.
+  const q = new URLSearchParams(location.search);
+  const schriften = ['600 10px "Barlow Condensed"', '700 10px "Barlow Condensed"', '400 10px Barlow', '600 10px Barlow',
+    '400 10px "IBM Plex Mono"', '500 10px "IBM Plex Mono"'];
+  const ZEIT = { start: 1.0, ende: 7.0, zahl: 7.2, satz: 8.0, dauer: 11.0 };
+  const grenze = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const weich = x => x * x * (3 - 2 * x);
+
+  function baue(post) {
+    const titel = post.slides[0];
+    const blatt = post.slides.find(s => s.typ === 'diagramm' && s.figur && s.figur.fn === 'linie') || titel;
+    const figur = { ...blatt.figur, hoehe: 540 };
+    const frage = (post.reel && post.reel.frage) || titel.headline;
+    document.getElementById('sheet').innerHTML =
+      `<div class="reel"><div class="kicker">${titel.kicker}</div><div class="frage">${frage}</div>` +
+      `<div class="figur">${Diagramm.linie(figur)}</div>` +
+      `<div class="buehne"><div class="jahr"></div><div class="ergebnis"><div class="zahl">${titel.zahl}</div><div class="unter">${titel.headline}</div></div></div>` +
+      `<div class="satz">${(titel.text || [''])[0]}</div>` +
+      `<div class="marke-zeile">${Diagramm.marke()}<span class="name">Schaubild</span><span>${post.konto} · jeden Tag eine Zahl</span></div></div>`;
+
+    // Kurven und Flächen hinter eine wandernde Kante legen, Marken einzeln einblenden
+    const svg = document.querySelector('.figur svg');
+    const ns = 'http://www.w3.org/2000/svg';
+    const clip = document.createElementNS(ns, 'clipPath');
+    clip.id = 'kante';
+    const feld = document.createElementNS(ns, 'rect');
+    feld.setAttribute('y', '-50'); feld.setAttribute('height', '2000'); feld.setAttribute('x', '0');
+    clip.appendChild(feld);
+    svg.insertBefore(clip, svg.firstChild);
+    svg.querySelectorAll('.kurve, .flaeche, text.reihe').forEach(e => e.setAttribute('clip-path', 'url(#kante)'));
+    const marken = [];
+    svg.querySelectorAll('circle.punkt').forEach(kreis => {
+      const teile = [kreis];
+      for (let n = kreis.nextElementSibling; n && n.matches('text.marke'); n = n.nextElementSibling) teile.push(n);
+      marken.push({ x: +kreis.getAttribute('cx'), teile });
+    });
+    const von = Math.min(...figur.reihen.map(s => s.von));
+    const bis = Math.max(...figur.reihen.map(s => s.von + s.werte.length - 1));
+    const jahr = document.querySelector('.jahr'), ergebnis = document.querySelector('.ergebnis');
+    const zahl = document.querySelector('.zahl'), satz = document.querySelector('.satz');
+
+    window.zeige = t => {
+      const p = weich(grenze((t - ZEIT.start) / (ZEIT.ende - ZEIT.start)));
+      const x = 20 + p * 850;   // Zeichenfläche der Diagramme: 20 bis 870
+      feld.setAttribute('width', String(x + 1));
+      marken.forEach(m => {
+        const a = grenze((x - m.x) / 12 + 1);
+        m.teile.forEach(e => { e.style.opacity = a; });
+      });
+      jahr.textContent = Math.round(von + p * (bis - von));
+      const z = grenze((t - ZEIT.zahl) / 0.5);
+      jahr.style.opacity = 1 - grenze((t - ZEIT.zahl + 0.2) / 0.3);
+      ergebnis.style.opacity = z;
+      zahl.style.transform = `scale(${0.86 + 0.14 * weich(z)})`;
+      satz.style.opacity = grenze((t - ZEIT.satz) / 0.6);
+    };
+    window.zeige(0);
+    window.dauer = ZEIT.dauer;
+    window.bereit = true;
+  }
+
+  fetch('../posts/' + q.get('post') + '.json')
+    .then(r => r.json())
+    .then(post => Promise.all([post, ...schriften.map(s => document.fonts.load(s))]))
+    .then(([post]) => {
+      baue({ ...post, konto: '@' + q.get('konto') });
+      if (q.has('t')) window.zeige(+q.get('t'));
+    });
+</script>
+</body>
+</html>
