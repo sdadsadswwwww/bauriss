@@ -6,7 +6,7 @@ Playbook vom 14.11.2026: Ab morgen sollen 7 Tage fertig bereitliegen. Gezählt w
 Ein Tag zählt für eine Art, wenn der Post im Plan freigegeben ist und das Teil vorliegt
 (Karussell: alle Blätter out/<post>/NN.jpg, Reel: das Video, Story: out/<post>/story.jpg).
 Die Zeile hat keine Kopfzeile, weil die Playbook-Tabelle des Betreibers sie direkt einliest:
-Kanal, Karussell, Reel, Story, reicht bis, fehlt bis zum Soll, Stand.
+Kanal, Karussell, Reel, Story, reicht bis, fehlt bis zum Soll, Stand (Zeitpunkt der letzten Änderung).
 """
 import datetime as dt
 import json
@@ -53,8 +53,13 @@ def main():
     reicht_bis = (jetzt.date() + dt.timedelta(days=knapp)).strftime('%d.%m.%Y') if knapp else 'kein Vorrat'
     kanal = NAMEN.get(config['konto'], config['konto'])
     zeile = [kanal, tage['karussell'], tage['reel'], tage['story'], reicht_bis, SOLL - knapp, jetzt.strftime('%d.%m.%Y %H:%M')]
-    (ROOT / 'vorrat.csv').write_text(','.join(str(z) for z in zeile) + '\n', encoding='utf-8')
-    print(','.join(str(z) for z in zeile))
+    ziel = ROOT / 'vorrat.csv'
+    text = ','.join(str(z) for z in zeile)
+    # Nur schreiben, wenn sich außer der Uhrzeit etwas geändert hat: "Stand" ist der Zeitpunkt der letzten Änderung.
+    alt = ziel.read_text(encoding='utf-8').strip().split(',') if ziel.exists() else []
+    if alt[:6] != [str(z) for z in zeile[:6]]:
+        ziel.write_text(text + '\n', encoding='utf-8')
+    print(text)
 
 
 if __name__ == '__main__':
