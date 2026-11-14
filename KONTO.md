@@ -39,3 +39,9 @@ Offen, nur durch dich:
 1. Im App-Dashboard unter Anwendungsfälle → Instagram API → „API setup with Unified login" → Abschnitt 2 neben `das.kassenbuch` auf „Token generieren". Anmeldung abschließen, Token kopieren. Es wird nur einmal angezeigt und gehört nicht in den Chat.
 2. Unter https://github.com/sdadsadswwwww/kassenbuch/settings/secrets/actions/new als `IG_ACCESS_TOKEN` speichern.
 3. Danach den Workflow „Post veröffentlichen" mit Haken bei „Nur das Zugriffstoken prüfen" laufen lassen.
+
+## Nachtrag 14.11.2026
+
+- Token erzeugt und als Secret `IG_ACCESS_TOKEN` im Repository gespeichert.
+- Zugangstest über den Workflow bestanden: ein zugewiesenes Instagram-Konto, Veröffentlichungslimit für die Konto-ID abrufbar. Gepostet wurde dabei nichts.
+- Erster echter Post: Montag, 16.11.2026, 18:15 Uhr.
