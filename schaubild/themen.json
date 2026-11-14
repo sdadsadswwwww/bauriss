@@ -5,7 +5,7 @@
   { "thema": "Arbeitslose", "bereich": "Arbeit", "quelle": "Bundesagentur für Arbeit", "post": "004-arbeitslose" },
   { "thema": "Bierabsatz", "bereich": "Konsum", "quelle": "Destatis 73421", "post": "005-bier" },
   { "thema": "Eheschließungen", "bereich": "Bevölkerung", "quelle": "Destatis 12611" },
-  { "thema": "Zugelassene Pkw", "bereich": "Verkehr", "quelle": "Kraftfahrt-Bundesamt, Bestand" },
+  { "thema": "Zugelassene Pkw", "bereich": "Verkehr", "quelle": "Kraftfahrt-Bundesamt, Bestand", "post": "006-pkw" },
   { "thema": "Fertiggestellte Wohnungen", "bereich": "Wohnen", "quelle": "Destatis 31121" },
   { "thema": "Verkehrstote", "bereich": "Verkehr", "quelle": "Destatis 46241" },
   { "thema": "Treibhausgasemissionen", "bereich": "Umwelt", "quelle": "Umweltbundesamt" },

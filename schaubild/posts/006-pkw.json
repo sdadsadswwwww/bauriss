@@ -1,0 +1,237 @@
+{
+ "nr": "006",
+ "titel": "Pkw-Bestand seit 2010",
+ "reel": {
+  "frage": "Wie viele Autos sind in Deutschland zugelassen?"
+ },
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 006",
+   "zahl": "49,5 Mio.",
+   "headline": "Pkw sind zugelassen",
+   "text": [
+    "Der Bestand wächst seit 2010 in jedem Jahr – zusammen um 7,7 Millionen Autos."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 52000000,
+    "reihen": [
+     {
+      "von": 2010,
+      "werte": [
+       41737627,
+       42301563,
+       42927647,
+       43431124,
+       43851230,
+       44403124,
+       45071209,
+       45803560,
+       46474594,
+       47095784,
+       47715977,
+       48248584,
+       48540878,
+       48763036,
+       49098685,
+       49339166,
+       49486487
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     2010,
+     2026
+    ],
+    "achse": [
+     {
+      "wert": 35000000,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2026,
+      "text": ""
+     }
+    ],
+    "ymin": 35000000
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Pkw-Bestand · 2010 bis 2026",
+   "headline": "Jedes Jahr mehr Autos",
+   "text": [
+    "Am 1. Januar 2010 sind 41,7 Millionen Pkw zugelassen. 2026 sind es <em>49,5 Millionen</em> – ein Plus von 18,6 Prozent."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 52000000,
+    "reihen": [
+     {
+      "von": 2010,
+      "werte": [
+       41737627,
+       42301563,
+       42927647,
+       43431124,
+       43851230,
+       44403124,
+       45071209,
+       45803560,
+       46474594,
+       47095784,
+       47715977,
+       48248584,
+       48540878,
+       48763036,
+       49098685,
+       49339166,
+       49486487
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     2010,
+     2014,
+     2018,
+     2022,
+     2026
+    ],
+    "achse": [
+     {
+      "wert": 35000000,
+      "text": "35 Mio."
+     },
+     {
+      "wert": 40000000,
+      "text": "40 Mio."
+     },
+     {
+      "wert": 45000000,
+      "text": "45 Mio."
+     },
+     {
+      "wert": 50000000,
+      "text": "50 Mio."
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2018,
+      "text": "2018: 46,5 Mio.",
+      "anker": "end"
+     },
+     {
+      "jahr": 2026,
+      "text": "2026: 49,5 Mio.",
+      "anker": "end"
+     }
+    ],
+    "ymin": 35000000
+   },
+   "fuss": "Zugelassene Pkw in Deutschland, jeweils am 1. Januar. Die Achse beginnt bei 35 Millionen."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Die größten Segmente am 1. Januar 2026",
+   "headline": "Jeder siebte ist ein SUV",
+   "text": [
+    "Gut jeder fünfte Pkw gehört zur Kompaktklasse. Die Zahl der SUVs wächst in einem Jahr um <em>9,7 Prozent</em>."
+   ],
+   "balken": [
+    {
+     "wert": 21.8,
+     "anzeige": "21,8 %",
+     "name": "Kompaktklasse",
+     "akzent": false
+    },
+    {
+     "wert": 17.8,
+     "anzeige": "17,8 %",
+     "name": "Kleinwagen",
+     "akzent": false
+    },
+    {
+     "wert": 14.5,
+     "anzeige": "14,5 %",
+     "name": "SUVs",
+     "akzent": true
+    },
+    {
+     "wert": 11.0,
+     "anzeige": "11,0 %",
+     "name": "Mittelklasse",
+     "akzent": false
+    },
+    {
+     "wert": 6.8,
+     "anzeige": "6,8 %",
+     "name": "Geländewagen",
+     "akzent": false
+    }
+   ],
+   "fuss": "Anteile am Pkw-Bestand, Einteilung des Kraftfahrt-Bundesamts."
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Der Bestand in drei Zahlen",
+   "headline": "Mehr, älter, elektrischer",
+   "punkte": [
+    {
+     "wert": "+0,3 %",
+     "name": "gegenüber 2025",
+     "zusatz": "kleinstes Plus seit 2010: 147 321"
+    },
+    {
+     "wert": "4,1 %",
+     "name": "fahren rein elektrisch",
+     "zusatz": "2 034 260 Pkw, 23,2 % mehr als 2025"
+    },
+    {
+     "wert": "10,9",
+     "name": "Jahre alt im Schnitt",
+     "zusatz": "2017 waren es 9,3 Jahre"
+    }
+   ],
+   "fuss": "Alle Angaben zum Stichtag 1. Januar 2026."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Kraftfahrt-Bundesamt: Bestand an Kraftfahrzeugen nach Fahrzeugklassen, Zeitreihen, Stand 1.1.2026",
+  "KBA: Pressemitteilung Nr. 09/2026 vom 3.3.2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "49,5 Millionen Pkw sind am 1. Januar 2026 in Deutschland zugelassen. Seit 2010 ist der Bestand in jedem Jahr gewachsen, zusammen um 7,7 Millionen.",
+  "Jeder siebte Pkw ist ein SUV, 4,1 Prozent fahren rein elektrisch.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen",
+  "auto",
+  "pkw",
+  "verkehr",
+  "mobilität"
+ ]
+}
