@@ -3,6 +3,8 @@
 Aufruf:  python tools/publish.py               regulärer Lauf aus dem Zeitplan
          python tools/publish.py --probelauf   prüft alles, ruft die Schnittstelle aber nicht auf
          python tools/publish.py --zugang      prüft nur, ob das Token das Konto freigibt
+         python tools/publish.py --reel        veröffentlicht das Reel zum heute fälligen Post (out/<post>/reel.mp4)
+         python tools/publish.py --reel-test   lässt Instagram das Reel abrufen und verarbeiten, veröffentlicht aber nichts
 
 Umgebung:
   IG_ACCESS_TOKEN   Systemnutzer-Zugriffstoken aus Metas App-Dashboard (GitHub-Secret)
@@ -85,6 +87,91 @@ def pruefe_post(name, post, caption):
     if len(post['hashtags']) > 30:
         sys.exit(f'Zu viele Hashtags: {len(post["hashtags"])}, erlaubt sind 30.')
     return bilder
+
+
+def baue_reel_caption(post):
+    # Bewusst ein anderer Text als beim Carousel: Der Schutz vor Doppelposts vergleicht die Texte.
+    teile = [post['caption'][0], 'Die ganze Geschichte mit allen Zahlen steht im Beitrag auf dem Profil.']
+    teile.append('Quellen: ' + ' · '.join(post['quellen']))
+    teile.append(' '.join('#' + h for h in post['hashtags']))
+    return '\n\n'.join(teile)
+
+
+def pruefe_videoadresse(adresse):
+    try:
+        with urllib.request.urlopen(urllib.request.Request(adresse, method='HEAD'), timeout=30) as antwort:
+            laenge = int(antwort.headers.get('Content-Length') or 0)
+    except (urllib.error.URLError, OSError) as fehler:
+        sys.exit(f'Video nicht öffentlich erreichbar: {adresse} ({fehler})')
+    if not laenge:
+        sys.exit(f'Video ist leer: {adresse}')
+
+
+def reel_lauf(args, config, plan, protokoll, jetzt, heute):
+    """Veröffentlicht das Reel zum heute fälligen Post. Fehlt das Video, passiert nichts."""
+    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel'}
+    treffer = [e for e in plan['posts'] if (e['post'] == args.post if args.post else e['datum'] == heute)]
+    offen = [e for e in treffer if e['post'] not in erledigt]
+    if not treffer:
+        print(f'Für {heute} ist kein Post geplant, also auch kein Reel.')
+        return
+    if not offen and not args.reel_test:
+        print('Das Reel zum fälligen Post ist bereits veröffentlicht.')
+        return
+    eintrag = (offen or treffer)[0]
+    name = eintrag['post']
+    post = lies(ROOT / 'posts' / f'{name}.json')
+    video = ROOT / 'out' / name / 'reel.mp4'
+    if not video.exists():
+        print(f'Zu {name} gibt es kein Reel (out/{name}/reel.mp4 fehlt). Nichts veröffentlicht.')
+        return
+    caption = baue_reel_caption(post)
+    if len(caption) > 2200:
+        sys.exit(f'Text zu lang: {len(caption)} Zeichen, erlaubt sind 2200.')
+    print(f'Fällig: Reel zu {name}, {video.stat().st_size / 1e6:.1f} MB, Text {len(caption)} Zeichen.')
+    if not eintrag.get('freigabe'):
+        print('Nicht freigegeben ("freigabe": false in plan.json). Nichts veröffentlicht.')
+        return
+    uhrzeit = eintrag.get('reel_uhrzeit', plan.get('reel_uhrzeit', '12:30'))
+    if not (args.probelauf or args.reel_test) and jetzt.strftime('%H:%M') < uhrzeit:
+        print(f'Es ist {jetzt:%H:%M} Uhr, geplant ist {uhrzeit} Uhr. Der nächste Lauf übernimmt.')
+        return
+
+    bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')
+    adresse = f'{bild_basis}/out/{name}/reel.mp4'
+    if args.probelauf:
+        if bild_basis:
+            pruefe_videoadresse(adresse)
+            print('Das Video ist öffentlich erreichbar.')
+        print('Probelauf: alles in Ordnung, nichts veröffentlicht.')
+        return
+    token = os.environ.get('IG_ACCESS_TOKEN')
+    if not token or not bild_basis:
+        sys.exit('IG_ACCESS_TOKEN und IMAGE_BASE_URL müssen gesetzt sein.')
+    pruefe_videoadresse(adresse)
+    basis = f'{HOST}/{config["api_version"]}'
+    konto_id = finde_konto(basis, token, config)
+
+    letzte = anfrage('GET', f'{basis}/{konto_id}/media?fields=caption,permalink&limit=10', token).get('data', [])
+    schon_da = next((m for m in letzte if m.get('caption') == caption), None)
+    if schon_da and not args.reel_test:
+        print('Ein Reel mit identischem Text ist bereits online. Nur das Protokoll wird ergänzt.')
+        medium, link = schon_da['id'], schon_da.get('permalink')
+    else:
+        # thumb_offset: Titelbild aus dem Schluss des Videos, wenn Zahl und Kurve vollständig zu sehen sind
+        container = anfrage('POST', f'{basis}/{konto_id}/media', token,
+                            {'media_type': 'REELS', 'video_url': adresse, 'caption': caption,
+                             'share_to_feed': 'true', 'thumb_offset': '9500'})['id']
+        warte_bis_fertig(basis, container, token)
+        if args.reel_test:
+            print('Reel-Test: Instagram hat das Video abgerufen und verarbeitet. Nichts veröffentlicht.')
+            return
+        medium = anfrage('POST', f'{basis}/{konto_id}/media_publish', token, {'creation_id': container})['id']
+        link = anfrage('GET', f'{basis}/{medium}?fields=permalink', token).get('permalink')
+        print(f'Reel veröffentlicht: {link}')
+
+    protokoll.append({'post': name, 'art': 'reel', 'datum': heute, 'zeit': jetzt.strftime('%H:%M'), 'media_id': medium, 'permalink': link})
+    PROTOKOLL.write_text(json.dumps(protokoll, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
 def pruefe_bildadressen(adressen):
@@ -189,6 +276,8 @@ def main(argv=None):
     parser.add_argument('--probelauf', action='store_true', help='nur prüfen, nichts veröffentlichen')
     parser.add_argument('--post', help='diesen Post statt des heute fälligen nehmen')
     parser.add_argument('--zugang', action='store_true', help='nur prüfen, ob das Token das Konto freigibt')
+    parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen')
+    parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
@@ -212,7 +301,11 @@ def main(argv=None):
     jetzt = berlin_jetzt()
     heute = jetzt.date().isoformat()
 
-    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll}, heute, args.post)
+    if args.reel or args.reel_test:
+        reel_lauf(args, config, plan, protokoll, jetzt, heute)
+        return
+
+    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if e.get('art') != 'reel'}, heute, args.post)
     if not eintrag:
         return
     name = eintrag['post']

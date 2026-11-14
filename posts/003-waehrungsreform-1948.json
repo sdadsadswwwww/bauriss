@@ -1,6 +1,7 @@
 {
   "nr": "003",
   "titel": "Währungsreform 1948",
+  "reel": { "frage": "Mit wie viel Geld fängt ein Land <i>neu an</i>?", "stimmung": "neutral" },
   "slides": [
     {
       "typ": "cover",

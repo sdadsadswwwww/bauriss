@@ -1,6 +1,7 @@
 {
   "nr": "005",
   "titel": "Die letzte Rate 2010",
+  "reel": { "frage": "Wie lange zahlt man an <i>einem Krieg</i>?", "stimmung": "ernst" },
   "slides": [
     {
       "typ": "cover",

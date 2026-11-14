@@ -1,6 +1,7 @@
 {
   "nr": "004",
   "titel": "Gründerkrach 1873",
+  "reel": { "frage": "Wie viele Firmen passen in <i>eine Blase</i>?", "stimmung": "ernst" },
   "slides": [
     {
       "typ": "cover",

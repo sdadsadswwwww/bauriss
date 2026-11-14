@@ -1,6 +1,7 @@
 {
   "nr": "002",
   "titel": "Kaiserwahl 1519",
+  "reel": { "frage": "Was kostet es, <i>Kaiser</i> zu werden?", "stimmung": "neutral" },
   "slides": [
     {
       "typ": "cover",

@@ -1,6 +1,7 @@
 {
   "nr": "001",
   "titel": "Hyperinflation 1923",
+  "reel": { "frage": "Was kostet ein Brot, wenn Geld <i>nichts mehr wert</i> ist?", "stimmung": "ernst" },
   "slides": [
     {
       "typ": "cover",
