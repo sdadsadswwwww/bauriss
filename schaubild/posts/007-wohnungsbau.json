@@ -1,0 +1,273 @@
+{
+ "nr": "007",
+ "titel": "Wohnungsbau seit 1991",
+ "reel": {
+  "frage": "Wie viele Wohnungen werden fertiggestellt?"
+ },
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 007",
+   "zahl": "206 586",
+   "headline": "neue Wohnungen im Jahr 2025",
+   "text": [
+    "18,0 Prozent weniger als im Vorjahr und der niedrigste Wert seit 2012."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 700000,
+    "reihen": [
+     {
+      "von": 1991,
+      "werte": [
+       331178,
+       386052,
+       455451,
+       572883,
+       602757,
+       559488,
+       578179,
+       500690,
+       472638,
+       423044,
+       326187,
+       289590,
+       268103,
+       278008,
+       242316,
+       249436,
+       210729,
+       175927,
+       158987,
+       159832,
+       183110,
+       200466,
+       214817,
+       245325,
+       247722,
+       277691,
+       284816,
+       287352,
+       293002,
+       306376,
+       293393,
+       295275,
+       294399,
+       251937,
+       206586
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1991,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Fertiggestellte Wohnungen · 1991 bis 2025",
+   "headline": "Rekord 1995, Tief 2009",
+   "text": [
+    "1995 werden <em>602 757</em> Wohnungen fertig, 2009 nur 158 987. Bis 2020 steigt die Zahl wieder, 2024 und 2025 fällt sie deutlich."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 700000,
+    "reihen": [
+     {
+      "von": 1991,
+      "werte": [
+       331178,
+       386052,
+       455451,
+       572883,
+       602757,
+       559488,
+       578179,
+       500690,
+       472638,
+       423044,
+       326187,
+       289590,
+       268103,
+       278008,
+       242316,
+       249436,
+       210729,
+       175927,
+       158987,
+       159832,
+       183110,
+       200466,
+       214817,
+       245325,
+       247722,
+       277691,
+       284816,
+       287352,
+       293002,
+       306376,
+       293393,
+       295275,
+       294399,
+       251937,
+       206586
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1991,
+     2000,
+     2010,
+     2020,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 200000,
+      "text": "200 000"
+     },
+     {
+      "wert": 400000,
+      "text": "400 000"
+     },
+     {
+      "wert": 600000,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 1995,
+      "text": "1995: 602 757",
+      "anker": "start"
+     },
+     {
+      "jahr": 2009,
+      "text": "2009: 158 987",
+      "seite": "unten"
+     },
+     {
+      "jahr": 2025,
+      "text": "2025: 206 586",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Wohnungen in Wohn- und Nichtwohngebäuden, einschließlich Baumaßnahmen an bestehenden Gebäuden."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Fünf Jahre im Vergleich",
+   "headline": "Ein Drittel des Rekords",
+   "text": [
+    "2025 werden <em>34 Prozent</em> so viele Wohnungen fertig wie im Rekordjahr 1995."
+   ],
+   "balken": [
+    {
+     "wert": 602757,
+     "anzeige": "602 757",
+     "name": "1995 · Höchststand"
+    },
+    {
+     "wert": 158987,
+     "anzeige": "158 987",
+     "name": "2009 · Tiefststand"
+    },
+    {
+     "wert": 306376,
+     "anzeige": "306 376",
+     "name": "2020 · letztes Hoch"
+    },
+    {
+     "wert": 251937,
+     "anzeige": "251 937",
+     "name": "2024"
+    },
+    {
+     "wert": 206586,
+     "anzeige": "206 586",
+     "name": "2025",
+     "akzent": true
+    }
+   ]
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Das Jahr 2025 in drei Zahlen",
+   "headline": "Weniger fertig, mehr genehmigt",
+   "punkte": [
+    {
+     "wert": "−18,0 %",
+     "name": "gegenüber 2024",
+     "zusatz": "45 351 weniger als im Vorjahr"
+    },
+    {
+     "wert": "238 100",
+     "name": "Baugenehmigungen",
+     "zusatz": "10,6 Prozent mehr als 2024"
+    },
+    {
+     "wert": "760 700",
+     "name": "Wohnungen im Bauüberhang",
+     "zusatz": "genehmigt, aber noch nicht fertig"
+    }
+   ],
+   "fuss": "Von der Genehmigung bis zur Fertigstellung vergehen im Neubau im Schnitt 27 Monate."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Statistisches Bundesamt (Destatis): Baugenehmigungen / Baufertigstellungen, Lange Reihen bis 2021",
+  "Destatis: Tabelle Baufertigstellungen im Hochbau, Stand 22.5.2026",
+  "Destatis: Pressemitteilung Nr. 174 vom 22.5.2026",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "206 586 Wohnungen wurden 2025 in Deutschland fertiggestellt – 18,0 Prozent weniger als 2024 und so wenige wie seit 2012 nicht.",
+  "Im Rekordjahr 1995 waren es 602 757. Genehmigt, aber noch nicht fertig sind Ende 2025 rund 760 700 Wohnungen.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen",
+  "wohnungsbau",
+  "wohnen",
+  "bauen",
+  "immobilien"
+ ]
+}
