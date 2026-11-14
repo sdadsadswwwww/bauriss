@@ -1,14 +1,16 @@
 name: Post veröffentlichen
 
+# Playbook vom 14.11.2026: Reel um 12:15 Uhr, Carousel um 18:00 Uhr, Story fünf Minuten danach
+# (deutsche Zeit, Uhrzeiten stehen in plan.json). tools/zeitplan.py arbeitet ab, was fällig ist, und postet nie doppelt.
 on:
   schedule:
-    # Täglich (Mo–So), angegeben in UTC. GitHub startet die Läufe erfahrungsgemäß 40 bis 55 Minuten später.
-    # Mittags (im Winter gegen 12:20 Uhr deutscher Zeit): das Reel mit Musik, falls plan.json "reel": "zusaetzlich" setzt.
-    - cron: '30 10 * * *'
-    # Abends (gegen 18:25, 19:10 und 22:15 Uhr): der Post des Tages. Der zweite und dritte Lauf sind Reserve,
-    # falls der erste scheitert oder der Post erst am Abend fertig wird; sie holen auch ein versäumtes Reel nach.
-    # tools/publish.py wartet selbst auf die Uhrzeiten aus plan.json und postet nie doppelt.
-    - cron: '30 16 * * *'
+    # Angaben in UTC. GitHub startet Läufe oft 40 bis 55 Minuten zu spät. Deshalb startet jeder Lauf eine Stunde
+    # vor der Uhrzeit und wartet im Job "warten" bis dahin. Je zwei Zeilen: die erste greift im Sommer, die zweite im Winter.
+    - cron: '15 9 * * *'
+    - cron: '15 10 * * *'
+    - cron: '0 15 * * *'
+    - cron: '0 16 * * *'
+    # Reserve am Abend, falls ein Lauf scheitert oder ein Post erst spät fertig wird
     - cron: '30 17 * * *'
     - cron: '30 20 * * *'
   workflow_dispatch:
@@ -17,12 +19,16 @@ on:
         description: Nur prüfen, nichts veröffentlichen
         type: boolean
         default: true
+      zeitplan:
+        description: Den ganzen Zeitplan abarbeiten wie ein Lauf aus dem Zeitplan (Reel, Carousel, Story)
+        type: boolean
+        default: false
       zugang:
         description: Nur das Zugriffstoken prüfen
         type: boolean
         default: false
       reel:
-        description: Das Reel statt des Carousels behandeln
+        description: Reel statt Carousel
         type: boolean
         default: false
       reel_test:
@@ -37,34 +43,50 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: bauriss-post
-  cancel-in-progress: false
-
 jobs:
-  post:
+  warten:
+    # Ohne gemeinsame Gruppe, damit ein wartender Lauf keinen anderen aufhält
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Bis zur Uhrzeit warten
+        run: python tools/zeitplan.py --warten
+
+  post:
+    needs: warten
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: bauriss-post
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Der neueste Stand, nicht der vom Start des Laufs: Während des Wartens kann ein anderer Lauf veröffentlicht haben.
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Veröffentlichen
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}
-          VON_HAND: ${{ github.event_name == 'workflow_dispatch' }}
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main
+          EREIGNIS: ${{ github.event_name }}
+          ZEITPLAN: ${{ inputs.zeitplan }}
+          PROBELAUF: ${{ inputs.probelauf }}
           SCHALTER: ${{ inputs.zugang && '--zugang' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf' || '' }}
           POST: ${{ inputs.post }}
         run: |
-          if [ "$VON_HAND" = "true" ]; then
-            python tools/publish.py $SCHALTER ${POST:+--post "$POST"}
+          if [ "$EREIGNIS" = "schedule" ]; then
+            python tools/zeitplan.py
+          elif [ "$ZEITPLAN" = "true" ]; then
+            if [ "$PROBELAUF" = "true" ]; then python tools/zeitplan.py --probelauf; else python tools/zeitplan.py; fi
           else
-            # Beide Schritte laufen, auch wenn einer scheitert; der Lauf gilt dann als fehlgeschlagen.
-            fehler=0
-            python tools/publish.py || fehler=1
-            python tools/publish.py --reel || fehler=1
-            exit $fehler
+            python tools/publish.py $SCHALTER ${POST:+--post "$POST"}
           fi
       - name: Protokoll sichern
         if: always()
@@ -74,7 +96,7 @@ jobs:
           git add veroeffentlicht.json
           git diff --cached --quiet && exit 0
           git commit -m "Veröffentlicht am $(date -u +%F)"
-          # Vor dem Übertragen den Stand des Servers holen: Automatik und Reel-Workflow können zwischendurch übertragen haben.
+          # Vor dem Übertragen den Stand des Servers holen: Automatik und andere Workflows können zwischendurch übertragen haben.
           for versuch in 1 2 3; do
             git pull --rebase && git push && exit 0
             sleep 10

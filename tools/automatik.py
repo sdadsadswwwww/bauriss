@@ -4,7 +4,7 @@ Aufruf:  python tools/automatik.py stand                          was ist geplan
          python tools/automatik.py pruefen <post>                 prüft Inhalt und Bilder eines Posts
          python tools/automatik.py einplanen <post> <datum> --thema "<Name>"
                                                                   prüft den Post und trägt ihn freigegeben in plan.json ein
-         python tools/automatik.py aufraeumen                     löscht Bilder von Posts, die länger als 30 Tage online sind
+         python tools/automatik.py aufraeumen                     löscht Bilder von Posts, die länger als 30 Tage online sind (außer story.jpg)
 
 Dieses Skript veröffentlicht nichts. Das macht allein der Zeitplan in .github/workflows/post.yml.
 """
@@ -21,7 +21,9 @@ import publish  # noqa: E402  (Uhrzeit, Bildunterschrift und Grundprüfungen wie
 
 ROOT = publish.ROOT
 THEMEN = ROOT / 'themen.json'
-ENDE = dt.date(2029, 11, 13)   # Auftrag vom 13.11.2026: drei Jahre lang jeden Tag ein Post
+VORRAT_TAGE = 7                # Playbook vom 14.11.2026: so viele fertige Tage sollen ab morgen bereitliegen
+JE_LAUF = 2                    # höchstens so viele Posts erstellt ein Lauf
+VORRAT_WARNUNG = 3             # liegen weniger Tage bereit, steht eine Warnung im Bericht
 HEUTE_BIS = '20:30'            # bis dahin erreicht ein Post für heute noch den letzten Lauf des Zeitplans
 BILDER_BEHALTEN_TAGE = 30
 SCHLUSSZEILE = 'Ein Bauwerk pro Tag'
@@ -226,6 +228,13 @@ def pruefe_bilder(name, post):
                           'Meist ein Fehler in der Zeichnungsdatei.')
     if not (ordner / 'uebersicht.jpg').exists():
         fehler.append(f'out/{name}/uebersicht.jpg fehlt.')
+    story = ordner / 'story.jpg'
+    if not story.exists():
+        fehler.append(f'out/{name}/story.jpg fehlt. Erst tools/reel.py {name} ausführen (baut das Bild für die Story).')
+    else:
+        with Image.open(story) as im:
+            if im.format != 'JPEG' or im.size != (1080, 1920):
+                fehler.append(f'out/{name}/story.jpg: {im.format} {im.size[0]} x {im.size[1]} statt JPEG 1080 x 1920.')
     return fehler
 
 
@@ -264,8 +273,9 @@ def befehl_stand(_args):
     eintraege = lies(publish.PROTOKOLL)
     modus = publish.reel_modus(plan)
     # Ein Tag gilt als erschienen, sobald das Carousel draußen ist; ersetzt das Reel das Carousel, zählt das Reel.
-    protokoll = {e['post']: e for e in reversed(eintraege) if modus == 'statt' or e.get('art') != 'reel'}
-    reels = {e['post']: e for e in eintraege if e.get('art') == 'reel'}
+    erste = [e for e in eintraege if not e.get('wiederholung') and e.get('art') != 'story']   # ohne Storys und Wiederholungen
+    protokoll = {e['post']: e for e in reversed(erste) if modus == 'statt' or e.get('art') != 'reel'}
+    reels = {e['post']: e for e in erste if e.get('art') == 'reel'}
     nach_datum = {}
     warnungen = []
     for e in plan['posts']:
@@ -274,7 +284,7 @@ def befehl_stand(_args):
         nach_datum[e['datum']] = e
 
     print(f'Heute ist {WOCHENTAGE[heute.weekday()]}, {heute.isoformat()}, {jetzt:%H:%M} Uhr deutscher Zeit.')
-    print(f'Die Automatik läuft bis einschließlich {ENDE.isoformat()}.')
+    print('Die Automatik läuft ohne Enddatum; der Betreiber prüft alle drei Monate, ob es weitergeht.')
     if plan['posts']:
         letzter = max(plan['posts'], key=lambda e: e['datum'])
         print(f'Der Plan reicht bis {letzter["datum"]} ({letzter["post"]}).')
@@ -284,8 +294,6 @@ def befehl_stand(_args):
         e = nach_datum.get(tag.isoformat())
         if not e:
             print(f'{wort:6} {tag.isoformat()}: kein Post geplant')
-            if tag > ENDE:
-                continue
             if wort == 'heute' and jetzt.strftime('%H:%M') > HEUTE_BIS:
                 warnungen.append(f'Für heute fehlt ein Post und es ist nach {HEUTE_BIS} Uhr: Der Tag bleibt leer.')
             else:
@@ -327,15 +335,24 @@ def befehl_stand(_args):
     if e_heute and e_heute['post'] not in protokoll and jetzt.strftime('%H:%M') > '20:00':
         warnungen.append(f'Der heutige Post {e_heute["post"]} ist um {jetzt:%H:%M} Uhr noch nicht veröffentlicht.')
 
+    # Vorrat: die Tage ab übermorgen bis heute + VORRAT_TAGE. Heute und morgen hat die Schleife oben schon geprüft.
+    for i in range(2, VORRAT_TAGE + 1):
+        tag = heute + dt.timedelta(days=i)
+        if tag.isoformat() not in nach_datum:
+            fehlt.append(tag)
+    vorrat = sum(1 for i in range(1, VORRAT_TAGE + 1) if (heute + dt.timedelta(days=i)).isoformat() in nach_datum)
+    print(f'Vorrat: {vorrat} von {VORRAT_TAGE} Tagen ab morgen sind belegt.')
+    if vorrat < VORRAT_WARNUNG:
+        warnungen.append(f'Der Vorrat liegt bei {vorrat} Tagen, also unter {VORRAT_WARNUNG}. Das gehört als Warnung in den Bericht.')
     print()
-    if heute > ENDE:
-        print('ZU ERSTELLEN: nichts mehr. Der Auftrag über drei Jahre ist erfüllt; den Betreiber fragen, wie es weitergeht.')
-    elif fehlt:
+    if fehlt:
         nummer = int(naechste_nummer())
-        for i, tag in enumerate(fehlt):
+        for i, tag in enumerate(fehlt[:JE_LAUF]):
             print(f'ZU ERSTELLEN: Post Nr. {nummer + i:03d} für {WOCHENTAGE[tag.weekday()]}, {tag.isoformat()}')
+        if len(fehlt) > JE_LAUF:
+            print(f'Weitere {len(fehlt) - JE_LAUF} freie Tage füllen die nächsten Läufe (höchstens {JE_LAUF} Posts je Lauf).')
     else:
-        print('ZU ERSTELLEN: nichts. Heute und morgen sind belegt.')
+        print(f'ZU ERSTELLEN: nichts. Der Vorrat für {VORRAT_TAGE} Tage ist voll.')
 
     themen = lies(THEMEN)
     genutzt, offen, passend = themen_vorschlag(themen)
@@ -370,10 +387,8 @@ def befehl_einplanen(args):
     except ValueError:
         sys.exit(f'"{args.datum}" ist kein Datum der Form JJJJ-MM-TT.')
     heute = publish.berlin_jetzt().date()
-    if not heute <= tag <= heute + dt.timedelta(days=1):
-        sys.exit(f'{args.datum} liegt nicht auf heute oder morgen. Die Automatik plant nur einen Tag voraus.')
-    if tag > ENDE:
-        sys.exit(f'{args.datum} liegt nach dem Ende des Auftrags ({ENDE.isoformat()}).')
+    if not heute <= tag <= heute + dt.timedelta(days=VORRAT_TAGE):
+        sys.exit(f'{args.datum} liegt nicht zwischen heute und heute in {VORRAT_TAGE} Tagen. Weiter voraus plant die Automatik nicht.')
     plan = lies(publish.PLAN)
     if any(e['datum'] == args.datum for e in plan['posts']):
         sys.exit(f'{args.datum} ist schon belegt.')
@@ -398,7 +413,9 @@ def befehl_einplanen(args):
     treffer['post'] = args.post
     schreibe_themen(themen)
 
-    plan['posts'].append({'datum': args.datum, 'post': args.post, 'freigabe': True})
+    # "erstellt" hält fest, wann der Post fertig war (Playbook); veröffentlicht wird er am "datum".
+    plan['posts'].append({'datum': args.datum, 'post': args.post, 'freigabe': True,
+                          'erstellt': publish.berlin_jetzt().strftime('%Y-%m-%dT%H:%M')})
     schreibe_plan(plan)
     print(f'{args.post} ist für {args.datum} eingeplant und freigegeben. Jetzt committen und übertragen.')
 
@@ -409,8 +426,12 @@ def befehl_aufraeumen(_args):
     for e in lies(publish.PROTOKOLL):
         ordner = ROOT / 'out' / e['post']
         if ordner.is_dir() and (heute - dt.date.fromisoformat(e['datum'])).days > BILDER_BEHALTEN_TAGE:
-            shutil.rmtree(ordner)
-            geloescht.append(e['post'])
+            # story.jpg bleibt: Bei leerem Vorrat wiederholt tools/zeitplan.py ältere Beiträge als Story.
+            alt = [d for d in ordner.iterdir() if d.name != 'story.jpg']
+            if alt:
+                for datei in alt:
+                    shutil.rmtree(datei) if datei.is_dir() else datei.unlink()
+                geloescht.append(e['post'])
     print('Bilder gelöscht (lassen sich mit tools/render.py neu erzeugen): ' + (', '.join(geloescht) or 'keine'))
 
 

@@ -81,6 +81,32 @@ def baue_bild(blatt, ziel):
     bild.save(ziel)
 
 
+def baue_story(post_name):
+    """Story (Playbook): das Titelblatt verkleinert auf dem blauen Grund, darunter der Hinweis auf den neuen Beitrag.
+
+    Oben und unten bleibt frei, wo Instagram in Stories Kopfzeile und Antwortfeld zeigt.
+    """
+    from PIL import ImageFont
+
+    ordner = ROOT / 'out' / post_name
+    bild = Image.new('RGB', (BREITE, HOEHE), GRUND)
+    stift = ImageDraw.Draw(bild)
+    for x in range(0, BREITE, 30):
+        stift.line([(x, 0), (x, HOEHE - 1)], fill=NETZ_STARK if x % 150 == 0 else NETZ, width=2 if x % 150 == 0 else 1)
+    for y in range(0, HOEHE, 30):
+        stift.line([(0, y), (BREITE - 1, y)], fill=NETZ_STARK if y % 150 == 0 else NETZ, width=2 if y % 150 == 0 else 1)
+    with Image.open(ordner / '01.jpg') as blatt:
+        klein = blatt.convert('RGB').resize((936, 1170), Image.LANCZOS)
+    links, oben = (BREITE - 936) // 2, 270
+    bild.paste(klein, (links, oben))
+    stift.rectangle([links, oben, links + 935, oben + 1169], outline=(237, 243, 251), width=2)
+    schrift = ImageFont.truetype(str(ROOT / 'render' / 'fonts' / 'barlow-condensed-700.woff2'), 58)
+    text = 'NEUES BAUWERK · JETZT IM PROFIL'
+    stift.text(((BREITE - stift.textlength(text, font=schrift)) / 2, oben + 1170 + 28), text, font=schrift, fill=(255, 201, 77))
+    bild.save(ordner / 'story.jpg', 'JPEG', quality=90)
+    print(f'{post_name}: Story -> out/{post_name}/story.jpg')
+
+
 def finde(programm):
     kandidat = os.environ.get(programm.upper()) or shutil.which(programm)
     return kandidat if kandidat and Path(kandidat).exists() else None
@@ -115,6 +141,7 @@ def rendere(post_name, ffmpeg):
     zeiten = standzeiten(post)
     dauer = round(sum(zeiten) - BLENDE * (len(zeiten) - 1), 2)
     print(f'{post_name}: {len(zeiten)} Blätter, {dauer:.1f} s (' + ', '.join(f'{z:g}' for z in zeiten) + ')')
+    baue_story(post_name)
     if not ffmpeg:
         print(f'{post_name}: kein ffmpeg gefunden, das Video rendert der Workflow "Reel rendern" auf GitHub.')
         return

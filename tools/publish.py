@@ -139,7 +139,7 @@ def finde_video(name, config):
 
 def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
     """Veröffentlicht das Reel zum heute fälligen Post. Liefert False, wenn es kein Video gibt."""
-    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel'}
+    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel' and not e.get('wiederholung')}
     treffer = [e for e in plan['posts'] if (e['post'] == args.post if args.post else e['datum'] == heute)]
     if not treffer:
         print(f'Für {heute} ist kein Post geplant, also auch kein Reel.')
@@ -344,7 +344,8 @@ def main(argv=None):
         print('Ersatzweise wird das Carousel veröffentlicht.')
 
     # Als erledigt gilt ein Tag, sobald Carousel oder (im Modus "statt") Reel draußen ist
-    erledigt = {e['post'] for e in protokoll if modus == 'statt' or e.get('art') != 'reel'}
+    erledigt = {e['post'] for e in protokoll
+                if not e.get('wiederholung') and e.get('art') != 'story' and (modus == 'statt' or e.get('art') != 'reel')}
     eintrag = waehle_eintrag(plan, erledigt, heute, args.post)
     if not eintrag:
         return

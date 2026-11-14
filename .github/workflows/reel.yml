@@ -49,17 +49,4 @@ jobs:
           gh release view medien >/dev/null 2>&1 || gh release create medien --latest=false \
             --title "Medien" --notes "Videos zu den geplanten Posts. Dieser Eintrag wird vom Workflow „Reel rendern“ gepflegt; bitte nicht löschen."
           gh release upload medien reels/*.mp4 --clobber
-      - name: Alte Videos entfernen
-        run: |
-          # Videos, deren Reel seit mehr als drei Tagen erschienen ist, braucht Instagram nicht mehr.
-          python - <<'EOF' > alt.txt
-          import datetime as dt, json
-          grenze = (dt.date.today() - dt.timedelta(days=3)).isoformat()
-          for e in json.load(open('veroeffentlicht.json', encoding='utf-8')):
-              if e.get('art') == 'reel' and e['datum'] < grenze:
-                  print(e['post'] + '.mp4')
-          EOF
-          vorhanden=$(gh release view medien --json assets --jq '.assets[].name' 2>/dev/null || true)
-          while read -r name; do
-            if echo "$vorhanden" | grep -qx "$name"; then gh release delete-asset medien "$name" -y; fi
-          done < alt.txt
+      # Die Videos bleiben in der Ablage: Bei leerem Vorrat wiederholt tools/zeitplan.py ältere Beiträge als Reel.
