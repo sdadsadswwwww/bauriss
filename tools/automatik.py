@@ -22,7 +22,7 @@ import publish  # noqa: E402  (Uhrzeit, Bildunterschrift und Grundprüfungen wie
 ROOT = publish.ROOT
 THEMEN = ROOT / 'themen.json'
 VORRAT_TAGE = 7                # Playbook vom 14.11.2026: so viele fertige Tage sollen ab morgen bereitliegen
-JE_LAUF = 2                    # höchstens so viele Posts erstellt ein Lauf
+JE_LAUF = VORRAT_TAGE + 1      # Regel vom 14.11.2026: ein Lauf erstellt alles, was zum vollen Vorrat fehlt (keine Obergrenze)
 VORRAT_WARNUNG = 3             # liegen weniger Tage bereit, steht eine Warnung im Bericht
 HEUTE_BIS = '20:30'            # bis dahin erreicht ein Post für heute noch den letzten Lauf des Zeitplans
 BILDER_BEHALTEN_TAGE = 30
