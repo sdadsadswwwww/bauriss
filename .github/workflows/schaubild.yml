@@ -1,21 +1,28 @@
 name: Schaubild veröffentlichen
 
-# Zweiter Kanal im selben Repository: liegt im Ordner schaubild/ und nutzt ein eigenes Token.
+# Playbook vom 14.11.2026: Reel um 12:45 Uhr, Carousel um 18:30 Uhr, Story fünf Minuten danach
+# (deutsche Zeit, Uhrzeiten stehen in plan.json). tools/zeitplan.py arbeitet ab, was fällig ist, und postet nie doppelt.
 on:
   schedule:
-    # 18:30 Uhr deutscher Zeit, angegeben in UTC: im Sommer greift der erste Lauf, im Winter der zweite.
-    # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
+    # Angaben in UTC. GitHub startet Läufe oft 40 bis 55 Minuten zu spät. Deshalb startet jeder Lauf eine Stunde
+    # vor der Uhrzeit und wartet im Job "warten" bis dahin. Je zwei Zeilen: die erste greift im Sommer, die zweite im Winter.
+    - cron: '45 9 * * *'
+    - cron: '45 10 * * *'
+    - cron: '30 15 * * *'
     - cron: '30 16 * * *'
-    - cron: '30 17 * * *'
-    # 12:30 Uhr deutscher Zeit: das Reel zum Post des Tages (tools/publish.py --reel)
-    - cron: '30 10 * * *'
-    - cron: '30 11 * * *'
+    # Reserve am Abend, falls ein Lauf scheitert oder ein Post erst spät fertig wird
+    - cron: '0 18 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
     inputs:
       probelauf:
         description: Nur prüfen, nichts veröffentlichen
         type: boolean
         default: true
+      zeitplan:
+        description: Den ganzen Zeitplan abarbeiten wie ein Lauf aus dem Zeitplan (Reel, Carousel, Story)
+        type: boolean
+        default: false
       zugang:
         description: Nur das Zugriffstoken prüfen
         type: boolean
@@ -32,10 +39,6 @@ on:
         description: Story-Behälter anlegen, ohne zu veröffentlichen
         type: boolean
         default: false
-      story:
-        description: Titelblatt als Story veröffentlichen (24 Stunden sichtbar)
-        type: boolean
-        default: false
       post:
         description: Dieser Post statt des heute fälligen (z. B. 001-geburten)
         type: string
@@ -44,13 +47,10 @@ on:
 permissions:
   contents: write
 
-# Dieselbe Gruppe wie der Bauriss-Workflow: beide schreiben ihr Protokoll ins Repository und laufen deshalb nacheinander.
-concurrency:
-  group: post
-  cancel-in-progress: false
-
 jobs:
-  post:
+  warten:
+    # Ohne gemeinsame Gruppe, damit ein wartender Lauf keinen anderen aufhält
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -60,15 +60,55 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Bis zur Uhrzeit warten
+        run: python tools/zeitplan.py --warten
+
+  post:
+    needs: warten
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: post
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: schaubild
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Der neueste Stand, nicht der vom Start des Laufs: Während des Wartens kann ein anderer Lauf veröffentlicht haben.
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Veröffentlichen
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN_SCHAUBILD }}
-          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/schaubild
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/schaubild
+          EREIGNIS: ${{ github.event_name }}
+          ZEITPLAN: ${{ inputs.zeitplan }}
+          PROBELAUF: ${{ inputs.probelauf }}
+          SCHALTER: ${{ inputs.zugang && '--zugang' || inputs.story_test && '--story-test' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf' || '' }}
           POST: ${{ inputs.post }}
-        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.story && '--story' || inputs.story_test && '--story-test' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf') || (contains(github.event.schedule, ' 10 ') || contains(github.event.schedule, ' 11 ')) && '--reel' || '' }} ${POST:+--post "$POST"}
+        run: |
+          if [ "$EREIGNIS" = "schedule" ]; then
+            python tools/zeitplan.py
+          elif [ "$ZEITPLAN" = "true" ]; then
+            if [ "$PROBELAUF" = "true" ]; then python tools/zeitplan.py --probelauf; else python tools/zeitplan.py; fi
+          else
+            python tools/publish.py $SCHALTER ${POST:+--post "$POST"}
+          fi
       - name: Protokoll sichern
+        if: always()
         run: |
           git config user.name "schaubild-bot"
           git config user.email "schaubild-bot@users.noreply.github.com"
           git add veroeffentlicht.json
-          git diff --cached --quiet || (git commit -m "Schaubild veröffentlicht am $(date -u +%F)" && git pull --rebase && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "Schaubild veröffentlicht am $(date -u +%F)"
+          # Vor dem Übertragen den Stand des Servers holen: Automatik und andere Workflows können zwischendurch übertragen haben.
+          for versuch in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 10
+          done
+          exit 1

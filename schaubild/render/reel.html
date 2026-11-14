@@ -19,6 +19,9 @@
   .reel .unter { font-family: var(--f-kopf); font-weight: 700; text-transform: uppercase; font-size: 72px; line-height: 0.96; margin-top: 12px; }
   .reel .satz { font-size: 38px; line-height: 1.34; min-height: 110px; margin-top: 10px; }
   .reel .satz em { font-style: normal; }
+  /* Nur im Story-Bild (tools/reel.py setzt die Klasse "story"): Hinweis auf den neuen Beitrag */
+  .reel .neu { display: none; margin-top: 16px; font-family: var(--f-mono); font-weight: 500; font-size: 30px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--acc); }
+  #sheet.story .reel .neu { display: block; }
   .reel .marke-zeile { margin-top: auto; border-top: 4px solid var(--rot); padding-top: 22px; display: flex; align-items: center; gap: 16px;
     font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--leise); white-space: nowrap; }
   .reel .marke-zeile .marke { width: 54px; height: 54px; flex: none; }
@@ -48,6 +51,7 @@
       `<div class="figur">${Diagramm.linie(figur)}</div>` +
       `<div class="buehne"><div class="jahr"></div><div class="ergebnis"><div class="zahl">${titel.zahl}</div><div class="unter">${titel.headline}</div></div></div>` +
       `<div class="satz">${(titel.text || [''])[0]}</div>` +
+      `<div class="neu">Neu im Profil: alle Zahlen zum Wischen</div>` +
       `<div class="marke-zeile">${Diagramm.marke()}<span class="name">Schaubild</span><span>${post.konto} · jeden Tag eine Zahl</span></div></div>`;
 
     // Kurven und Flächen hinter eine wandernde Kante legen, Marken einzeln einblenden

@@ -5,7 +5,7 @@ Aufruf:  python tools/publish.py               regulärer Lauf aus dem Zeitplan
          python tools/publish.py --zugang      prüft nur, ob das Token das Konto freigibt
          python tools/publish.py --reel        veröffentlicht das Reel zum heute fälligen Post (out/<post>/reel.mp4)
          python tools/publish.py --reel-test   lässt Instagram das Reel abrufen und verarbeiten, veröffentlicht aber nichts
-         python tools/publish.py --story-test  legt einen Story-Behälter mit dem Titelblatt an, veröffentlicht aber nichts
+         python tools/publish.py --story-test  legt einen Story-Behälter mit out/<post>/story.jpg an, veröffentlicht aber nichts
 
 Umgebung:
   IG_ACCESS_TOKEN   Systemnutzer-Zugriffstoken aus Metas App-Dashboard (GitHub-Secret)
@@ -110,7 +110,7 @@ def pruefe_videoadresse(adresse):
 
 def reel_lauf(args, config, plan, protokoll, jetzt, heute):
     """Veröffentlicht das Reel zum heute fälligen Post. Fehlt das Video, passiert nichts."""
-    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel'}
+    erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel' and not e.get('wiederholung')}
     treffer = [e for e in plan['posts'] if (e['post'] == args.post if args.post else e['datum'] == heute)]
     offen = [e for e in treffer if e['post'] not in erledigt]
     if not treffer:
@@ -176,10 +176,7 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute):
 
 
 def story_test(args, config, plan, heute):
-    """Legt einen Story-Behälter mit dem Titelblatt an und veröffentlicht nichts.
-
-    Klärt, ob Instagram Stories für dieses Konto über die Schnittstelle annimmt.
-    """
+    """Legt einen Story-Behälter mit out/<post>/story.jpg an und veröffentlicht nichts. Die Story selbst sendet tools/zeitplan.py."""
     name = args.post or next((e['post'] for e in plan['posts'] if e['datum'] == heute), None)
     if not name:
         sys.exit(f'Für {heute} ist kein Post geplant. Bitte --post angeben.')
@@ -187,22 +184,14 @@ def story_test(args, config, plan, heute):
     bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')
     if not token or not bild_basis:
         sys.exit('IG_ACCESS_TOKEN und IMAGE_BASE_URL müssen gesetzt sein.')
-    adresse = f'{bild_basis}/out/{name}/01.jpg'
+    adresse = f'{bild_basis}/out/{name}/story.jpg'
     pruefe_bildadressen([adresse])
     basis = f'{HOST}/{config["api_version"]}'
     konto_id = finde_konto(basis, token, config)
-    art = frage_still(f'{basis}/{konto_id}?fields=account_type', token)
-    print(f'Kontotyp laut Instagram: {art.get("account_type") or art.get("fehler")}')
     container = anfrage('POST', f'{basis}/{konto_id}/media', token, {'media_type': 'STORIES', 'image_url': adresse})['id']
     print(f'Story-Behälter angelegt: {container}')
     warte_bis_fertig(basis, container, token)
-    if not args.story:
-        print('Story-Test: Instagram hat den Behälter angenommen und verarbeitet. Nichts veröffentlicht.')
-        return
-    # Bewusst ohne Eintrag in veroeffentlicht.json: Das Protokoll steuert bisher nur Carousel und Reel.
-    medium = anfrage('POST', f'{basis}/{konto_id}/media_publish', token, {'creation_id': container})['id']
-    info = frage_still(f'{basis}/{medium}?fields=media_product_type,permalink', token)
-    print(f'Story veröffentlicht: {medium}, Art: {info.get("media_product_type") or info.get("fehler")}, {info.get("permalink")}')
+    print('Story-Test: Instagram hat den Behälter angenommen und verarbeitet. Nichts veröffentlicht.')
 
 
 def pruefe_bildadressen(adressen):
@@ -310,7 +299,6 @@ def main(argv=None):
     parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen')
     parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen')
     parser.add_argument('--story-test', action='store_true', help='Story-Behälter anlegen, ohne zu veröffentlichen')
-    parser.add_argument('--story', action='store_true', help='Titelblatt als Story veröffentlichen (Versuch, 24 Stunden sichtbar)')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
@@ -334,14 +322,14 @@ def main(argv=None):
     jetzt = berlin_jetzt()
     heute = jetzt.date().isoformat()
 
-    if args.story_test or args.story:
+    if args.story_test:
         story_test(args, config, plan, heute)
         return
     if args.reel or args.reel_test:
         reel_lauf(args, config, plan, protokoll, jetzt, heute)
         return
 
-    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if e.get('art') != 'reel'}, heute, args.post)
+    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if not e.get('art') and not e.get('wiederholung')}, heute, args.post)
     if not eintrag:
         return
     name = eintrag['post']
