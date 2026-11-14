@@ -1,0 +1,49 @@
+name: Reel rendern
+
+# Baut zu jedem geplanten Post das Reel mit Musik (out/<post>/reel.mp4) und legt es ins Repository.
+# Das Video entsteht hier, weil dafür ffmpeg nötig ist; veröffentlicht wird es vom Workflow "Post veröffentlichen".
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'posts/**'
+      - 'plan.json'
+      - 'tools/reel.py'
+      - 'tools/musik.py'
+  workflow_dispatch:
+    inputs:
+      post:
+        description: Nur dieser Post, auch wenn das Video schon da ist (z. B. 005-koelner-dom)
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+# Dieselbe Gruppe wie die Veröffentlichung: beide schreiben ins Repository und laufen deshalb nacheinander.
+concurrency:
+  group: post
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Werkzeuge
+        run: |
+          pip install -r requirements.txt
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+      - name: Rendern
+        env:
+          POST: ${{ inputs.post }}
+        run: python tools/reel.py ${POST:---fehlende}
+      - name: Sichern
+        run: |
+          git config user.name "bauriss-bot"
+          git config user.email "bauriss-bot@users.noreply.github.com"
+          git add out
+          git diff --cached --quiet || (git commit -m "Reel gerendert" && git pull --rebase && git push)
