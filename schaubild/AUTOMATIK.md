@@ -7,6 +7,7 @@ Diese Datei ist die Arbeitsanweisung für den täglichen Lauf. Wer sie liest, ha
 Der Betreiber des Kanals `@das.schaubild` („Deutschland in Grafiken") hat am 14.11.2026 festgelegt:
 
 - **Jeden Tag** erscheint ein Post, Montag bis Sonntag, um 18:30 Uhr.
+- Zu jedem Post gehört ein **Reel** (seit 14.11.2026): Es erscheint am selben Tag um 12:30 Uhr und zeigt, wie sich die Kurve zeichnet.
 - Der Post für einen Tag wird **am Vortag** erstellt.
 - Stil und Aufbau bleiben wie bei den Posts 001 bis 005.
 
@@ -15,7 +16,7 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 ## Feste Regeln
 
 1. **Nicht selbst veröffentlichen.** Kein `gh workflow run`, kein `tools/publish.py` ohne `--probelauf`. Veröffentlicht wird allein durch den Zeitplan in `../.github/workflows/schaubild.yml`.
-2. **Stil und Werkzeug nicht anfassen.** Unverändert bleiben `render/`, `tools/`, `config.json`, `KONTO.md`, `README.md` und alles außerhalb von `schaubild/`. Pro Lauf entstehen nur `posts/<post>.json` und `out/<post>/`; geändert werden nur `plan.json` und `themen.json`.
+2. **Stil und Werkzeug nicht anfassen.** Unverändert bleiben `render/`, `tools/`, `config.json`, `KONTO.md`, `README.md` und alles außerhalb von `schaubild/`. Pro Lauf entstehen nur `posts/<post>.json` und `out/<post>/` (Blätter und `reel-vorschau.jpg`; das Video `reel.mp4` legt GitHub selbst dazu); geändert werden nur `plan.json` und `themen.json`.
 3. **Erschienene Posts bleiben, wie sie sind.** Nichts ändern, was in `veroeffentlicht.json` steht; diese Datei schreibt nur der Workflow.
 4. **Alles außerhalb von `schaubild/` gehört zu einem anderen Kanal.** Nicht ändern.
 5. **Keine Zugangsdaten.** Keine Tokens erzeugen, lesen oder ausgeben, nicht bei Instagram, Meta oder GitHub anmelden, keine Secrets ändern. Ist das Token ungültig, steht das im Bericht; erneuern muss es der Betreiber (`KONTO.md`, Secret `IG_ACCESS_TOKEN_SCHAUBILD`).
@@ -33,8 +34,8 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 2. **Thema wählen** (Abschnitt „Thema").
 3. **Zahlen holen** (Abschnitt „Zahlen und Quellen") und mit Quelle notieren, bevor ein Blatt entsteht.
 4. **Post schreiben:** `posts/<nr>-<kurzname>.json` (Abschnitt „Aufbau eines Posts").
-5. **Rendern:** `python tools/render.py <post>`.
-6. **Durchsehen:** `out/<post>/uebersicht.jpg` und jedes Blatt `out/<post>/01.jpg` … mit dem Read-Werkzeug ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
+5. **Rendern:** `python tools/render.py <post>`, danach `python tools/reel.py <post>` für die Vorschau des Reels (vier Standbilder in `out/<post>/reel-vorschau.jpg`). Die Meldung „kein ffmpeg gefunden" ist in Ordnung: Das Video rendert der Workflow „Schaubild Reel rendern" auf GitHub, sobald der Post übertragen ist.
+6. **Durchsehen:** `out/<post>/uebersicht.jpg`, jedes Blatt `out/<post>/01.jpg` … und `out/<post>/reel-vorschau.jpg` mit dem Read-Werkzeug ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
 7. **Prüfen:** `python tools/publish.py --probelauf --post <post>`.
 8. **Einplanen:** in `plan.json` am Ende der Liste `posts` eine Zeile ergänzen, im selben Format wie die übrigen:
    `{ "datum": "JJJJ-MM-TT", "post": "<post>", "freigabe": true }`
@@ -53,7 +54,7 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
    python tools/publish.py --probelauf --post <post>
    ```
    Schlägt das direkt nach dem Übertragen fehl, zwei Minuten später einmal wiederholen.
-10. **Kontrolle des Vortags:** Steht der gestern fällige Post in `veroeffentlicht.json`? Wenn nicht: `gh run list --workflow schaubild.yml --limit 6` und `gh run view <id> --log-failed`, Ursache in den Bericht. Verpasste Posts werden nicht nachgeholt und nicht umdatiert.
+10. **Kontrolle des Vortags:** Steht der gestern fällige Post in `veroeffentlicht.json`, einmal als Carousel und einmal mit `"art": "reel"`? Liegt für den neuen Post nach einigen Minuten `out/<post>/reel.mp4` im Repository (`git pull`, sonst `gh run list --workflow schaubild-reel.yml --limit 3`)? Wenn nicht: `gh run list --workflow schaubild.yml --limit 6` und `gh run view <id> --log-failed`, Ursache in den Bericht. Verpasste Posts werden nicht nachgeholt und nicht umdatiert.
 11. **Bericht** (Abschnitt „Bericht").
 
 ## Thema
@@ -80,7 +81,8 @@ Erlaubte Quellen: Statistisches Bundesamt (destatis.de, GENESIS-Tabellen), Umwel
 
 Vor dem Schreiben lesen: `posts/003-inflation.json` (eine Reihe, Rangliste, Kennzahlen), `posts/002-oekostrom.json` (Anteile), `posts/001-geburten.json` (zwei Reihen, sechs Blätter). `render/charts.js` beschreibt im Kopf jeder Funktion die Optionen der Diagramme.
 
-- Dateiname `<nr>-<kurzname>.json`, Kurzname nur aus `a–z`, `0–9` und Bindestrich (ä → ae, ß → ss). Felder: `nr`, `titel` (höchstens 24 Zeichen), `slides`, `quellen`, `caption`, `hashtags`.
+- Dateiname `<nr>-<kurzname>.json`, Kurzname nur aus `a–z`, `0–9` und Bindestrich (ä → ae, ß → ss). Felder: `nr`, `titel` (höchstens 24 Zeichen), `reel`, `slides`, `quellen`, `caption`, `hashtags`.
+- `"reel": { "frage": "…" }`: die Frage, die das Reel oben zeigt und die die Zahl des Titelblatts beantwortet, höchstens 48 Zeichen, endet mit Fragezeichen („Wie viele Menschen sind arbeitslos?"). Sie fragt genau nach dem, was gemessen wird (Absatz ist nicht Verbrauch). Das Reel nimmt Zahl, Überschrift und Text vom Titelblatt und das Diagramm vom zweiten Blatt; dieses muss deshalb ein `diagramm` mit `linie` sein.
 - **5 oder 6 Blätter** in dieser Reihenfolge:
   1. `cover`: `kicker` genau `Schaubild Nr. <nr>`, `zahl` (höchstens 8 Zeichen, z. B. `654 241`, `2,2 %`, `7,8 Mrd.`), `headline` setzt die Zahl fort (2 bis 5 Wörter, kein Wort über 12 Buchstaben), ein Absatz `text` (höchstens 110 Zeichen), darunter die Reihe als `linie` ohne Achsenbeschriftung (wie in 003).
   2. `diagramm`: die ganze Reihe mit Achse, Jahren und zwei bis drei Marken; `headline` sagt die Entwicklung, `text` ein Absatz (höchstens 160 Zeichen), `fuss` nennt, was genau gemessen wird.
@@ -103,6 +105,7 @@ Ein Blatt, das nur den dunklen Grund zeigt, bedeutet einen Fehler im Post (meist
 4. Die Kurve füllt die Fläche (passendes `ymax`, bei Reihen fern der Null auch `ymin`; dann steht im `fuss`, dass die Achse nicht bei null beginnt).
 5. Auf Blättern mit Balken und Kennzahlen bricht kein Wert um.
 6. Die Leiste zeigt „Nr. <nr>", das Thema und „nn/nn" vollständig.
+   Reel-Vorschau: Die Frage hat höchstens zwei Zeilen; Zahl, Überschrift und Satz im letzten Bild überlappen sich nicht und enden über der roten Linie; die Marken im Diagramm sind lesbar.
 7. Jede Zahl auf den Blättern und in der Bildunterschrift stimmt mit der Reihe überein; Zahlen widersprechen sich nicht.
 8. Rechtschreibung, Umlaute, Gedankenstriche (–) stimmen.
 9. Wer nur die Überschriften liest, versteht die Aussage.

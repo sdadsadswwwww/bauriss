@@ -10,6 +10,8 @@ Automatisierter Instagram-Kanal: Deutschland in Grafiken. Jeder Post ist ein Car
 4. **Freigeben:** nach der Durchsicht `"freigabe": true` setzen und ins Repo übertragen.
 5. **Veröffentlichen:** GitHub Actions ruft täglich um 18:30 Uhr `tools/publish.py` auf. Das Skript postet den für heute freigegebenen Post und trägt ihn in `veroeffentlicht.json` ein.
 
+6. **Reel:** Zu jedem Post rendert der Workflow „Schaubild Reel rendern" ein Video (`out/<post>/reel.mp4`, Vorlage `render/reel.html`, Skript `tools/reel.py`). Es erscheint am Tag des Posts um 12:30 Uhr über `tools/publish.py --reel`.
+
 Ohne Freigabe wird nichts veröffentlicht. Ein Post, der in `veroeffentlicht.json` steht, wird nie ein zweites Mal gepostet.
 
 ## Blatt-Typen
