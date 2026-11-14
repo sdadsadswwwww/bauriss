@@ -10,6 +10,7 @@ on:
       - 'schaubild/plan.json'
       - 'schaubild/render/reel.html'
       - 'schaubild/tools/reel.py'
+      - 'schaubild/tools/musik.py'
   workflow_dispatch:
     inputs:
       post:

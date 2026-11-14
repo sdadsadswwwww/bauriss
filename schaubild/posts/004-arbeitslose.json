@@ -2,7 +2,8 @@
  "nr": "004",
  "titel": "Arbeitslose seit 1991",
  "reel": {
-  "frage": "Wie viele Menschen sind arbeitslos?"
+  "frage": "Wie viele Menschen sind arbeitslos?",
+  "stimmung": "ernst"
  },
  "slides": [
   {

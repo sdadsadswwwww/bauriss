@@ -8,6 +8,7 @@ Die Seite render/reel.html läuft nicht von selbst ab: Dieses Skript stellt übe
 von Chrome für jedes Bild die Zeit ein und nimmt es auf. Das Video entsteht nur, wenn ffmpeg
 gefunden wird (Umgebungsvariable FFMPEG oder im Suchpfad); auf GitHub erledigt das der Workflow
 "Schaubild Reel rendern". Die Vorschau braucht kein ffmpeg.
+Jedes Video bekommt Musik aus tools/musik.py (Stimmung über das Feld reel.stimmung im Post).
 """
 import argparse
 import base64
@@ -28,6 +29,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from render import CONFIG, ROOT, finde_chrome, starte_server  # noqa: E402
+import musik  # noqa: E402
 
 BREITE, HOEHE, BILDER_JE_SEKUNDE = 1080, 1920, 30
 VORSCHAU_ZEITEN = (0.0, 4.0, 7.8, 10.5)
@@ -167,9 +169,12 @@ def rendere(seite, basis, post, ffmpeg, nur_vorschau):
         return
 
     video = ziel / 'reel.mp4'
+    # Die Musik wird für jeden Post berechnet (tools/musik.py) und folgt dem Ablauf des Reels.
+    ton = Path(tempfile.gettempdir()) / f'schaubild-musik-{post}.wav'
+    musik.fuer_post(post, ton, dauer=dauer)
     kodierer = subprocess.Popen(
         [ffmpeg, '-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', str(BILDER_JE_SEKUNDE), '-c:v', 'png', '-i', '-',
-         '-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo', '-shortest',
+         '-i', str(ton), '-ar', '48000', '-shortest',
          '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', str(BILDER_JE_SEKUNDE),
          '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', str(video)],
         stdin=subprocess.PIPE)
@@ -179,7 +184,8 @@ def rendere(seite, basis, post, ffmpeg, nur_vorschau):
     kodierer.stdin.close()
     if kodierer.wait() != 0:
         sys.exit(f'{post}: ffmpeg ist mit einem Fehler beendet.')
-    print(f'{post}: {anzahl} Bilder, {video.stat().st_size / 1e6:.1f} MB -> out/{post}/reel.mp4')
+    ton.unlink(missing_ok=True)
+    print(f'{post}: {anzahl} Bilder mit Musik, {video.stat().st_size / 1e6:.1f} MB -> out/{post}/reel.mp4')
 
 
 def main():
