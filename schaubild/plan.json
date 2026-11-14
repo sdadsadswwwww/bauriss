@@ -8,6 +8,7 @@
     { "datum": "2026-11-17", "post": "004-arbeitslose", "freigabe": true },
     { "datum": "2026-11-18", "post": "005-bier", "freigabe": true },
     { "datum": "2026-11-19", "post": "006-pkw", "freigabe": true, "erstellt": "2026-11-14T15:54" },
-    { "datum": "2026-11-20", "post": "007-wohnungsbau", "freigabe": true, "erstellt": "2026-11-14T15:56" }
+    { "datum": "2026-11-20", "post": "007-wohnungsbau", "freigabe": true, "erstellt": "2026-11-14T15:56" },
+    { "datum": "2026-11-21", "post": "008-hochzeiten", "freigabe": true, "erstellt": "2026-11-14T15:57" }
   ]
 }

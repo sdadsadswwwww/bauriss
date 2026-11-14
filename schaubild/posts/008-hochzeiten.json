@@ -1,0 +1,358 @@
+{
+ "nr": "008",
+ "titel": "Hochzeiten seit 1950",
+ "reel": {
+  "frage": "Wie viele Paare heiraten in Deutschland?"
+ },
+ "slides": [
+  {
+   "typ": "cover",
+   "kicker": "Schaubild Nr. 008",
+   "zahl": "348 813",
+   "headline": "Hochzeiten im Jahr 2025",
+   "text": [
+    "So wenige Paare haben in Deutschland seit 1950 in keinem Jahr geheiratet."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 600,
+    "ymax": 850000,
+    "reihen": [
+     {
+      "von": 1950,
+      "werte": [
+       750452,
+       718166,
+       659779,
+       620121,
+       605392,
+       617228,
+       630932,
+       632659,
+       648471,
+       665844,
+       689028,
+       699339,
+       696317,
+       655974,
+       642037,
+       621130,
+       606133,
+       600247,
+       563826,
+       571737,
+       575233,
+       562235,
+       548707,
+       532022,
+       516081,
+       528811,
+       510318,
+       505889,
+       469278,
+       481707,
+       496603,
+       487832,
+       486856,
+       495392,
+       498040,
+       496175,
+       509320,
+       523847,
+       534903,
+       529597,
+       516388,
+       454291,
+       453428,
+       442605,
+       440244,
+       430534,
+       427297,
+       422776,
+       417420,
+       430674,
+       418550,
+       389591,
+       391963,
+       382911,
+       395992,
+       388451,
+       373681,
+       368922,
+       377055,
+       378439,
+       382047,
+       377816,
+       387423,
+       373655,
+       385952,
+       400115,
+       410426,
+       407466,
+       449466,
+       416324,
+       373304,
+       357785,
+       390743,
+       360979,
+       349216,
+       348813
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1950,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 2025,
+      "text": ""
+     }
+    ]
+   }
+  },
+  {
+   "typ": "diagramm",
+   "kicker": "Eheschließungen · 1950 bis 2025",
+   "headline": "Weniger als halb so viele",
+   "text": [
+    "1950 geben sich <em>750 452</em> Paare das Jawort. 2025 sind es 348 813 – das sind 53,5 Prozent weniger."
+   ],
+   "figur": {
+    "fn": "linie",
+    "hoehe": 640,
+    "ymax": 850000,
+    "reihen": [
+     {
+      "von": 1950,
+      "werte": [
+       750452,
+       718166,
+       659779,
+       620121,
+       605392,
+       617228,
+       630932,
+       632659,
+       648471,
+       665844,
+       689028,
+       699339,
+       696317,
+       655974,
+       642037,
+       621130,
+       606133,
+       600247,
+       563826,
+       571737,
+       575233,
+       562235,
+       548707,
+       532022,
+       516081,
+       528811,
+       510318,
+       505889,
+       469278,
+       481707,
+       496603,
+       487832,
+       486856,
+       495392,
+       498040,
+       496175,
+       509320,
+       523847,
+       534903,
+       529597,
+       516388,
+       454291,
+       453428,
+       442605,
+       440244,
+       430534,
+       427297,
+       422776,
+       417420,
+       430674,
+       418550,
+       389591,
+       391963,
+       382911,
+       395992,
+       388451,
+       373681,
+       368922,
+       377055,
+       378439,
+       382047,
+       377816,
+       387423,
+       373655,
+       385952,
+       400115,
+       410426,
+       407466,
+       449466,
+       416324,
+       373304,
+       357785,
+       390743,
+       360979,
+       349216,
+       348813
+      ],
+      "akzent": true,
+      "flaeche": true
+     }
+    ],
+    "jahre": [
+     1950,
+     1970,
+     1990,
+     2010,
+     2025
+    ],
+    "achse": [
+     {
+      "wert": 0,
+      "text": "0"
+     },
+     {
+      "wert": 200000,
+      "text": "200 000"
+     },
+     {
+      "wert": 400000,
+      "text": "400 000"
+     },
+     {
+      "wert": 600000,
+      "text": "600 000"
+     },
+     {
+      "wert": 800000,
+      "text": ""
+     }
+    ],
+    "marken": [
+     {
+      "jahr": 1950,
+      "text": "1950: 750 452",
+      "anker": "start"
+     },
+     {
+      "jahr": 2018,
+      "text": "2018: 449 466",
+      "anker": "end"
+     },
+     {
+      "jahr": 2025,
+      "text": "2025: 348 813",
+      "seite": "unten",
+      "anker": "end"
+     }
+    ]
+   },
+   "fuss": "Vor 1990 Bundesrepublik und DDR zusammen. Seit 2018 einschließlich Ehen von Paaren gleichen Geschlechts."
+  },
+  {
+   "typ": "balken",
+   "kicker": "Fünf Jahre im Vergleich",
+   "headline": "Von 750 000 auf 349 000",
+   "text": [
+    "2018 heiraten so viele Paare wie seit 1992 nicht mehr. Sieben Jahre später sind es <em>100 653</em> weniger."
+   ],
+   "balken": [
+    {
+     "wert": 750452,
+     "anzeige": "750 452",
+     "name": "1950 · Höchststand"
+    },
+    {
+     "wert": 516388,
+     "anzeige": "516 388",
+     "name": "1990 · Jahr der Einheit"
+    },
+    {
+     "wert": 368922,
+     "anzeige": "368 922",
+     "name": "2007"
+    },
+    {
+     "wert": 449466,
+     "anzeige": "449 466",
+     "name": "2018 · meiste seit 1992"
+    },
+    {
+     "wert": 348813,
+     "anzeige": "348 813",
+     "name": "2025 · Tiefststand",
+     "akzent": true
+    }
+   ]
+  },
+  {
+   "typ": "punkte",
+   "kicker": "Das Jahr 2025 in drei Zahlen",
+   "headline": "Heiraten in Deutschland",
+   "punkte": [
+    {
+     "wert": "−0,1 %",
+     "name": "gegenüber 2024",
+     "zusatz": "403 Ehen weniger als im Vorjahr"
+    },
+    {
+     "wert": "4,2",
+     "name": "Ehen je 1 000 Einwohner",
+     "zusatz": "1950 waren es 11,0"
+    },
+    {
+     "wert": "8 884",
+     "name": "Ehen gleichen Geschlechts",
+     "zusatz": "2,5 Prozent aller Eheschließungen"
+    }
+   ],
+   "fuss": "Im selben Jahr werden 130 053 Ehen geschieden."
+  },
+  {
+   "typ": "outro",
+   "headline": "Deutschland in Grafiken",
+   "text": [
+    "Eine Zahl, ein Schaubild, eine Quelle. Jeden Tag."
+   ]
+  }
+ ],
+ "quellen": [
+  "Statistisches Bundesamt (Destatis): Statistischer Bericht Ehescheidungen, Eheschließungen, Geborene und Gestorbene, Zeitreihen 1841–2025, Stand 3.9.2026",
+  "Destatis: Themenseite Eheschließungen, Ehescheidungen und Lebenspartnerschaften",
+  "Abruf 11/2026"
+ ],
+ "caption": [
+  "348 813 Paare haben 2025 in Deutschland geheiratet – so wenige wie in keinem Jahr seit 1950.",
+  "Damals waren es 750 452, mehr als doppelt so viele. Je 1 000 Einwohner werden heute 4,2 Ehen geschlossen, 1950 waren es 11,0.",
+  "Welche Zahl sollen wir als Nächstes zeichnen?"
+ ],
+ "hashtags": [
+  "deutschland",
+  "statistik",
+  "datenvisualisierung",
+  "infografik",
+  "zahlen",
+  "wissen",
+  "hochzeit",
+  "ehe",
+  "heiraten",
+  "demografie"
+ ]
+}
