@@ -1,0 +1,39 @@
+name: Schaubild Zahlen holen
+
+# Playbook vom 14.11.2026: holt täglich früh die Zahlen der Beiträge (Reichweite, gespeichert, geteilt) nach zahlen.json.
+# Der Wochenbericht wertet sie aus; tools/zeitplan.py wählt damit, was bei leerem Vorrat wiederholt wird. Veröffentlicht nichts.
+on:
+  schedule:
+    - cron: '40 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  zahlen:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: schaubild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Zahlen holen
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN_SCHAUBILD }}
+        run: python tools/zahlen.py
+      - name: Sichern
+        run: |
+          git config user.name "schaubild-bot"
+          git config user.email "schaubild-bot@users.noreply.github.com"
+          git add zahlen.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Schaubild vom $(date -u +%F)"
+          for versuch in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 10
+          done
+          exit 1
