@@ -25,6 +25,7 @@ ENDE = dt.date(2029, 11, 13)   # Auftrag vom 13.11.2026: drei Jahre lang jeden T
 HEUTE_BIS = '20:30'            # bis dahin erreicht ein Post für heute noch den letzten Lauf des Zeitplans
 BILDER_BEHALTEN_TAGE = 30
 SCHLUSSZEILE = 'Ein Bauwerk pro Tag'
+BELEGE_AB = 10                 # ab dieser Nummer verlangt die Prüfung das Feld "belege"
 TYPEN = {'cover', 'cover-breit', 'bild-unten', 'bild-rechts', 'balken', 'punkte', 'outro'}
 WOCHENTAGE = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
@@ -58,6 +59,11 @@ def naechste_nummer():
 
 # ---------- Prüfung eines Posts ----------
 
+def sichtbar(text):
+    """Länge des Textes, wie er auf dem Blatt steht: ohne Auszeichnung, &nbsp; als ein Zeichen."""
+    return len(re.sub(r'<[^>]+>', '', text).replace('&nbsp;', ' '))
+
+
 def pruefe_inhalt(name, post):
     """Liefert eine Liste von Fehlern im Inhalt des Posts (leer, wenn alles stimmt)."""
     fehler = []
@@ -84,17 +90,58 @@ def pruefe_inhalt(name, post):
             fehler.append(f'Zeichnungsdatei fehlt: render/zeichnungen/{post["zeichnungen"]}.js')
 
     slides = post['slides']
-    if not 6 <= len(slides) <= 10:
-        fehler.append(f'{len(slides)} Blätter; üblich sind 7 bis 9, erlaubt 6 bis 10.')
+    if not 7 <= len(slides) <= 9:
+        fehler.append(f'{len(slides)} Blätter; erlaubt sind 7 bis 9.')
     for i, sl in enumerate(slides, 1):
         wo = f'Blatt {i}'
-        if sl.get('typ') not in TYPEN:
-            fehler.append(f'{wo}: unbekannter Typ "{sl.get("typ")}".')
+        typ = sl.get('typ')
+        if typ not in TYPEN:
+            fehler.append(f'{wo}: unbekannter Typ "{typ}".')
             continue
         if not sl.get('headline'):
             fehler.append(f'{wo}: "headline" fehlt.')
         if not isinstance(sl.get('text', []), list):
             fehler.append(f'{wo}: "text" muss eine Liste von Absätzen sein.')
+            continue
+
+        # Längen: gezählt wird der sichtbare Text, also ohne <em> und mit &nbsp; als ein Zeichen
+        absaetze = sl.get('text', [])
+        textlaenge = sum(sichtbar(a) for a in absaetze)
+        ueberschrift = sichtbar(sl.get('headline', ''))
+        woerter = [len(w) for w in re.sub(r'<[^>]+>', '', sl.get('headline', '')).replace('&nbsp;', ' ').split()]
+        if re.search(r'\bMaße', sl.get('headline', '') + ' ' + sl.get('kicker', '')):
+            fehler.append(f'{wo}: „Maße" wird in Großbuchstaben zu „MASSE". Anderes Wort nehmen, etwa „Abmessungen".')
+        if sum(a.count('<em>') for a in absaetze) > 1:
+            fehler.append(f'{wo}: höchstens eine Hervorhebung mit <em> pro Blatt.')
+        if typ in ('cover', 'cover-breit'):
+            zahl = str(sl.get('zahl', ''))
+            if len(zahl) > 3:
+                fehler.append(f'{wo}: "zahl" hat {len(zahl)} Zeichen, erlaubt sind 3.')
+            grenze = 9 if typ == 'cover' else 10 if len(zahl) == 3 else 13
+            if woerter and max(woerter) > grenze:
+                fehler.append(f'{wo}: ein Wort der Überschrift hat {max(woerter)} Buchstaben, hier passen {grenze}.')
+            if len(absaetze) != 1 or textlaenge > 140:
+                fehler.append(f'{wo}: das Titelblatt hat genau einen Absatz mit höchstens 140 Zeichen (jetzt {len(absaetze)} Absätze, {textlaenge} Zeichen).')
+        elif typ != 'outro':
+            grenze = 20 if typ == 'bild-rechts' else 40
+            if ueberschrift > grenze:
+                fehler.append(f'{wo}: Überschrift hat {ueberschrift} Zeichen, erlaubt sind {grenze}.')
+            if typ == 'bild-rechts' and woerter and max(woerter) > 10:
+                fehler.append(f'{wo}: ein Wort der Überschrift hat {max(woerter)} Buchstaben, in die Spalte passen 10.')
+            if typ in ('bild-unten', 'bild-rechts') and (len(absaetze) > 2 or textlaenge > 270):
+                fehler.append(f'{wo}: neben einer Zeichnung höchstens zwei Absätze mit zusammen 270 Zeichen (jetzt {len(absaetze)} Absätze, {textlaenge} Zeichen).')
+            if typ in ('punkte', 'balken'):
+                if textlaenge > 200:
+                    fehler.append(f'{wo}: Text über Kennzahlen oder Balken höchstens 200 Zeichen (jetzt {textlaenge}).')
+                if sichtbar(sl.get('fuss', '')) > 90:
+                    fehler.append(f'{wo}: "fuss" höchstens 90 Zeichen.')
+        for p in sl.get('punkte') or []:
+            if len(str(p.get('wert', ''))) > 9 or len(p.get('name', '')) > 30 or len(p.get('zusatz', '')) > 62:
+                fehler.append(f'{wo}: Kennzahl "{p.get("wert")}": "wert" höchstens 9, "name" höchstens 30, "zusatz" höchstens 62 Zeichen.')
+        for b in sl.get('balken') or []:
+            if len(b.get('zusatz', '')) > 70 or len(str(b.get('anzeige', ''))) > 11:
+                fehler.append(f'{wo}: Balken "{b.get("name")}": "zusatz" höchstens 70, "anzeige" höchstens 11 Zeichen.')
+
         if sl.get('figur'):
             fn = sl['figur'].get('fn', '')
             if not re.search(rf'\b{re.escape(fn)}\b', skripte):
@@ -102,6 +149,8 @@ def pruefe_inhalt(name, post):
         elif sl['typ'] in ('cover', 'cover-breit', 'bild-unten', 'bild-rechts'):
             fehler.append(f'{wo}: Typ "{sl["typ"]}" braucht eine Zeichnung ("figur").')
         if sl['typ'] == 'balken':
+            if not 2 <= len(sl.get('balken') or []) <= 3:
+                fehler.append(f'{wo}: "balken" braucht 2 bis 3 Einträge.')
             for b in sl.get('balken') or [{}]:
                 if not isinstance(b.get('wert'), (int, float)) or not b.get('name') or 'zusatz' not in b:
                     fehler.append(f'{wo}: jeder Balken braucht "wert" (Zahl), "name" und "zusatz".')
@@ -128,9 +177,28 @@ def pruefe_inhalt(name, post):
         fehler.append('Quellen: mindestens zwei Quellen und als letzter Eintrag "Abruf MM/JJJJ".')
     if not isinstance(post['caption'], list):
         fehler.append('"caption" muss eine Liste von Absätzen sein.')
+    else:
+        laenge = sum(len(a) for a in post['caption'])
+        if not 220 <= laenge <= 330:
+            fehler.append(f'"caption": die Absätze haben zusammen {laenge} Zeichen, erlaubt sind 220 bis 330.')
     tags = post['hashtags']
-    if not 5 <= len(tags) <= 12 or any(not re.fullmatch(r'[a-z0-9äöüß]+', t) for t in tags):
-        fehler.append('Hashtags: 5 bis 12 Stück, klein geschrieben, ohne # und ohne Leerzeichen.')
+    if len(tags) != 8 or len(set(tags)) != 8 or any(not re.fullmatch(r'[a-z0-9äöüß]+', t) for t in tags):
+        fehler.append('Hashtags: genau 8 verschiedene, klein geschrieben, ohne # und ohne Leerzeichen.')
+
+    # Belege: seit Post 010 Pflicht, weil niemand mehr vorab durchsieht. Der Renderer beachtet das Feld nicht.
+    if int(nr) >= BELEGE_AB:
+        belege = post.get('belege')
+        if not isinstance(belege, list) or len(belege) < 6:
+            fehler.append('"belege" fehlt oder hat weniger als 6 Einträge: jede Angabe der Blätter mit ihren Fundstellen.')
+        else:
+            for b in belege:
+                quellen_b = b.get('quellen') if isinstance(b, dict) else None
+                if not b.get('angabe') or not isinstance(quellen_b, list) or not quellen_b \
+                        or any(not str(q).startswith('http') for q in quellen_b):
+                    fehler.append('"belege": jeder Eintrag braucht "angabe" und "quellen" (Liste von Adressen, die mit http beginnen).')
+                    break
+            if not any(len(b.get('quellen', [])) >= 2 for b in belege if isinstance(b, dict)):
+                fehler.append('"belege": keine einzige Angabe hat zwei Quellen. Tragende Zahlen brauchen zwei.')
     return fehler
 
 
@@ -234,6 +302,11 @@ def befehl_stand(_args):
             if alter <= 7:
                 warnungen.append(f'{e["post"]} war für {e["datum"]} geplant und ist nicht veröffentlicht worden. '
                                  'Ursache prüfen: gh run list --workflow post.yml --limit 6')
+    geplant = {e['post'] for e in plan['posts']}
+    for name in posts_im_ordner():
+        if name not in geplant and name not in protokoll:
+            warnungen.append(f'posts/{name}.json liegt im Ordner, steht aber nicht im Plan: Rest eines abgebrochenen Laufs. '
+                             'Fertigstellen und einplanen oder mitsamt Zeichnung und Bildern entfernen; die Nummer ist sonst vergeben.')
     e_heute = nach_datum.get(heute.isoformat())
     if e_heute and e_heute['post'] not in protokoll and jetzt.strftime('%H:%M') > '20:00':
         warnungen.append(f'Der heutige Post {e_heute["post"]} ist um {jetzt:%H:%M} Uhr noch nicht veröffentlicht.')

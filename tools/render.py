@@ -75,6 +75,7 @@ def aufnahme(chrome, profil, url, ziel, breite, hoehe):
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     posts = sys.argv[1:] or sorted(p.stem for p in (ROOT / 'posts').glob('*.json'))
     chrome = finde_chrome()
     server = starte_server()
