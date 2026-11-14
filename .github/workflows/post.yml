@@ -2,10 +2,12 @@ name: Post veröffentlichen
 
 on:
   schedule:
-    # Täglich (Mo–So) drei Läufe, angegeben in UTC. GitHub startet sie erfahrungsgemäß 40 bis 55 Minuten später,
-    # im Winter also gegen 18:25, 19:10 und 22:15 Uhr deutscher Zeit. Der dritte ist Reserve, falls die
-    # ersten beiden scheitern oder der Post des Tages erst am Abend fertig wird.
-    # tools/publish.py wartet selbst auf die Uhrzeit aus plan.json und postet nie doppelt.
+    # Täglich (Mo–So), angegeben in UTC. GitHub startet die Läufe erfahrungsgemäß 40 bis 55 Minuten später.
+    # Mittags (im Winter gegen 12:20 Uhr deutscher Zeit): das Reel mit Musik, falls plan.json "reel": "zusaetzlich" setzt.
+    - cron: '30 10 * * *'
+    # Abends (gegen 18:25, 19:10 und 22:15 Uhr): der Post des Tages. Der zweite und dritte Lauf sind Reserve,
+    # falls der erste scheitert oder der Post erst am Abend fertig wird; sie holen auch ein versäumtes Reel nach.
+    # tools/publish.py wartet selbst auf die Uhrzeiten aus plan.json und postet nie doppelt.
     - cron: '30 16 * * *'
     - cron: '30 17 * * *'
     - cron: '30 20 * * *'
@@ -19,12 +21,24 @@ on:
         description: Nur das Zugriffstoken prüfen
         type: boolean
         default: false
+      reel:
+        description: Das Reel statt des Carousels behandeln
+        type: boolean
+        default: false
+      reel_test:
+        description: Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen
+        type: boolean
+        default: false
+      post:
+        description: Dieser Post statt des heute fälligen (z. B. 005-koelner-dom)
+        type: string
+        default: ''
 
 permissions:
   contents: write
 
 concurrency:
-  group: post
+  group: bauriss-post
   cancel-in-progress: false
 
 jobs:
@@ -39,11 +53,30 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}
-        run: python tools/publish.py ${{ github.event_name == 'workflow_dispatch' && (inputs.zugang && '--zugang' || inputs.probelauf && '--probelauf') || '' }}
+          VON_HAND: ${{ github.event_name == 'workflow_dispatch' }}
+          SCHALTER: ${{ inputs.zugang && '--zugang' || inputs.reel_test && '--reel-test' || inputs.reel && (inputs.probelauf && '--reel --probelauf' || '--reel') || inputs.probelauf && '--probelauf' || '' }}
+          POST: ${{ inputs.post }}
+        run: |
+          if [ "$VON_HAND" = "true" ]; then
+            python tools/publish.py $SCHALTER ${POST:+--post "$POST"}
+          else
+            # Beide Schritte laufen, auch wenn einer scheitert; der Lauf gilt dann als fehlgeschlagen.
+            fehler=0
+            python tools/publish.py || fehler=1
+            python tools/publish.py --reel || fehler=1
+            exit $fehler
+          fi
       - name: Protokoll sichern
+        if: always()
         run: |
           git config user.name "bauriss-bot"
           git config user.email "bauriss-bot@users.noreply.github.com"
           git add veroeffentlicht.json
-          # Vor dem Übertragen den Stand des Servers holen: Die Automatik kann zwischendurch einen neuen Post eingestellt haben.
-          git diff --cached --quiet || (git commit -m "Veröffentlicht am $(date -u +%F)" && git pull --rebase && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "Veröffentlicht am $(date -u +%F)"
+          # Vor dem Übertragen den Stand des Servers holen: Automatik und Reel-Workflow können zwischendurch übertragen haben.
+          for versuch in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 10
+          done
+          exit 1

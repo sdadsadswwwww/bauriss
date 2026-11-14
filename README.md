@@ -13,6 +13,20 @@ Seit dem 13.11.2026 läuft der Kanal automatisch: Ein täglicher Lauf erstellt d
 
 Ein Eintrag mit `"freigabe": false` wird nicht veröffentlicht; so lässt sich ein einzelner Post zurückhalten. Ein Post, der in `veroeffentlicht.json` steht, wird nie ein zweites Mal gepostet.
 
+## Musik
+
+Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an. Deshalb baut der Workflow „Reel rendern" zu jedem Post ein Reel (`out/<post>/reel.mp4`): die Blätter nacheinander im Hochformat, dazu ein Klangbett, das `tools/musik.py` vollständig aus Code berechnet (keine fremden Aufnahmen, keine Rechte Dritter).
+
+Was erscheint, steht in `plan.json` unter `"reel"`:
+
+| Wert | Wirkung |
+|---|---|
+| `"aus"` | nur das Carousel, ohne Musik |
+| `"zusaetzlich"` | mittags das Reel mit Musik (`"reel_uhrzeit"`), abends das Carousel |
+| `"statt"` | abends nur das Reel mit Musik; fehlt das Video, ersatzweise das Carousel |
+
+Prüfen, ob Instagram ein Reel annimmt, ohne es zu veröffentlichen: Actions → „Post veröffentlichen" → Run workflow, Haken bei „Reel von Instagram verarbeiten lassen".
+
 ## Aufbau
 
 | Pfad | Inhalt |
@@ -23,12 +37,14 @@ Ein Eintrag mit `"freigabe": false` wird nicht veröffentlicht; so lässt sich e
 | `tools/publish.py` | Veröffentlicht über die Instagram Graph API |
 | `tools/automatik.py` | Stand, Prüfung, Einplanen und Aufräumen für den täglichen Lauf |
 | `tools/wiki.py` | Holt Wikipedia-Artikel für die Recherche |
+| `tools/reel.py` | Baut aus den Blättern eines Posts das Reel (braucht ffmpeg, läuft auf GitHub) |
+| `tools/musik.py` | Berechnet die Musik zum Reel |
 | `AUTOMATIK.md` | Arbeitsanweisung für den täglichen Lauf |
 | `themen.json` | Themenliste: erschienene und offene Bauwerke |
 | `plan.json` | Zeitplan und Freigaben |
 | `veroeffentlicht.json` | Protokoll, wird vom Workflow geschrieben |
 | `config.json` | Konto, API-Version |
-| `.github/workflows/` | Zeitplan (`post.yml`) |
+| `.github/workflows/` | Zeitplan (`post.yml`), Reel rendern (`reel.yml`) |
 
 ## Einrichtung
 

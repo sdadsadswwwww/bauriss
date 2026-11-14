@@ -259,7 +259,11 @@ def befehl_stand(_args):
     heute = jetzt.date()
     morgen = heute + dt.timedelta(days=1)
     plan = lies(publish.PLAN)
-    protokoll = {e['post']: e for e in lies(publish.PROTOKOLL)}
+    eintraege = lies(publish.PROTOKOLL)
+    modus = publish.reel_modus(plan)
+    # Ein Tag gilt als erschienen, sobald das Carousel draußen ist; ersetzt das Reel das Carousel, zählt das Reel.
+    protokoll = {e['post']: e for e in reversed(eintraege) if modus == 'statt' or e.get('art') != 'reel'}
+    reels = {e['post']: e for e in eintraege if e.get('art') == 'reel'}
     nach_datum = {}
     warnungen = []
     for e in plan['posts']:
@@ -291,6 +295,16 @@ def befehl_stand(_args):
         elif not e.get('freigabe'):
             zustand = 'geplant, aber NICHT freigegeben'
             warnungen.append(f'{e["post"]} ({e["datum"]}) ist nicht freigegeben.')
+        if modus != 'aus':
+            if e['post'] in reels:
+                zustand += f', Reel veröffentlicht um {reels[e["post"]]["zeit"]} Uhr'
+            elif (ROOT / 'out' / e['post'] / 'reel.mp4').exists():
+                zustand += ', Reel mit Musik liegt bereit'
+            else:
+                zustand += ', REEL FEHLT'
+                warnungen.append(f'{e["post"]}: out/{e["post"]}/reel.mp4 fehlt. Das Video rendert GitHub nach dem Übertragen '
+                                 '(Workflow "Reel rendern", einige Minuten). Danach git pull --rebase; '
+                                 'fehlt es weiter: gh run list --workflow reel.yml --limit 3')
         print(f'{wort:6} {tag.isoformat()}: {e["post"]} – {zustand}')
         if e['post'] not in protokoll:
             for f in pruefe(e['post']):
