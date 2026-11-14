@@ -37,7 +37,7 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Env
 4. **Post schreiben:** `posts/<nr>-<kurzname>.json` (Abschnitt „Aufbau eines Posts").
 5. **Zeichnungen schreiben:** `render/zeichnungen/<thema>.js` (Abschnitt „Zeichnungen").
 6. **Rendern und durchsehen:** `python tools/render.py <post>`, danach `out/<post>/uebersicht.jpg` und jedes einzelne Blatt `out/<post>/01.jpg` … ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
-7. **Prüfen:** `python tools/automatik.py pruefen <post>` und `python tools/publish.py --probelauf --post <post>`.
+7. **Prüfen:** `python tools/automatik.py pruefen <post>` und `python tools/publish.py --probelauf --post <post>`. Die Bilder in `out/<post>/` müssen aus dem letzten Stand von Post und Zeichnung stammen: nach jeder Änderung, auch der kleinsten, neu rendern und die geänderten Blätter noch einmal ansehen.
 8. **Einplanen:** `python tools/automatik.py einplanen <post> <datum> --thema "<Name aus themen.json>"`. Das trägt den Post freigegeben in `plan.json` ein und hakt das Thema ab. Für ein Thema, das nicht in der Liste steht, zusätzlich `--art` und `--region` angeben.
 9. **Aufräumen und übertragen:**
    ```powershell

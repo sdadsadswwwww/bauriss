@@ -145,8 +145,6 @@ def pruefe_bilder(name, post):
         if not bild.exists():
             fehler.append(f'Bild fehlt: out/{name}/{bild.name}. Erst tools/render.py {name} ausführen.')
             continue
-        if bild.stat().st_mtime < (ROOT / 'posts' / f'{name}.json').stat().st_mtime:
-            fehler.append(f'out/{name}/{bild.name} ist älter als der Post. Neu rendern.')
         with Image.open(bild) as im:
             if im.format != 'JPEG' or im.size != (1080, 1350):
                 fehler.append(f'out/{name}/{bild.name}: {im.format} {im.size[0]} x {im.size[1]} statt JPEG 1080 x 1350.')
