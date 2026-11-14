@@ -8,7 +8,7 @@
   {"name": "Berliner Fernsehturm", "art": "Turm", "region": "DACH", "post": "007-berliner-fernsehturm"},
   {"name": "Göltzschtalbrücke", "art": "Brücke", "region": "DACH", "post": "008-goeltzschtalbruecke"},
   {"name": "Gotthard-Basistunnel", "art": "Tunnel", "region": "DACH", "post": "009-gotthard-basistunnel"},
-  {"name": "Schloss Neuschwanstein", "art": "Schloss", "region": "DACH"},
+  {"name": "Schloss Neuschwanstein", "art": "Schloss", "region": "DACH", "post": "010-schloss-neuschwanstein"},
   {"name": "Nord-Ostsee-Kanal", "art": "Kanal", "region": "DACH"},
   {"name": "Sagrada Família", "art": "Kirche", "region": "Europa"},
   {"name": "Golden Gate Bridge", "art": "Brücke", "region": "Welt"},

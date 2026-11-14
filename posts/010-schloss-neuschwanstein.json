@@ -1,0 +1,124 @@
+{
+  "nr": "010",
+  "titel": "Schloss Neuschwanstein",
+  "zeichnungen": "neuschwanstein",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 010",
+      "zahl": "6",
+      "headline": "Millionen Mark aus eigener Kasse",
+      "text": ["König Ludwig II. baut Neuschwanstein ohne Geld aus der Staatskasse. Die Kosten verdoppeln sich, seine Schulden wachsen."],
+      "figur": { "fn": "neuschwansteinAnsicht" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1868 · Die Idee",
+      "headline": "Ein Bühnenmaler zeichnet die Burg",
+      "text": [
+        "Ludwig II. wünscht sich eine Ritterburg wie aus den Opern Richard Wagners. Die Entwürfe liefert der Münchner Bühnenmaler Christian Jank, die Baupläne der Architekt Eduard Riedel.",
+        "Für den Bauplatz werden bis zu <em>acht Meter Fels</em> abgetragen."
+      ],
+      "figur": { "fn": "neuschwansteinAnsicht", "stand": "plan" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Ab 1869 · Der Bau",
+      "headline": "Die Ritterburg ist aus Ziegeln",
+      "text": [
+        "Die Mauern sind aus Ziegeln, der helle Kalkstein ist nur Verkleidung. <em>Dampfkräne</em> ziehen das Material auf den Fels.",
+        "1880 arbeiten täglich rund 200 Handwerker am Schloss. 39 Familien erhalten eine Rente für tödlich Verunglückte."
+      ],
+      "figur": { "fn": "neuschwansteinKran" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Im Palas",
+      "headline": "Mittelalter mit Zentralheizung",
+      "text": [
+        "Der Thronsaal kommt erst nachträglich in die Pläne. Damit das Haus ihn trägt, wird er als <em>Stahlkonstruktion</em> eingezogen.",
+        "Dazu kommen Warmluftheizung, fließendes Wasser auf jeder Etage, Telefon und ein Speiseaufzug."
+      ],
+      "figur": { "fn": "palasSchnitt" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "Der König sieht nur die Baustelle",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1868,
+        "bis": 1894,
+        "phasen": [
+          { "von": 1869.68, "bis": 1886.45, "art": "bau", "text": "17 Jahre Baustelle" },
+          { "von": 1886.45, "bis": 1892.5, "art": "schluss", "text": "ohne den Bauherrn" }
+        ],
+        "marken": [
+          { "jahr": 1869.68, "label": "1869", "text": "Grundstein am 5. September" },
+          { "jahr": 1873.95, "label": "1873", "text": "Torbau bezugsfertig" },
+          { "jahr": 1884.38, "label": "1884", "text": "der König zieht ein" },
+          { "jahr": 1886.45, "label": "1886", "text": "Ludwig II. stirbt" },
+          { "jahr": 1892.5, "label": "1892", "text": "vereinfacht fertiggebaut" }
+        ]
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Was hat es gekostet?",
+      "headline": "Doppelt so teuer wie geplant",
+      "text": ["Der König ändert die Pläne immer wieder. Der große Thronsaal etwa kommt erst später hinzu."],
+      "balken": [
+        { "wert": 3.2, "anzeige": "3,2 Mio.", "name": "Mark veranschlagt", "zusatz": "der ursprüngliche Kostenvoranschlag" },
+        { "wert": 6.18, "anzeige": "6,2 Mio.", "name": "Mark bis 1886", "zusatz": "genau 6.180.047 Mark bis zum Tod des Königs", "akzent": true }
+      ],
+      "fuss": "Bezahlt wird aus der Kabinettskasse des Königs, nicht aus der Staatskasse."
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Am Ende ist die Kasse leer",
+      "text": ["Die Kabinettskasse speist sich aus der Zivilliste, dem Jahresgeld des Staates für den Hof, und aus Erträgen des väterlichen Erbes. Für drei Schlösser zugleich reicht das ab etwa 1877 nicht mehr."],
+      "punkte": [
+        { "wert": "7,5 Mio.", "name": "Mark Bankdarlehen 1884", "zusatz": "vermittelt vom Finanzminister, für alle Bauten" },
+        { "wert": "6,5 Mio.", "name": "Mark neue Schulden 1885", "zusatz": "knapp, bis zum Sommer; die Kabinettskasse ist zahlungsunfähig" },
+        { "wert": "9.6.1886", "name": "Der König wird entmündigt", "zusatz": "vier Tage später stirbt er im Starnberger See" }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Bis heute",
+      "headline": "Der höchste Turm fehlt bis heute",
+      "text": [
+        "Nach dem Tod des Königs wird nur noch vereinfacht fertiggebaut. Der geplante Bergfried kommt nie über das Fundament hinaus.",
+        "Schon am 1. August 1886 öffnet das Schloss für Besucher. Heute kommen <em>mehr als eine Million</em> im Jahr."
+      ],
+      "figur": { "fn": "neuschwansteinAnsicht", "stand": "tuerme" }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Schloss Neuschwanstein", "neuschwanstein.de", "Historisches Lexikon Bayerns", "Klett Verlag", "Abruf 11/2026"],
+  "caption": [
+    "Mehr als sechs Millionen Mark kostete Neuschwanstein bis 1886, doppelt so viel wie geplant. König Ludwig II. zahlte aus seiner eigenen Kasse und mit Krediten.",
+    "Hinter der Ritterburg stecken Ziegel, Stahl und Dampfkräne. Der höchste Turm wurde nie gebaut.",
+    "Warst du schon einmal oben?"
+  ],
+  "hashtags": ["neuschwanstein", "schlossneuschwanstein", "schwangau", "schloss", "baugeschichte", "architektur", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Baukosten bis 1886: 6.180.047 Mark, veranschlagt 3,2 Millionen Mark", "quellen": ["https://de.wikipedia.org/wiki/Schloss_Neuschwanstein", "https://www.klett.de/inhalt/media_fast_path/32/DO01_3-12-007171_024_Neuschwanstein.pdf"], "hinweis": "genaue Zahl nur Wikipedia; zweite Quelle nennt über 6 Millionen und die Verdopplung; auf dem Titelblatt gerundet" },
+    { "angabe": "Finanzierung aus der Kabinettskasse, nicht aus der Staatskasse; Zivilliste und Erträge des väterlichen Vermögens; Mittel reichen seit etwa 1877 nicht mehr", "quellen": ["https://www.historisches-lexikon-bayerns.de/Lexikon/Königskrise_(1885/86)", "https://de.wikipedia.org/wiki/Schloss_Neuschwanstein"] },
+    { "angabe": "1884 Bankdarlehen von 7,5 Millionen Mark, vermittelt von Finanzminister Riedel", "quellen": ["https://www.historisches-lexikon-bayerns.de/Lexikon/Königskrise_(1885/86)", "https://www.das-parlament.de/kultur/geschichte/das-schillernde-vermaechtnis-des-maerchenkoenigs"], "hinweis": "zweite Quelle nennt denselben Betrag in Gulden" },
+    { "angabe": "Sommer 1885: erneut fast 6,5 Millionen Mark Schulden, Kabinettskasse zahlungsunfähig", "quellen": ["https://www.historisches-lexikon-bayerns.de/Lexikon/Königskrise_(1885/86)"], "hinweis": "nur eine Quelle (Fachlexikon), am Wortlaut geprüft" },
+    { "angabe": "Entmündigung am 9. Juni 1886, Tod am 13. Juni 1886", "quellen": ["https://de.wikipedia.org/wiki/Ludwig_II._(Bayern)", "https://www.historisches-lexikon-bayerns.de/Lexikon/Königskrise_(1885/86)"] },
+    { "angabe": "Bis zu acht Meter Fels abgetragen; Grundstein am 5. September 1869; Torbau Ende 1873 bezugsfertig; Mauerwerk aus Ziegeln, mit Kalkstein verkleidet; Thronsaal nachträglich, als ummantelte Eisenkonstruktion", "quellen": ["https://www.historisches-lexikon-bayerns.de/Lexikon/Schloss_Neuschwanstein", "https://neuschwanstein.de/englisch/palace/history.htm"] },
+    { "angabe": "Entwürfe von Bühnenmaler Christian Jank, Pläne von Eduard Riedel", "quellen": ["https://de.wikipedia.org/wiki/Schloss_Neuschwanstein", "https://www.neuschwanstein.de/englisch/idea/index.htm"] },
+    { "angabe": "1880 täglich rund 200 Handwerker; 39 Familien erhalten Rente für tödlich Verunglückte; Dampfkräne", "quellen": ["https://de.wikipedia.org/wiki/Schloss_Neuschwanstein"], "hinweis": "Zahlen nur Wikipedia" },
+    { "angabe": "Warmluftheizung, fließendes Wasser auf jeder Etage, Telefon, Speiseaufzug", "quellen": ["https://neuschwanstein.de/englisch/palace/interior.htm", "https://de.wikipedia.org/wiki/Schloss_Neuschwanstein"] },
+    { "angabe": "Länge rund 150 m, Treppenturm 65 m, Viereckturm 45 m, geplanter Bergfried 90 m, nur Fundamente; Thronsaal 20 m lang, 13 m hoch", "quellen": ["https://de.wikipedia.org/wiki/Schloss_Neuschwanstein"], "hinweis": "Maße nur Wikipedia; dass der Bergfried nicht gebaut wurde, steht auch im Historischen Lexikon Bayerns" },
+    { "angabe": "1892 vereinfacht fertiggestellt; ab 1. August 1886 für Besucher geöffnet", "quellen": ["https://www.historisches-lexikon-bayerns.de/Lexikon/Schloss_Neuschwanstein", "https://de.wikipedia.org/wiki/Schloss_Neuschwanstein"], "hinweis": "Tagesdatum nur im Lexikon; Wikipedia nennt sechs Wochen nach dem Tod" },
+    { "angabe": "Mehr als eine Million Besucher im Jahr", "quellen": ["https://de.wikipedia.org/wiki/Schloss_Neuschwanstein", "https://www.nationalgeographic.com/history/article/neuschwanstein-castle-fairy-tale-king-ludwig"] }
+  ]
+}
