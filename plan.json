@@ -1,5 +1,7 @@
 {
   "uhrzeit": "18:15",
+  "reel": "zusaetzlich",
+  "reel_uhrzeit": "12:00",
   "posts": [
     { "datum": "2026-11-12", "post": "001-eiffelturm", "freigabe": true, "uhrzeit": "00:00" },
     { "datum": "2026-11-13", "post": "002-alter-elbtunnel", "freigabe": true },

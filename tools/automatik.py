@@ -39,7 +39,9 @@ def schreibe_plan(plan):
     for e in sorted(plan['posts'], key=lambda e: e['datum']):
         teile = [f'"{k}": {json.dumps(v, ensure_ascii=False)}' for k, v in e.items()]
         zeilen.append('    { ' + ', '.join(teile) + ' }')
-    text = '{\n  "uhrzeit": ' + json.dumps(plan['uhrzeit']) + ',\n  "posts": [\n' + ',\n'.join(zeilen) + '\n  ]\n}\n'
+    # Alle Einstellungen außer der Liste bleiben erhalten (Uhrzeit, Reel-Schalter und was später dazukommt)
+    kopf = ''.join(f'  {json.dumps(k)}: {json.dumps(v, ensure_ascii=False)},\n' for k, v in plan.items() if k != 'posts')
+    text = '{\n' + kopf + '  "posts": [\n' + ',\n'.join(zeilen) + '\n  ]\n}\n'
     publish.PLAN.write_text(text, encoding='utf-8')
 
 
