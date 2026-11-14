@@ -7,7 +7,7 @@ Diese Datei ist die Arbeitsanweisung für den Lauf, der den Vorrat an Posts auff
 Der Betreiber des Kanals `@das.schaubild` („Deutschland in Grafiken") hat am 14.11.2026 ein Playbook für alle seine Kanäle festgelegt:
 
 - **Jeden Tag** erscheint ein Thema, Montag bis Sonntag, ohne Enddatum, in drei Formen: um 12:45 Uhr das **Reel** (die Kurve zeichnet sich), um 18:30 Uhr der **Post** (Carousel), fünf Minuten später die **Story** (Schlussbild des Reels mit Hinweis auf den Post).
-- **Vorrat:** Für die nächsten **7 Tage** ab morgen soll immer ein fertiger Post im Plan stehen. Jeder Lauf füllt den Vorrat auf, **höchstens 2 Posts je Lauf**.
+- **Vorrat:** Für die nächsten **7 Tage** ab morgen soll immer ein fertiger Post im Plan stehen. **Jeder Lauf prüft beim Start, ob der Vorrat bei 7 Tagen steht, und erstellt im selben Lauf alles, was fehlt** (Regel des Betreibers vom 14.11.2026; keine Obergrenze je Lauf).
 - Sinkt der Vorrat unter 3 Tage, steht das als Warnung im Bericht. Ist er leer, wiederholt der Zeitplan von selbst einen älteren Beitrag (`tools/zeitplan.py`); dafür ist hier nichts zu tun.
 - Stil und Aufbau bleiben wie bei den Posts 001 bis 005.
 
@@ -28,7 +28,7 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 ## Ablauf
 
 1. **Stand holen.** `git pull --rebase`. Dann `plan.json`, `veroeffentlicht.json` und `themen.json` lesen.
-   - Der Vorrat sind die Tage **morgen bis heute in 7 Tagen** (Datum in Berliner Zeit). Jeder dieser Tage ohne Eintrag in `plan.json` ist frei. Zu erstellen sind Posts für die **frühesten freien Tage, höchstens 2 in diesem Lauf**, einer nach dem anderen: den ersten ganz fertigstellen und übertragen (Schritte 2 bis 9), dann den zweiten. Steht auch für **heute** keiner und ist es vor 17:00 Uhr, zählt heute als frühester freier Tag.
+   - Der Vorrat sind die Tage **morgen bis heute in 7 Tagen** (Datum in Berliner Zeit). Jeder dieser Tage ohne Eintrag in `plan.json` ist frei. Zu erstellen sind Posts für **alle freien Tage in diesem Lauf**, den frühesten zuerst, einer nach dem anderen: jeden Post ganz fertigstellen und übertragen (Schritte 2 bis 9), dann den nächsten. Steht auch für **heute** keiner und ist es vor 17:00 Uhr, zählt heute als frühester freier Tag.
    - Sind alle 7 Tage belegt, ist nichts zu erstellen: nur Schritt 10 (Kontrolle) und Bericht.
    - Sind nach diesem Lauf weniger als 3 der 7 Tage belegt, gehört das als Warnung an den Anfang des Berichts.
    - Die nächste Nummer ist die höchste Nummer in `posts/` plus eins, dreistellig.
