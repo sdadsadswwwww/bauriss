@@ -196,7 +196,13 @@ def story_test(args, config, plan, heute):
     container = anfrage('POST', f'{basis}/{konto_id}/media', token, {'media_type': 'STORIES', 'image_url': adresse})['id']
     print(f'Story-Behälter angelegt: {container}')
     warte_bis_fertig(basis, container, token)
-    print('Story-Test: Instagram hat den Behälter angenommen und verarbeitet. Nichts veröffentlicht.')
+    if not args.story:
+        print('Story-Test: Instagram hat den Behälter angenommen und verarbeitet. Nichts veröffentlicht.')
+        return
+    # Bewusst ohne Eintrag in veroeffentlicht.json: Das Protokoll steuert bisher nur Carousel und Reel.
+    medium = anfrage('POST', f'{basis}/{konto_id}/media_publish', token, {'creation_id': container})['id']
+    info = frage_still(f'{basis}/{medium}?fields=media_product_type,permalink', token)
+    print(f'Story veröffentlicht: {medium}, Art: {info.get("media_product_type") or info.get("fehler")}, {info.get("permalink")}')
 
 
 def pruefe_bildadressen(adressen):
@@ -304,6 +310,7 @@ def main(argv=None):
     parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen')
     parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen')
     parser.add_argument('--story-test', action='store_true', help='Story-Behälter anlegen, ohne zu veröffentlichen')
+    parser.add_argument('--story', action='store_true', help='Titelblatt als Story veröffentlichen (Versuch, 24 Stunden sichtbar)')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
@@ -327,7 +334,7 @@ def main(argv=None):
     jetzt = berlin_jetzt()
     heute = jetzt.date().isoformat()
 
-    if args.story_test:
+    if args.story_test or args.story:
         story_test(args, config, plan, heute)
         return
     if args.reel or args.reel_test:
