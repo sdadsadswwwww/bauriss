@@ -23,16 +23,19 @@ Wirtschaftsgeschichte in Zahlen – eine Buchung pro Werktag.
 
 ## 2. Repository
 
-Ein öffentliches GitHub-Repository `kassenbuch` im selben Konto wie Bauriss. Instagram holt die Bilder über ihre Adresse ab, deshalb öffentlich.
+Erledigt: https://github.com/sdadsadswwwww/kassenbuch (öffentlich).
 
 ## 3. Zugang für die Schnittstelle
 
-Wie bei Bauriss über Metas App-Dashboard („API setup with Unified login"). Die vorhandene Meta-App kann ein zweites Instagram-Konto bedienen:
+Stand 14.11.2026:
 
-1. Im App-Dashboard unter Instagram → „API setup with Unified login" → „Zugriffsschlüssel generieren" → „Konto hinzufügen": `das.kassenbuch` als Instagram-Tester einladen.
-2. Auf instagram.com als `das.kassenbuch`: Einstellungen → Website-Berechtigungen → Apps und Websites → Tester-Einladungen → annehmen.
-3. Im App-Dashboard neben dem Konto „Token generieren", Token kopieren. Es wird nur einmal angezeigt und gehört nicht in den Chat.
-4. Im Repository `kassenbuch` unter Settings → Secrets and variables → Actions als `IG_ACCESS_TOKEN` speichern.
-5. Danach `python tools/publish.py --zugang` im Workflow laufen lassen; die Konto-ID kommt anschließend in `config.json`.
+- Eigene Meta-App „Kassenbuch" (App-ID 29434390536198421) im Entwicklerkonto, verknüpft mit dem Business-Portfolio „Kassenbuch". Die Verifizierung des Portfolios ist übersprungen; für das eigene Konto ist sie nicht nötig.
+- Login-Konfiguration „Instagram API (Unified Login)" aus Metas Vorlage erstellt (Systemnutzer-Token ohne Ablauf). Die Vorlage enthält neben `instagram_basic` und `instagram_content_publish` auch Werbe-, Nachrichten- und Kommentarrechte, die die Pipeline nicht nutzt.
+- Weiterleitungs-URL: die Adresse des Repositorys (Pflichtfeld, wird nie aufgerufen).
+- `das.kassenbuch` ist als Instagram-Tester eingeladen, die Einladung ist angenommen. Konto-ID: 17841479858387731 (steht in `config.json`).
 
-Einzelne Beschriftungen bei Meta können abweichen; die Schritte folgen dem Ablauf, der am 11.11.2026 für Bauriss funktioniert hat.
+Offen, nur durch dich:
+
+1. Im App-Dashboard unter Anwendungsfälle → Instagram API → „API setup with Unified login" → Abschnitt 2 neben `das.kassenbuch` auf „Token generieren". Anmeldung abschließen, Token kopieren. Es wird nur einmal angezeigt und gehört nicht in den Chat.
+2. Unter https://github.com/sdadsadswwwww/kassenbuch/settings/secrets/actions/new als `IG_ACCESS_TOKEN` speichern.
+3. Danach den Workflow „Post veröffentlichen" mit Haken bei „Nur das Zugriffstoken prüfen" laufen lassen.
