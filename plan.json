@@ -6,6 +6,7 @@
     { "datum": "2026-11-15", "post": "002-kaiserwahl-1519", "freigabe": true },
     { "datum": "2026-11-16", "post": "003-waehrungsreform-1948", "freigabe": true },
     { "datum": "2026-11-17", "post": "004-gruenderkrach-1873", "freigabe": true },
-    { "datum": "2026-11-18", "post": "005-letzte-rate-2010", "freigabe": true }
+    { "datum": "2026-11-18", "post": "005-letzte-rate-2010", "freigabe": true },
+    { "datum": "2026-11-19", "post": "006-sonntagsfahrverbot-1973", "freigabe": true, "erstellt": "2026-11-14T15:50" }
   ]
 }
