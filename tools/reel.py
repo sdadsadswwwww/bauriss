@@ -175,7 +175,7 @@ def rendere(seite, basis, post, ffmpeg, nur_vorschau):
     kodierer = subprocess.Popen(
         [ffmpeg, '-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', str(BILDER_JE_SEKUNDE), '-c:v', 'png', '-i', '-',
          '-i', str(ton), '-ar', '48000', '-shortest',
-         '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', str(BILDER_JE_SEKUNDE),
+         '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-maxrate', '4M', '-bufsize', '8M', '-pix_fmt', 'yuv420p', '-r', str(BILDER_JE_SEKUNDE),
          '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', str(video)],
         stdin=subprocess.PIPE)
     anzahl = round(dauer * BILDER_JE_SEKUNDE)
