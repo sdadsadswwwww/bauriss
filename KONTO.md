@@ -45,3 +45,10 @@ Offen, nur durch dich:
 - Token erzeugt und als Secret `IG_ACCESS_TOKEN` im Repository gespeichert.
 - Zugangstest über den Workflow bestanden: ein zugewiesenes Instagram-Konto, Veröffentlichungslimit für die Konto-ID abrufbar. Gepostet wurde dabei nichts.
 - Erster echter Post: Montag, 16.11.2026, 18:15 Uhr.
+
+## Betrieb ab 14.11.2026
+
+- Beitrag 001 am 14.11. veröffentlicht. Ab jetzt täglich ein Beitrag um 18:15 Uhr, auch am Wochenende.
+- Vorrat: 002 bis 005 für den 15. bis 18.11.
+- Neue Beiträge entstehen automatisch: Eine geplante Aufgabe in der Claude-App (täglich gegen 10:13 Uhr) erstellt den Beitrag für den Folgetag, rendert ihn und trägt ihn mit `"freigabe": true` in `plan.json` ein. Eine Freigabe durch den Nutzer findet nicht mehr statt (so gewünscht am 14.11.).
+- Die Aufgabe läuft nur, wenn die App geöffnet ist. Sonst wird sie beim nächsten Start nachgeholt.
