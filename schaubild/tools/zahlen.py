@@ -59,6 +59,10 @@ def main():
         zeile = {'post': e['post'], 'art': e.get('art') or 'carousel', 'datum': e['datum']}
         if e.get('wiederholung'):
             zeile['wiederholung'] = True
+        # Likes und Kommentare gibt Instagram auch ohne die Berechtigung für Insights heraus
+        grund = publish.frage_still(f'{basis}/{e["media_id"]}?fields=like_count,comments_count', token)
+        if 'fehler' not in grund:
+            zeile.update({'likes': grund.get('like_count'), 'kommentare': grund.get('comments_count')})
         for metriken in ('reach,saved,shares,views,likes,comments,total_interactions', 'reach,saved,shares,likes,comments', 'reach'):
             antwort = publish.frage_still(f'{basis}/{e["media_id"]}/insights?metric={metriken}', token)
             if 'fehler' not in antwort:

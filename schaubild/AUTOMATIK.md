@@ -1,14 +1,14 @@
 # Automatik: jeden Tag ein Schaubild
 
-Diese Datei ist die Arbeitsanweisung für den täglichen Lauf. Wer sie liest, hat kein Vorwissen aus früheren Läufen; alles Nötige steht hier oder in den genannten Dateien. Alle Pfade gelten ab dem Ordner `schaubild/`.
+Diese Datei ist die Arbeitsanweisung für den Lauf, der den Vorrat an Posts auffüllt. Wer sie liest, hat kein Vorwissen aus früheren Läufen; alles Nötige steht hier oder in den genannten Dateien. Alle Pfade gelten ab dem Ordner `schaubild/`.
 
 ## Auftrag
 
-Der Betreiber des Kanals `@das.schaubild` („Deutschland in Grafiken") hat am 14.11.2026 festgelegt:
+Der Betreiber des Kanals `@das.schaubild` („Deutschland in Grafiken") hat am 14.11.2026 ein Playbook für alle seine Kanäle festgelegt:
 
-- **Jeden Tag** erscheint ein Post, Montag bis Sonntag, um 18:30 Uhr.
-- Zu jedem Post gehört ein **Reel** (seit 14.11.2026): Es erscheint am selben Tag um 12:30 Uhr und zeigt, wie sich die Kurve zeichnet.
-- Der Post für einen Tag wird **am Vortag** erstellt.
+- **Jeden Tag** erscheint ein Thema, Montag bis Sonntag, ohne Enddatum, in drei Formen: um 12:45 Uhr das **Reel** (die Kurve zeichnet sich), um 18:30 Uhr der **Post** (Carousel), fünf Minuten später die **Story** (Schlussbild des Reels mit Hinweis auf den Post).
+- **Vorrat:** Für die nächsten **7 Tage** ab morgen soll immer ein fertiger Post im Plan stehen. Jeder Lauf füllt den Vorrat auf, **höchstens 2 Posts je Lauf**.
+- Sinkt der Vorrat unter 3 Tage, steht das als Warnung im Bericht. Ist er leer, wiederholt der Zeitplan von selbst einen älteren Beitrag (`tools/zeitplan.py`); dafür ist hier nichts zu tun.
 - Stil und Aufbau bleiben wie bei den Posts 001 bis 005.
 
 Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlichung durch. Die Durchsicht in Schritt 6 ist die einzige Kontrolle und darf nicht abgekürzt werden. Lieber bleibt ein Tag leer, als dass ein Post mit falschen Zahlen oder kaputten Blättern erscheint.
@@ -16,7 +16,7 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 ## Feste Regeln
 
 1. **Nicht selbst veröffentlichen.** Kein `gh workflow run`, kein `tools/publish.py` ohne `--probelauf`. Veröffentlicht wird allein durch den Zeitplan in `../.github/workflows/schaubild.yml`.
-2. **Stil und Werkzeug nicht anfassen.** Unverändert bleiben `render/`, `tools/`, `config.json`, `KONTO.md`, `README.md` und alles außerhalb von `schaubild/`. Pro Lauf entstehen nur `posts/<post>.json` und `out/<post>/` (Blätter und `reel-vorschau.jpg`; das Video `reel.mp4` legt GitHub selbst dazu); geändert werden nur `plan.json` und `themen.json`.
+2. **Stil und Werkzeug nicht anfassen.** Unverändert bleiben `render/`, `tools/`, `config.json`, `KONTO.md`, `README.md` und alles außerhalb von `schaubild/`. Pro Lauf entstehen nur `posts/<post>.json` und `out/<post>/` (Blätter, `reel-vorschau.jpg` und `story.jpg`; das Video `reel.mp4` legt GitHub selbst dazu); geändert werden nur `plan.json` und `themen.json`.
 3. **Erschienene Posts bleiben, wie sie sind.** Nichts ändern, was in `veroeffentlicht.json` steht; diese Datei schreibt nur der Workflow.
 4. **Alles außerhalb von `schaubild/` gehört zu einem anderen Kanal.** Nicht ändern.
 5. **Keine Zugangsdaten.** Keine Tokens erzeugen, lesen oder ausgeben, nicht bei Instagram, Meta oder GitHub anmelden, keine Secrets ändern. Ist das Token ungültig, steht das im Bericht; erneuern muss es der Betreiber (`KONTO.md`, Secret `IG_ACCESS_TOKEN_SCHAUBILD`).
@@ -28,17 +28,19 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 ## Ablauf
 
 1. **Stand holen.** `git pull --rebase`. Dann `plan.json`, `veroeffentlicht.json` und `themen.json` lesen.
-   - Zu erstellen ist der Post für **morgen** (Datum in Berliner Zeit), falls in `plan.json` für morgen noch keiner steht. Steht auch für **heute** keiner und ist es vor 17:00 Uhr, zuerst den für heute erstellen und übertragen, dann den für morgen.
-   - Steht für morgen schon ein Eintrag, ist nichts zu erstellen: nur Schritt 10 (Kontrolle) und Bericht.
+   - Der Vorrat sind die Tage **morgen bis heute in 7 Tagen** (Datum in Berliner Zeit). Jeder dieser Tage ohne Eintrag in `plan.json` ist frei. Zu erstellen sind Posts für die **frühesten freien Tage, höchstens 2 in diesem Lauf**, einer nach dem anderen: den ersten ganz fertigstellen und übertragen (Schritte 2 bis 9), dann den zweiten. Steht auch für **heute** keiner und ist es vor 17:00 Uhr, zählt heute als frühester freier Tag.
+   - Sind alle 7 Tage belegt, ist nichts zu erstellen: nur Schritt 10 (Kontrolle) und Bericht.
+   - Sind nach diesem Lauf weniger als 3 der 7 Tage belegt, gehört das als Warnung an den Anfang des Berichts.
    - Die nächste Nummer ist die höchste Nummer in `posts/` plus eins, dreistellig.
 2. **Thema wählen** (Abschnitt „Thema").
 3. **Zahlen holen** (Abschnitt „Zahlen und Quellen") und mit Quelle notieren, bevor ein Blatt entsteht.
 4. **Post schreiben:** `posts/<nr>-<kurzname>.json` (Abschnitt „Aufbau eines Posts").
-5. **Rendern:** `python tools/render.py <post>`, danach `python tools/reel.py <post>` für die Vorschau des Reels (vier Standbilder in `out/<post>/reel-vorschau.jpg`). Die Meldung „kein ffmpeg gefunden" ist in Ordnung: Das Video rendert der Workflow „Schaubild Reel rendern" auf GitHub, sobald der Post übertragen ist.
-6. **Durchsehen:** `out/<post>/uebersicht.jpg`, jedes Blatt `out/<post>/01.jpg` … und `out/<post>/reel-vorschau.jpg` mit dem Read-Werkzeug ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
+5. **Rendern:** `python tools/render.py <post>`, danach `python tools/reel.py <post>` für die Vorschau des Reels (vier Standbilder in `out/<post>/reel-vorschau.jpg`) und das Bild der Story (`out/<post>/story.jpg`). Die Meldung „kein ffmpeg gefunden" ist in Ordnung: Das Video rendert der Workflow „Schaubild Reel rendern" auf GitHub, sobald der Post übertragen ist.
+6. **Durchsehen:** `out/<post>/uebersicht.jpg`, jedes Blatt `out/<post>/01.jpg` …, `out/<post>/reel-vorschau.jpg` und `out/<post>/story.jpg` mit dem Read-Werkzeug ansehen (Abschnitt „Durchsicht"). Nachbessern und neu rendern, bis kein Punkt der Liste mehr zutrifft.
 7. **Prüfen:** `python tools/publish.py --probelauf --post <post>`.
 8. **Einplanen:** in `plan.json` am Ende der Liste `posts` eine Zeile ergänzen, im selben Format wie die übrigen:
-   `{ "datum": "JJJJ-MM-TT", "post": "<post>", "freigabe": true }`
+   `{ "datum": "JJJJ-MM-TT", "post": "<post>", "freigabe": true, "erstellt": "JJJJ-MM-TTTHH:MM" }`
+   `datum` ist der Tag der Veröffentlichung, `erstellt` der Zeitpunkt jetzt (Berliner Zeit). Die Liste bleibt nach `datum` sortiert.
    In `themen.json` beim Thema `"post": "<post>"` eintragen (neues Thema: Eintrag ergänzen).
 9. **Übertragen:**
    ```powershell
@@ -54,10 +56,14 @@ Die Posts sind damit vorab freigegeben: Niemand sieht sie vor der Veröffentlich
    python tools/publish.py --probelauf --post <post>
    ```
    Schlägt das direkt nach dem Übertragen fehl, zwei Minuten später einmal wiederholen.
-10. **Kontrolle des Vortags:** Steht der gestern fällige Post in `veroeffentlicht.json`, einmal als Carousel und einmal mit `"art": "reel"`? Liegt für den neuen Post nach einigen Minuten `out/<post>/reel.mp4` im Repository (`git pull`, sonst `gh run list --workflow schaubild-reel.yml --limit 3`)? Wenn nicht: `gh run list --workflow schaubild.yml --limit 6` und `gh run view <id> --log-failed`, Ursache in den Bericht. Verpasste Posts werden nicht nachgeholt und nicht umdatiert.
+10. **Kontrolle des Vortags:** Steht der gestern fällige Post in `veroeffentlicht.json`, einmal als Carousel, einmal mit `"art": "reel"` und einmal mit `"art": "story"`? Liegt für den neuen Post nach einigen Minuten `out/<post>/reel.mp4` im Repository (`git pull`, sonst `gh run list --workflow schaubild-reel.yml --limit 3`)? Wenn nicht: `gh run list --workflow schaubild.yml --limit 6` und `gh run view <id> --log-failed`, Ursache in den Bericht. Verpasste Posts werden nicht nachgeholt und nicht umdatiert.
 11. **Bericht** (Abschnitt „Bericht").
 
 ## Thema
+
+Lies zuerst `themenwahl.md`, falls die Datei existiert: Dort hält der Wochenbericht fest, welche Themen und Aufmacher bei den Lesern besser ankommen. Diese Hinweise gehen der Reihenfolge der Liste vor, nie den Regeln für Zahlen und Quellen.
+
+**Themen mit festem Tag.** Prüfe für jeden Tag, den du füllst, ob an genau diesem Tag eine amtliche Zahl neu erscheint (Veröffentlichungskalender von Destatis und der anderen Behörden) oder sich etwas jährt, das zu einer Reihe passt. Wenn ja und die Reihe ist sauber zu holen, bekommt dieser Tag dieses Thema; in `themen.json` beim Eintrag zusätzlich `"anlass": "<Tag und Grund>"` vermerken. Sonst gilt die Liste.
 
 `themen.json` ist die Liste; Einträge mit `"post"` sind erschienen oder eingeplant. Nimm das erste offene Thema, für das die Quelle erreichbar ist und eine Reihe über mindestens 15 Jahre liefert. Kein Thema erscheint zweimal; ein verwandtes Thema frühestens nach sieben Tagen (nicht zweimal hintereinander Energie, nicht zweimal hintereinander Bevölkerung). Sind weniger als 15 Themen offen, die Liste im selben Lauf um mindestens 30 ergänzen (gleiche Felder, Bereiche mischen).
 
@@ -106,6 +112,7 @@ Ein Blatt, das nur den dunklen Grund zeigt, bedeutet einen Fehler im Post (meist
 4. Die Kurve füllt die Fläche (passendes `ymax`, bei Reihen fern der Null auch `ymin`; dann steht im `fuss`, dass die Achse nicht bei null beginnt).
 5. Auf Blättern mit Balken und Kennzahlen bricht kein Wert um.
 6. Die Leiste zeigt „Nr. <nr>", das Thema und „nn/nn" vollständig.
+   Story: Im Bild `story.jpg` steht die goldene Zeile „Neu im Profil …" vollständig über der roten Linie und überdeckt nichts.
    Reel-Vorschau: Die Frage hat höchstens zwei Zeilen; Zahl, Überschrift und Satz im letzten Bild überlappen sich nicht und enden über der roten Linie; die Marken im Diagramm sind lesbar.
 7. Jede Zahl auf den Blättern und in der Bildunterschrift stimmt mit der Reihe überein; Zahlen widersprechen sich nicht.
 8. Rechtschreibung, Umlaute, Gedankenstriche (–) stimmen.
@@ -123,7 +130,7 @@ Nach drei Runden ohne sauberes Ergebnis das betroffene Blatt einfacher aufbauen 
 
 Am Ende eine kurze Nachricht auf Deutsch an den Betreiber, das Wichtigste zuerst:
 
-1. Was erstellt und für welchen Tag eingeplant wurde (Nummer, Thema, die Zahl), oder dass nichts zu tun war.
+1. Warnung, falls der Vorrat unter 3 Tagen liegt. Dann: was erstellt und für welchen Tag eingeplant wurde (Nummer, Thema, die Zahl), oder dass nichts zu tun war, und wie viele der nächsten 7 Tage jetzt belegt sind.
 2. Ob der letzte fällige Post erschienen ist (Link aus `veroeffentlicht.json`), sonst die Ursache.
 3. Welche Angaben vorläufig sind oder nur an einer Stelle stehen.
 4. Nur falls nötig: was der Betreiber selbst tun muss.
