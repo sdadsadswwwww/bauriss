@@ -1,0 +1,24 @@
+{
+  "stand": "2026-11-14T14:59",
+  "konto": {
+    "follower": 1,
+    "beitraege": 2
+  },
+  "medien": [
+    {
+      "post": "001-geburten",
+      "art": "carousel",
+      "datum": "2026-11-14",
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "001-geburten",
+      "art": "reel",
+      "datum": "2026-11-14",
+      "fehler": "(#10) Application does not have permission for this action"
+    }
+  ],
+  "fehler": [
+    "(#10) Application does not have permission for this action"
+  ]
+}
