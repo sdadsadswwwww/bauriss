@@ -1,0 +1,110 @@
+{
+  "nr": "008",
+  "titel": "Kontinentalsperre",
+  "reel": { "frage": "Wer verdient an einer <i>Handelssperre</i>?", "stimmung": "ernst" },
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Buchung Nr. 008 · Berlin 1806",
+      "zahl": "140",
+      "einheit": "Händler",
+      "headline": "auf Helgoland",
+      "spalten": ["Jahr", "Posten", "Zahl"],
+      "zeilen": [
+        { "datum": "1807", "text": "Händler auf Helgoland", "betrag": "4" },
+        { "datum": "bis 1813", "text": "Händler auf Helgoland", "betrag": "140", "akzent": true }
+      ],
+      "stempel": { "umschrift": "KASSENBUCH · GEBUCHT · KASSENBUCH · GEBUCHT ·", "oben": "BERLIN", "mitte": "21. Nov. 1806", "unten": "NR. 008" }
+    },
+    {
+      "typ": "text",
+      "kicker": "21. November 1806 · Das Dekret",
+      "headline": "Ein Kontinent <i>macht dicht</i>",
+      "text": [
+        "Napoleon hat Preußen geschlagen und ist in Berlin eingezogen. Von hier verhängt er am <em>21. November 1806</em> eine Blockade über die Britischen Inseln.",
+        "Handel und Briefverkehr mit England sind verboten. Englische Waren werden beschlagnahmt. Schiffe aus England dürfen keinen Hafen des Festlands anlaufen."
+      ]
+    },
+    {
+      "typ": "journal",
+      "kicker": "1806–1813 · Die Chronik",
+      "headline": "Sieben Jahre <i>Sperre</i>",
+      "spalten": ["Datum", "Was geschieht", "Ort"],
+      "zeilen": [
+        { "datum": "21.11.1806", "text": "Handel mit England verboten", "betrag": "Berlin" },
+        { "datum": "1807", "text": "Briten besetzen die Insel", "betrag": "Helgoland" },
+        { "datum": "05.08.1810", "text": "Hohe Zölle auf Kolonialwaren", "betrag": "Trianon" },
+        { "datum": "Okt. 1810", "text": "Verbrennung befohlen", "betrag": "Fontainebleau" },
+        { "datum": "1813", "text": "Die Sperre bricht zusammen", "betrag": "Europa", "akzent": true }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1807–1813 · Die Insel",
+      "headline": "Die Insel der <i>Schmuggler</i>",
+      "text": ["Die Briten machen Helgoland zum Warenlager vor der Küste. Von dort gelangen Kaffee, Zucker und Baumwolle heimlich aufs Festland."],
+      "punkte": [
+        { "wert": "4", "name": "Händler auf der Insel", "zusatz": "im Jahr 1807" },
+        { "wert": "140", "name": "Händler auf der Insel", "zusatz": "wenige Jahre später" },
+        { "wert": "7", "name": "Jahre Boom", "zusatz": "mit der Sperre endet das Geschäft" }
+      ]
+    },
+    {
+      "typ": "text",
+      "kicker": "1810 · Die Verschärfung",
+      "headline": "Zoll oder <i>Scheiterhaufen</i>",
+      "text": [
+        "Weil der Schmuggel blüht, ändert Napoleon 1810 den Kurs. Kolonialwaren dürfen wieder herein – gegen einen Zoll von bis zu <em>50 Prozent</em> ihres Werts.",
+        "Englische Fabrikwaren dagegen werden öffentlich verbrannt, auch in deutschen Städten."
+      ]
+    },
+    {
+      "typ": "konto",
+      "kicker": "Die Bilanz",
+      "headline": "Wer verliert, <i>wer gewinnt?</i>",
+      "soll": {
+        "titel": "Soll",
+        "wort": "Verlierer",
+        "posten": [
+          { "name": "Hafenstädte", "zusatz": "Der Seehandel bricht ein, Hamburg leidet schwer." },
+          { "name": "Verbraucher", "zusatz": "Kaffee, Zucker und Baumwolle werden teuer." }
+        ]
+      },
+      "haben": {
+        "titel": "Haben",
+        "wort": "Gewinner",
+        "posten": [
+          { "name": "Schmuggler", "zusatz": "Das Risiko ist hoch, der Gewinn auch." },
+          { "name": "Rübenzucker", "zusatz": "Ohne Rohrzucker aus Übersee lohnt sich <em>Zucker aus Rüben</em>." }
+        ]
+      }
+    },
+    {
+      "typ": "text",
+      "kicker": "1810–1813 · Das Ende",
+      "headline": "England findet <i>neue Märkte</i>",
+      "text": [
+        "Großbritannien verkauft seine Waren nun verstärkt nach Nord- und Südamerika. In die Knie zwingt die Sperre das Land nicht.",
+        "Um die Küsten zu kontrollieren, schlägt Napoleon Holland und die Hansestädte seinem Reich zu. <em>1813</em>, mit seiner Niederlage, fällt die Sperre."
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Eine Buchung <i>pro Werktag</i>",
+      "text": ["Wirtschaftsgeschichte in Zahlen: Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?"]
+    }
+  ],
+  "quellen": [
+    "Deutschlandfunk: Boykott zum eigenen Schaden",
+    "Historisches Lexikon der Schweiz: Kontinentalsperre",
+    "Gesellschaft für Schleswig-Holsteinische Geschichte: Kontinentalsperre",
+    "E. Heckscher: The Continental System",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Am 21. November 1806 verbietet Napoleon von Berlin aus jeden Handel mit England. Auf Helgoland steigt die Zahl der Händler danach von 4 auf 140.",
+    "Die Insel wird zum Warenlager der Schmuggler. 1810 folgen Zölle von bis zu 50 Prozent auf Kolonialwaren und die Verbrennung englischer Waren.",
+    "Welche Ware hättest du am meisten vermisst?"
+  ],
+  "hashtags": ["kontinentalsperre", "napoleon", "helgoland", "schmuggel", "1806", "wirtschaftsgeschichte", "geschichte", "hansestädte"]
+}
