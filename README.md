@@ -1,6 +1,6 @@
 # Kassenbuch
 
-Automatisierter Instagram-Kanal `@das.kassenbuch`: Wirtschaftsgeschichte in Zahlen, eine Buchung pro Werktag. Jeder Post ist ein Carousel, das vollständig aus Code gerendert wird. Schwesterprojekt von Bauriss, gleiche Pipeline.
+Automatisierter Instagram-Kanal `@das.kassenbuch`: Wirtschaftsgeschichte in Zahlen, eine Buchung pro Tag. Jeder Post erscheint zweimal: mittags als Reel mit Musik, abends als Carousel. Beides wird vollständig aus Code gerendert. Schwesterprojekt von Bauriss, gleiche Pipeline.
 
 ## Ablauf
 
@@ -11,6 +11,18 @@ Automatisierter Instagram-Kanal `@das.kassenbuch`: Wirtschaftsgeschichte in Zahl
 5. **Veröffentlichen:** GitHub Actions ruft täglich `tools/publish.py` auf. Das Skript postet den für heute freigegebenen Post und trägt ihn in `veroeffentlicht.json` ein.
 
 Ohne Freigabe wird nichts veröffentlicht. Ein Post, der in `veroeffentlicht.json` steht, wird nie ein zweites Mal gepostet.
+
+## Reel mit Musik
+
+Zu jedem Post gibt es ein Reel von 11 Sekunden (1080 x 1920): Eine Frage steht oben, die Zahl des Titelblatts zählt hoch, die Journalzeilen schreiben sich ein, am Ende fällt der Stempel. Es erscheint um 12:30 Uhr am Tag des Posts, das Carousel um 18:15 Uhr.
+
+- **Feld im Post:** `"reel": { "frage": "Was kostet es, <i>Kaiser</i> zu werden?", "stimmung": "neutral" }`. Ohne `frage` steht der Titel des Posts oben.
+- **Musik:** `tools/musik.py` berechnet sie aus Sinustönen, passend zum Ablauf des Reels. Keine fremden Aufnahmen, keine Lizenzen. Tonart und Muster hängen von der Nummer des Posts ab. `stimmung`: `neutral` (löst nach Dur auf, Glockenakkord beim Stempel) oder `ernst` (Moll, ruhiger, ohne Glocken) für Krieg, Not, Krisen und heikle Themen.
+- **Vorschau lokal:** `python tools/reel.py --nur-vorschau <post>` schreibt `out/<post>/reel-vorschau.jpg` (vier Standbilder).
+- **Video:** Der Workflow „Reel rendern" (`reel.yml`) rendert bei jedem neuen Post `out/<post>/reel.mp4` mit ffmpeg und legt es ins Repository. Lokal entsteht das Video nur, wenn ffmpeg installiert ist.
+- **Veröffentlichen:** `tools/publish.py --reel`; `--reel-test` lässt Instagram das Video nur verarbeiten. Fehlt das Video, erscheint an dem Tag nur das Carousel.
+
+Über die Schnittstelle erlaubt Instagram Musik nur in Videos. Deshalb hat das Carousel selbst keinen Ton.
 
 ## Blatt-Typen
 
@@ -34,11 +46,13 @@ In Überschriften setzt `<i>…</i>` ein Wort rot und kursiv, im Text hebt `<em>
 | `posts/` | Inhalte der Posts |
 | `render/` | Vorlage: `slide.html`, `style.css`, `render.js` (Blätter, Guillochen, Stempel, Kurve) |
 | `tools/render.py` | Rendert Posts über einen lokalen Chrome ohne Fenster |
-| `tools/publish.py` | Veröffentlicht über die Instagram Graph API |
+| `tools/publish.py` | Veröffentlicht Carousel und Reel über die Instagram Graph API |
+| `render/reel.html`, `tools/reel.py` | Vorlage und Renderer des Reels |
+| `tools/musik.py` | Erzeugt die Musik zum Reel |
 | `plan.json` | Zeitplan und Freigaben |
 | `veroeffentlicht.json` | Protokoll, wird vom Workflow geschrieben |
 | `config.json` | Konto, Konto-ID, API-Version |
-| `.github/workflows/` | Zeitplan (`post.yml`) |
+| `.github/workflows/` | Zeitplan und Veröffentlichung (`post.yml`), Video rendern (`reel.yml`) |
 
 ## Einrichtung
 

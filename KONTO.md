@@ -52,3 +52,8 @@ Offen, nur durch dich:
 - Vorrat: 002 bis 005 für den 15. bis 18.11.
 - Neue Beiträge entstehen automatisch: Eine geplante Aufgabe in der Claude-App (täglich gegen 10:13 Uhr) erstellt den Beitrag für den Folgetag, rendert ihn und trägt ihn mit `"freigabe": true` in `plan.json` ein. Eine Freigabe durch den Nutzer findet nicht mehr statt (so gewünscht am 14.11.).
 - Die Aufgabe läuft nur, wenn die App geöffnet ist. Sonst wird sie beim nächsten Start nachgeholt.
+
+## Reels mit Musik ab 14.11.2026
+
+- Zu jedem Beitrag erscheint um 12:30 Uhr ein Reel mit Musik, das Carousel bleibt um 18:15 Uhr. Entscheidung des Nutzers vom 14.11.: Reel zusätzlich, Musik selbst aus Code erzeugt.
+- Technik und Felder stehen in `README.md`, Abschnitt „Reel mit Musik". Die geplante Aufgabe legt das Feld `reel` bei jedem neuen Beitrag an.
