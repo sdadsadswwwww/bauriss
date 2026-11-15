@@ -1,0 +1,113 @@
+{
+  "nr": "009",
+  "titel": "Demontagestopp 1949",
+  "reel": { "frage": "Wie viele Werke rettet <i>eine Unterschrift</i>?", "stimmung": "neutral" },
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Buchung Nr. 009 · Petersberg 1949",
+      "zahl": "18",
+      "einheit": "Werke",
+      "headline": "bleiben stehen",
+      "spalten": ["Datum", "Posten", "Zahl"],
+      "zeilen": [
+        { "datum": "Okt. 1947", "text": "Betriebe auf der Abbauliste", "betrag": "682" },
+        { "datum": "22.11.1949", "text": "Werke von der Liste gestrichen", "betrag": "18", "akzent": true }
+      ],
+      "stempel": { "umschrift": "KASSENBUCH · GEBUCHT · KASSENBUCH · GEBUCHT ·", "oben": "PETERSBERG", "mitte": "22. Nov. 1949", "unten": "NR. 009" }
+    },
+    {
+      "typ": "text",
+      "kicker": "1945–1947 · Die Ausgangslage",
+      "headline": "Fabriken als <i>Reparation</i>",
+      "text": [
+        "Nach dem Zweiten Weltkrieg bauen die Siegermächte in Deutschland Fabriken ab. Die Anlagen sollen Kriegsschäden ausgleichen. Zugleich soll das Land nie wieder Krieg führen können.",
+        "Ein Plan von 1946 sieht den Abbau von <em>1.800 Fabriken</em> vor. Die Westmächte kürzen ihre Listen bald."
+      ]
+    },
+    {
+      "typ": "journal",
+      "kicker": "1946–1949 · Die Chronik",
+      "headline": "Die Liste wird <i>kürzer</i>",
+      "spalten": ["Datum", "Was geschieht", "Wo"],
+      "zeilen": [
+        { "datum": "März 1946", "text": "Plan: 1.800 Fabriken", "betrag": "Kontrollrat" },
+        { "datum": "Okt. 1947", "text": "Liste mit 682 Betrieben", "betrag": "Bizone" },
+        { "datum": "Nov. 1947", "text": "Liste mit 236 Betrieben", "betrag": "franz. Zone" },
+        { "datum": "April 1949", "text": "Die Listen werden gekürzt", "betrag": "Washington" },
+        { "datum": "22.11.1949", "text": "18 Werke gestrichen", "betrag": "Petersberg", "akzent": true }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "22. November 1949 · Das Abkommen",
+      "headline": "Was Adenauer <i>erreicht</i>",
+      "text": ["Auf dem Petersberg bei Bonn einigt sich der Kanzler mit den drei Hohen Kommissaren. Der Abbau endet sofort in:"],
+      "punkte": [
+        { "wert": "11", "name": "Treibstoff- und Gummiwerken", "zusatz": "darunter Bayer in Leverkusen und Hüls" },
+        { "wert": "7", "name": "Stahlwerken", "zusatz": "darunter die August-Thyssen-Hütte in Duisburg" },
+        { "wert": "18", "name": "Werken insgesamt", "zusatz": "dazu Berlin und, mit Ausnahmen, Ludwigshafen" }
+      ]
+    },
+    {
+      "typ": "konto",
+      "kicker": "Der Handel",
+      "headline": "Was es <i>kostet</i>",
+      "soll": {
+        "titel": "Soll",
+        "wort": "Bonn gibt",
+        "posten": [
+          { "name": "Ruhrbehörde", "zusatz": "Bonn tritt der Kontrolle über Kohle und Stahl an der Ruhr bei." },
+          { "name": "Keine Armee", "zusatz": "Das Land bleibt entmilitarisiert." }
+        ]
+      },
+      "haben": {
+        "titel": "Haben",
+        "wort": "Bonn bekommt",
+        "posten": [
+          { "name": "Demontagestopp", "zusatz": "18 Werke bleiben, die Arbeit geht weiter." },
+          { "name": "Schiffbau", "zusatz": "Werften dürfen wieder <em>Hochseeschiffe</em> bauen." }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Auflagen",
+      "headline": "Frei, aber <i>gedeckelt</i>",
+      "text": ["Das Abkommen lockert die Regeln, es hebt sie nicht auf:"],
+      "punkte": [
+        { "wert": "11,1", "name": "Millionen Tonnen Stahl", "zusatz": "mehr darf das Land im Jahr nicht erzeugen" },
+        { "wert": "7.200", "name": "Tonnen je Tanker", "zusatz": "größer darf kein neuer Tanker sein" },
+        { "wert": "6", "name": "Spezialschiffe", "zusatz": "dürfen bis Ende 1950 größer und schneller sein" }
+      ],
+      "fuss": "Die Reichswerke in Salzgitter stehen weiter auf der Liste."
+    },
+    {
+      "typ": "text",
+      "kicker": "24./25. November 1949 · Der Streit",
+      "headline": "„Kanzler der <i>Alliierten</i>“",
+      "text": [
+        "Im Bundestag verteidigt Adenauer das Abkommen. Die SPD lehnt den Beitritt zur Ruhrbehörde ab. Ihr Vorsitzender Kurt Schumacher nennt ihn in der Nacht <em>„Bundeskanzler der Alliierten“</em> und wird für 20 Sitzungstage ausgeschlossen.",
+        "Die letzten Demontagen im Westen enden erst <em>1951</em>. Aus der Ruhrkontrolle wird kurz darauf die Montanunion."
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Eine Buchung <i>pro Werktag</i>",
+      "text": ["Wirtschaftsgeschichte in Zahlen: Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?"]
+    }
+  ],
+  "quellen": [
+    "GHDI: Petersberger Abkommen (22. November 1949)",
+    "Konrad-Adenauer-Stiftung: Das Petersberger Abkommen",
+    "bpb: Wirtschaftsentwicklung von 1945 bis 1949",
+    "HdG LeMO: Demontagen",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Am 22. November 1949 unterschreibt Konrad Adenauer auf dem Petersberg bei Bonn ein Abkommen mit den drei Westmächten. 18 große Werke werden von der Demontageliste gestrichen.",
+    "Dafür tritt die Bundesrepublik der Ruhrbehörde bei, die Kohle und Stahl an der Ruhr kontrolliert. Die Stahlerzeugung bleibt auf 11,1 Millionen Tonnen im Jahr begrenzt.",
+    "Hättest du unterschrieben?"
+  ],
+  "hashtags": ["petersbergerabkommen", "demontage", "adenauer", "1949", "nachkriegszeit", "wirtschaftsgeschichte", "deutschegeschichte", "ruhrgebiet"]
+}
