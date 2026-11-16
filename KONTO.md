@@ -8,7 +8,7 @@ Das ist der Teil, den nur du machen kannst. Abschnitt 1 dauert etwa 15 Minuten u
 
 | Feld | Wert |
 |---|---|
-| Benutzername | `der.bauriss` |
+| Benutzername | `der_bauriss` |
 | Ausweichnamen, falls vergeben | `bauriss.de`, `bauriss.blatt` |
 | Name | `Bauriss · Bauwerke erklärt` |
 | Kategorie | Bildung |
@@ -47,8 +47,8 @@ Meta bietet bei neuen Apps nur noch die „API-Einrichtung mit Unified Login" an
 2. **Business-Portfolio:** Die Seite verlangt zuerst ein Business-Portfolio. Im Feld „Business-Portfolio" ein vorhandenes wählen oder ein neues anlegen (Name `Bauriss`). Falls sich dort keines anlegen lässt: https://business.facebook.com öffnen, Portfolio erstellen, zurück zur App und es auswählen.
 3. **Konfiguration:** Unter „Configure your app" auf „Neue Konfiguration erstellen". In der Vorschau prüfen, dass die Berechtigung `instagram_content_publish` dabei ist. Wenn nach der Gültigkeit des Tokens gefragt wird: „läuft nie ab". Dann „Use this configuration".
 4. **Redirect URL:** `https://github.com/sdadsadswwwww/kassenbuch` eintragen und speichern. Das Feld ist Pflicht, die Adresse wird für uns nie aufgerufen.
-5. **Tester einladen:** Unter „Zugriffsschlüssel generieren" auf „Konto hinzufügen" und `der.bauriss` als Instagram-Tester einladen.
-6. **Einladung annehmen:** Auf instagram.com (im Browser, nicht in der App) als `der.bauriss`: Einstellungen → Website-Berechtigungen → Apps und Websites → Tester-Einladungen → annehmen.
+5. **Tester einladen:** Unter „Zugriffsschlüssel generieren" auf „Konto hinzufügen" und `der_bauriss` als Instagram-Tester einladen.
+6. **Einladung annehmen:** Auf instagram.com (im Browser, nicht in der App) als `der_bauriss`: Einstellungen → Website-Berechtigungen → Apps und Websites → Tester-Einladungen → annehmen.
 7. **Token erzeugen:** Zurück im App-Dashboard neben dem Konto auf „Token generieren", Anmeldung abschließen, Token kopieren. Es wird nur einmal angezeigt.
 8. **Bei GitHub eintragen:** https://github.com/sdadsadswwwww/kassenbuch/settings/secrets/actions/new öffnen. Name: `IG_ACCESS_TOKEN`, Wert: das Token. „Add secret".
 
@@ -60,7 +60,7 @@ Ein zweites Token für die automatische Verlängerung (`GH_PAT`) ist vorerst nic
 
 | Schritt | Wer |
 |---|---|
-| Prüfen, dass das Token das Konto `der.bauriss` freigibt | ich |
+| Prüfen, dass das Token das Konto `der_bauriss` freigibt | ich |
 | Ersten Wochenbatch freigeben | du |
 
 ## Hinweise

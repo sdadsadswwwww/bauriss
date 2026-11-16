@@ -4,7 +4,7 @@ Diese Datei ist die Arbeitsanweisung für den Lauf, der den Vorrat an Posts auff
 
 ## Auftrag
 
-Der Betreiber des Kanals `@der.bauriss` hat am 14.11.2026 ein Playbook für alle seine Kanäle festgelegt (es ersetzt den Auftrag vom 13.11.2026 mit dem Enddatum 13.11.2029):
+Der Betreiber des Kanals `@der_bauriss` hat am 14.11.2026 ein Playbook für alle seine Kanäle festgelegt (es ersetzt den Auftrag vom 13.11.2026 mit dem Enddatum 13.11.2029):
 
 - **Jeden Tag** erscheint ein Bauwerk, Montag bis Sonntag, ohne Enddatum, in drei Formen: um 12:15 Uhr das **Reel** mit Musik, um 18:00 Uhr der **Post** (Carousel), fünf Minuten später die **Story** (Titelblatt mit Hinweis auf den Post).
 - **Vorrat:** Für die nächsten **7 Tage** ab morgen soll immer ein fertiger Post im Plan stehen. **Jeder Lauf prüft beim Start, ob der Vorrat bei 7 Tagen steht, und erstellt im selben Lauf alles, was fehlt** (Regel des Betreibers vom 14.11.2026; keine Obergrenze je Lauf). `tools/automatik.py stand` rechnet das aus.
