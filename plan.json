@@ -3,17 +3,17 @@
   "reel": "zusaetzlich",
   "reel_uhrzeit": "12:15",
   "posts": [
-    { "datum": "2026-11-17", "post": "001-eiffelturm", "freigabe": true },
-    { "datum": "2026-11-18", "post": "002-alter-elbtunnel", "freigabe": true },
-    { "datum": "2026-11-19", "post": "003-wuppertaler-schwebebahn", "freigabe": true },
-    { "datum": "2026-11-20", "post": "004-frauenkirche-dresden", "freigabe": true },
-    { "datum": "2026-11-21", "post": "005-koelner-dom", "freigabe": true },
-    { "datum": "2026-11-22", "post": "006-elbphilharmonie", "freigabe": true },
-    { "datum": "2026-11-23", "post": "007-berliner-fernsehturm", "freigabe": true },
-    { "datum": "2026-11-24", "post": "008-goeltzschtalbruecke", "freigabe": true },
-    { "datum": "2026-11-25", "post": "009-gotthard-basistunnel", "freigabe": true },
-    { "datum": "2026-11-26", "post": "010-schloss-neuschwanstein", "freigabe": true },
-    { "datum": "2026-11-27", "post": "011-nord-ostsee-kanal", "freigabe": true, "erstellt": "2026-11-15T05:10" },
-    { "datum": "2026-11-28", "post": "012-sagrada-familia", "freigabe": true, "erstellt": "2026-11-16T18:36" }
+    { "datum": "2026-11-13", "post": "001-eiffelturm", "freigabe": true },
+    { "datum": "2026-11-14", "post": "002-alter-elbtunnel", "freigabe": true },
+    { "datum": "2026-11-15", "post": "003-wuppertaler-schwebebahn", "freigabe": true },
+    { "datum": "2026-11-16", "post": "004-frauenkirche-dresden", "freigabe": true },
+    { "datum": "2026-11-17", "post": "005-koelner-dom", "freigabe": true },
+    { "datum": "2026-11-18", "post": "006-elbphilharmonie", "freigabe": true },
+    { "datum": "2026-11-19", "post": "007-berliner-fernsehturm", "freigabe": true },
+    { "datum": "2026-11-20", "post": "008-goeltzschtalbruecke", "freigabe": true },
+    { "datum": "2026-11-21", "post": "009-gotthard-basistunnel", "freigabe": true },
+    { "datum": "2026-11-22", "post": "010-schloss-neuschwanstein", "freigabe": true },
+    { "datum": "2026-11-23", "post": "011-nord-ostsee-kanal", "freigabe": true, "erstellt": "2026-11-15T05:10" },
+    { "datum": "2026-11-24", "post": "012-sagrada-familia", "freigabe": true, "erstellt": "2026-11-16T18:36" }
   ]
 }
