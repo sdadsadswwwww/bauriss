@@ -31,8 +31,8 @@ jobs:
           python tools/vorrat.py
       - name: Sichern
         run: |
-          git config user.name "kassenbuch-bot"
-          git config user.email "kassenbuch-bot@users.noreply.github.com"
+          git config user.name "bauriss-bot"
+          git config user.email "bauriss-bot@users.noreply.github.com"
           git add vorrat.csv
           git diff --cached --quiet && exit 0
           git commit -m "Vorrat gezählt am $(date -u +%F)"

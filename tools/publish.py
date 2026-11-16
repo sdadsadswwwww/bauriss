@@ -270,7 +270,7 @@ def finde_konto(basis, token, config):
         # Die Liste kann leer bleiben, obwohl die App Zugriff hat. Dann das Konto direkt über seine ID ansprechen.
         direkt = frage_still(f'{basis}/{config["konto_id"]}?fields=username', token)
         if direkt.get('username'):
-            # Maßgeblich ist die ID: Das Konto hieß früher das.kassenbuch und heißt seit 16.11.2026 der_bauriss.
+            # Maßgeblich ist die ID: Bei einer Umbenennung des Kontos bleibt die ID gleich.
             konto_id = config['konto_id']
             if direkt['username'] != konto:
                 print(f'Hinweis: Das Konto heißt bei Instagram @{direkt["username"]}, in config.json steht @{konto}.')
