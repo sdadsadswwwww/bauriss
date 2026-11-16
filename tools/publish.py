@@ -3,8 +3,11 @@
 Aufruf:  python tools/publish.py               regulärer Lauf aus dem Zeitplan
          python tools/publish.py --probelauf   prüft alles, ruft die Schnittstelle aber nicht auf
          python tools/publish.py --zugang      prüft nur, ob das Token das Konto freigibt
-         python tools/publish.py --reel        veröffentlicht das Reel zum heute fälligen Post (out/<post>/reel.mp4)
+         python tools/publish.py --reel        veröffentlicht das Reel mit Musik zum heute fälligen Post
          python tools/publish.py --reel-test   lässt Instagram das Reel abrufen und verarbeiten, veröffentlicht aber nichts
+
+plan.json legt mit "reel" fest, was erscheint: "aus" nur das Carousel, "zusaetzlich" Carousel und Reel
+(Reel zur "reel_uhrzeit"), "statt" nur das Reel zur üblichen Uhrzeit.
 
 Umgebung:
   IG_ACCESS_TOKEN   Systemnutzer-Zugriffstoken aus Metas App-Dashboard (GitHub-Secret)
@@ -89,66 +92,88 @@ def pruefe_post(name, post, caption):
     return bilder
 
 
-def baue_reel_caption(post):
-    # Bewusst ein anderer Text als beim Carousel: Der Schutz vor Doppelposts vergleicht die Texte.
-    teile = [post['caption'][0], 'Die ganze Geschichte mit allen Zahlen steht im Beitrag auf dem Profil.']
+def reel_modus(plan):
+    """"aus": nur das Carousel. "zusaetzlich": Carousel und Reel mit Musik. "statt": nur das Reel."""
+    modus = plan.get('reel', 'aus')
+    if modus not in ('aus', 'zusaetzlich', 'statt'):
+        sys.exit(f'plan.json: "reel" ist "{modus}", erlaubt sind "aus", "zusaetzlich" und "statt".')
+    return modus
+
+
+def baue_reel_caption(post, modus):
+    if modus == 'statt':
+        return baue_caption(post)
+    # Neben dem Carousel bewusst ein anderer Text: Der Schutz vor Doppelposts vergleicht die Texte.
+    teile = [post['caption'][0], 'Alle Blätter zum Durchblättern stehen als Beitrag auf dem Profil.']
     teile.append('Quellen: ' + ' · '.join(post['quellen']))
     teile.append(' '.join('#' + h for h in post['hashtags']))
     return '\n\n'.join(teile)
 
 
-def pruefe_videoadresse(adresse):
-    try:
-        with urllib.request.urlopen(urllib.request.Request(adresse, method='HEAD'), timeout=30) as antwort:
-            laenge = int(antwort.headers.get('Content-Length') or 0)
-    except (urllib.error.URLError, OSError) as fehler:
-        sys.exit(f'Video nicht öffentlich erreichbar: {adresse} ({fehler})')
-    if not laenge:
-        sys.exit(f'Video ist leer: {adresse}')
+def finde_video(name, config):
+    """Sucht das Reel zu einem Post und liefert (Adresse, Größe in Bytes) oder (None, 0).
+
+    Neue Videos liegen in der Ablage auf GitHub (Release "medien"), damit das Repository nicht wächst;
+    die ersten Videos (Posts 003 bis 010) lagen noch als out/<post>/reel.mp4 im Repository.
+    """
+    repo = config.get('repository')
+    kandidaten = []
+    if repo:
+        kandidaten.append(f'https://github.com/{repo}/releases/download/medien/{name}.mp4')
+    if (ROOT / 'out' / name / 'reel.mp4').exists():
+        basis = os.environ.get('IMAGE_BASE_URL') or f'https://raw.githubusercontent.com/{repo}/main'
+        kandidaten.append(f'{basis.rstrip("/")}/out/{name}/reel.mp4')
+    for adresse in kandidaten:
+        try:
+            # Nur das erste Byte anfordern: genügt, um Erreichbarkeit und Größe zu erfahren
+            req = urllib.request.Request(adresse, headers={'Range': 'bytes=0-0'})
+            with urllib.request.urlopen(req, timeout=30) as antwort:
+                bereich = antwort.headers.get('Content-Range', '')
+                groesse = int(bereich.rsplit('/', 1)[-1]) if '/' in bereich else int(antwort.headers.get('Content-Length') or 0)
+        except (urllib.error.URLError, OSError, ValueError):
+            continue
+        if groesse > 100_000:
+            return adresse, groesse
+    return None, 0
 
 
-def reel_lauf(args, config, plan, protokoll, jetzt, heute):
-    """Veröffentlicht das Reel zum heute fälligen Post. Fehlt das Video, passiert nichts."""
+def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
+    """Veröffentlicht das Reel zum heute fälligen Post. Liefert False, wenn es kein Video gibt."""
     erledigt = {e['post'] for e in protokoll if e.get('art') == 'reel' and not e.get('wiederholung')}
     treffer = [e for e in plan['posts'] if (e['post'] == args.post if args.post else e['datum'] == heute)]
-    offen = [e for e in treffer if e['post'] not in erledigt]
     if not treffer:
         print(f'Für {heute} ist kein Post geplant, also auch kein Reel.')
-        return
+        return True
+    offen = [e for e in treffer if e['post'] not in erledigt]
     if not offen and not args.reel_test:
         print('Das Reel zum fälligen Post ist bereits veröffentlicht.')
-        return
+        return True
     eintrag = (offen or treffer)[0]
     name = eintrag['post']
     post = lies(ROOT / 'posts' / f'{name}.json')
-    video = ROOT / 'out' / name / 'reel.mp4'
-    if not video.exists():
-        print(f'Zu {name} gibt es kein Reel (out/{name}/reel.mp4 fehlt). Nichts veröffentlicht.')
-        return
-    caption = baue_reel_caption(post)
+    adresse, groesse = finde_video(name, config)
+    if not adresse:
+        print(f'Zu {name} gibt es kein Reel: weder in der Ablage auf GitHub noch im Repository.')
+        return False
+    caption = baue_reel_caption(post, modus)
     if len(caption) > 2200:
         sys.exit(f'Text zu lang: {len(caption)} Zeichen, erlaubt sind 2200.')
-    print(f'Fällig: Reel zu {name}, {video.stat().st_size / 1e6:.1f} MB, Text {len(caption)} Zeichen.')
+    print(f'Fällig: Reel zu {name}, {groesse / 1e6:.1f} MB, Text {len(caption)} Zeichen.')
+    print(f'Video: {adresse}')
     if not eintrag.get('freigabe'):
         print('Nicht freigegeben ("freigabe": false in plan.json). Nichts veröffentlicht.')
-        return
-    uhrzeit = eintrag.get('reel_uhrzeit', plan.get('reel_uhrzeit', '12:30'))
+        return True
+    uhrzeit = eintrag.get(uhrzeit_feld, plan.get(uhrzeit_feld, '12:00'))
     if not (args.probelauf or args.reel_test) and jetzt.strftime('%H:%M') < uhrzeit:
-        print(f'Es ist {jetzt:%H:%M} Uhr, geplant ist {uhrzeit} Uhr. Der nächste Lauf übernimmt.')
-        return
+        print(f'Es ist {jetzt:%H:%M} Uhr, das Reel ist für {uhrzeit} Uhr geplant. Der nächste Lauf übernimmt.')
+        return True
 
-    bild_basis = os.environ.get('IMAGE_BASE_URL', '').rstrip('/')
-    adresse = f'{bild_basis}/out/{name}/reel.mp4'
     if args.probelauf:
-        if bild_basis:
-            pruefe_videoadresse(adresse)
-            print('Das Video ist öffentlich erreichbar.')
-        print('Probelauf: alles in Ordnung, nichts veröffentlicht.')
-        return
+        print('Probelauf: Das Video ist öffentlich erreichbar, nichts veröffentlicht.')
+        return True
     token = os.environ.get('IG_ACCESS_TOKEN')
-    if not token or not bild_basis:
-        sys.exit('IG_ACCESS_TOKEN und IMAGE_BASE_URL müssen gesetzt sein.')
-    pruefe_videoadresse(adresse)
+    if not token:
+        sys.exit('IG_ACCESS_TOKEN muss gesetzt sein.')
     basis = f'{HOST}/{config["api_version"]}'
     konto_id = finde_konto(basis, token, config)
 
@@ -158,20 +183,21 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute):
         print('Ein Reel mit identischem Text ist bereits online. Nur das Protokoll wird ergänzt.')
         medium, link = schon_da['id'], schon_da.get('permalink')
     else:
-        # thumb_offset: Titelbild aus dem Schluss des Videos, wenn Zahl und Kurve vollständig zu sehen sind
+        # thumb_offset: Vorschaubild aus dem Titelblatt (steht die ersten 4,5 Sekunden)
         container = anfrage('POST', f'{basis}/{konto_id}/media', token,
                             {'media_type': 'REELS', 'video_url': adresse, 'caption': caption,
-                             'share_to_feed': 'true', 'thumb_offset': '9500'})['id']
+                             'share_to_feed': 'true', 'thumb_offset': '2000'})['id']
         warte_bis_fertig(basis, container, token)
         if args.reel_test:
             print('Reel-Test: Instagram hat das Video abgerufen und verarbeitet. Nichts veröffentlicht.')
-            return
+            return True
         medium = anfrage('POST', f'{basis}/{konto_id}/media_publish', token, {'creation_id': container})['id']
         link = anfrage('GET', f'{basis}/{medium}?fields=permalink', token).get('permalink')
         print(f'Reel veröffentlicht: {link}')
 
     protokoll.append({'post': name, 'art': 'reel', 'datum': heute, 'zeit': jetzt.strftime('%H:%M'), 'media_id': medium, 'permalink': link})
     PROTOKOLL.write_text(json.dumps(protokoll, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    return True
 
 
 def pruefe_bildadressen(adressen):
@@ -243,8 +269,11 @@ def finde_konto(basis, token, config):
     if not konto_id and config.get('konto_id'):
         # Die Liste kann leer bleiben, obwohl die App Zugriff hat. Dann das Konto direkt über seine ID ansprechen.
         direkt = frage_still(f'{basis}/{config["konto_id"]}?fields=username', token)
-        if direkt.get('username') == konto:
+        if direkt.get('username'):
+            # Maßgeblich ist die ID: Das Konto hieß früher das.kassenbuch und übernimmt den Namen der.bauriss.
             konto_id = config['konto_id']
+            if direkt['username'] != konto:
+                print(f'Hinweis: Das Konto heißt bei Instagram @{direkt["username"]}, in config.json steht @{konto}.')
         else:
             print(f'Direkter Zugriff auf Konto-ID {config["konto_id"]}: {direkt.get("fehler") or "anderes Konto"}')
     if not konto_id:
@@ -276,8 +305,8 @@ def main(argv=None):
     parser.add_argument('--probelauf', action='store_true', help='nur prüfen, nichts veröffentlichen')
     parser.add_argument('--post', help='diesen Post statt des heute fälligen nehmen')
     parser.add_argument('--zugang', action='store_true', help='nur prüfen, ob das Token das Konto freigibt')
-    parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen')
-    parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram verarbeiten lassen, ohne zu veröffentlichen')
+    parser.add_argument('--reel', action='store_true', help='das Reel zum fälligen Post veröffentlichen (nur wenn plan.json "reel": "zusaetzlich" setzt)')
+    parser.add_argument('--reel-test', action='store_true', help='Reel von Instagram abrufen und verarbeiten lassen, ohne zu veröffentlichen')
     args = parser.parse_args(argv)
 
     config = lies(ROOT / 'config.json')
@@ -301,11 +330,26 @@ def main(argv=None):
     jetzt = berlin_jetzt()
     heute = jetzt.date().isoformat()
 
-    if args.reel or args.reel_test:
-        reel_lauf(args, config, plan, protokoll, jetzt, heute)
+    modus = reel_modus(plan)
+    if args.reel_test:
+        reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, 'reel_uhrzeit')
         return
+    if args.reel:
+        if modus == 'zusaetzlich':
+            reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, 'reel_uhrzeit')
+        else:
+            print(f'plan.json: "reel" steht auf "{modus}". Ein zusätzliches Reel gibt es nur bei "zusaetzlich".')
+        return
+    if modus == 'statt':
+        # Das Reel ersetzt das Carousel und geht zur selben Uhrzeit raus. Fehlt das Video, erscheint das Carousel.
+        if reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, 'uhrzeit'):
+            return
+        print('Ersatzweise wird das Carousel veröffentlicht.')
 
-    eintrag = waehle_eintrag(plan, {e['post'] for e in protokoll if not e.get('art') and not e.get('wiederholung')}, heute, args.post)
+    # Als erledigt gilt ein Tag, sobald Carousel oder (im Modus "statt") Reel draußen ist
+    erledigt = {e['post'] for e in protokoll
+                if not e.get('wiederholung') and e.get('art') != 'story' and (modus == 'statt' or e.get('art') != 'reel')}
+    eintrag = waehle_eintrag(plan, erledigt, heute, args.post)
     if not eintrag:
         return
     name = eintrag['post']

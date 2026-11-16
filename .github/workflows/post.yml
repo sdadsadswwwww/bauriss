@@ -1,18 +1,18 @@
 name: Post veröffentlichen
 
-# Playbook vom 14.11.2026: Reel um 12:30 Uhr, Carousel um 18:15 Uhr, Story fünf Minuten danach
+# Playbook vom 14.11.2026: Reel um 12:15 Uhr, Carousel um 18:00 Uhr, Story fünf Minuten danach
 # (deutsche Zeit, Uhrzeiten stehen in plan.json). tools/zeitplan.py arbeitet ab, was fällig ist, und postet nie doppelt.
 on:
   schedule:
     # Angaben in UTC. GitHub startet Läufe oft 40 bis 55 Minuten zu spät. Deshalb startet jeder Lauf eine Stunde
     # vor der Uhrzeit und wartet im Job "warten" bis dahin. Je zwei Zeilen: die erste greift im Sommer, die zweite im Winter.
-    - cron: '30 9 * * *'
-    - cron: '30 10 * * *'
-    - cron: '15 15 * * *'
-    - cron: '15 16 * * *'
+    - cron: '15 9 * * *'
+    - cron: '15 10 * * *'
+    - cron: '0 15 * * *'
+    - cron: '0 16 * * *'
     # Reserve am Abend, falls ein Lauf scheitert oder ein Post erst spät fertig wird
-    - cron: '45 17 * * *'
-    - cron: '45 20 * * *'
+    - cron: '30 17 * * *'
+    - cron: '30 20 * * *'
   workflow_dispatch:
     inputs:
       probelauf:
@@ -36,7 +36,7 @@ on:
         type: boolean
         default: false
       post:
-        description: Dieser Post statt des heute fälligen (z. B. 002-kaiserwahl-1519)
+        description: Dieser Post statt des heute fälligen (z. B. 005-koelner-dom)
         type: string
         default: ''
 
@@ -61,7 +61,7 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     concurrency:
-      group: post
+      group: bauriss-post
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
@@ -91,8 +91,8 @@ jobs:
       - name: Protokoll sichern
         if: always()
         run: |
-          git config user.name "kassenbuch-bot"
-          git config user.email "kassenbuch-bot@users.noreply.github.com"
+          git config user.name "bauriss-bot"
+          git config user.email "bauriss-bot@users.noreply.github.com"
           git add veroeffentlicht.json
           git diff --cached --quiet && exit 0
           git commit -m "Veröffentlicht am $(date -u +%F)"

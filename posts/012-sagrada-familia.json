@@ -1,0 +1,134 @@
+{
+  "nr": "012",
+  "titel": "Sagrada Família",
+  "zeichnungen": "sagrada",
+  "slides": [
+    {
+      "typ": "cover",
+      "kicker": "Bauwerk Nr. 012",
+      "zahl": "144",
+      "headline": "Jahre im Bau",
+      "text": ["Seit 1882 wächst die Sagrada Família in Barcelona. Sie hat den höchsten Kirchturm der Welt – fertig ist sie nicht."],
+      "figur": { "fn": "sagradaAnsicht" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1882 · Der Anfang",
+      "headline": "Die Idee eines Buchhändlers",
+      "text": [
+        "Der Buchhändler Josep Maria Bocabella will eine Sühnekirche, bezahlt nur aus Spenden. Sein Verein kauft 1881 einen Häuserblock am Rand von Barcelona.",
+        "Am 19. März 1882 liegt der Grundstein. 1883 übernimmt Antoni Gaudí – und plant <em>fünf Schiffe und 18 Türme</em>."
+      ],
+      "figur": { "fn": "sagradaGrundriss" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Plan",
+      "headline": "18 Türme mit Namen",
+      "text": [
+        "Zwölf Türme stehen für die Apostel, vier für die Evangelisten, einer für Maria. Der höchste in der Mitte gehört Jesus Christus.",
+        "14 der 18 Türme sind gebaut. Es fehlen die vier der Hauptfassade (Stand 2026)."
+      ],
+      "figur": { "fn": "sagradaAnsicht", "namen": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1926 · Der Einschnitt",
+      "headline": "Gaudí sieht nur einen Turm",
+      "text": [
+        "1925 wird der erste Turm fertig. Am 10. Juni 1926 stirbt Gaudí, drei Tage nachdem ihn eine Straßenbahn erfasst hat.",
+        "1936, im Bürgerkrieg, wird seine Werkstatt verwüstet: Pläne verbrennen, Gipsmodelle zerbrechen. Mitarbeiter setzen sie später wieder zusammen."
+      ],
+      "figur": { "fn": "sagrada1926" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "Der lange Weg nach oben",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1875,
+        "bis": 2032,
+        "phasen": [
+          { "von": 1882.2, "bis": 1936, "art": "bau" },
+          { "von": 1936, "bis": 1950, "art": "pause" },
+          { "von": 1950, "bis": 2026.9, "art": "bau", "text": "144 Jahre Baustelle" }
+        ],
+        "marken": [
+          { "jahr": 1882.2, "label": "1882", "text": "Grundstein" },
+          { "jahr": 1926.4, "label": "1926", "text": "Gaudí stirbt" },
+          { "jahr": 1936, "text": "Bürgerkrieg: Pläne verbrennen" },
+          { "jahr": 2010.85, "label": "2010", "text": "Weihe durch Papst Benedikt XVI." },
+          { "jahr": 2026.1, "label": "2026", "text": "Christusturm vollendet: 172,5 m" }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2026 · Der Rekord",
+      "headline": "Elf Meter über Ulm",
+      "text": [
+        "Am 20. Februar 2026 bekommt der Christusturm sein Kreuz: 17 Meter hoch, gebaut in Gundelfingen bei Ulm. Mit 172,5 Metern ist er der <em>höchste Kirchturm der Welt</em>.",
+        "Das Ulmer Münster hält den Titel zuvor 135 Jahre lang."
+      ],
+      "figur": { "fn": "sagradaVergleich" }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Die Besucher bezahlen den Bau",
+      "text": ["Gebaut wird bis heute nur mit <em>Spenden und Eintrittsgeldern</em> – so hat es schon der Gründer festgelegt. Öffentliches Geld fließt nicht."],
+      "punkte": [
+        { "wert": "130 Mio.", "name": "Euro Einnahmen im Jahr", "zusatz": "2024 und 2025, je nach Quelle 130 bis 134,5 Millionen" },
+        { "wert": "4,9 Mio.", "name": "Besucher im Jahr", "zusatz": "Stand 2025; nur 11 Prozent kommen aus Spanien" },
+        { "wert": "374 Mio.", "name": "Euro bis zur Vollendung", "zusatz": "Schätzung von 2019 für die restlichen Arbeiten" }
+      ]
+    },
+    {
+      "typ": "balken",
+      "kicker": "2019 · Die Pointe",
+      "headline": "137 Jahre ohne Baugenehmigung",
+      "text": ["Im Juni 2019 erhält die Baustelle zum ersten Mal eine Baugenehmigung. Bis dahin wird ohne gebaut. Die Stadt Barcelona lässt sich das bezahlen:"],
+      "balken": [
+        { "wert": 36, "anzeige": "36 Mio. €", "name": "Für das Viertel", "zusatz": "Ausbau des Nahverkehrs und Sanierung der Nebenstraßen" },
+        { "wert": 4.6, "anzeige": "4,6 Mio. €", "name": "Gebühr für die Genehmigung", "zusatz": "gültig bis 2026", "akzent": true }
+      ],
+      "fuss": "Fertig werden soll die Kirche um das Jahr 2035."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Sagrada Família", "sagradafamilia.org", "tagesschau.de", "domradio.de (dpa)", "Abruf 11/2026"],
+  "caption": [
+    "Seit 1882 wird in Barcelona an der Sagrada Família gebaut. Seit Februar 2026 ist ihr Hauptturm 172,5 Meter hoch – der höchste Kirchturm der Welt.",
+    "Bezahlt wird der Bau nur aus Spenden und Eintrittsgeldern. Eine Baugenehmigung bekam er erst 2019.",
+    "Warst du schon einmal dort?"
+  ],
+  "hashtags": ["sagradafamilia", "gaudi", "barcelona", "basilika", "baugeschichte", "architektur", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Baubeginn 1882, Grundstein am 19. März 1882; daraus 144 Jahre bis 2026", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://sagradafamilia.org/en/history-of-the-temple", "https://www.tagesschau.de/ausland/europa/papst-basilika-sagrada-familia-100.html"], "hinweis": "144 Jahre = 2026 − 1882; dpa nennt dieselbe Zahl (domradio.de, 09.06.2019)" },
+    { "angabe": "Christusturm 172,5 m, höchster Kirchturm der Welt; Kreuz aufgesetzt am 20. Februar 2026", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://sagradafamilia.org/en/history-of-the-temple", "https://www.tagesschau.de/ausland/europa/papst-basilika-sagrada-familia-100.html", "https://www.br.de/nachrichten/deutschland-welt/papst-weiht-turm-der-sagrada-familia-ein-mit-kreuz-aus-bayern,VMADBtv"] },
+    { "angabe": "Ulmer Münster 161,5 m, vollendet 1890, 135 Jahre lang höchster Kirchturm; rund elf Meter Unterschied", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://katholisch.de/artikel/68978-nach-sagrada-familia-weltrekord-ulm-touristik-aenderte-druckwerke", "https://taz.de/Segrada-Familia-in-Barcelona/!6125814"], "hinweis": "genau 161,53 m, gerundet; den Rekord verlor Ulm schon am 30. Oktober 2025 (162,91 m), deshalb nennt das Blatt kein Datum für den Rekord" },
+    { "angabe": "Kölner Dom 157 m, Türme vollendet 1880", "quellen": ["https://de.wikipedia.org/wiki/K%C3%B6lner_Dom"], "hinweis": "nur eine Quelle; genau 157,22 m, gerundet" },
+    { "angabe": "Kreuz 17 m hoch, gefertigt von Gartner in Gundelfingen, in der Nähe von Ulm", "quellen": ["https://www.br.de/nachrichten/deutschland-welt/papst-weiht-turm-der-sagrada-familia-ein-mit-kreuz-aus-bayern,VMADBtv", "https://www.swr.de/swraktuell/baden-wuerttemberg/ulm/papst-weiht-sagrada-familia-muenster-turm-weltrekord-100.html"] },
+    { "angabe": "Josep Maria Bocabella, Buchhändler; Sühnekirche aus Spenden; Bauplatz 1881 gekauft, ein ganzer Häuserblock im damals unbebauten Eixample", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://www.herder.de/cig/cig-ausgaben/archiv/2020/23-2020/die-ewige-baustelle"] },
+    { "angabe": "Gaudí übernimmt 1883", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://sagradafamilia.org/en/history-of-the-temple"] },
+    { "angabe": "Grundriss: lateinisches Kreuz, fünf Schiffe, 90 m lang, 45 m breit (Hauptschiff 15 m, vier Seitenschiffe je 7,5 m), Querhaus 60 m lang und 30 m breit", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia"], "hinweis": "Maße nur aus einer Quelle; die Länge von 90 m nennt auch der NDR (Glaubenssachen, 06/2026)" },
+    { "angabe": "18 Türme: 12 Apostel, 4 Evangelisten (je 135 m), Maria (138 m), Jesus Christus (172,5 m)", "quellen": ["https://sagradafamilia.org/documents/20142/1000561/Booklet_10.pdf/d5c2d0df-43ce-b6d2-0b51-103d5718820e", "https://www.britannica.com/topic/Sagrada-Familia"], "hinweis": "Für den Marienturm nennt der deutsche Wikipedia-Artikel 125 m, das ZDF 140 m; verwendet ist die Angabe der Bauherrin (138 m), die auch Britannica nennt. Die Höhen der Aposteltürme weichen je nach Quelle ab und stehen deshalb nicht auf dem Blatt." },
+    { "angabe": "14 der 18 Türme gebaut, es fehlen die vier der Glorienfassade (Hauptfassade)", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://gaudi.museum/en/discover-gaudi/sagrada-familia/history"], "hinweis": "gerechnet aus Wikipedia: 8 Aposteltürme (2010), Maria (2021), 4 Evangelisten (2022/2023), Jesus (2026)" },
+    { "angabe": "1925 Barnabas-Turm fertig, der einzige zu Gaudís Lebzeiten", "quellen": ["https://sagradafamilia.org/en/history-of-the-temple", "https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia"] },
+    { "angabe": "Gaudí stirbt am 10. Juni 1926, drei Tage nach einem Straßenbahnunfall", "quellen": ["https://www.swr.de/swraktuell/baden-wuerttemberg/ulm/papst-weiht-sagrada-familia-muenster-turm-weltrekord-100.html", "https://katholisch.de/artikel/19371-nach-136-jahren-barcelona-erteilt-sagrada-familia-baugenehmigung"] },
+    { "angabe": "1936 im Bürgerkrieg: Werkstatt zerstört, Pläne verbrannt, Gipsmodelle zerschlagen; später aus Trümmern und Fotos rekonstruiert; Bau ab 1950 fortgesetzt", "quellen": ["https://sagradafamilia.org/en/history-of-the-temple", "https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://www.ndr.de/kultur/sendungen/glaubenssachen/manuskript-200.pdf"] },
+    { "angabe": "Weihe durch Papst Benedikt XVI. am 7. November 2010", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://www.herder.de/cig/cig-ausgaben/archiv/2020/23-2020/die-ewige-baustelle"] },
+    { "angabe": "Finanzierung ausschließlich aus Spenden und Eintrittsgeldern, kein öffentliches Geld", "quellen": ["https://www.domradio.de/artikel/sagrada-familia-erhaelt-offizielle-baugenehmigung", "https://sagradafamilia.org/en/detalle/-/asset_publisher/7JWibz9G2KUY/content/la-sagrada-familia-ha-rebut-4-707-641-visitants-el-2023", "https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia"] },
+    { "angabe": "Einnahmen 130 bis 134,5 Millionen Euro im Jahr (2024 und 2025)", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://taz.de/Segrada-Familia-in-Barcelona/!6125814", "https://evangelische-zeitung.de/kirche-sagrada-familia-in-barcelona-feiert-besucherrekord"], "hinweis": "Quellen weichen ab: Wikipedia 130 Mio. (2024), taz fast 134 Mio. (2024), KNA 134,5 Mio. (2025); groß steht die untere, gerundete Zahl" },
+    { "angabe": "4,9 Millionen Besucher 2025; 11 Prozent aus Spanien", "quellen": ["https://evangelische-zeitung.de/kirche-sagrada-familia-in-barcelona-feiert-besucherrekord", "https://www.br.de/nachrichten/deutschland-welt/papst-weiht-turm-der-sagrada-familia-ein-mit-kreuz-aus-bayern,VMADBtv"], "hinweis": "BR: fast fünf Millionen; der Anteil aus Spanien steht nur bei KNA (für 2024 auch in Wikipedia)" },
+    { "angabe": "2019 veranschlagt: weitere 374 Millionen Euro bis zur Vollendung", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://www.domradio.de/artikel/sagrada-familia-erhaelt-offizielle-baugenehmigung"] },
+    { "angabe": "Baugenehmigung im Juni 2019 nach 137 Jahren, Gebühr 4,6 Millionen Euro, gültig bis 2026", "quellen": ["https://www.domradio.de/artikel/sagrada-familia-erhaelt-offizielle-baugenehmigung", "https://www.dw.com/de/bauarbeiten-an-sagrada-familia-erstmals-legal/a-49119764", "https://www.herder.de/cig/cig-ausgaben/archiv/2020/23-2020/die-ewige-baustelle"] },
+    { "angabe": "36 Millionen Euro an die Stadt für Nahverkehr und Nebenstraßen", "quellen": ["https://www.domradio.de/artikel/sagrada-familia-erhaelt-offizielle-baugenehmigung", "https://katholisch.de/artikel/19371-nach-136-jahren-barcelona-erteilt-sagrada-familia-baugenehmigung"] },
+    { "angabe": "Fertigstellung etwa 2035", "quellen": ["https://de.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia", "https://www.eap-magazin.de/Nachricht/Sagrada-Fam%C3%ADlia%3A-Vollendung-des-Christusturms.html"], "hinweis": "tagesschau.de: in den 2030er-Jahren" }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "nr": "011",
+  "titel": "Nord-Ostsee-Kanal",
+  "zeichnungen": "nordostseekanal",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 011",
+      "zahl": "98",
+      "headline": "Kilometer von Meer zu Meer",
+      "text": ["Seit 1895 verbindet der Nord-Ostsee-Kanal die Elbe mit der Kieler Förde. Er erspart Schiffen den Weg um Dänemark."],
+      "figur": { "fn": "nokKarte" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Problem",
+      "headline": "Der Umweg um Skagen",
+      "text": [
+        "Wer von der Nordsee in die Ostsee will, muss um Jütland herum, durch Skagerrak und Kattegat. Im Skagerrak stranden damals rund 200 Schiffe im Jahr.",
+        "Der Kanal kürzt den Weg im Schnitt um <em>250 Seemeilen</em>, rund 460 Kilometer."
+      ],
+      "figur": { "fn": "nokUmweg" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Für die Flotte",
+      "headline": "42 Meter unter jeder Brücke",
+      "text": [
+        "Reichskanzler Bismarck will den Kanal für die Marine: Kriegsschiffe sollen zwischen Nord- und Ostsee wechseln, ohne dänische Gewässer zu befahren.",
+        "Die Marine verlangt <em>42 Meter</em> Durchfahrtshöhe. So hoch sind die Kanalbrücken bis heute."
+      ],
+      "figur": { "fn": "nokBruecke" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1887–1895 · Der Bau",
+      "headline": "80 Millionen Kubikmeter Erde",
+      "text": [
+        "Bis zu 8900 Arbeiter heben eine Rinne quer durch Schleswig-Holstein aus – von Hand und mit Eimerkettenbaggern, die auf Schienen fahren.",
+        "Der erste Kanal ist <em>67 Meter</em> breit und neun Meter tief."
+      ],
+      "figur": { "fn": "nokProfil" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Schleusen",
+      "headline": "Ein Kanal ohne Gefälle",
+      "text": ["Der Wasserstand ist im ganzen Kanal gleich. Schleusen braucht er trotzdem, <em>an beiden Enden</em>: In Brunsbüttel halten sie Ebbe und Flut draußen, in Kiel den Windstau der Ostsee."],
+      "figur": { "fn": "nokSchleusen" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "Acht Jahre, pünktlich fertig",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1885,
+        "bis": 1896.5,
+        "phasen": [
+          { "von": 1887.42, "bis": 1895.47, "art": "bau" }
+        ],
+        "marken": [
+          { "jahr": 1886.2, "label": "1886", "text": "Gesetz zum Kanalbau" },
+          { "jahr": 1887.42, "label": "1887", "text": "Grundstein am 3. Juni" },
+          { "jahr": 1892.5, "label": "1892", "text": "bis zu 8900 Arbeiter" },
+          { "jahr": 1895.47, "label": "1895", "text": "Eröffnung im Juni" }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Rechnung",
+      "headline": "Wer hat bezahlt?",
+      "text": ["Das Gesetz von 1886 veranschlagt <em>156 Millionen Mark</em>. Dabei bleibt es: Der Bau wird nicht teurer als geplant."],
+      "punkte": [
+        { "wert": "106 Mio.", "name": "Mark vom Reich", "zusatz": "über eine Anleihe, also auf Kredit" },
+        { "wert": "50 Mio.", "name": "Mark von Preußen", "zusatz": "im Voraus, so verlangt es das Gesetz" },
+        { "wert": "3,30 Mark", "name": "Schichtlohn eines Erdarbeiters", "zusatz": "nach Angabe der heutigen Kanalverwaltung" }
+      ],
+      "fuss": "1902 kommt die Schaumweinsteuer: Sie soll Flotte und Kanalausbau mitfinanzieren."
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Ab 1907 · Der Ausbau",
+      "headline": "Schon bald zu klein",
+      "text": [
+        "Für die neuen Schlachtschiffe ist der Kanal zu eng. Von 1907 bis 1914 wird er auf 102 Meter verbreitert – für 242 Millionen Mark, mehr als der ganze Neubau.",
+        "Heute ist er bis zu <em>162 Meter</em> breit und die meistbefahrene künstliche Seeschifffahrtsstraße der Welt."
+      ],
+      "figur": { "fn": "nokProfil", "heute": true }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Nord-Ostsee-Kanal", "WSA Nord-Ostsee-Kanal", "Gesellschaft für Schleswig-Holsteinische Geschichte", "NDR", "Abruf 11/2026"],
+  "caption": [
+    "98 Kilometer quer durch Schleswig-Holstein: Seit 1895 erspart der Nord-Ostsee-Kanal Schiffen den Umweg um Dänemark.",
+    "Gebaut wurde er in acht Jahren für 156 Millionen Mark – pünktlich und im Kostenrahmen. 106 Millionen kamen vom Reich, 50 von Preußen.",
+    "Hast du dort schon einmal Schiffe beobachtet?"
+  ],
+  "hashtags": ["nordostseekanal", "kaiserwilhelmkanal", "kiel", "kanal", "baugeschichte", "ingenieurbau", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Länge 98 Kilometer, von Brunsbüttel (Elbe) nach Kiel-Holtenau (Kieler Förde)", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.schleswig-holstein.de/DE/landesregierung/themen/verkehr-infrastruktur/nord-ostsee-kanal"], "hinweis": "auf ganze Kilometer gekürzt; genaue Angaben je nach Quelle 98,26 km (Wikipedia) bis 98,637 km (WSA)" },
+    { "angabe": "Wegersparnis im Schnitt 250 Seemeilen, rund 460 Kilometer; Fahrt sonst um Jütland durch Skagerrak und Kattegat", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html"], "hinweis": "WSA nennt 463 km, eine Broschüre der GDWS rund 480 km; Blatt nennt gerundet 460" },
+    { "angabe": "Seinerzeit rund 200 Strandungen pro Jahr im Skagerrak", "quellen": ["https://geschichte-s-h.de/sh-von-a-bis-z/n/nord-ostsee-kanal"], "hinweis": "nur eine Quelle (Geschichtsgesellschaft)" },
+    { "angabe": "Bismarck betreibt den Kanal aus militärischen Gründen; Flotte soll zwischen Nord- und Ostsee wechseln, ohne dänische Gewässer zu befahren", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/6_Presse/1_Bilder/_Historische_Bilder/a_Geschichte-des-NOK/Geschichte-des-NOK_node.html"] },
+    { "angabe": "Marine fordert 42 Meter Durchfahrtshöhe; alle Brücken haben heute 42 Meter", "quellen": ["https://geschichte-s-h.de/sh-von-a-bis-z/n/nord-ostsee-kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html"] },
+    { "angabe": "Bis zu 8900 Arbeiter (1892), rund 80 Millionen Kubikmeter Erdreich bewegt, Eimerkettenbagger auf Schienen", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/6_Presse/1_Bilder/_Historische_Bilder/a_Geschichte-des-NOK/Geschichte-des-NOK_node.html"], "hinweis": "WSA nennt mehr als 80 Millionen, Wikipedia circa 80 Millionen; das Jahr 1892 für den Höchststand nur WSA" },
+    { "angabe": "Profil 1895: 67 Meter breit, 9 Meter tief, Sohle 22 Meter", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://geschichte-s-h.de/sh-von-a-bis-z/n/nord-ostsee-kanal"], "hinweis": "die Datenseite des WSA nennt abweichend 58 m Spiegelbreite und 8,5 m Tiefe; 67 m und 9 m stehen bei Wikipedia, GSHG, NDR und auf der Geschichtsseite des WSA" },
+    { "angabe": "Gleicher Wasserstand auf ganzer Länge; Schleusen an beiden Enden gegen die Gezeiten der Nordsee und den Windstau der Ostsee", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.ndr.de/geschichte/schauplaetze/nord-ostsee-kanal-1895-mit-dreitaegiger-feier-eingeweiht,nordostseekanal126.html"] },
+    { "angabe": "Gesetz vom 16. März 1886; Grundsteinlegung am 3. Juni 1887 in Kiel-Holtenau; Eröffnung im Juni 1895 nach acht Jahren, in der vorgegebenen Zeit", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/6_Presse/1_Bilder/_Historische_Bilder/a_Geschichte-des-NOK/Geschichte-des-NOK_node.html", "https://digital.ub.uni-paderborn.de/download/pdf/7514265.pdf"], "hinweis": "Tag der Eröffnung je nach Quelle 20. oder 21. Juni, deshalb nur der Monat; die NDR-Chronik nennt für den Grundstein abweichend den 17. Juni" },
+    { "angabe": "Baukosten 156 Millionen Mark, Kostenrahmen eingehalten", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/6_Presse/1_Bilder/_Historische_Bilder/a_Geschichte-des-NOK/Geschichte-des-NOK_node.html"] },
+    { "angabe": "Preußen gewährt 50 Millionen Mark im Voraus; das Reich beschafft bis zu 106 Millionen Mark im Wege des Kredits (Anleihe)", "quellen": ["https://digital.ub.uni-paderborn.de/download/pdf/7514265.pdf", "https://www.ndr.de/geschichte/schauplaetze/Nord-Ostsee-Kanal-Die-Chronik-einer-Wasserstrasse,nordostseekanal442.html"], "hinweis": "erste Quelle ist der Gesetzestext vom 16. März 1886, abgedruckt bei Loewe 1895; die GSHG schreibt abweichend, Preußen habe die Hauptlast getragen" },
+    { "angabe": "Schichtlohn eines Erdarbeiters 3,30 Mark", "quellen": ["https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html"], "hinweis": "nur eine Quelle (Betreiber); der NDR nennt 30 Pfennig Stundenlohn bei zehn Stunden am Tag" },
+    { "angabe": "Schaumweinsteuer 1902, zur Finanzierung von Flotte und Kanalausbau", "quellen": ["https://www.welt.de/geschichte/article209924401/Bau-des-Nord-Ostsee-Kanals-Seine-Tiefe-bestimmte-die-Groesse-der-Schlachtschiffe.html", "https://www.ndr.de/geschichte/schauplaetze/Nord-Ostsee-Kanal-Die-Chronik-einer-Wasserstrasse,nordostseekanal442.html"] },
+    { "angabe": "Erste Erweiterung 1907–1914 auf 102 Meter Breite und 11 Meter Tiefe für 242 Millionen Mark, teurer als der Neubau; Anlass sind die neuen Schlachtschiffe", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.welt.de/geschichte/article209924401/Bau-des-Nord-Ostsee-Kanals-Seine-Tiefe-bestimmte-die-Groesse-der-Schlachtschiffe.html", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html"], "hinweis": "WSA nennt 102,5 m; Blatt rundet auf 102" },
+    { "angabe": "Heute bis zu 162 Meter breit, Sohle 90 Meter, 11 Meter tief; meistbefahrene künstliche Seeschifffahrtsstraße der Welt", "quellen": ["https://de.wikipedia.org/wiki/Nord-Ostsee-Kanal", "https://www.wsa-nord-ostsee-kanal.wsv.de/Webs/WSA/WSA-Nord-Ostsee-Kanal/DE/1_Wasserstrasse/1_Nord-Ostsee-Kanal/Nord-Ostsee-Kanal_node.html"], "hinweis": "auf der Oststrecke bis Kiel noch 102,5 m, deshalb bis zu" }
+  ]
+}

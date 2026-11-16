@@ -1,6 +1,7 @@
 name: Reel rendern
 
-# Rendert zu jedem geplanten Post das Reel mit Musik (out/<post>/reel.mp4) und legt es ins Repository.
+# Baut zu jedem geplanten Post das Reel mit Musik und legt es in die Ablage auf GitHub (Release "medien").
+# Die Videos stehen bewusst nicht im Repository: Es würde sonst jedes Jahr um mehr als ein Gigabyte wachsen.
 # Das Video entsteht hier, weil dafür ffmpeg nötig ist; veröffentlicht wird es vom Workflow "Post veröffentlichen".
 on:
   push:
@@ -8,13 +9,12 @@ on:
     paths:
       - 'posts/**'
       - 'plan.json'
-      - 'render/reel.html'
       - 'tools/reel.py'
       - 'tools/musik.py'
   workflow_dispatch:
     inputs:
       post:
-        description: Nur dieser Post, auch wenn das Video schon da ist (z. B. 002-kaiserwahl-1519)
+        description: Nur dieser Post, auch wenn das Video schon da ist (z. B. 005-koelner-dom)
         type: string
         default: ''
 
@@ -22,12 +22,14 @@ permissions:
   contents: write
 
 concurrency:
-  group: post
+  group: bauriss-reel
   cancel-in-progress: false
 
 jobs:
   reel:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -41,9 +43,10 @@ jobs:
         env:
           POST: ${{ inputs.post }}
         run: python tools/reel.py ${POST:---fehlende}
-      - name: Sichern
+      - name: Ablegen
         run: |
-          git config user.name "kassenbuch-bot"
-          git config user.email "kassenbuch-bot@users.noreply.github.com"
-          git add out
-          git diff --cached --quiet || (git commit -m "Reel gerendert" && git pull --rebase && git push)
+          ls reels/*.mp4 >/dev/null 2>&1 || { echo "Nichts abzulegen."; exit 0; }
+          gh release view medien >/dev/null 2>&1 || gh release create medien --latest=false \
+            --title "Medien" --notes "Videos zu den geplanten Posts. Dieser Eintrag wird vom Workflow „Reel rendern“ gepflegt; bitte nicht löschen."
+          gh release upload medien reels/*.mp4 --clobber
+      # Die Videos bleiben in der Ablage: Bei leerem Vorrat wiederholt tools/zeitplan.py ältere Beiträge als Reel.

@@ -1,59 +1,70 @@
-# Konto einrichten: Kassenbuch
+# Konten anlegen: Bauriss
 
-Stand 13.11.2026: Das Instagram-Konto `das.kassenbuch` ist registriert. Name und Bio sind eingetragen, das Konto ist ein Creator-Konto (Kategorie Bildung). Offen: Profilbild, Zwei-Faktor-Anmeldung und eigenes Passwort, Repository, Token. Der Name lässt sich laut Meta nur zweimal in 14 Tagen ändern; eine Änderung ist verbraucht.
+Das ist der Teil, den nur du machen kannst. Abschnitt 1 dauert etwa 15 Minuten und geht sofort. Abschnitt 2 machen wir gemeinsam, wenn Abschnitt 1 erledigt ist.
 
-## 1. Profil
+## 1. Jetzt: drei Konten
+
+### Instagram
 
 | Feld | Wert |
 |---|---|
-| Name | `Kassenbuch · Wirtschaftsgeschichte` |
+| Benutzername | `der.bauriss` |
+| Ausweichnamen, falls vergeben | `bauriss.de`, `bauriss.blatt` |
+| Name | `Bauriss · Bauwerke erklärt` |
 | Kategorie | Bildung |
 | Profilbild | `out/profilbild.png` |
 
 Bio:
 
 ```
-Was hat es gekostet? Wer hat bezahlt? Wer hat verdient?
-Wirtschaftsgeschichte in Zahlen – eine Buchung pro Werktag.
+Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?
+Ein Bauwerk pro Werktag, erklärt in Zeichnungen.
 ```
 
-1. Name, Bio und Profilbild eintragen (Profil bearbeiten).
-2. Auf ein professionelles Konto umstellen: Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln → „Creator", Kategorie „Bildung". Ohne diesen Schritt kann keine Schnittstelle posten.
-3. Empfohlen: Zwei-Faktor-Anmeldung einschalten und ein eigenes, starkes Passwort setzen.
+1. Konto registrieren (App oder instagram.com). Nimm eine E-Mail-Adresse, auf die du dauerhaft Zugriff hast, und schalte die Zwei-Faktor-Anmeldung ein.
+2. Benutzername, Name, Bio und Profilbild eintragen.
+3. Auf ein professionelles Konto umstellen: Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln → „Creator", Kategorie „Bildung". Ohne diesen Schritt kann keine Schnittstelle posten.
 
-## 2. Repository
+Wenn du einen der Ausweichnamen nimmst, sag es mir: Der Name steht auf dem letzten Blatt jedes Posts und in `config.json`.
 
-Erledigt: https://github.com/sdadsadswwwww/kassenbuch (öffentlich).
+### GitHub
 
-## 3. Zugang für die Schnittstelle
+Konto auf github.com anlegen, falls du noch keines hast. Dort läuft der Zeitplan.
 
-Stand 14.11.2026:
+### Facebook
 
-- Eigene Meta-App „Kassenbuch" (App-ID 29434390536198421) im Entwicklerkonto, verknüpft mit dem Business-Portfolio „Kassenbuch". Die Verifizierung des Portfolios ist übersprungen; für das eigene Konto ist sie nicht nötig.
-- Login-Konfiguration „Instagram API (Unified Login)" aus Metas Vorlage erstellt (Systemnutzer-Token ohne Ablauf). Die Vorlage enthält neben `instagram_basic` und `instagram_content_publish` auch Werbe-, Nachrichten- und Kommentarrechte, die die Pipeline nicht nutzt.
-- Weiterleitungs-URL: die Adresse des Repositorys (Pflichtfeld, wird nie aufgerufen).
-- `das.kassenbuch` ist als Instagram-Tester eingeladen, die Einladung ist angenommen. Konto-ID: 17841479858387731 (steht in `config.json`).
+Ein persönliches Facebook-Konto, falls du noch keines hast. Eine Facebook-Seite brauchst du nicht. Das Konto ist nur der Schlüssel zu Metas Entwicklerbereich, in dem das Zugriffstoken für Instagram entsteht.
 
-Offen, nur durch dich:
+## 2. Zugang für die Schnittstelle
 
-1. Im App-Dashboard unter Anwendungsfälle → Instagram API → „API setup with Unified login" → Abschnitt 2 neben `das.kassenbuch` auf „Token generieren". Anmeldung abschließen, Token kopieren. Es wird nur einmal angezeigt und gehört nicht in den Chat.
-2. Unter https://github.com/sdadsadswwwww/kassenbuch/settings/secrets/actions/new als `IG_ACCESS_TOKEN` speichern.
-3. Danach den Workflow „Post veröffentlichen" mit Haken bei „Nur das Zugriffstoken prüfen" laufen lassen.
+Stand 11.11.2026: Abschnitt 1 ist erledigt, das Projekt liegt unter https://github.com/sdadsadswwwww/kassenbuch, die Meta-App „Bauriss" ist angelegt und das Produkt „Instagram" hinzugefügt.
 
-## Nachtrag 14.11.2026
+Es fehlt ein Schlüssel: das Zugriffstoken. Du trägst es selbst bei GitHub ein; es gehört nicht in den Chat.
 
-- Token erzeugt und als Secret `IG_ACCESS_TOKEN` im Repository gespeichert.
-- Zugangstest über den Workflow bestanden: ein zugewiesenes Instagram-Konto, Veröffentlichungslimit für die Konto-ID abrufbar. Gepostet wurde dabei nichts.
-- Erster echter Post: Montag, 16.11.2026, 18:15 Uhr.
+Meta bietet bei neuen Apps nur noch die „API-Einrichtung mit Unified Login" an. Die Schritte unten folgen Metas Anleitung vom 27.10.2026; einzelne Beschriftungen können abweichen.
 
-## Betrieb ab 14.11.2026
+1. Im App-Dashboard links „Instagram" aufklappen und „API setup with Unified login" öffnen.
+2. **Business-Portfolio:** Die Seite verlangt zuerst ein Business-Portfolio. Im Feld „Business-Portfolio" ein vorhandenes wählen oder ein neues anlegen (Name `Bauriss`). Falls sich dort keines anlegen lässt: https://business.facebook.com öffnen, Portfolio erstellen, zurück zur App und es auswählen.
+3. **Konfiguration:** Unter „Configure your app" auf „Neue Konfiguration erstellen". In der Vorschau prüfen, dass die Berechtigung `instagram_content_publish` dabei ist. Wenn nach der Gültigkeit des Tokens gefragt wird: „läuft nie ab". Dann „Use this configuration".
+4. **Redirect URL:** `https://github.com/sdadsadswwwww/kassenbuch` eintragen und speichern. Das Feld ist Pflicht, die Adresse wird für uns nie aufgerufen.
+5. **Tester einladen:** Unter „Zugriffsschlüssel generieren" auf „Konto hinzufügen" und `der.bauriss` als Instagram-Tester einladen.
+6. **Einladung annehmen:** Auf instagram.com (im Browser, nicht in der App) als `der.bauriss`: Einstellungen → Website-Berechtigungen → Apps und Websites → Tester-Einladungen → annehmen.
+7. **Token erzeugen:** Zurück im App-Dashboard neben dem Konto auf „Token generieren", Anmeldung abschließen, Token kopieren. Es wird nur einmal angezeigt.
+8. **Bei GitHub eintragen:** https://github.com/sdadsadswwwww/kassenbuch/settings/secrets/actions/new öffnen. Name: `IG_ACCESS_TOKEN`, Wert: das Token. „Add secret".
 
-- Beitrag 001 am 14.11. veröffentlicht. Ab jetzt täglich ein Beitrag um 18:15 Uhr, auch am Wochenende.
-- Vorrat: 002 bis 005 für den 15. bis 18.11.
-- Neue Beiträge entstehen automatisch: Eine geplante Aufgabe in der Claude-App (täglich gegen 10:13 Uhr) erstellt den Beitrag für den Folgetag, rendert ihn und trägt ihn mit `"freigabe": true` in `plan.json` ein. Eine Freigabe durch den Nutzer findet nicht mehr statt (so gewünscht am 14.11.).
-- Die Aufgabe läuft nur, wenn die App geöffnet ist. Sonst wird sie beim nächsten Start nachgeholt.
+Eine App-Prüfung durch Meta ist nicht nötig, solange die App nur dein eigenes Konto bedient.
 
-## Reels mit Musik ab 14.11.2026
+Ein zweites Token für die automatische Verlängerung (`GH_PAT`) ist vorerst nicht nötig. Falls Meta nur ein Token mit Ablaufdatum ausgibt, baue ich die Verlängerung für diese Token-Art nach.
 
-- Zu jedem Beitrag erscheint um 12:30 Uhr ein Reel mit Musik, das Carousel bleibt um 18:15 Uhr. Entscheidung des Nutzers vom 14.11.: Reel zusätzlich, Musik selbst aus Code erzeugt.
-- Technik und Felder stehen in `README.md`, Abschnitt „Reel mit Musik". Die geplante Aufgabe legt das Feld `reel` bei jedem neuen Beitrag an.
+### Danach
+
+| Schritt | Wer |
+|---|---|
+| Prüfen, dass das Token das Konto `der.bauriss` freigibt | ich |
+| Ersten Wochenbatch freigeben | du |
+
+## Hinweise
+
+- Die drei Benutzernamen waren am 11.11.2026 ohne Anmeldung nicht als Profil auffindbar. Ob sie wirklich frei sind, zeigt erst das Registrierungsformular.
+- `@bauriss` ohne Zusatz gehört bereits einer Privatperson.
+- Das Repository muss öffentlich sein, weil Instagram die Bilder über ihre Adresse abholt. Tokens liegen getrennt davon in den GitHub-Secrets und sind nicht einsehbar.

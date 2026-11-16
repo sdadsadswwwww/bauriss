@@ -1,228 +1,201 @@
-"""Rendert zu einem Post ein Reel (1080 x 1920, 30 Bilder je Sekunde) nach out/<post>/.
+"""Baut zu einem Post ein Reel mit Musik: die Blätter nacheinander als Video (1080 x 1920), dazu das Klangbett.
 
-Aufruf:  python tools/reel.py 001-hyperinflation-1923            Vorschau und, wenn ffmpeg da ist, das Video
-         python tools/reel.py --fehlende              alle Posts aus plan.json, denen das Video noch fehlt
-         python tools/reel.py --nur-vorschau <post>   nur out/<post>/reel-vorschau.jpg (vier Standbilder)
+Aufruf:  python tools/reel.py 010-schloss-neuschwanstein   ein Post
+         python tools/reel.py --fehlende                    alle geplanten Posts ab heute, denen das Video fehlt
 
-Die Seite render/reel.html läuft nicht von selbst ab: Dieses Skript stellt über die Fernsteuerung
-von Chrome für jedes Bild die Zeit ein und nimmt es auf. Das Video entsteht nur, wenn ffmpeg
-gefunden wird (Umgebungsvariable FFMPEG oder im Suchpfad); auf GitHub erledigt das der Workflow
-"Reel rendern". Die Vorschau braucht kein ffmpeg.
-Jedes Video bekommt Musik aus tools/musik.py (Stimmung über das Feld reel.stimmung im Post).
+Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an, nicht zu Bildern.
+Deshalb entsteht aus den fertigen Blättern (out/<post>/NN.jpg) ein Video reels/<post>.mp4, das der
+Workflow in die Ablage auf GitHub hochlädt (Release "medien", nicht im Repository, damit es klein bleibt):
+jedes Blatt steht so lange, wie man zum Lesen braucht, dazwischen eine kurze Überblendung.
+Die Musik berechnet tools/musik.py passend zur Länge des Videos.
+
+Das Video braucht ffmpeg (Umgebungsvariable FFMPEG oder im Suchpfad). Auf GitHub erledigt das der
+Workflow "Reel rendern" nach jedem Übertragen eines Posts; ohne ffmpeg zeigt das Skript nur den Ablauf.
 """
 import argparse
-import base64
-import io
+import datetime as dt
 import json
 import os
+import re
 import shutil
-import socket
-import struct
 import subprocess
 import sys
 import tempfile
-import time
-import urllib.request
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render import CONFIG, ROOT, finde_chrome, starte_server  # noqa: E402
 import musik  # noqa: E402
+import publish  # noqa: E402
 
-BREITE, HOEHE, BILDER_JE_SEKUNDE = 1080, 1920, 30
-VORSCHAU_ZEITEN = (0.0, 4.0, 7.8, 10.5)
+ROOT = publish.ROOT
+ABLAGE = ROOT / 'reels'                    # fertige Videos; der Workflow lädt sie in die Ablage auf GitHub hoch
+BREITE, HOEHE, BLATT_HOEHE = 1080, 1920, 1350
+RAND = (HOEHE - BLATT_HOEHE) // 2          # blauer Streifen über und unter dem Blatt
+BILDER_JE_SEKUNDE = 30
+BLENDE = 0.5                               # Sekunden Überblendung zwischen zwei Blättern
+GRUND, NETZ, NETZ_STARK = (18, 64, 111), (29, 73, 118), (40, 82, 125)   # Farben wie in render/style.css
 
 
-class Fernsteuerung:
-    """Kleinster WebSocket-Client für das DevTools-Protokoll von Chrome, nur mit der Standardbibliothek."""
+def texte(wert, schluessel=''):
+    """Alle Texte eines Blatts, um die Lesezeit zu schätzen."""
+    if isinstance(wert, str):
+        return [] if schluessel in ('typ', 'fn', 'art', 'form', 'stand') else [re.sub(r'<[^>]+>', '', wert)]
+    if isinstance(wert, dict):
+        return [t for k, v in wert.items() for t in texte(v, k)]
+    if isinstance(wert, list):
+        return [t for v in wert for t in texte(v, schluessel)]
+    return []
 
-    def __init__(self, adresse):
-        rest = adresse[len('ws://'):]
-        host_port, _, pfad = rest.partition('/')
-        host, _, port = host_port.partition(':')
-        self.sock = socket.create_connection((host, int(port)), timeout=120)
-        schluessel = base64.b64encode(os.urandom(16)).decode()
-        self.sock.sendall((f'GET /{pfad} HTTP/1.1\r\nHost: {host_port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\n'
-                           f'Sec-WebSocket-Key: {schluessel}\r\nSec-WebSocket-Version: 13\r\n\r\n').encode())
-        self.puffer = b''
-        kopf = b''
-        while b'\r\n\r\n' not in kopf:
-            kopf += self._lies_roh(1)
-        if b' 101 ' not in kopf.split(b'\r\n', 1)[0]:
-            sys.exit('Chrome hat die Verbindung zur Fernsteuerung abgelehnt.')
-        self.nr = 0
 
-    def _lies_roh(self, anzahl):
-        teile = []
-        while anzahl:
-            stueck = self.sock.recv(min(anzahl, 1 << 20))
-            if not stueck:
-                sys.exit('Chrome hat die Verbindung geschlossen.')
-            teile.append(stueck)
-            anzahl -= len(stueck)
-        return b''.join(teile)
-
-    def _sende(self, text):
-        daten = text.encode('utf-8')
-        maske = os.urandom(4)
-        kopf = bytes([0x81])
-        if len(daten) < 126:
-            kopf += bytes([0x80 | len(daten)])
-        elif len(daten) < 65536:
-            kopf += bytes([0x80 | 126]) + struct.pack('>H', len(daten))
+def standzeiten(post):
+    """Sekunden je Blatt: Titel und Schluss kurz, sonst nach Textmenge (etwa 30 Zeichen je Sekunde)."""
+    zeiten = []
+    for sl in post['slides']:
+        if sl['typ'] in ('cover', 'cover-breit'):
+            zeiten.append(4.5)
+        elif sl['typ'] == 'outro':
+            zeiten.append(4.0)
         else:
-            kopf += bytes([0x80 | 127]) + struct.pack('>Q', len(daten))
-        self.sock.sendall(kopf + maske + bytes(b ^ maske[i % 4] for i, b in enumerate(daten)))
-
-    def _empfange(self):
-        nachricht = b''
-        while True:
-            b1, b2 = self._lies_roh(2)
-            laenge = b2 & 0x7F
-            if laenge == 126:
-                laenge = struct.unpack('>H', self._lies_roh(2))[0]
-            elif laenge == 127:
-                laenge = struct.unpack('>Q', self._lies_roh(8))[0]
-            daten = self._lies_roh(laenge)
-            art = b1 & 0x0F
-            if art == 8:
-                sys.exit('Chrome hat die Fernsteuerung beendet.')
-            if art in (9, 10):   # Ping und Pong: nichts zu tun
-                continue
-            nachricht += daten
-            if b1 & 0x80:
-                return nachricht.decode('utf-8')
-
-    def befehl(self, methode, **parameter):
-        self.nr += 1
-        self._sende(json.dumps({'id': self.nr, 'method': methode, 'params': parameter}))
-        while True:
-            antwort = json.loads(self._empfange())
-            if antwort.get('id') == self.nr:
-                if 'error' in antwort:
-                    sys.exit(f'{methode}: {antwort["error"].get("message")}')
-                return antwort.get('result', {})
-
-    def werte(self, ausdruck):
-        ergebnis = self.befehl('Runtime.evaluate', expression=ausdruck, returnByValue=True)
-        if 'exceptionDetails' in ergebnis:
-            sys.exit(f'Fehler in der Seite: {ergebnis["exceptionDetails"].get("text")}')
-        return ergebnis.get('result', {}).get('value')
+            zeichen = sum(len(t) for t in texte(sl))
+            zeiten.append(round(min(8.5, max(5.0, 2.5 + zeichen / 30)), 1))
+    return zeiten
 
 
-def starte_chrome(chrome, profil):
-    prozess = subprocess.Popen(
-        [chrome, '--headless=new', *(['--no-sandbox'] if os.environ.get('CI') else []), '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--disable-extensions',
-         '--force-device-scale-factor=1', f'--user-data-dir={profil}', '--remote-debugging-port=0',
-         f'--window-size={BREITE},{HOEHE}', 'about:blank'],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    hinweis = Path(profil) / 'DevToolsActivePort'
-    for _ in range(150):
-        if hinweis.exists() and hinweis.read_text().strip():
-            break
-        time.sleep(0.2)
-    else:
-        prozess.kill()
-        sys.exit('Chrome hat die Fernsteuerung nicht geöffnet.')
-    port = hinweis.read_text().split()[0]
-    with urllib.request.urlopen(f'http://127.0.0.1:{port}/json', timeout=30) as antwort:
-        seiten = [s for s in json.loads(antwort.read()) if s.get('type') == 'page']
-    return prozess, Fernsteuerung(seiten[0]['webSocketDebuggerUrl'])
+def baue_bild(blatt, ziel):
+    """Setzt ein Blatt (1080 x 1350) mittig auf den hohen Grund und führt das Zeichenraster in den Streifen fort."""
+    bild = Image.new('RGB', (BREITE, HOEHE), GRUND)
+    stift = ImageDraw.Draw(bild)
+    for oben, unten in ((0, RAND), (RAND + BLATT_HOEHE, HOEHE)):
+        for x in range(0, BREITE, 30):
+            stift.line([(x, oben), (x, unten - 1)], fill=NETZ_STARK if x % 150 == 0 else NETZ, width=2 if x % 150 == 0 else 1)
+        for y in range(oben, unten):
+            if (y - RAND) % 30 == 0:
+                stark = (y - RAND) % 150 == 0
+                stift.line([(0, y), (BREITE - 1, y)], fill=NETZ_STARK if stark else NETZ, width=2 if stark else 1)
+    with Image.open(blatt) as quelle:
+        if quelle.size != (BREITE, BLATT_HOEHE):
+            sys.exit(f'{blatt}: {quelle.size[0]} x {quelle.size[1]} statt {BREITE} x {BLATT_HOEHE}.')
+        bild.paste(quelle.convert('RGB'), (0, RAND))
+    bild.save(ziel)
 
 
-def finde_ffmpeg():
-    kandidat = os.environ.get('FFMPEG') or shutil.which('ffmpeg')
+def baue_story(post_name):
+    """Story (Playbook): das Titelblatt verkleinert auf dem blauen Grund, darunter der Hinweis auf den neuen Beitrag.
+
+    Oben und unten bleibt frei, wo Instagram in Stories Kopfzeile und Antwortfeld zeigt.
+    """
+    from PIL import ImageFont
+
+    ordner = ROOT / 'out' / post_name
+    bild = Image.new('RGB', (BREITE, HOEHE), GRUND)
+    stift = ImageDraw.Draw(bild)
+    for x in range(0, BREITE, 30):
+        stift.line([(x, 0), (x, HOEHE - 1)], fill=NETZ_STARK if x % 150 == 0 else NETZ, width=2 if x % 150 == 0 else 1)
+    for y in range(0, HOEHE, 30):
+        stift.line([(0, y), (BREITE - 1, y)], fill=NETZ_STARK if y % 150 == 0 else NETZ, width=2 if y % 150 == 0 else 1)
+    with Image.open(ordner / '01.jpg') as blatt:
+        klein = blatt.convert('RGB').resize((936, 1170), Image.LANCZOS)
+    links, oben = (BREITE - 936) // 2, 270
+    bild.paste(klein, (links, oben))
+    stift.rectangle([links, oben, links + 935, oben + 1169], outline=(237, 243, 251), width=2)
+    schrift = ImageFont.truetype(str(ROOT / 'render' / 'fonts' / 'barlow-condensed-700.woff2'), 58)
+    text = 'NEUES BAUWERK · JETZT IM PROFIL'
+    stift.text(((BREITE - stift.textlength(text, font=schrift)) / 2, oben + 1170 + 28), text, font=schrift, fill=(255, 201, 77))
+    bild.save(ordner / 'story.jpg', 'JPEG', quality=90)
+    print(f'{post_name}: Story -> out/{post_name}/story.jpg')
+
+
+def finde(programm):
+    kandidat = os.environ.get(programm.upper()) or shutil.which(programm)
     return kandidat if kandidat and Path(kandidat).exists() else None
 
 
-def rendere(seite, basis, post, ffmpeg, nur_vorschau):
-    ziel = ROOT / 'out' / post
-    ziel.mkdir(parents=True, exist_ok=True)
-    seite.befehl('Page.navigate', url=f'{basis}/reel.html?post={post}&konto={CONFIG["konto"]}')
-    for _ in range(150):
-        if seite.werte('window.bereit === true'):
-            break
-        time.sleep(0.2)
-    else:
-        sys.exit(f'{post}: Die Reel-Seite wurde nicht fertig (Fehler im Post?).')
-    dauer = float(seite.werte('window.dauer'))
-
-    def bild(t):
-        seite.werte(f'window.zeige({t:.4f})')
-        daten = seite.befehl('Page.captureScreenshot', format='png')['data']
-        return base64.b64decode(daten)
-
-    vorschau = Image.new('RGB', (len(VORSCHAU_ZEITEN) * 560 - 20, 960), (40, 40, 40))
-    for i, t in enumerate(VORSCHAU_ZEITEN):
-        einzel = Image.open(io.BytesIO(bild(t))).convert('RGB')
-        if einzel.size != (BREITE, HOEHE):
-            sys.exit(f'{post}: Aufnahme ist {einzel.size[0]} x {einzel.size[1]} statt {BREITE} x {HOEHE}.')
-        vorschau.paste(einzel.resize((540, 960), Image.LANCZOS), (i * 560, 0))
-    vorschau.save(ziel / 'reel-vorschau.jpg', 'JPEG', quality=88)
-    print(f'{post}: Vorschau -> out/{post}/reel-vorschau.jpg')
-    # Story (Playbook): das Schlussbild des Reels mit dem Hinweis auf den neuen Beitrag, erscheint nach dem Carousel
-    seite.werte('document.getElementById("sheet").classList.add("story"); window.zeige(window.dauer)')
-    Image.open(io.BytesIO(base64.b64decode(seite.befehl('Page.captureScreenshot', format='png')['data']))).convert('RGB')         .save(ziel / 'story.jpg', 'JPEG', quality=90)
-    seite.werte('document.getElementById("sheet").classList.remove("story"); window.zeige(0)')
-    print(f'{post}: Story -> out/{post}/story.jpg')
-    if nur_vorschau:
+def pruefe_video(video, dauer):
+    """Fragt ffprobe, ob das Video die Form hat, die Instagram verlangt. Ohne ffprobe keine Prüfung."""
+    ffprobe = finde('ffprobe')
+    if not ffprobe:
         return
+    antwort = subprocess.run([ffprobe, '-v', 'error', '-show_entries', 'stream=codec_name,width,height:format=duration',
+                              '-of', 'json', str(video)], capture_output=True, text=True, check=True)
+    daten = json.loads(antwort.stdout)
+    spuren = {s['codec_name']: s for s in daten['streams']}
+    bild = spuren.get('h264')
+    if not bild or (bild['width'], bild['height']) != (BREITE, HOEHE):
+        sys.exit(f'{video.name}: keine H.264-Bildspur in {BREITE} x {HOEHE}.')
+    if 'aac' not in spuren:
+        sys.exit(f'{video.name}: keine Tonspur. Ein Reel ohne Musik wird nicht gespeichert.')
+    laenge = float(daten['format']['duration'])
+    if abs(laenge - dauer) > 0.5:
+        sys.exit(f'{video.name}: {laenge:.1f} s statt {dauer:.1f} s.')
+
+
+def rendere(post_name, ffmpeg):
+    post = publish.lies(ROOT / 'posts' / f'{post_name}.json')
+    ordner = ROOT / 'out' / post_name
+    blaetter = [ordner / f'{nr:02d}.jpg' for nr in range(1, len(post['slides']) + 1)]
+    for blatt in blaetter:
+        if not blatt.exists():
+            sys.exit(f'Bild fehlt: {blatt.relative_to(ROOT)}. Erst tools/render.py {post_name} ausführen.')
+    zeiten = standzeiten(post)
+    dauer = round(sum(zeiten) - BLENDE * (len(zeiten) - 1), 2)
+    print(f'{post_name}: {len(zeiten)} Blätter, {dauer:.1f} s (' + ', '.join(f'{z:g}' for z in zeiten) + ')')
+    baue_story(post_name)
     if not ffmpeg:
-        print(f'{post}: kein ffmpeg gefunden, das Video rendert der Workflow auf GitHub.')
+        print(f'{post_name}: kein ffmpeg gefunden, das Video rendert der Workflow "Reel rendern" auf GitHub.')
         return
 
-    video = ziel / 'reel.mp4'
-    # Die Musik wird für jeden Post berechnet (tools/musik.py) und folgt dem Ablauf des Reels.
-    ton = Path(tempfile.gettempdir()) / f'kassenbuch-musik-{post}.wav'
-    musik.fuer_post(post, ton, dauer=dauer)
-    kodierer = subprocess.Popen(
-        [ffmpeg, '-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', str(BILDER_JE_SEKUNDE), '-c:v', 'png', '-i', '-',
-         '-i', str(ton), '-ar', '48000', '-shortest',
-         '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-maxrate', '4M', '-bufsize', '8M', '-pix_fmt', 'yuv420p', '-r', str(BILDER_JE_SEKUNDE),
-         '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', str(video)],
-        stdin=subprocess.PIPE)
-    anzahl = round(dauer * BILDER_JE_SEKUNDE)
-    for n in range(anzahl):
-        kodierer.stdin.write(bild(n / BILDER_JE_SEKUNDE))
-    kodierer.stdin.close()
-    if kodierer.wait() != 0:
-        sys.exit(f'{post}: ffmpeg ist mit einem Fehler beendet.')
-    ton.unlink(missing_ok=True)
-    print(f'{post}: {anzahl} Bilder mit Musik, {video.stat().st_size / 1e6:.1f} MB -> out/{post}/reel.mp4')
+    arbeit = Path(tempfile.mkdtemp(prefix='bauriss-reel-'))
+    try:
+        befehl = [ffmpeg, '-y', '-loglevel', 'error']
+        for nr, (blatt, zeit) in enumerate(zip(blaetter, zeiten)):
+            bild = arbeit / f'{nr:02d}.png'
+            baue_bild(blatt, bild)
+            befehl += ['-loop', '1', '-framerate', str(BILDER_JE_SEKUNDE), '-t', f'{zeit:.2f}', '-i', str(bild)]
+        ton = arbeit / 'musik.wav'
+        musik.schreibe(ton, dauer)
+        befehl += ['-i', str(ton)]
+
+        # Kette von Überblendungen: Blatt n beginnt, wenn die Blätter davor abgelaufen sind, abzüglich der Blenden
+        kette, vorher, beginn = [], '[0:v]', 0.0
+        for nr in range(1, len(zeiten)):
+            beginn += zeiten[nr - 1] - BLENDE
+            kette.append(f'{vorher}[{nr}:v]xfade=transition=fade:duration={BLENDE}:offset={beginn:.2f}[v{nr}]')
+            vorher = f'[v{nr}]'
+        kette.append(f'{vorher}format=yuv420p[bild]')
+        ABLAGE.mkdir(exist_ok=True)
+        video = ABLAGE / f'{post_name}.mp4'
+        befehl += ['-filter_complex', ';'.join(kette), '-map', '[bild]', '-map', f'{len(zeiten)}:a',
+                   # Stehende Bilder: wenige Schlüsselbilder halten die Datei klein (rund 2 MB statt 7 MB je Video)
+                   '-c:v', 'libx264', '-preset', 'slow', '-tune', 'stillimage', '-crf', '23', '-r', str(BILDER_JE_SEKUNDE), '-g', '300',
+                   '-c:a', 'aac', '-b:a', '112k', '-ar', '48000', '-t', f'{dauer:.2f}', '-movflags', '+faststart', str(video)]
+        subprocess.run(befehl, check=True)
+        pruefe_video(video, dauer)
+        print(f'{post_name}: {video.stat().st_size / 1e6:.1f} MB -> reels/{post_name}.mp4')
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('posts', nargs='*')
-    parser.add_argument('--fehlende', action='store_true', help='alle geplanten Posts ohne out/<post>/reel.mp4')
-    parser.add_argument('--nur-vorschau', action='store_true', help='nur die Standbilder, kein Video')
+    parser.add_argument('--fehlende', action='store_true', help='alle geplanten Posts ab heute ohne out/<post>/reel.mp4')
     args = parser.parse_args()
     posts = list(args.posts)
     if args.fehlende:
-        plan = json.loads((ROOT / 'plan.json').read_text(encoding='utf-8'))
-        erledigt = {e['post'] for e in json.loads((ROOT / 'veroeffentlicht.json').read_text(encoding='utf-8')) if e.get('art') == 'reel'}
+        heute = publish.berlin_jetzt().date().isoformat()
+        plan = publish.lies(publish.PLAN)
+        config = publish.lies(ROOT / 'config.json')
         posts += [e['post'] for e in plan['posts']
-                  if e['post'] not in erledigt and e['post'] not in posts and not (ROOT / 'out' / e['post'] / 'reel.mp4').exists()]
+                  if e['datum'] >= heute and e['post'] not in posts and not publish.finde_video(e['post'], config)[0]]
     if not posts:
         print('Kein Reel zu rendern.')
         return
-
-    ffmpeg = finde_ffmpeg()
-    server = starte_server()
-    basis = f'http://127.0.0.1:{server.server_address[1]}/render'
-    profil = tempfile.mkdtemp(prefix='kassenbuch-reel-')
-    prozess, seite = starte_chrome(finde_chrome(), profil)
-    try:
-        seite.befehl('Emulation.setDeviceMetricsOverride', width=BREITE, height=HOEHE, deviceScaleFactor=1, mobile=False)
-        for post in posts:
-            rendere(seite, basis, post, ffmpeg, args.nur_vorschau)
-    finally:
-        prozess.kill()
-        server.shutdown()
-        time.sleep(0.5)
-        shutil.rmtree(profil, ignore_errors=True)
+    ffmpeg = finde('ffmpeg')
+    for post in posts:
+        rendere(post, ffmpeg)
 
 
 if __name__ == '__main__':

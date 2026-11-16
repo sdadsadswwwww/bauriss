@@ -1,7 +1,7 @@
 """Rendert die Blätter eines Posts als JPEG (1080 x 1350) nach out/<post>/.
 
 Aufruf:  python tools/render.py                    alle Posts
-         python tools/render.py 001-hyperinflation-1923    einzelner Post
+         python tools/render.py 001-koelner-dom    einzelner Post
 
 Instagram nimmt über die Schnittstelle nur JPEG an, deshalb die Umwandlung am Ende.
 """
@@ -68,18 +68,19 @@ def aufnahme(chrome, profil, url, ziel, breite, hoehe):
         sys.exit(f'{ziel.name}: Aufnahme ist {bild.size[0]} x {bild.size[1]} statt {breite} x {hoehe}.')
     ziel.parent.mkdir(parents=True, exist_ok=True)
     if ziel.suffix == '.jpg':
-        # subsampling=0 hält feine Linien und Ziffern scharf
+        # subsampling=0 hält die feinen Linien der Zeichnungen scharf
         bild.save(ziel, 'JPEG', quality=92, subsampling=0, optimize=True)
     else:
         bild.save(ziel)
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     posts = sys.argv[1:] or sorted(p.stem for p in (ROOT / 'posts').glob('*.json'))
     chrome = finde_chrome()
     server = starte_server()
     basis = f'http://127.0.0.1:{server.server_address[1]}/render'
-    profil = tempfile.mkdtemp(prefix='kassenbuch-render-')
+    profil = tempfile.mkdtemp(prefix='bauriss-render-')
     konto = CONFIG['konto']
     try:
         for post in posts:

@@ -2,23 +2,20 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<title>Kassenbuch Profilbild</title>
+<title>Bauriss Profilbild</title>
 <link rel="stylesheet" href="style.css">
 <style>
   /* Instagram schneidet das Profilbild rund zu und zeigt es bis hinunter auf etwa 40 px:
-     Marke groß und mittig, alles Wichtige im inneren Kreis, keine Zeilenlinien. */
-  #sheet { width: 1080px; height: 1080px; display: flex; align-items: center; justify-content: center; background-image: none; }
-  #sheet .rosette { inset: 20px; width: 1040px; height: 1040px; opacity: 0.6; }
-  #sheet .rosette path { stroke-width: 0.35; }
-  #sheet .marke { position: relative; width: 560px; height: 560px; }
-  #sheet .scheibe { position: absolute; width: 640px; height: 640px; border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 3px var(--gui); }
+     Marke groß und mittig, alles Wichtige im inneren Kreis. */
+  #sheet { width: 1080px; height: 1080px; display: flex; align-items: center; justify-content: center; }
+  #sheet .marke { width: 1060px; height: 1060px; }
 </style>
 </head>
 <body>
 <div id="sheet"></div>
-<script src="render.js"></script>
+<script src="drawings.js"></script>
 <script>
-  document.getElementById('sheet').innerHTML = rosette() + '<div class="scheibe"></div>' + marke();
+  document.getElementById('sheet').innerHTML = Zeichnung.marke({ riss: true });
 </script>
 </body>
 </html>

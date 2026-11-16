@@ -4,7 +4,7 @@ name: Zahlen holen
 # Der Wochenbericht wertet sie aus; tools/zeitplan.py wählt damit, was bei leerem Vorrat wiederholt wird. Veröffentlicht nichts.
 on:
   schedule:
-    - cron: '30 4 * * *'
+    - cron: '20 4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -24,8 +24,8 @@ jobs:
         run: python tools/zahlen.py
       - name: Sichern
         run: |
-          git config user.name "kassenbuch-bot"
-          git config user.email "kassenbuch-bot@users.noreply.github.com"
+          git config user.name "bauriss-bot"
+          git config user.email "bauriss-bot@users.noreply.github.com"
           git add zahlen.json
           git diff --cached --quiet && exit 0
           git commit -m "Zahlen vom $(date -u +%F)"

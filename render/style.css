@@ -1,21 +1,20 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { overflow: hidden; }
 
-/* Design „Kontobuch": Papier, Tinte, rote Randlinie, Guillochen wie auf alten Banknoten */
+/* Design „Blaupause" */
 :root {
-  --f-kopf: 'Playfair Display', serif;
+  --f-kopf: 'Barlow Condensed', sans-serif;
   --f-text: 'Barlow', sans-serif;
   --f-mono: 'IBM Plex Mono', monospace;
-  --bg: #efe4cb;
-  --ink: #16213a;
-  --leise: rgba(22, 33, 58, 0.62);
-  --linie: rgba(44, 82, 130, 0.16);
-  --regel: rgba(22, 33, 58, 0.42);
-  --acc: #a8231c;
-  --gui: #2f5f57;
+  --bg: #12406f;
+  --ink: #edf3fb;
+  --leise: rgba(237, 243, 251, 0.68);
+  --netz: rgba(237, 243, 251, 0.05);
+  --netz2: rgba(237, 243, 251, 0.1);
+  --acc: #ffc94d;
 }
 
-/* Blatt: 1080 x 1350, Zeilenlinien alle 45 px, rote Doppellinie als Rand */
+/* Blatt: 1080 x 1350, Raster 30 px */
 #sheet {
   position: relative;
   width: 1080px;
@@ -24,188 +23,126 @@ html, body { overflow: hidden; }
   background-color: var(--bg);
   color: var(--ink);
   font-family: var(--f-text);
-  font-variant-numeric: lining-nums;
   background-image:
-    linear-gradient(90deg, transparent 78px, var(--acc) 78px, var(--acc) 80px, transparent 80px, transparent 86px, var(--acc) 86px, var(--acc) 88px, transparent 88px),
-    linear-gradient(var(--linie) 2px, transparent 2px),
-    radial-gradient(ellipse at 30% 20%, #f6eedb 0%, transparent 60%),
-    radial-gradient(ellipse at 85% 95%, #e2d3b1 0%, transparent 55%);
-  background-size: 100% 100%, 100% 45px, 100% 100%, 100% 100%;
-  background-position: 0 0, 0 43px, 0 0, 0 0;
+    linear-gradient(var(--netz2) 2px, transparent 2px),
+    linear-gradient(90deg, var(--netz2) 2px, transparent 2px),
+    linear-gradient(var(--netz) 1px, transparent 1px),
+    linear-gradient(90deg, var(--netz) 1px, transparent 1px);
+  background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px;
 }
-/* Papierkorn und Flecken liegen über allem und dunkeln nur ab */
-.korn { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; pointer-events: none; }
-.rahmen { position: absolute; inset: 0; box-shadow: inset 0 0 160px rgba(110, 78, 30, 0.22); pointer-events: none; }
+.rahmen { position: absolute; inset: 30px; border: 2px solid var(--ink); }
 
-/* Guillochen */
-.gui path { fill: none; stroke: var(--gui); stroke-width: 0.5; }
-.rosette { position: absolute; opacity: 0.5; }
-.cover .rosette { width: 820px; height: 820px; right: -400px; top: -170px; opacity: 0.45; }
-.inhalt.text .rosette { width: 560px; height: 560px; right: -210px; bottom: -190px; opacity: 0.42; }
-.inhalt.gleichung .rosette { width: 600px; height: 600px; right: -260px; bottom: 90px; opacity: 0.38; }
-
-/* Foliovermerk im Rand */
-.folio {
-  position: absolute; left: 18px; top: 70px;
-  writing-mode: vertical-rl; transform: rotate(180deg);
-  font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--leise);
-}
-
-/* Fußzeile: Guillochenband, darunter der Seitenkopf des Kontobuchs */
-.band { position: absolute; left: 0; right: 0; bottom: 100px; height: 34px; width: 100%; background: var(--bg); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-.band path { stroke-width: 1.1; opacity: 0.85; }
+/* Schriftfeld unten, wie auf einem Bauplan */
 .schild {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 100px;
-  padding: 0 60px 0 118px;
-  background: var(--bg);
+  left: 30px; right: 30px; bottom: 30px;
+  height: 90px;
+  border-top: 2px solid var(--ink);
   display: grid;
   grid-template-columns: auto 1fr auto;
-  align-items: center;
-  column-gap: 30px;
   font-family: var(--f-mono);
   font-size: 22px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.schild > div { display: flex; align-items: center; gap: 16px; white-space: nowrap; }
-.schild .name { font-family: var(--f-kopf); font-size: 38px; font-weight: 900; letter-spacing: 0.02em; text-transform: none; }
-.schild .marke { width: 46px; height: 46px; flex: none; }
-.schild .blatt { color: var(--acc); }
+.schild > div { display: flex; align-items: center; gap: 14px; padding: 0 26px; white-space: nowrap; }
+.schild > div + div { border-left: 2px solid var(--ink); }
+.schild .name { font-family: var(--f-kopf); font-size: 40px; font-weight: 600; letter-spacing: 0.08em; }
+.schild .marke { width: 54px; height: 54px; flex: none; }
+.schild .blatt { justify-content: center; }
 
 .inhalt {
   position: absolute;
-  left: 118px; right: 64px; top: 70px; bottom: 170px;
+  left: 30px; right: 30px; top: 30px; bottom: 120px;
+  padding: 52px 60px 34px;
   display: flex;
   flex-direction: column;
 }
-.inhalt > * { position: relative; }
-.inhalt > .rosette, .inhalt > .stempel { position: absolute; }
 .kicker {
   font-family: var(--f-mono);
-  font-weight: 500;
-  font-size: 25px;
+  font-size: 24px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--acc);
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
-h1, h2 { font-family: var(--f-kopf); font-weight: 900; letter-spacing: -0.01em; }
-h2 { font-size: 84px; line-height: 1.04; }
-h2 i, h1 i { font-weight: 700; font-style: italic; color: var(--acc); }
-p { font-size: 37px; line-height: 1.36; margin-top: 28px; }
-em { font-style: normal; font-weight: 600; color: var(--acc); }
-.inhalt.text p { font-size: 44px; line-height: 1.34; margin-top: 36px; }
-.fuss { margin-top: auto; font-size: 34px; line-height: 1.36; }
-.zusatz { font-family: var(--f-mono); font-size: 23px; line-height: 1.4; color: var(--leise); }
+h1, h2 { font-family: var(--f-kopf); font-weight: 600; text-transform: uppercase; letter-spacing: 0.005em; }
+h2 { font-size: 96px; line-height: 0.96; }
+p { font-size: 36px; line-height: 1.36; margin-top: 26px; }
+p em { font-style: normal; color: var(--acc); }
+.figur { flex: 1; min-height: 0; position: relative; margin-top: 30px; }
+.figur > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* Stempel */
-.stempel { width: 300px; height: 300px; mix-blend-mode: multiply; opacity: 0.86; transform: rotate(-13deg); }
-.stempel circle { fill: none; stroke: var(--acc); }
-.stempel text { fill: var(--acc); font-family: var(--f-mono); font-weight: 500; }
-.stempel .rund { font-size: 21px; letter-spacing: 0.2em; }
-.stempel .mitte { font-family: var(--f-kopf); font-weight: 900; font-size: 27px; }
-.stempel .klein { font-size: 19px; letter-spacing: 0.14em; }
-.stempel line { stroke: var(--acc); stroke-width: 2.5; }
-.cover .stempel { right: 4px; top: 610px; }
-.inhalt.konto .stempel { right: 10px; bottom: 6px; width: 250px; height: 250px; transform: rotate(9deg); }
-
-/* Titelblatt */
-.cover .zahl { font-family: var(--f-kopf); font-weight: 900; font-size: 372px; line-height: 0.86; margin-left: -14px; letter-spacing: -0.03em; }
-.cover .einheit { font-family: var(--f-kopf); font-weight: 700; font-style: italic; font-size: 104px; line-height: 1; color: var(--acc); margin-top: 6px; }
-.cover h1 { font-size: 82px; line-height: 1.05; margin-top: 8px; }
-.cover .buch { margin-top: auto; }
-
-/* Journal: Datum, Buchungstext, Betrag */
-.buch { margin-top: 34px; border-top: 3px solid var(--ink); }
-.buch .kopfzeile, .buch .zeile { display: grid; grid-template-columns: 236px 1fr auto; align-items: center; }
-.buch .kopfzeile { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leise); height: 50px; border-bottom: 2px solid var(--ink); }
-.buch .kopfzeile > div, .buch .zeile > div { padding: 0 16px; height: 100%; display: flex; align-items: center; }
-.buch .kopfzeile > div + div, .buch .zeile > div + div { border-left: 2px solid var(--regel); }
-.buch .zeile > div:first-child, .buch .kopfzeile > div:first-child { padding-left: 0; }
-.buch .zeile > div:last-child, .buch .kopfzeile > div:last-child { justify-content: flex-end; padding-right: 0; }
-.buch .zeile { height: 82px; border-bottom: 2px solid var(--regel); font-family: var(--f-mono); font-size: 36px; }
-.buch .zeile .wer { font-family: var(--f-text); font-size: 31px; line-height: 1.1; }
-.buch .zeile .betrag { font-weight: 500; white-space: nowrap; }
-.buch .zeile.akz { color: var(--acc); }
-.buch .zeile.akz .betrag { text-decoration: underline double; text-underline-offset: 9px; text-decoration-thickness: 2px; }
-.buch.eng .zeile { height: 66px; font-size: 33px; }
-.buch.eng .zeile .wer { font-size: 28px; }
-
-/* Kurve unter dem Journal */
-.kurve { flex: 1; min-height: 0; margin-top: 22px; position: relative; }
-.kurve svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.kurve .netz { stroke: var(--regel); stroke-width: 1.5; stroke-dasharray: 3 7; }
-.kurve .lauf { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
-.kurve .flaeche { fill: var(--acc); opacity: 0.1; }
-.kurve circle { fill: var(--bg); stroke: var(--ink); stroke-width: 3; }
-.kurve circle.akz { fill: var(--acc); stroke: var(--acc); }
-.kurve text { font-family: var(--f-mono); font-size: 20px; fill: var(--leise); letter-spacing: 0.06em; }
-.kurve text.akz { fill: var(--acc); font-weight: 500; }
+/* Titelblatt und Blätter mit hoher Zeichnung rechts */
+.inhalt.cover, .inhalt.bild-rechts { flex-direction: row; gap: 26px; }
+.inhalt.cover .spalte, .inhalt.bild-rechts .spalte { width: 430px; flex: none; display: flex; flex-direction: column; }
+.inhalt.cover .figur, .inhalt.bild-rechts .figur { margin-top: 0; }
+.cover .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 316px; line-height: 0.8; margin-left: -8px; }
+.cover h1 { font-size: 108px; line-height: 0.94; margin-top: 26px; }
+.cover p { margin-top: auto; font-size: 38px; }
+.bild-rechts h2 { font-size: 84px; }
 
 /* Balken */
 .reihe { margin-top: 40px; }
-.reihe .kopf { display: flex; align-items: baseline; gap: 24px; }
-.reihe .wert { font-family: var(--f-kopf); font-size: 124px; font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; }
-.reihe .wer { font-size: 40px; font-weight: 600; }
-.reihe .bahn { height: 46px; border: 2px solid var(--ink); margin-top: 14px; background: var(--bg); }
+.reihe .kopf { display: flex; align-items: baseline; gap: 22px; }
+.reihe .wert { font-family: var(--f-kopf); font-size: 100px; font-weight: 600; line-height: 0.9; }
+.reihe .wer { font-size: 38px; font-weight: 600; }
+.reihe .bahn { height: 38px; border: 2px solid var(--ink); margin-top: 14px; }
 .reihe .bahn i {
   display: block;
   height: 100%;
-  min-width: 6px;
-  background: repeating-linear-gradient(135deg, var(--ink) 0 3px, transparent 3px 9px);
   border-right: 2px solid var(--ink);
+  background: repeating-linear-gradient(135deg, var(--ink) 0 2px, transparent 2px 9px);
 }
 .reihe.akz .wert { color: var(--acc); }
-.reihe.akz .bahn i { background: repeating-linear-gradient(135deg, var(--acc) 0 6px, #c4463c 6px 9px); border-right-color: var(--acc); }
-.reihe .zusatz { margin-top: 12px; }
+.reihe.akz .bahn i { background: var(--acc); }
+.reihe .zusatz, .punkt .zusatz, .fuss { font-family: var(--f-mono); font-size: 23px; line-height: 1.4; color: var(--leise); margin-top: 12px; }
+.fuss { margin-top: auto; font-family: var(--f-text); font-size: 34px; color: var(--ink); }
+
+/* Titelblatt mit breiter Zeichnung unten */
+.cover-breit .titel { display: flex; align-items: flex-end; gap: 34px; }
+.cover-breit .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 300px; line-height: 0.78; margin-left: -8px; }
+.cover-breit h1 { font-size: 92px; line-height: 0.94; padding-bottom: 4px; }
+.cover-breit p { font-size: 38px; margin-top: 40px; }
 
 /* Kennzahlen untereinander */
-.kennzahlen { margin-top: 36px; border-top: 3px solid var(--ink); }
-.punkt { display: grid; grid-template-columns: 400px 1fr; align-items: center; column-gap: 26px; padding: 26px 0; border-bottom: 2px solid var(--regel); }
-.punkt .wert { font-family: var(--f-kopf); font-size: 124px; font-weight: 900; line-height: 0.95; white-space: nowrap; letter-spacing: -0.02em; }
+.kennzahlen { margin-top: 40px; }
+.punkt { display: grid; grid-template-columns: 390px 1fr; align-items: center; column-gap: 30px; padding: 34px 0; border-top: 2px solid var(--netz2); }
+.punkt .wert { font-family: var(--f-kopf); font-size: 104px; font-weight: 600; line-height: 0.9; white-space: nowrap; }
 .punkt:first-child .wert { color: var(--acc); }
-.punkt .wer { font-size: 40px; font-weight: 600; line-height: 1.2; }
-.punkt .zusatz { margin-top: 8px; }
+.punkt .wer { font-size: 38px; font-weight: 600; line-height: 1.2; }
 
-/* T-Konto: links Soll, rechts Haben */
-.tkonto { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; border-top: 3px solid var(--ink); flex: 1; min-height: 0; }
-.tkonto .seite { padding: 0 26px 0 0; }
-.tkonto .seite + .seite { border-left: 3px solid var(--ink); padding: 0 0 0 26px; }
-.tkonto .titel { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leise); padding: 14px 0 2px; }
-.tkonto .wort { font-family: var(--f-kopf); font-weight: 700; font-style: italic; font-size: 66px; line-height: 1.1; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
-.tkonto .seite + .seite .wort { color: var(--acc); }
-.tkonto .posten { padding: 20px 0; border-bottom: 2px solid var(--regel); }
-.tkonto .posten .wer { font-size: 40px; font-weight: 600; line-height: 1.15; }
-.tkonto .posten .zusatz { font-family: var(--f-text); font-size: 31px; line-height: 1.3; margin-top: 8px; color: var(--ink); opacity: 0.82; }
-
-/* Gleichung: großer Betrag oben, Ergebnis unten */
-.gleichung-block { margin-top: auto; margin-bottom: auto; }
-.gleichung-block .wert { font-family: var(--f-mono); font-weight: 500; font-size: 84px; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
-.gleichung-block .weg { position: relative; color: var(--leise); }
-.gleichung-block .weg::after { content: ''; position: absolute; left: -6px; right: -10px; top: 46%; height: 7px; background: var(--acc); border-radius: 4px; transform: rotate(-1.6deg); mix-blend-mode: multiply; }
-.gleichung-block .wer { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leise); margin-top: 16px; }
-.gleichung-block .ist { font-family: var(--f-text); font-weight: 600; font-size: 120px; line-height: 0.9; color: var(--acc); margin: 14px 0 6px; }
-.gleichung-block .unten .wert { font-family: var(--f-kopf); font-weight: 900; font-size: 250px; line-height: 0.9; letter-spacing: 0; color: var(--acc); }
-.gleichung-block .unten .wert span { font-size: 92px; font-weight: 700; font-style: italic; margin-left: 20px; color: var(--ink); }
-
-/* Schlussblatt: Marke im Siegel */
-.outro .siegel { position: relative; width: 430px; height: 430px; flex: none; margin: auto 0 30px -40px; }
-.outro .siegel .rosette { inset: 0; width: 100%; height: 100%; opacity: 0.7; }
-.outro .siegel .marke { position: absolute; inset: 122px; width: 186px; height: 186px; }
-.outro .konto { font-family: var(--f-mono); font-weight: 500; font-size: 40px; color: var(--acc); margin-top: 36px; }
+/* Schlussblatt */
+.inhalt.outro { justify-content: center; }
+.inhalt.outro > .marke { width: 340px; height: 340px; flex: none; margin: auto 0 40px -76px; }
+.outro .konto { font-family: var(--f-mono); font-size: 38px; color: var(--acc); margin-top: 34px; }
 .outro .quellen { font-family: var(--f-mono); font-size: 22px; line-height: 1.5; color: var(--leise); margin-top: auto; }
 
-/* Marke: T-Konto mit doppeltem Abschlussstrich */
-.marke .mt { fill: none; stroke: var(--ink); stroke-width: 9; stroke-linecap: square; }
-.marke .ma { fill: none; stroke: var(--acc); stroke-width: 4.5; stroke-linecap: square; }
+/* Zeichnungen */
+.fig * { vector-effect: non-scaling-stroke; }
+.fig .l { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.fig .t { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linejoin: round; stroke-linecap: round; opacity: 0.85; }
+.fig .d { fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-dasharray: 7 7; opacity: 0.8; }
+.fig .a { fill: none; stroke: var(--acc); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.fig .hf { fill: url(#schraffur); stroke: var(--ink); stroke-width: 2.4; }
+.fig .af { fill: var(--acc); stroke: var(--acc); stroke-width: 2.4; }
+.fig .lf { fill: var(--bg); stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; }
+.fig .hs { fill: url(#schraffur); stroke: none; }
+/* Unterlage in Blattfarbe, damit Linien und Text über Schraffur lesbar bleiben */
+.fig .bgl { fill: none; stroke: var(--bg); stroke-width: 12; stroke-linejoin: round; stroke-linecap: round; }
+.fig text.hell { paint-order: stroke; stroke: var(--bg); stroke-width: 9px; stroke-linejoin: round; }
+.fig .akzent .lf { stroke: var(--acc); stroke-width: 3; }
+/* Umriss von etwas, das nicht (mehr) steht */
+.fig .geplant .l, .fig .geplant .lf { fill: none; stroke-width: 1.7; stroke-dasharray: 7 7; opacity: 0.8; }
+.fig .ph { stroke: var(--ink); stroke-width: 1.3; opacity: 0.6; vector-effect: none; }
+.fig .punkt { fill: var(--ink); }
+.fig .akzent .l { stroke: var(--acc); stroke-width: 3; }
+.fig text { font-family: var(--f-mono); font-size: 28px; fill: var(--ink); }
+.fig text.mass { font-size: 24px; letter-spacing: 0.06em; }
+.fig text.gross { font-size: 36px; font-weight: 500; }
+.fig text.riesig { font-family: var(--f-kopf); font-size: 60px; font-weight: 600; }
+.fig text.akz { fill: var(--acc); }
 
-/* Stempel auf Textblättern: unten rechts über dem Ornament */
-.inhalt.text .stempel { right: 16px; bottom: 10px; transform: rotate(-8deg); }
-
-/* Drei und mehr Balken: enger setzen, damit der Fußsatz Platz hat */
-.reihe.eng { margin-top: 26px; }
-.reihe.eng .wert { font-size: 100px; }
-.reihe.eng .bahn { height: 38px; margin-top: 10px; }
-.reihe.eng .zusatz { margin-top: 8px; }
+.marke .mb { fill: none; stroke: var(--ink); stroke-width: 5.6; stroke-linejoin: miter; vector-effect: none; }
+.marke .mi { fill: none; stroke: var(--acc); stroke-width: 3.8; vector-effect: none; }
+.marke .mk { fill: none; stroke: var(--acc); stroke-width: 0.7; stroke-dasharray: 1.7 1.3; opacity: 0.9; vector-effect: none; }

@@ -1,165 +1,136 @@
-"""Erzeugt die Musik zu einem Reel als WAV-Datei. Nur Standardbibliothek, keine fremden Aufnahmen.
+"""Erzeugt die Musik zu einem Reel: ein ruhiges Klangbett in D-Dur, vollständig aus Code berechnet.
 
-Aufruf:  python tools/musik.py 002-kaiserwahl-1519              -> out/002-kaiserwahl-1519/musik.wav (zum Anhören)
-         python tools/musik.py 002-kaiserwahl-1519 ziel.wav
+Aufruf:  python tools/musik.py <ziel.wav> <sekunden>
 
-Die Musik wird aus Sinustönen berechnet und gehört damit vollständig dem Kanal: keine Lizenz, keine
-Rechte Dritter. Sie folgt dem Ablauf des Reels (render/reel.html, Konstante ZEIT):
-
-  0,0 – 1,0 s   ein leiser Flächenklang, während die Frage steht
-  1,0 – 7,0 s   gezupfte Töne, die lauter werden, während sich die Kurve zeichnet
-  7,2 s         ein Glockenakkord, wenn die Zahl erscheint
-  danach        der Akkord klingt aus
-
-Tonart und Muster hängen von der Nummer des Posts ab, damit nicht jedes Reel gleich klingt.
-Stimmung (Feld reel.stimmung im Post): "neutral" löst nach Dur auf, "ernst" bleibt in Moll, ist
-langsamer und leiser und verzichtet auf die Glocken. "ernst" gilt für Themen wie Tod, Krankheit,
-Unfälle, Arbeitslosigkeit, Insolvenzen.
+Keine Aufnahmen, keine fremden Klänge, keine Zufallswerte: Jeder Ton ist eine berechnete Schwingung.
+Damit gibt es an der Musik keine Rechte Dritter, und dieselbe Dauer ergibt immer dieselbe Datei.
+Das Stück besteht aus drei Stimmen: einer Fläche aus liegenden Akkorden, einem leisen Bass und
+einzelnen gezupften Tönen mit Nachhall. Es wiederholt sich alle 32 Sekunden und blendet am Ende aus.
 """
-import json
 import math
 import struct
 import sys
 import wave
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-RATE = 44100
-ZEIT = {'start': 1.0, 'ende': 7.0, 'zahl': 7.2}   # wie in render/reel.html
-STIMMUNGEN = ('neutral', 'ernst')
+RATE = 32000
+TAKT = 8.0          # Sekunden je Akkord
+SCHRITT = 0.5       # Raster der gezupften Töne
+EINBLENDEN = 1.2
+AUSBLENDEN = 3.5
 
-GRUNDTOENE = (57, 55, 59, 52)                      # A, G, H, E (MIDI), nach Nummer des Posts
-MUSTER = ((0, 1, 2, 3, 2, 1), (0, 2, 1, 3, 2, 3), (3, 2, 1, 0, 1, 2))
-# Akkorde als Halbtöne über dem Grundton der Moll-Tonart
-FOLGE = {
-    'neutral': ((0, 3, 7), (-4, 0, 3), (3, 7, 10), (-2, 2, 5)),    # i – VI – III – VII
-    'ernst': ((0, 3, 7), (-4, 0, 3), (5, 8, 12), (0, 3, 7)),       # i – VI – iv – i
-}
-SCHLUSS = {'neutral': (3, 7, 10, 17), 'ernst': (0, 3, 7, 14)}      # III mit None bzw. i mit None
-
-
-def hz(midi):
-    return 440.0 * 2 ** ((midi - 69) / 12)
+# Je Akkord: Basston, Töne der Fläche, gezupfte Töne als (Schritt im Takt, Ton). Töne als MIDI-Nummern.
+AKKORDE = [
+    (38, (50, 57, 64, 66), ((0, 74), (3, 69), (6, 66), (8, 76), (11, 74), (14, 69))),   # D mit None
+    (35, (47, 54, 57, 62), ((0, 71), (3, 66), (6, 74), (8, 78), (11, 74), (14, 71))),   # h-Moll mit Septime
+    (43, (43, 50, 54, 59), ((0, 74), (3, 71), (6, 69), (8, 78), (11, 74), (14, 71))),   # G mit großer Septime
+    (45, (45, 52, 59, 64), ((0, 73), (3, 69), (6, 76), (8, 73), (11, 71), (14, 69))),   # A ohne Terz
+]
+# Im zweiten Durchgang kommen zwei hohe, leise Töne dazu, damit sich die Wiederholung nicht gleich anhört.
+ZUGABE = ((4, 81), (12, 78))
 
 
-class Spur:
-    def __init__(self, dauer):
-        self.n = int(dauer * RATE)
-        self.l = [0.0] * self.n
-        self.r = [0.0] * self.n
-
-    def ton(self, start, frequenz, dauer, staerke, teiltoene, huelle, links=1.0, rechts=1.0):
-        """Addiert einen Ton. teiltoene: [(Vielfaches, Anteil)], huelle(t, dauer) -> 0..1."""
-        a = int(start * RATE)
-        for i in range(max(0, a), min(self.n, a + int(dauer * RATE))):
-            t = (i - a) / RATE
-            wert = 0.0
-            for vielfaches, anteil in teiltoene:
-                wert += anteil * math.sin(2 * math.pi * frequenz * vielfaches * t)
-            wert *= staerke * huelle(t, dauer)
-            self.l[i] += wert * links
-            self.r[i] += wert * rechts
-
-    def echo(self, abstand, anteil):
-        d = int(abstand * RATE)
-        for kanal in (self.l, self.r):
-            for i in range(d, self.n):
-                kanal[i] += kanal[i - d] * anteil
+def frequenz(ton):
+    return 440.0 * 2 ** ((ton - 69) / 12)
 
 
-def zupfen(t, dauer):
-    return min(1.0, t / 0.005) * math.exp(-t * 5.0) * min(1.0, (dauer - t) / 0.05)
+def flaeche(ton, laut, verstimmung):
+    """Ein liegender Ton, links und rechts leicht gegeneinander verstimmt (ergibt ein langsames Schweben)."""
+    an, aus = 2.2, 3.2
+    n = int((TAKT + aus) * RATE)
+    n_an, n_halten = int(an * RATE), int(TAKT * RATE)
+    huelle = [math.sin(0.5 * math.pi * i / n_an) ** 2 if i < n_an
+              else 1.0 if i < n_halten
+              else math.cos(0.5 * math.pi * (i - n_halten) / (n - n_halten)) ** 2 for i in range(n)]
+    kanaele = []
+    for faktor in (1 - verstimmung, 1 + verstimmung):
+        w = 2 * math.pi * frequenz(ton) * faktor / RATE
+        kanaele.append([laut * h * (math.sin(w * i) + 0.2 * math.sin(2 * w * i)) for i, h in enumerate(huelle)])
+    return kanaele
 
 
-def glocke(t, dauer):
-    return min(1.0, t / 0.004) * math.exp(-t * 2.2) * min(1.0, (dauer - t) / 0.2)
+def zupfton(ton, laut):
+    """Ein kurzer, weich ausklingender Ton, ähnlich einer Kalimba."""
+    n = int(3.0 * RATE)
+    w = 2 * math.pi * frequenz(ton) / RATE
+    anschlag = int(0.006 * RATE)
+    return [laut * min(1.0, i / anschlag) * (
+        math.exp(-i / (0.9 * RATE)) * math.sin(w * i)
+        + 0.30 * math.exp(-i / (0.5 * RATE)) * math.sin(2 * w * i)
+        + 0.10 * math.exp(-i / (0.3 * RATE)) * math.sin(3 * w * i)) for i in range(n)]
 
 
-def flaeche(t, dauer):
-    return min(1.0, t / 0.45) * min(1.0, (dauer - t) / 0.7)
+def mische(ziel, start, klang, faktor=1.0):
+    ende = min(len(ziel), start + len(klang))
+    if ende > start:
+        ziel[start:ende] = [a + faktor * b for a, b in zip(ziel[start:ende], klang)]
 
 
-def erzeuge(pfad, dauer=11.0, nr=1, stimmung='neutral'):
-    if stimmung not in STIMMUNGEN:
-        sys.exit(f'Unbekannte Stimmung "{stimmung}", erlaubt: {", ".join(STIMMUNGEN)}.')
-    ernst = stimmung == 'ernst'
-    grund = GRUNDTOENE[nr % len(GRUNDTOENE)]
-    muster = MUSTER[(nr // len(GRUNDTOENE)) % len(MUSTER)]
-    folge, schluss = FOLGE[stimmung], SCHLUSS[stimmung]
-    abschnitt = (ZEIT['ende'] - ZEIT['start']) / len(folge)          # Länge eines Akkords
+def stueck(dauer):
+    """Liefert das Stück in der gewünschten Länge als (links, rechts), Werte zwischen -1 und 1."""
+    n = int(dauer * RATE)
+    links, rechts = [0.0] * n, [0.0] * n
+    zupf_l, zupf_r = [0.0] * n, [0.0] * n
+    flaechen, toene = {}, {}
 
-    klang, melodie = Spur(dauer), Spur(dauer)
-    sinus = [(1, 1.0)]
+    takt = 0
+    while takt * TAKT < dauer:
+        bass, lage, motiv = AKKORDE[takt % len(AKKORDE)]
+        start = int(takt * TAKT * RATE)
+        for ton, laut in [(bass, 0.11)] + [(t, 0.075) for t in lage]:
+            if (ton, laut) not in flaechen:
+                flaechen[(ton, laut)] = flaeche(ton, laut, 0.0016)
+            l, r = flaechen[(ton, laut)]
+            mische(links, start, l)
+            mische(rechts, start, r)
+        noten = [(s, t, 0.17) for s, t in motiv]
+        if (takt // len(AKKORDE)) % 2 == 1:
+            noten += [(s, t, 0.07) for s, t in ZUGABE]
+        for nr, (schritt, ton, laut) in enumerate(sorted(noten)):
+            if (ton, laut) not in toene:
+                toene[(ton, laut)] = zupfton(ton, laut)
+            wo = start + int(schritt * SCHRITT * RATE)
+            seite = 0.68 if nr % 2 else 0.32          # die Töne wandern leicht zwischen links und rechts
+            mische(zupf_l, wo, toene[(ton, laut)], 1 - seite)
+            mische(zupf_r, wo, toene[(ton, laut)], seite)
+        takt += 1
 
-    def akkord_flaeche(start, laenge, akkord, staerke):
-        for k, halbton in enumerate(akkord[:3]):
-            f = hz(grund + halbton)
-            klang.ton(start, f * 0.997, laenge, staerke, sinus, flaeche, links=1.0, rechts=0.55)
-            klang.ton(start, f * 1.003, laenge, staerke, sinus, flaeche, links=0.55, rechts=1.0)
-        klang.ton(start, hz(grund + akkord[0] - 12), laenge, staerke * 1.5, sinus, flaeche)
+    # Nachhall der gezupften Töne: jedes Echo springt auf die andere Seite und wird leiser
+    echo = int(0.75 * RATE)
+    for i in range(echo, n):
+        zupf_l[i] += 0.36 * zupf_r[i - echo]
+        zupf_r[i] += 0.36 * zupf_l[i - echo]
 
-    # Fläche: Auftakt, vier Akkorde, Schlussakkord; die Enden überlappen
-    akkord_flaeche(0.0, ZEIT['start'] + 0.7, folge[0], 0.10)
-    for k, akkord in enumerate(folge):
-        akkord_flaeche(ZEIT['start'] + k * abschnitt, abschnitt + 0.7, akkord, 0.13)
-    akkord_flaeche(ZEIT['ende'], dauer - ZEIT['ende'], schluss, 0.16)
-
-    # Gezupfte Töne, während sich die Kurve zeichnet: werden lauter
-    schritte = 3 if ernst else 6
-    zupfton = [(1, 1.0), (2, 0.35), (3, 0.12)]
-    for k, akkord in enumerate(folge):
-        toene = (*akkord, akkord[0] + 12)
-        for s in range(schritte):
-            start = ZEIT['start'] + k * abschnitt + s * abschnitt / schritte
-            anteil = (start - ZEIT['start']) / (ZEIT['ende'] - ZEIT['start'])
-            staerke = (0.16 + 0.22 * anteil) * (0.7 if ernst else 1.0)
-            halbton = toene[muster[s * (len(muster) // schritte)]]
-            seite = 0.35 + 0.3 * (s % 2)
-            melodie.ton(start, hz(grund + 12 + halbton), 1.2, staerke, zupfton, zupfen, links=1 - seite + 0.35, rechts=seite + 0.35)
-
-    # Wenn die Zahl erscheint: Glockenakkord, bei "ernst" nur ein tiefer, weicher Ton
-    if ernst:
-        melodie.ton(ZEIT['zahl'], hz(grund + 12), 3.0, 0.22, zupfton, glocke)
-    else:
-        glockenton = [(1, 1.0), (2.76, 0.30), (5.4, 0.10)]
-        for k, halbton in enumerate(schluss):
-            melodie.ton(ZEIT['zahl'] + k * 0.06, hz(grund + 24 + halbton), 3.4, 0.17, glockenton, glocke,
-                        links=0.6 + 0.4 * (k % 2), rechts=1.0 - 0.4 * (k % 2))
-    melodie.echo(0.375, 0.28)
-
-    # Mischen, ein- und ausblenden, auf festen Spitzenwert bringen
-    n = klang.n
-    links = [klang.l[i] + melodie.l[i] for i in range(n)]
-    rechts = [klang.r[i] + melodie.r[i] for i in range(n)]
-    for i in range(n):
-        t = i / RATE
-        blende = min(1.0, t / 0.3) * min(1.0, (dauer - t) / 1.8)
-        links[i] *= blende
-        rechts[i] *= blende
+    n_ein, n_aus = int(EINBLENDEN * RATE), int(min(AUSBLENDEN, dauer / 3) * RATE)
+    for kanal, zupf in ((links, zupf_l), (rechts, zupf_r)):
+        for i in range(n):
+            wert = kanal[i] + zupf[i]
+            if i < n_ein:
+                wert *= math.sin(0.5 * math.pi * i / n_ein) ** 2
+            if i >= n - n_aus:
+                wert *= math.cos(0.5 * math.pi * (i - (n - n_aus)) / n_aus) ** 2
+            kanal[i] = wert
     spitze = max(max(abs(x) for x in links), max(abs(x) for x in rechts)) or 1.0
-    faktor = (0.55 if ernst else 0.7) / spitze
+    faktor = 0.71 / spitze                          # Spitze bei etwa -3 dB
+    return [x * faktor for x in links], [x * faktor for x in rechts]
 
-    pfad = Path(pfad)
-    pfad.parent.mkdir(parents=True, exist_ok=True)
-    with wave.open(str(pfad), 'wb') as datei:
+
+def schreibe(ziel, dauer):
+    links, rechts = stueck(dauer)
+    daten = bytearray()
+    for l, r in zip(links, rechts):
+        daten += struct.pack('<hh', int(l * 32767), int(r * 32767))
+    with wave.open(str(ziel), 'wb') as datei:
         datei.setnchannels(2)
         datei.setsampwidth(2)
         datei.setframerate(RATE)
-        datei.writeframes(b''.join(
-            struct.pack('<hh', int(links[i] * faktor * 32767), int(rechts[i] * faktor * 32767)) for i in range(n)))
-    return pfad
-
-
-def fuer_post(post, pfad, dauer=11.0):
-    """Liest Nummer und Stimmung aus posts/<post>.json und schreibt die Musik nach pfad."""
-    daten = json.loads((ROOT / 'posts' / f'{post}.json').read_text(encoding='utf-8'))
-    stimmung = (daten.get('reel') or {}).get('stimmung', 'neutral')
-    return erzeuge(pfad, dauer=dauer, nr=int(daten['nr']), stimmung=stimmung)
+        datei.writeframes(bytes(daten))
+    mittel = math.sqrt(sum(x * x for x in links) / len(links))
+    return max(abs(x) for x in links + rechts), mittel
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) != 3:
         sys.exit(__doc__)
-    name = sys.argv[1]
-    ziel = sys.argv[2] if len(sys.argv) > 2 else ROOT / 'out' / name / 'musik.wav'
-    print(f'{name}: Musik -> {fuer_post(name, ziel)}')
+    spitze, mittel = schreibe(sys.argv[1], float(sys.argv[2]))
+    print(f'{sys.argv[1]}: {float(sys.argv[2]):.1f} s, Spitze {20 * math.log10(spitze):.1f} dB, '
+          f'Mittel {20 * math.log10(mittel):.1f} dB')
