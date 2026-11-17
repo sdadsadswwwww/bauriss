@@ -1,0 +1,60 @@
+{
+  "stand": "2026-11-17T06:17",
+  "konto": {
+    "follower": 2,
+    "beitraege": 6
+  },
+  "medien": [
+    {
+      "post": "001-eiffelturm",
+      "art": "carousel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "002-alter-elbtunnel",
+      "art": "carousel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "003-wuppertaler-schwebebahn",
+      "art": "reel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "003-wuppertaler-schwebebahn",
+      "art": "carousel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "004-frauenkirche-dresden",
+      "art": "reel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "004-frauenkirche-dresden",
+      "art": "carousel",
+      "datum": "2026-11-16",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    }
+  ],
+  "fehler": [
+    "(#10) Application does not have permission for this action"
+  ]
+}
