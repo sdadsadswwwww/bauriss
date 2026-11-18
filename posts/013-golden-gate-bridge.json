@@ -1,0 +1,116 @@
+{
+  "nr": "013",
+  "titel": "Golden Gate Bridge",
+  "zeichnungen": "goldengate",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 013",
+      "zahl": "35",
+      "headline": "Millionen Dollar auf Pump",
+      "text": ["Gebaut wird die Golden Gate Bridge mit geliehenem Geld. Für die Anleihen bürgen die Bewohner rund um San Francisco."],
+      "figur": { "fn": "bruecke", "ausschnitt": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Aufgabe",
+      "headline": "1280 Meter ohne Stütze",
+      "text": [
+        "Die Einfahrt in die Bucht von San Francisco ist 1,6 Kilometer breit. Dazwischen soll ein einziges Feld zwischen zwei Türmen liegen.",
+        "Bei der Eröffnung 1937 ist das die <em>längste Hängebrücke der Welt</em>. Erst 1964 wird sie übertroffen."
+      ],
+      "figur": { "fn": "bruecke", "mass": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1933–1935 · Die Fundamente",
+      "headline": "Ein Pfeiler im offenen Meer",
+      "text": [
+        "Der Nordturm steht auf Fels am Ufer. Der Südpfeiler entsteht gut 300 Meter vor der Küste: erst ein Schutzring, dann wird das Wasser darin abgepumpt.",
+        "Ein Schiff rammt den Zugangssteg, ein Sturm zerschlägt ihn. Das Fundament dauert <em>zwei Jahre</em>."
+      ],
+      "figur": { "fn": "pfeiler" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1935–1936 · Die Kabel",
+      "headline": "27.572 Drähte pro Kabel",
+      "text": [
+        "Räder ziehen die Drähte einzeln über die Türme. Gebündelt und gepresst werden sie zu einem Kabel von 92 Zentimetern.",
+        "Beide Kabel zusammen enthalten <em>129.000 Kilometer</em> Draht."
+      ],
+      "figur": { "fn": "kabelSchnitt" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Sicherheit",
+      "headline": "Ein Netz unter der Baustelle",
+      "text": [
+        "Üblich ist damals ein Toter pro Million Dollar Baukosten. Chefingenieur Joseph Strauss verlangt Helme und lässt ein Netz spannen. Es fängt 19 Männer auf.",
+        "Im Februar 1937 bricht ein Gerüst hindurch. Zehn Arbeiter sterben, insgesamt sind es <em>elf Tote</em>."
+      ],
+      "figur": { "fn": "netz" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "Gut vier Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1930.3,
+        "bis": 1937.9,
+        "phasen": [
+          { "von": 1930.84, "bis": 1933.01, "art": "pause", "text": "Klagen" },
+          { "von": 1933.01, "bis": 1937.41, "art": "bau", "text": "1604 Tage" }
+        ],
+        "marken": [
+          { "jahr": 1930.84, "label": "1930", "text": "Wähler sagen Ja zu den Anleihen" },
+          { "jahr": 1933.01, "label": "1933", "text": "Baubeginn am 5. Januar" },
+          { "jahr": 1936.88, "label": "1936", "text": "Fahrbahn in der Mitte geschlossen" },
+          { "jahr": 1937.41, "label": "1937", "text": "Eröffnung am 28. Mai" }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Die Maut zahlt die Schulden",
+      "text": ["1930 stimmen 145.057 Wähler für die Anleihen, 46.954 dagegen. Als Sicherheit dienen Häuser, Höfe und Betriebe in sechs Countys."],
+      "punkte": [
+        { "wert": "35 Mio. $", "name": "Anleihen für den Bau", "zusatz": "Bund und Staat bezahlen nur eine Zufahrt" },
+        { "wert": "39 Mio. $", "name": "Zinsen, knapp", "zusatz": "Tilgung und Zinsen kommen allein aus der Maut" },
+        { "wert": "1971", "name": "letzte Anleihe getilgt", "zusatz": "34 Jahre nach der Eröffnung" }
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Golden Gate Bridge", "goldengate.org (Betreiber)", "Abruf 11/2026"],
+  "caption": [
+    "35 Millionen Dollar, geliehen mitten in der Weltwirtschaftskrise: Die Golden Gate Bridge wurde 1933 bis 1937 mit Anleihen gebaut.",
+    "Die Bewohner der Region bürgten mit ihrem Eigentum. Getilgt wurde aus der Maut, samt knapp 39 Millionen Dollar Zinsen. 1971 war die Brücke schuldenfrei.",
+    "Bist du schon einmal darübergelaufen?"
+  ],
+  "hashtags": ["goldengatebridge", "goldengate", "sanfrancisco", "haengebruecke", "baugeschichte", "ingenieurbau", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Anleihen 35 Mio. US-Dollar, Baukosten 35 Mio. US-Dollar", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/bond-measure-passes/", "https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"] },
+    { "angabe": "Zinsen knapp 39 Mio. US-Dollar, Tilgung und Zinsen allein aus der Maut, letzte Anleihe 1971 eingelöst", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/bond-measure-passes/"], "hinweis": "Wikipedia 39 Mio., Betreiber 'nearly 39 million'; daher 'knapp'" },
+    { "angabe": "Keine Staats- oder Bundesmittel außer der Zufahrt Alexander Avenue (WPA)", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"] },
+    { "angabe": "Abstimmung 4.11.1930: 145.057 dafür, 46.954 dagegen; Häuser, Höfe und Betriebe in sechs Countys als Sicherheit", "quellen": ["https://www.goldengate.org/bridge/history-research/bridge-construction/bond-measure-passes/"], "hinweis": "nur eine Quelle (Betreiber); Wikipedia nennt November 1930" },
+    { "angabe": "Hauptspannweite 1280 m, längste Hängebrücke der Welt bis 1964 (Verrazzano-Narrows)", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/statistics-data/faqs/"] },
+    { "angabe": "Pylone 227 m, Durchfahrtshöhe 67 m, Seitenfelder 343 m, Fachwerkträger 7,6 m, Breite 27 m", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"], "hinweis": "Seitenfeld 343 m nur Betreiber" },
+    { "angabe": "Einfahrt Golden Gate 1,6 km breit", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge"], "hinweis": "nur eine Quelle" },
+    { "angabe": "Nordpylon auf Fels am Ufer; Südpfeiler rund 340 m vor Fort Point (Betreiber: Steg 1100 Fuß), Steg von Schiff und Sturm zerstört, Fundament zwei Jahre", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"], "hinweis": "auf 'gut 300 Meter' gerundet" },
+    { "angabe": "Schutzring (fender) zuerst, dann 35,6 Mio. Liter abgepumpt; Südpfeiler 34 m unter Niedrigwasser, 44 ft (13 m) über Wasser", "quellen": ["https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/", "https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"], "hinweis": "nur Betreiber" },
+    { "angabe": "27.572 Drähte je Kabel, 92 cm Durchmesser, Luftspinnverfahren", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"] },
+    { "angabe": "61 Bündel, im Schnitt 452 Drähte, Draht 0,192 Zoll (4,9 mm), 129.000 km Draht in beiden Kabeln", "quellen": ["https://www.goldengate.org/bridge/history-research/statistics-data/design-construction-stats/"], "hinweis": "nur Betreiber; Drahtdicke von Zoll umgerechnet" },
+    { "angabe": "Branchenschnitt ein Toter pro Million Dollar; Helmpflicht und Netz; Netz rettet 19 Männer; 17.2.1937 zehn Tote durch Gerüst, insgesamt elf", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"] },
+    { "angabe": "Netz aus Manilaseil, 10 ft (3 m) über die Träger hinaus", "quellen": ["https://www.goldengate.org/bridge/history-research/bridge-construction/construction/"], "hinweis": "nur Betreiber" },
+    { "angabe": "Baubeginn 5.1.1933, Eröffnung für Autos 28.5.1937, Bauzeit 1604 Tage", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/statistics-data/faqs/"], "hinweis": "1604 Tage nur Betreiber" },
+    { "angabe": "Klagen nach der Abstimmung verzögern den Baubeginn", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/bridge-construction/bond-measure-passes/"] },
+    { "angabe": "Fahrbahn in der Mitte geschlossen im November 1936", "quellen": ["https://de.wikipedia.org/wiki/Golden_Gate_Bridge", "https://www.goldengate.org/bridge/history-research/moments-events/key-dates/"], "hinweis": "Tag uneinheitlich (18., 19. oder 20. November), daher nur Monat" }
+  ]
+}

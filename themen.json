@@ -11,7 +11,7 @@
   {"name": "Schloss Neuschwanstein", "art": "Schloss", "region": "DACH", "post": "010-schloss-neuschwanstein"},
   {"name": "Nord-Ostsee-Kanal", "art": "Kanal", "region": "DACH", "post": "011-nord-ostsee-kanal"},
   {"name": "Sagrada Família", "art": "Kirche", "region": "Europa", "post": "012-sagrada-familia"},
-  {"name": "Golden Gate Bridge", "art": "Brücke", "region": "Welt"},
+  {"name": "Golden Gate Bridge", "art": "Brücke", "region": "Welt", "post": "013-golden-gate-bridge"},
   {"name": "Olympiastadion München (Zeltdach)", "art": "Stadion", "region": "DACH"},
   {"name": "Eurotunnel", "art": "Tunnel", "region": "Europa"},
   {"name": "Müngstener Brücke", "art": "Brücke", "region": "DACH"},
