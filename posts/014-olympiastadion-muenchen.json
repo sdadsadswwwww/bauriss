@@ -1,0 +1,132 @@
+{
+  "nr": "014",
+  "titel": "Olympiastadion München",
+  "zeichnungen": "olympiadach",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 014",
+      "zahl": "170",
+      "headline": "Millionen Mark für ein Dach",
+      "text": ["Das Zeltdach im Münchner Olympiapark spannt sich über Stadion, Halle und Schwimmhalle. Geschätzt waren anfangs 40 bis 45 Millionen."],
+      "figur": { "fn": "zeltLandschaft" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1967 · Der Wettbewerb",
+      "headline": "Ein Zeltdach aus einem Strumpf",
+      "text": [
+        "Ein Mitarbeiter von Günter Behnisch kennt Frei Ottos Zeltdach aus Montreal. Im Wettbewerbsmodell spannt das Büro einen <em>Nylonstrumpf</em> über Holzstäbe.",
+        "Der Jury ist das zu gewagt. Juror Egon Eiermann setzt sich dafür ein, am 13. Oktober 1967 gewinnt der Entwurf."
+      ],
+      "figur": { "fn": "strumpfModell" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1969–1972 · Der Bau",
+      "headline": "Ein Netz, an Masten aufgehängt",
+      "text": [
+        "Das Seilnetz wird am Boden geknüpft und dann hochgezogen. Seine Knoten liegen 75 Zentimeter auseinander.",
+        "Über dem Stadion hängt es an zwei <em>70 Meter</em> hohen Masten. Die Ränge bleiben frei von Stützen."
+      ],
+      "figur": { "fn": "zeltLandschaft", "beschriftet": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Über der Tribüne",
+      "headline": "440 Meter Seil statt Stützen",
+      "text": [
+        "Vorn über den Rängen hält ein <em>Rundseil</em> den Rand des Dachs. Seine Enden sitzen in Betonquadern von bis zu 4000 Tonnen, bis 30 Meter tief im Boden."
+      ],
+      "figur": { "fn": "rundseilPlan" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Dachhaut",
+      "headline": "Durchsichtig für das Fernsehen",
+      "text": [
+        "Ein undurchsichtiges Dach hätte harte Schatten geworfen – schlecht für die Fernsehbilder. Deshalb liegen auf dem Netz Platten aus Acrylglas.",
+        "Die lichtdurchlässige Haut kostet zusätzlich <em>6 Millionen Mark</em>."
+      ],
+      "figur": { "fn": "netzDetail" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "Fertig vier Monate vor den Spielen",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1967.5,
+        "bis": 1973,
+        "phasen": [
+          { "von": 1969.44, "bis": 1972.3, "art": "bau", "text": "knapp drei Jahre Bau" },
+          { "von": 1972.3, "bis": 1972.65, "art": "schluss" }
+        ],
+        "marken": [
+          { "jahr": 1967.78, "label": "1967", "text": "Entwurf gewinnt" },
+          { "jahr": 1969.44, "label": "1969", "text": "Baubeginn am 9. Juni" },
+          { "jahr": 1972.3, "label": "1972", "text": "Dach fertig am 21. April" },
+          { "jahr": 1972.65, "label": "1972", "text": "Spiele eröffnet am 26. August" }
+        ]
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Die Kosten",
+      "headline": "Aus 45 Millionen werden 170",
+      "text": ["Für ein Netz dieser Größe gibt es kein Vorbild und keine sichere Schätzung. Beträge in D-Mark:"],
+      "balken": [
+        { "wert": 45, "anzeige": "45 Mio.", "name": "Schätzung Dezember 1967", "zusatz": "40 bis 45 Millionen für das ganze Dach" },
+        { "wert": 80, "anzeige": "80 Mio.", "name": "Plan Dezember 1969", "zusatz": "erster Kosten- und Finanzierungsplan, rund 80 Millionen" },
+        { "wert": 170.6, "anzeige": "170,6 Mio.", "name": "Abrechnung 1974", "zusatz": "vorläufige Schlussabrechnung", "akzent": true }
+      ],
+      "fuss": "Das geplante Ostdach über dem Stadion wird nie gebaut."
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Sammler und Lotterie zahlen mit",
+      "text": ["Gebaut wird von einer Gesellschaft des Bundes, Bayerns und Münchens. Die ganzen Spiele kosten fast <em>2 Milliarden Mark</em>. Das Geld kommt vor allem aus:"],
+      "punkte": [
+        { "wert": "731 Mio.", "name": "DM Gewinn aus Olympiamünzen", "zusatz": "fünf Silbermünzen zu je 10 DM" },
+        { "wert": "250 Mio.", "name": "DM aus der Olympia-Lotterie", "zusatz": "Zweckertrag bis 1974, gerundet" },
+        { "wert": "635 Mio.", "name": "DM aus Steuergeld", "zusatz": "rund ein Drittel; knapp die Hälfte davon trägt der Bund" }
+      ],
+      "fuss": "Nach den Spielen sollte das Dach eigentlich weg. Seit 1997 steht es unter Denkmalschutz."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "quellen": ["Wikipedia: Olympiastadion München", "Wikipedia: Olympiadach", "Wikipedia: Olympische Sommerspiele 1972", "Deutscher Bundestag: Drucksache 7/3066", "ingenieur.de", "Abruf 11/2026"],
+  "caption": [
+    "Geschätzt waren 40 bis 45 Millionen Mark, abgerechnet wurden 170,6 Millionen: Das Zeltdach im Münchner Olympiapark war 1972 ein Bau ohne Vorbild.",
+    "Angefangen hatte es mit einem Nylonstrumpf im Wettbewerbsmodell. Nach den Spielen sollte es weg, heute steht es unter Denkmalschutz.",
+    "Warst du schon einmal unter dem Dach?"
+  ],
+  "hashtags": ["olympiastadion", "olympiastadionmuenchen", "muenchen", "zeltdach", "baugeschichte", "ingenieurbau", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Kosten des Zeltdachs (ohne Ostdach): vorläufige Schlussabrechnung 30.9.1974 170,6 Mio. DM", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympiadach", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"], "hinweis": "Titelblatt gerundet auf 170" },
+    { "angabe": "Schätzung 19.12.1967: 40 bis 45 Mio. DM für die Gesamtdachfläche", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympiadach", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"], "hinweis": "Balken und Überschrift nutzen den oberen Wert 45" },
+    { "angabe": "Erster Gesamtkosten- und Finanzierungsplan 7.12.1969: rd. 80 Mio. DM für das Zeltdach", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf"], "hinweis": "nur eine Quelle (Behörde); genau 80,60 Mio., als 'rund 80' gezeigt" },
+    { "angabe": "Ostdach nicht gebaut", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympiadach"] },
+    { "angabe": "Keine verlässlichen Grundlagen für die Kostenermittlung, völlig neuartige Konstruktion", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympiadach"] },
+    { "angabe": "Mehrkosten lichtdurchlässige Eindeckung mit Plexiglas 6,0 Mio. DM (Fortschreibung 1.7.1970)", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf"], "hinweis": "nur eine Quelle (Behörde)" },
+    { "angabe": "Undurchsichtiges Dach hätte Schatten geworfen und kontrastfreie Fernsehbilder verhindert; Acrylglas gewählt", "quellen": ["https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen"] },
+    { "angabe": "Modell mit Holzstäben und Nylon-Damenstrumpf; Idee von Cord Wehrse nach Frei Ottos Zeltdach in Montreal 1967; Jury skeptisch, Egon Eiermann setzt sich ein; Sieg bekanntgegeben 13.10.1967; Maßstab 1:1000", "quellen": ["https://de.wikipedia.org/wiki/Olympiadach", "https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"] },
+    { "angabe": "Seilnetz am Boden geknüpft und hochgezogen, Knoten im 75-cm-Raster", "quellen": ["https://de.wikipedia.org/wiki/Olympiadach", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"] },
+    { "angabe": "Über dem Stadion zwei 70 m hohe und sechs kleinere Masten, Tribünen frei von Stützen", "quellen": ["https://de.wikipedia.org/wiki/Olympiadach", "https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen"] },
+    { "angabe": "Rundseil 440 m; Betonquader bis 4000 t, teils bis 30 m tief", "quellen": ["https://de.wikipedia.org/wiki/Olympiadach", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"] },
+    { "angabe": "Acrylglasplatten etwa 3 × 3 m", "quellen": ["https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"], "hinweis": "nur eine Quelle, nur in der Zeichnung" },
+    { "angabe": "Dach überspannt Stadion (Haupttribüne), Olympiahalle, Schwimmhalle", "quellen": ["https://de.wikipedia.org/wiki/Olympiadach", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"] },
+    { "angabe": "Baubeginn 9.6.1969; Dach über dem Stadion fertig 21.4.1972; Spiele eröffnet 26.8.1972", "quellen": ["https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"], "hinweis": "Baubeginn und Eröffnung der Spiele nur Wikipedia; 'knapp drei Jahre' = 2,9 Jahre" },
+    { "angabe": "Bauherr: Olympia-Baugesellschaft, gegründet von Bund, Freistaat Bayern und Stadt München", "quellen": ["https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen", "https://dserver.bundestag.de/btd/07/030/0703066.pdf"] },
+    { "angabe": "Gesamtkosten der Spiele 1967 Mio. DM ('fast 2 Milliarden')", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympische_Sommerspiele_1972"] },
+    { "angabe": "Münzgewinn insgesamt 731 Mio. DM; fünf Silbermünzen zu je 10 DM", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympische_Sommerspiele_1972"], "hinweis": "Wikipedia: 'mehr als 731 Millionen'; Silbermünzen nur Wikipedia" },
+    { "angabe": "Olympia-Lotterie: Zweckertrag bis 1974 etwa 250 Mio. DM (Bundestag: 252 Mio. einschl. Zinsen)", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympische_Sommerspiele_1972"], "hinweis": "gerundet auf rund 250" },
+    { "angabe": "Belastung der öffentlichen Haushalte 635 Mio. DM, Bund 311,7 Mio.; rund ein Drittel der Kosten", "quellen": ["https://dserver.bundestag.de/btd/07/030/0703066.pdf", "https://de.wikipedia.org/wiki/Olympische_Sommerspiele_1972"], "hinweis": "Wikipedia nennt nur 'rund ein Drittel'; 635 und Bundesanteil nur Bundestag (Behörde)" },
+    { "angabe": "Pläne, das Dach nach den Spielen abzubauen; Denkmalschutz seit 1997", "quellen": ["https://de.wikipedia.org/wiki/Olympiastadion_M%C3%BCnchen", "https://www.ingenieur.de/technik/fachbereiche/bau/olympiastadion-muenchen-so-entstand-das-legendaere-zeltdach/"], "hinweis": "Abbaupläne nur Wikipedia" }
+  ]
+}
