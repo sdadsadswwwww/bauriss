@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-18T06:20",
+  "stand": "2026-11-19T06:24",
   "konto": {
     "follower": 5,
-    "beitraege": 8
+    "beitraege": 10
   },
   "medien": [
     {
@@ -65,6 +65,22 @@
       "post": "005-koelner-dom",
       "art": "carousel",
       "datum": "2026-11-17",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "006-elbphilharmonie",
+      "art": "reel",
+      "datum": "2026-11-18",
+      "likes": 0,
+      "kommentare": 2,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "006-elbphilharmonie",
+      "art": "carousel",
+      "datum": "2026-11-18",
       "likes": 0,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
