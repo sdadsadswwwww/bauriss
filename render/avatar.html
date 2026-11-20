@@ -7,6 +7,9 @@
 <style>
   /* Instagram schneidet das Profilbild rund zu und zeigt es bis hinunter auf etwa 40 px:
      Marke groß und mittig, alles Wichtige im inneren Kreis. */
+  /* Das Profilbild bleibt im Blaupausen-Blau von 2026-11; die Blätter sind seit 20.11.2026 im CAD-Look. */
+  :root { --bg: #12406f; --ink: #edf3fb; --netz: rgba(237, 243, 251, 0.05); --netz2: rgba(237, 243, 251, 0.1); }
+  #sheet { background-image: linear-gradient(var(--netz2) 2px, transparent 2px), linear-gradient(90deg, var(--netz2) 2px, transparent 2px), linear-gradient(var(--netz) 1px, transparent 1px), linear-gradient(90deg, var(--netz) 1px, transparent 1px); background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px; }
   #sheet { width: 1080px; height: 1080px; display: flex; align-items: center; justify-content: center; }
   #sheet .marke { width: 1060px; height: 1060px; }
 </style>

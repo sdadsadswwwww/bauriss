@@ -1,12 +1,28 @@
 // Zeichnungen: Golden Gate Bridge, San Francisco. Maße in Metern, s = Pixel pro Meter; schematisch.
 // Belegt: Hauptspannweite 1280 m, Seitenfelder je 343 m, Pylone 227 m über dem Wasser, Durchfahrtshöhe 67 m,
-// Fachwerkträger 7,6 m hoch, Brücke 27 m breit, Netz 3 m (10 ft) über die Träger hinaus, Kabel 92 cm mit 61 Bündeln,
-// Südpfeiler 34 m unter Niedrigwasser gegründet und 13 m (44 ft) über das Wasser. Kabeldurchhang, Geländeform,
-// Wassertiefe und Abstufung der Pylone sind nach Fotos vereinfacht.
+// Fachwerkträger 7,6 m hoch, Brücke 27 m breit, Netz 3 m (10 ft) über die Träger hinaus, Kabel 92 cm mit 61 Bündeln
+// zu rund 452 Drähten (61 × 452 = 27.572), Südpfeiler 34 m unter Niedrigwasser gegründet und 13 m (44 ft) über das Wasser.
+// Ohne Maßzahl und nur nach Fotos vereinfacht: Kabeldurchhang, Abstand der Hänger und Fachwerkfelder, Abstufung und
+// Rippen der Pylone, Schutzring, Geländeform, Wassertiefe, Ankerblöcke, Zugangssteg, Querschnitt der Fahrbahn.
 (function () {
   const { r, svg, pfad, text, kreis, massV, massH } = Z;
 
   const SPANN = 1280, SEITE = 343, TURM = 227, DECK = 67, TRAEGER = 7.6, SATTEL = 224, TIEF = 80;
+
+  // ---- CAD-Zeichen: Achse mit Kreis oben, Höhenkote (Dreieck auf der Höhe, Text darüber oder darunter) ----
+  function achse(x, yU, yO, name) {
+    return pfad('ax', `M${r(x)} ${r(yU)}V${r(yO)}`) + pfad('m', kreis(x, yO - 15, 15)) +
+      text(x, yO - 7, name, 'achse', 'text-anchor="middle"');
+  }
+  function kote(x, y, inhalt, seite = 1, unten = false, kl = 'kote') {
+    const d = `M${r(x)} ${r(y)}l-8 ${unten ? 14 : -14}h16zM${r(x)} ${r(y)}h${r(seite * 92)}`;
+    return pfad('m', d) + text(x + seite * 16, unten ? y + 32 : y - 8, inhalt, kl, seite > 0 ? '' : 'text-anchor="end"');
+  }
+  const wellen = (x1, x2, y, schritt = 60) => {
+    let d = '';
+    for (let x = x1; x + 34 <= x2; x += schritt) d += `M${r(x)} ${r(y)}q8 -6 17 0t17 0`;
+    return d;
+  };
 
   // Höhe der Kabel über dem Wasser an der Stelle x (0 = Südpylon, 1280 = Nordpylon)
   function kabel(x) {
@@ -14,180 +30,362 @@
     const t = x < 0 ? (x + SEITE) / SEITE : (SPANN + SEITE - x) / SEITE;
     return DECK + 4 + (SATTEL - DECK - 4) * (0.35 * t + 0.65 * t * t);
   }
+  // Hänger: Hauptfeld 84 Felder, Seitenfelder je 22 Felder (schematisch)
+  function haenger() {
+    const xs = [];
+    for (let i = 1; i < 84; i++) xs.push((SPANN * i) / 84);
+    for (let i = 1; i < 22; i++) xs.push(-SEITE + (SEITE * i) / 22, SPANN + (SEITE * i) / 22);
+    return xs.sort((a, b) => a - b);
+  }
+  // Abstufungen des Pylons in Seitenansicht: [von, bis, halbe Tiefe]
+  const STUFEN = [[13, 75, 10.5], [75, 125, 9.4], [125, 165, 8.3], [165, 200, 7.3], [200, 222, 6.3], [222, TURM, 5.4]];
 
-  // Pylon in Seitenansicht, dreimal abgestuft
+  // Pylon in Seitenansicht: Umriss als deckende Fläche, Rippen, Bänder, Sattelhaube
   function pylon(X, Y, x) {
-    const stufen = [[13, 100, 8], [100, 170, 6.5], [170, TURM, 5]];
-    let d = '';
-    for (const [a, b, hw] of stufen) d += `M${r(X(x - hw))} ${r(Y(a))}V${r(Y(b))}H${r(X(x + hw))}V${r(Y(a))}`;
-    let t = '';
-    for (const h of [40, 100, 140, 170, 200]) {
-      const hw = h < 100 ? 8 : h < 170 ? 6.5 : 5;
-      t += `M${r(X(x - hw))} ${r(Y(h - 4))}H${r(X(x + hw))}`;
-    }
-    return { l: d, t };
+    let pts = [];
+    STUFEN.forEach(([a, b, hw], i) => {
+      const fase = i ? Math.min(0.9, STUFEN[i - 1][2] - hw) : 0;
+      pts.push([x - hw - fase, a], [x - hw, a + fase], [x - hw, b]);
+    });
+    const rechts = pts.map(([px, h]) => [2 * x - px, h]).reverse();
+    pts = pts.concat(rechts);
+    const umriss = pts.map(([px, h], i) => `${i ? 'L' : 'M'}${r(X(px))} ${r(Y(h))}`).join('') + 'Z';
+    let t = '', z = '';
+    STUFEN.forEach(([a, b, hw], i) => {
+      if (i === STUFEN.length - 1) return;
+      // Rippen: zwei vertiefte Felder je Stufe
+      for (const v of [-1, 1]) {
+        z += `M${r(X(x + v * (hw - 1.4)))} ${r(Y(a + 2.5))}V${r(Y(b - 3.5))}`;
+        z += `M${r(X(x + v * (hw - 2.6)))} ${r(Y(a + 2.5))}V${r(Y(b - 3.5))}`;
+      }
+      z += `M${r(X(x))} ${r(Y(a + 2.5))}V${r(Y(b - 3.5))}`;
+      // Band unter jedem Rücksprung, Stoßfugen
+      t += `M${r(X(x - hw))} ${r(Y(b - 2.5))}H${r(X(x + hw))}M${r(X(x - hw))} ${r(Y(a + 1.5))}H${r(X(x + hw))}`;
+      for (let h = a + 10; h < b - 6; h += 10) z += `M${r(X(x - hw + 0.4))} ${r(Y(h))}H${r(X(x - hw + 1.4))}M${r(X(x + hw - 1.4))} ${r(Y(h))}H${r(X(x + hw - 0.4))}`;
+    });
+    // Sattelhaube auf dem Turmkopf
+    const hk = STUFEN[STUFEN.length - 1][2];
+    t += `M${r(X(x - hk))} ${r(Y(SATTEL - 1))}H${r(X(x + hk))}`;
+    t += `M${r(X(x - hk + 1))} ${r(Y(TURM))}Q${r(X(x))} ${r(Y(TURM + 2.2))} ${r(X(x + hk - 1))} ${r(Y(TURM))}`;
+    z += `M${r(X(x - 2.4))} ${r(Y(SATTEL))}Q${r(X(x))} ${r(Y(SATTEL + 1.8))} ${r(X(x + 2.4))} ${r(Y(SATTEL))}`;
+    return `<path class="lf" d="${umriss}"/>` + pfad('t', t) + pfad('z', z);
   }
 
-  // ausschnitt: Südufer bis zur Mitte, größer (Titelblatt); mass: mit Maßlinien und Ortsnamen
-  function bruecke({ ausschnitt = false, mass = false } = {}) {
-    const von = ausschnitt ? -130 : -420, bis = ausschnitt ? 470 : SPANN + SEITE + 77;
-    const links = ausschnitt ? 20 : 80, s = (880 - links) / (bis - von);
-    const oben = mass ? 70 : 30, g = oben + TURM * s;
-    const X = m => links + (m - von) * s, Y = h => g - h * s;
-    const a = Math.max(von, -SEITE), b = Math.min(bis, SPANN + SEITE);
-    let l = '', t = '', akz = '';
-
-    // Kabel
-    let kab = '';
-    for (let x = a; x <= b; x += 5) kab += `${kab ? 'L' : 'M'}${r(X(x))} ${r(Y(kabel(x)))}`;
-    l += kab;
-    // Fahrbahnträger
-    l += `M${r(X(a))} ${r(Y(DECK + TRAEGER))}H${r(X(b))}M${r(X(a))} ${r(Y(DECK))}H${r(X(b))}`;
-    // Hänger
-    const abstand = ausschnitt ? 15 : 30;
-    for (let x = a + abstand; x < b; x += abstand) {
-      if (Math.abs(x) < 9 || Math.abs(x - SPANN) < 9) continue;
-      t += `M${r(X(x))} ${r(Y(kabel(x)))}V${r(Y(DECK + TRAEGER))}`;
+  // Fahrbahnträger: Gurte, Pfosten, Strebenfachwerk, Fahrbahn und Geländer zwischen xa und xb
+  function traeger(X, Y, xa, xb, fein) {
+    const feld = SPANN / 168;
+    const l = `M${r(X(xa))} ${r(Y(DECK))}H${r(X(xb))}M${r(X(xa))} ${r(Y(DECK + TRAEGER))}H${r(X(xb))}`;
+    let st = '', z = '';
+    const k0 = Math.ceil((xa + SEITE) / feld), k1 = Math.floor((xb + SEITE) / feld);
+    for (let k = k0; k <= k1; k++) {
+      const x = -SEITE + k * feld;
+      st += `M${r(X(x))} ${r(Y(DECK))}V${r(Y(DECK + TRAEGER))}`;
+      if (x + feld <= xb) {
+        const auf = k % 2 === 0;
+        st += `M${r(X(x))} ${r(Y(auf ? DECK : DECK + TRAEGER))}L${r(X(x + feld))} ${r(Y(auf ? DECK + TRAEGER : DECK))}`;
+      }
+      // Knotenbleche
+      z += `M${r(X(x - 0.7))} ${r(Y(DECK + 0.8))}H${r(X(x + 0.7))}M${r(X(x - 0.7))} ${r(Y(DECK + TRAEGER - 0.8))}H${r(X(x + 0.7))}`;
     }
-    // Fachwerk im Träger
-    for (let x = a; x + 15 <= b; x += 15) t += `M${r(X(x))} ${r(Y(DECK))}L${r(X(x + 7.5))} ${r(Y(DECK + TRAEGER))}L${r(X(x + 15))} ${r(Y(DECK))}`;
-    // Pylone und Pfeiler
-    for (const px of [0, SPANN]) {
-      if (px < von || px > bis) continue;
-      const p = pylon(X, Y, px);
-      l += p.l;
-      t += p.t;
-      l += `M${r(X(px - 12))} ${r(Y(0))}V${r(Y(13))}H${r(X(px + 12))}V${r(Y(0))}`;
-    }
+    let t = `M${r(X(xa))} ${r(Y(DECK + TRAEGER + 0.7))}H${r(X(xb))}`;
+    // Geländer mit Pfosten, unterer Windverband als zweite Linie
+    z += `M${r(X(xa))} ${r(Y(DECK + TRAEGER + 1.9))}H${r(X(xb))}M${r(X(xa))} ${r(Y(DECK + 0.6))}H${r(X(xb))}`;
+    for (let x = Math.ceil(xa / 3) * 3; x <= xb; x += 3) z += `M${r(X(x))} ${r(Y(DECK + TRAEGER + 0.7))}V${r(Y(DECK + TRAEGER + 1.9))}`;
+    if (fein) t += st; else z += st;
+    return pfad('l', l) + pfad('t', t) + pfad('z', z);
+  }
 
-    // Südufer mit Fort Point und Ankerblock
+  // Gelände und Meeresgrund als geschnittene, schraffierte Fläche; unten = tiefste gezeichnete Höhe
+  function gelaende(X, Y, von, bis, unten) {
     const sf = -SEITE - 10;
-    let ufer = '';
-    if (von < -SEITE) {
-      ufer += `M${r(X(von))} ${r(Y(20))}H${r(X(sf - 30))}L${r(X(sf))} ${r(Y(0))}`;
-      l += `M${r(X(-SEITE))} ${r(Y(20))}V${r(Y(DECK + 4))}H${r(X(-SEITE + 14))}V${r(Y(20))}`;
-      // Bogen über Fort Point
-      t += `M${r(X(-SEITE - 70))} ${r(Y(20))}Q${r(X(-SEITE - 35))} ${r(Y(DECK + 10))} ${r(X(-SEITE))} ${r(Y(20))}`;
-      l += `M${r(X(von))} ${r(Y(DECK + TRAEGER))}H${r(X(-SEITE))}`;
-    }
-    // Nordufer: Fels von Marin
-    if (bis > SPANN) {
-      ufer += `M${r(X(SPANN - 40))} ${r(Y(0))}L${r(X(SPANN + 30))} ${r(Y(18))}L${r(X(SPANN + 160))} ${r(Y(45))}L${r(X(SPANN + SEITE))} ${r(Y(DECK - 2))}L${r(X(bis))} ${r(Y(DECK + 30))}`;
-      l += `M${r(X(SPANN + SEITE - 14))} ${r(Y(DECK - 2))}V${r(Y(DECK + 4))}H${r(X(SPANN + SEITE))}`;
-    }
-    l += ufer;
-    // Wasser
-    const wEnde = bis > SPANN ? SPANN - 40 : bis, wAnf = Math.max(sf, von);
-    let wellen = '';
-    for (let x = X(wAnf) + 20; x + 34 <= X(wEnde) - 10; x += 60) wellen += `M${r(x)} ${r(g + 14)}q8 -6 17 0t17 0`;
-    t += wellen;
-    l += `M${r(X(wAnf))} ${r(g)}H${r(X(wEnde))}`;
+    const pts = [[von - 50, 20], [sf - 30, 20], [sf, 0], [-250, -12], [-60, -26], [0, -27], [200, -40], [640, -52],
+      [1000, -44], [1200, -18], [SPANN - 40, 0], [SPANN + 30, 18], [SPANN + 160, 45], [SPANN + SEITE, DECK - 2], [bis + 60, DECK + 30]];
+    const zug = p => p.map(([x, h], i) => `${i ? 'L' : 'M'}${r(X(x))} ${r(Y(h))}`).join('');
+    const linie = zug(pts);
+    const flaeche = linie + `L${r(X(bis + 60))} ${r(Y(unten))}L${r(X(von - 50))} ${r(Y(unten))}Z`;
+    // Schichtlinien im Grund
+    let z = '';
+    const see = pts.filter(([x]) => x > sf && x < SPANN - 40);
+    for (const tiefe of [8, 18]) z += zug(see.map(([x, h]) => [x, h - tiefe]));
+    return { flaeche, linie, z };
+  }
 
-    let body = pfad('t', t) + pfad('l', l) + akz;
-    let h = g + 30;
+  // ausschnitt: Südpylon bis über die Mitte hinaus, groß (Titelblatt); mass: ganze Brücke mit Maßen, Kote und Ortsnamen
+  function bruecke({ ausschnitt = false, mass = false } = {}) {
+    const von = ausschnitt ? -95 : -420, bis = ausschnitt ? 385 : SPANN + SEITE + 77;
+    const links = ausschnitt ? 20 : 80, s = (880 - links) / (bis - von);
+    const H = ausschnitt ? 560 : mass ? 620 : 420;
+    const g = mass ? 470 : 60 + TURM * s;
+    const X = m => links + (m - von) * s, Y = h => g - h * s;
+    const fein = ausschnitt;
+    const unten = -(H - g - 2) / s;
+    const a = Math.max(von, -SEITE), b = Math.min(bis, SPANN + SEITE);
+    const id = `gg-rahmen-${ausschnitt ? 1 : 2}`;
+    let body = `<clipPath id="${id}"><rect x="0" y="0" width="900" height="${r(H)}"/></clipPath>`;
+    let inhalt = '';
+
+    // Gelände, Wasser
+    const gl = gelaende(X, Y, von, bis, Math.max(unten, -80));
+    inhalt += `<path class="hs" d="${gl.flaeche}"/>` + pfad('z', gl.z) + pfad('l', gl.linie);
+    const wA = Math.max(-SEITE - 10, von), wE = Math.min(SPANN - 40, bis);
+    inhalt += pfad('l', `M${r(X(wA))} ${r(g)}H${r(X(wE))}`);
+    inhalt += pfad('t', wellen(X(wA) + 24, X(wE) - 10, g + 14, ausschnitt ? 60 : 44));
+
+    // Achsen der Pylone
+    for (const [px, n] of [[0, '1'], [SPANN, '2']]) {
+      if (px < von || px > bis) continue;
+      inhalt += achse(X(px), Y(Math.max(unten, -45)) - 4, Y(TURM) - 22, n);
+    }
+    // Höhenlinien
+    inhalt += pfad('hl', `M${r(X(0))} ${r(Y(TURM))}H${r(ausschnitt ? 880 : X(SPANN) + 30)}`);
+    if (ausschnitt) inhalt += pfad('hl', `M${r(X(40))} ${r(Y(DECK))}H880`);
+
+    // Hänger mit Kabelschellen
+    let ht = '', hz = '';
+    for (const x of haenger()) {
+      if (x <= a || x >= b) continue;
+      const hk = kabel(x);
+      const d = `M${r(X(x))} ${r(Y(hk))}V${r(Y(DECK + TRAEGER + 0.7))}`;
+      if (fein) ht += d; else hz += d;
+      hz += `M${r(X(x - 0.9))} ${r(Y(hk + 0.9))}H${r(X(x + 0.9))}M${r(X(x - 0.9))} ${r(Y(hk - 0.9))}H${r(X(x + 0.9))}`;
+    }
+    inhalt += pfad('t', ht) + pfad('z', hz);
+
+    // Fahrbahnträger im Hängebereich und auf den Zufahrten
+    inhalt += traeger(X, Y, Math.max(von, -SEITE - 60), Math.min(bis, SPANN + SEITE + 40), fein);
+    // Zufahrt San Francisco: Stützen bis auf das Gelände, Bogen über Fort Point
+    if (von < -SEITE) {
+      let st = '';
+      for (const x of [-SEITE - 50, -SEITE - 25]) st += `M${r(X(x - 1))} ${r(Y(DECK))}V${r(Y(20))}M${r(X(x + 1))} ${r(Y(DECK))}V${r(Y(20))}`;
+      inhalt += pfad('t', st);
+      inhalt += pfad('l', `M${r(X(-SEITE - 70))} ${r(Y(20))}Q${r(X(-SEITE - 35))} ${r(Y(DECK + 10))} ${r(X(-SEITE))} ${r(Y(20))}`);
+    }
+    // Ankerblöcke
+    for (const [x0, x1, hb] of [[-SEITE - 6, -SEITE + 16, 20], [SPANN + SEITE - 16, SPANN + SEITE + 6, DECK - 2]]) {
+      if (x1 < von || x0 > bis) continue;
+      const d = `M${r(X(x0))} ${r(Y(hb))}V${r(Y(DECK + 9))}H${r(X(x1))}V${r(Y(hb))}Z`;
+      inhalt += `<path class="lf" d="${d}"/><path class="hs" d="${d}"/>`;
+    }
+
+    // Pfeiler mit Schutzring (Süd) und auf Fels (Nord)
+    if (von <= 0) {
+      inhalt += pfad('d', `M${r(X(-13))} ${r(Y(-34))}V${r(Y(4))}M${r(X(13))} ${r(Y(-34))}V${r(Y(4))}M${r(X(-13))} ${r(Y(-34))}H${r(X(13))}`);
+      const ring = `M${r(X(-22))} ${r(Y(-29))}V${r(Y(4))}H${r(X(22))}V${r(Y(-29))}Z`;
+      inhalt += `<path class="lf" d="${ring}"/>` + pfad('t', `M${r(X(-22))} ${r(Y(1.5))}H${r(X(22))}M${r(X(-22))} ${r(Y(-6))}H${r(X(22))}`);
+      inhalt += `<path class="lf" d="M${r(X(-13))} ${r(Y(4))}V${r(Y(13))}H${r(X(13))}V${r(Y(4))}Z"/>`;
+    }
+    if (bis >= SPANN) inhalt += `<path class="lf" d="M${r(X(SPANN - 12))} ${r(Y(5))}V${r(Y(13))}H${r(X(SPANN + 12))}V${r(Y(5))}Z"/>`;
+    // Pylone
+    for (const px of [0, SPANN]) if (px >= von && px <= bis) inhalt += pylon(X, Y, px);
+
+    // Kabel, an den Pylonen über den Sattel geführt
+    const schritt = ausschnitt ? 2 : 4;
+    const stueck = (x0, x1, dh = 0) => {
+      if (x1 <= x0) return '';
+      let d = '';
+      for (let x = x0; x < x1 + schritt; x += schritt) {
+        const xx = Math.min(x, x1);
+        d += `${d ? 'L' : 'M'}${r(X(xx))} ${r(Y(kabel(xx) - dh))}`;
+      }
+      return d;
+    };
+    const hk = STUFEN[STUFEN.length - 1][2];
+    inhalt += pfad('l', stueck(a, Math.min(b, -hk)) + stueck(hk, Math.min(b, SPANN - hk)) + stueck(SPANN + hk, b));
+    // Unterseite des Kabels (92 cm) als zweite feine Linie
+    inhalt += pfad('z', stueck(Math.max(a, hk), Math.min(b, SPANN - hk), 0.92));
+
+    body += `<g clip-path="url(#${id})">${inhalt}</g>`;
+
+    // Koten und Maße
+    if (ausschnitt) {
+      body += kote(860, Y(TURM), '+227,00', -1);
+      body += kote(860, Y(DECK), '+67,00', -1, true);
+      body += kote(860, g, '±0,00', -1);
+    }
     if (mass) {
-      body += pfad('d', `M${r(X(0) - 12)} ${r(Y(TURM))}H${links - 30}`);
+      body += kote(X(SPANN / 2) - 46, Y(TURM), '+227,00');
       body += massV(links - 30, Y(TURM), g, '227 m', -1);
-      body += massH(X(0), X(SPANN), g + 46, '1280 m');
+      body += pfad('t', `M${r(links - 38)} ${r(Y(TURM))}H${r(X(0) - 12)}`);
+      body += massH(X(0), X(SPANN), g + 52, '1280 m');
       body += text(links - 40, g + 130, 'San Francisco', 'gross');
       body += text(880 - 20, g + 130, 'Marin', 'gross', 'text-anchor="end"');
-      h = g + 156;
     }
-    return svg(900, r(h), body);
+    return svg(900, H, body);
   }
 
   // Südpfeiler im Schnitt: Schutzring im offenen Wasser, darin trockengepumpt
   function pfeiler() {
-    const s = 8, w = 150, Yh = h => w - h * s, sohle = Yh(-34), grund = Yh(-27);
-    const fl = 520, fr = 790, pl = 575, pr = 735;
-    // Meeresgrund
-    let body = `<path class="hf" d="M30 ${grund}H${fl}V${sohle + 40}H${fr}V${grund}H870V${sohle + 40}H30Z"/>`;
-    body += pfad('l', `M30 ${grund}H${fl}M${fr} ${grund}H870`);
-    // Schutzring (Fender) als zwei Wände
-    body += `<path class="lf" d="M${fl - 14} ${Yh(4)}H${fl}V${grund + 30}H${fl - 14}Z"/><path class="lf" d="M${fr} ${Yh(4)}H${fr + 14}V${grund + 30}H${fr}Z"/>`;
-    // Pfeiler bis 13 m über das Wasser, darauf der Fuß des Pylons
+    const s = 8, w = 200, Yh = h => w - h * s, sohle = Yh(-34), grund = Yh(-27), H = 530;
+    const fl = 420, fr = 740, pl = 490, pr = 670, cx = (pl + pr) / 2, dw = 16;
+    let body = '';
+    // Meeresgrund, im Ring ausgehoben bis zur Sohle
+    const grundD = `M30 ${grund}H${fl - dw}V${grund + 30}H${fl}V${sohle}H${fr}V${grund + 30}H${fr + dw}V${grund}H880V${H - 6}H30Z`;
+    body += `<path class="hs" d="${grundD}"/>` + pfad('l', `M30 ${grund}H${fl - dw}M${fr + dw} ${grund}H880M${fl} ${sohle}H${fr}`);
+    let schicht = '';
+    for (const dy of [26, 58]) schicht += `M30 ${grund + dy}q60 -8 120 0t120 0t120 0M${fr + dw} ${grund + dy}q35 -6 70 0t70 0`;
+    body += pfad('z', schicht + `M${fl} ${sohle + 22}H${fr}`);
+    // Schutzring: zwei geschnittene Betonwände mit Fugen
+    for (const x of [fl - dw, fr]) {
+      const d = `M${x} ${Yh(4)}H${x + dw}V${grund + 30}H${x}Z`;
+      body += `<path class="lf" d="${d}"/><path class="hf" d="${d}"/>`;
+    }
+    let fugen = '';
+    for (let y = Yh(4) + 40; y < grund + 20; y += 40) fugen += `M${fl - dw} ${y}h${dw}M${fr} ${y}h${dw}`;
+    body += pfad('t', fugen);
+    // Pfeiler bis 13 m über das Wasser, darauf die Füße des Pylons
     body += `<path class="af" d="M${pl} ${sohle}H${pr}V${Yh(13)}H${pl}Z"/>`;
-    body += pfad('l', `M${pl} ${sohle}H${pr}V${Yh(13)}H${pl}ZM${pl + 30} ${Yh(13)}V30M${pr - 30} ${Yh(13)}V30M${pl + 22} 30h12M${pr - 34} 30h12`);
-    // Wasser außen, innen trocken
-    let wellen = '';
-    for (let x = 50; x + 34 < fl - 30; x += 60) wellen += `M${x} ${w + 16}q8 -6 17 0t17 0`;
-    body += pfad('l', `M30 ${w}H${fl - 14}M${fr + 14} ${w}H870`) + pfad('t', wellen + `M${fr + 30} ${w + 16}q8 -6 17 0t17 0`);
+    body += pfad('l', `M${pl} ${sohle}H${pr}V${Yh(13)}H${pl}Z`);
+    // Ankerstangen der Pylonfüße im Pfeiler (verdeckt)
+    let anker = '';
+    for (const x0 of [pl + 22, pr - 58]) for (let i = 0; i <= 3; i++) anker += `M${x0 + i * 12} ${Yh(13)}V${Yh(2)}`;
+    body += pfad('d', anker);
+    // Pylonfüße: Fußplatten und Zellen, oben abgebrochen
+    let fuss = '', zellen = '';
+    for (const x0 of [pl + 18, pr - 62]) {
+      fuss += `M${x0 - 6} ${Yh(13)}h56v-8h-56ZM${x0} ${Yh(13) - 8}V40M${x0 + 44} ${Yh(13) - 8}V40`;
+      zellen += `M${x0 + 11} ${Yh(13) - 8}V40M${x0 + 22} ${Yh(13) - 8}V40M${x0 + 33} ${Yh(13) - 8}V40`;
+      for (let y = Yh(13) - 30; y > 50; y -= 22) zellen += `M${x0} ${y}h44`;
+      fuss += `M${x0 - 4} 40l10 -6l10 8l10 -8l10 8l10 -6l6 4`;
+    }
+    body += pfad('l', fuss) + pfad('z', zellen);
+    // Wasser außen, innen trocken (Wasserstand gestrichelt)
+    body += pfad('l', `M30 ${w}H${fl - dw}M${fr + dw} ${w}H880`);
+    body += pfad('t', wellen(150, fl - dw - 20, w + 16) + wellen(fr + dw + 16, 860, w + 16) + wellen(60, fl - dw - 20, w + 44, 90));
     body += pfad('d', `M${fl} ${w}H${pl}M${pr} ${w}H${fr}`);
-    // Zugangssteg auf Pfählen, vom Ufer her
-    let steg = `M30 ${w - 36}H${fl - 14}`;
-    for (let x = 60; x < fl - 20; x += 70) steg += `M${x} ${w - 36}V${grund}`;
-    body += pfad('t', steg);
-    body += text(40, w - 56, 'Zugangssteg vom Ufer');
-    body += pfad('t', `M${fl - 7} ${Yh(4) - 4}L${fl - 40} 56`) + text(fl - 46, 48, 'Schutzring', '', 'text-anchor="end"');
-    body += text(40, 250, 'innen leer gepumpt:', 'hell') + text(40, 284, '35,6 Mio. Liter', 'hell');
-    body += pfad('t', `M372 258H${(fl + pl) / 2}`);
-    body += massV(840, w, sohle, '34 m');
-    return svg(900, sohle + 50, body);
+    // Zugangssteg auf Pfählen mit Kreuzverbänden, links abgebrochen
+    let steg = `M44 ${w - 36}H${fl - dw}M44 ${w - 46}H${fl - dw}`;
+    let verband = '';
+    const pfaehle = [];
+    for (let x = 80; x < fl - 30; x += 64) pfaehle.push(x);
+    for (const x of pfaehle) steg += `M${x - 3} ${w - 36}V${grund}M${x + 3} ${w - 36}V${grund}`;
+    for (let i = 0; i + 1 < pfaehle.length; i++) {
+      const xa = pfaehle[i] + 3, xb = pfaehle[i + 1] - 3;
+      verband += `M${xa} ${w - 32}L${xb} ${w - 6}M${xb} ${w - 32}L${xa} ${w - 6}`;
+    }
+    for (let x = 52; x < fl - dw; x += 16) verband += `M${x} ${w - 46}v-12`;
+    verband += `M44 ${w - 58}H${fl - dw}`;
+    body += pfad('t', steg) + pfad('z', verband);
+    body += pfad('l', `M44 ${w - 64}l-8 10l12 8l-8 10l8 10l-6 8`);
+    // Achse und Koten
+    body += achse(cx, H - 10, 36, '1');
+    body += pfad('hl', `M${pr} ${Yh(13)}H880M${pr} ${sohle}H880`);
+    body += kote(862, Yh(13), '+13,00', -1) + kote(862, w, '±0,00', -1) + kote(862, sohle, '−34,00', -1, true, 'kote hell');
+    // Beschriftung
+    body += text(40, w - 82, 'Zugangssteg vom Ufer');
+    body += pfad('t', `M${fr + 8} ${Yh(4) - 2}V52`) + text(880, 40, 'Schutzring', '', 'text-anchor="end"');
+    body += text(40, 40, 'innen leer gepumpt:', 'akz') + text(40, 74, '35,6 Mio. Liter', 'akz');
+    body += pfad('t', `M374 32H${(fl + pl) / 2}V300`);
+    return svg(900, H, body);
   }
 
-  // Querschnitt eines Tragkabels: 61 Bündel aus Paralleldraht
+  // Querschnitt eines Tragkabels: 61 Bündel aus Paralleldraht, je 452 Drähte
   function kabelSchnitt() {
-    const cx = 290, cy = 290, R = 236, d = 50;
-    let body = `<path class="lf" d="${kreis(cx, cy, R)}"/>` + pfad('l', kreis(cx, cy, R));
-    let buendel = '';
-    let akzent = '';
-    // hexagonale Anordnung: 1 + 6 + 12 + 18 + 24 = 61
+    const cx = 290, cy = 296, R = 236, d = 50, rb = 23;
+    // 452 Drähte eines Bündels: Dreiecksgitter, die 452 innersten Punkte
+    const gitter = [];
+    const a = 1.97;
+    for (let j = -14; j <= 14; j++) for (let i = -14; i <= 14; i++) {
+      const x = a * (i + j / 2), y = a * j * 0.866;
+      gitter.push([x, y, x * x + y * y]);
+    }
+    gitter.sort((p, q) => p[2] - q[2]);
+    const draehte = gitter.slice(0, 452);
+    let body = `<path class="lf" d="${kreis(cx, cy, R + 7)}"/>` + pfad('t', kreis(cx, cy, R + 2));
+    // Achsen
+    body += pfad('ax', `M${cx - R - 34} ${cy}H${cx + R + 34}M${cx} ${cy - R - 30}V${cy + R + 22}`);
+    let buendel = '', drahtD = '', akzentB = '', akzentD = '';
+    let ax = 0, ay = 0;
     for (let q = -4; q <= 4; q++) {
       for (let rr = Math.max(-4, -q - 4); rr <= Math.min(4, -q + 4); rr++) {
         const x = cx + d * (q + rr / 2), y = cy + d * rr * 0.866;
-        if (q === 4 && rr === -2) akzent = kreis(x, y, 23);
-        else buendel += kreis(x, y, 23);
+        const akz = q === 4 && rr === -2;
+        if (akz) { ax = x; ay = y; }
+        let dd = '';
+        for (const [px, py] of draehte) dd += kreis(x + px, y + py, 0.82);
+        if (akz) { akzentB += kreis(x, y, rb); akzentD += dd; } else { buendel += kreis(x, y, rb); drahtD += dd; }
       }
     }
-    body += pfad('t', buendel) + `<path class="af" d="${akzent}"/>` + pfad('a', akzent);
-    body += massH(cx - R, cx + R, cy + R + 30, '92 cm');
-    const ax = cx + d * 3, ay = cy - d * 2 * 0.866;
-    body += pfad('t', `M${r(ax + 20)} ${r(ay - 14)}L590 120`);
-    body += text(600, 112, '1 Bündel', 'gross akz') + text(600, 148, 'rund 452 Drähte');
-    body += text(600, 300, '61 Bündel', 'gross') + text(600, 336, 'je Kabel');
-    body += text(600, 430, '27.572 Drähte', 'gross') + text(600, 466, 'je 4,9 mm dick');
-    return svg(900, cy + R + 76, body);
+    body += pfad('z', drahtD) + pfad('t', buendel);
+    body += `<g class="akzent">${pfad('z', akzentD)}</g>` + pfad('a', akzentB);
+    body += pfad('l', kreis(cx, cy, R + 7));
+    body += massH(cx - R - 7, cx + R + 7, cy + R + 40, '92 cm');
+    body += pfad('t', `M${r(ax + 22)} ${r(ay - 12)}L590 64`);
+    body += text(600, 58, '1 Bündel', 'gross akz') + text(600, 94, 'rund 452 Drähte');
+    body += text(600, 166, '61 Bündel', 'gross') + text(600, 202, 'je Kabel');
+    body += text(600, 274, '27.572 Drähte', 'gross') + text(600, 310, 'je 4,9 mm dick');
+    return svg(900, cy + R + 86, body);
   }
 
   // Querschnitt der Fahrbahn mit dem Netz darunter
   function netz() {
-    const s = 18, xl = 450 - 13.5 * s, xr = 450 + 13.5 * s, top = 130, unten = top + TRAEGER * s, ueber = 3 * s;
+    const s = 18, xl = 450 - 13.5 * s, xr = 450 + 13.5 * s, top = 130, unten = top + TRAEGER * s, ueber = 3 * s, bt = 22;
     let body = '';
+    // Mittelachse
+    body += pfad('ax', `M450 ${r(unten + 12)}V110M450 80V64`) + pfad('m', kreis(450, 49, 15)) + text(450, 57, 'M', 'achse', 'text-anchor="middle"');
     // Hänger
-    body += pfad('t', `M${r(xl + 12)} 30V${top}M${r(xr - 12)} 30V${top}`);
-    body += massH(xl, xr, 66, '27 m');
-    // Fahrbahn und zwei Fachwerkträger
-    let l = `M${r(xl)} ${top}H${r(xr)}M${r(xl)} ${r(top + 14)}H${r(xr)}`;
-    let t = '';
-    for (const x of [xl, xr - 24]) {
-      l += `M${r(x)} ${top}V${r(unten)}H${r(x + 24)}V${top}`;
-      t += `M${r(x)} ${top}L${r(x + 24)} ${r(unten)}M${r(x + 24)} ${top}L${r(x)} ${r(unten)}`;
+    body += pfad('t', `M${r(xl + bt / 2)} 40V${top}M${r(xr - bt / 2)} 40V${top}`);
+    body += pfad('z', `M${r(xl + bt / 2 - 3)} 40V${top}M${r(xr - bt / 2 + 3)} 40V${top}`);
+    body += massH(xl, xr, 72, '27 m');
+    // Fahrbahnplatte mit Belag, Bordsteinen und Geländern
+    let l = `M${r(xl)} ${top}H${r(xr)}M${r(xl)} ${r(top + 12)}H${r(xr)}`;
+    let t = '', z = `M${r(xl)} ${top - 3}H${r(xr)}`;
+    for (const x of [xl + bt + 40, xr - bt - 40]) t += `M${r(x)} ${top}v-8h${x < 450 ? -10 : 10}`;
+    for (const x of [xl + 4, xr - 4]) z += `M${r(x)} ${top}V${top - 26}M${r(x - 4)} ${top - 26}h8`;
+    // Fahrstreifen
+    for (let i = 1; i < 6; i++) {
+      const x = xl + bt + 40 + (i * (xr - xl - 2 * bt - 80)) / 6;
+      z += `M${r(x - 8)} ${top - 1}h16`;
     }
-    // Querträger unten
-    t += `M${r(xl + 24)} ${r(unten - 10)}H${r(xr - 24)}M${r(xl + 24)} ${r(unten - 10)}L450 ${r(top + 14)}L${r(xr - 24)} ${r(unten - 10)}`;
-    body += pfad('t', t) + pfad('l', l);
+    // zwei Fachwerkträger
+    for (const x of [xl, xr - bt]) {
+      l += `M${r(x)} ${top}V${r(unten)}H${r(x + bt)}V${top}`;
+      t += `M${r(x)} ${r(top + 12)}L${r(x + bt)} ${r(unten)}M${r(x + bt)} ${r(top + 12)}L${r(x)} ${r(unten)}`;
+      z += `M${r(x + 4)} ${top}V${r(unten)}M${r(x + bt - 4)} ${top}V${r(unten)}`;
+    }
+    // Querträger als Fachwerk mit Pfosten
+    const q0 = xl + bt, q1 = xr - bt, qo = top + 12, qu = unten - 6;
+    l += `M${r(q0)} ${r(qu)}H${r(q1)}`;
+    const nf = 8;
+    for (let i = 0; i <= nf; i++) {
+      const x = q0 + (i * (q1 - q0)) / nf;
+      t += `M${r(x)} ${r(qo)}V${r(qu)}`;
+      if (i < nf) {
+        const xn = q0 + ((i + 1) * (q1 - q0)) / nf;
+        t += i < nf / 2 ? `M${r(x)} ${r(qo)}L${r(xn)} ${r(qu)}` : `M${r(x)} ${r(qu)}L${r(xn)} ${r(qo)}`;
+      }
+    }
+    // Längsträger unter der Platte
+    for (let i = 1; i < 12; i++) z += `M${r(q0 + (i * (q1 - q0)) / 12 - 4)} ${r(qo)}h8v8h-8z`;
+    body += pfad('z', z) + pfad('t', t) + pfad('l', l);
     // Autos auf der Fahrbahn
     let autos = '';
-    for (const x of [330, 470]) autos += `M${x} ${top}v-20h18l8 -12h34l8 12h18v20` + kreis(x + 18, top - 2, 7) + kreis(x + 70, top - 2, 7);
+    for (const x of [318, 486]) autos += `M${x} ${top - 4}v-18h18l8 -12h34l8 12h18v18` + kreis(x + 18, top - 6, 7) + kreis(x + 70, top - 6, 7);
     body += pfad('t', autos);
-    // Netz, an beiden Seiten 3 m über die Träger hinaus
+    // Netz, an beiden Seiten 3 m über die Träger hinaus, an Auslegern gehalten
     const n0 = xl - ueber, n1 = xr + ueber, ny = unten + 26;
+    const tief = x => ny + 50 * (1 - ((x - 450) / (n1 - 450)) ** 2);
+    let ausleger = '';
+    for (const [x, xa] of [[xl, n0], [xr, n1]]) ausleger += `M${r(x)} ${r(unten - 4)}L${r(xa)} ${r(ny)}M${r(x)} ${r(unten)}V${r(ny)}H${r(xa)}`;
+    body += pfad('t', ausleger);
     let masche = '';
-    for (let x = n0 + 24; x < n1; x += 24) {
-      const y = ny + 50 * (1 - ((x - 450) / (n1 - 450)) ** 2);
-      masche += `M${r(x)} ${r(ny)}V${r(y)}`;
+    for (let x = n0 + 18; x < n1 - 4; x += 18) masche += `M${r(x)} ${r(ny)}V${r(tief(x))}`;
+    for (let i = 1; i <= 3; i++) {
+      let d = '';
+      for (let x = n0; x <= n1 + 0.1; x += 18) d += `${d ? 'L' : 'M'}${r(x)} ${r(ny + (tief(x) - ny) * (i / 4))}`;
+      masche += d;
     }
-    body += pfad('a', `M${r(n0)} ${r(ny)}Q450 ${r(ny + 100)} ${r(n1)} ${r(ny)}M${r(n0)} ${r(ny)}H${r(xl)}M${r(xr)} ${r(ny)}H${r(n1)}`);
-    body += pfad('a', masche.replace(/V/g, 'V'));
-    body += massH(n0, xl, ny + 24, '3 m');
+    body += `<g class="akzent">${pfad('z', masche)}</g>`;
+    let rand = '';
+    for (let x = n0; x <= n1 + 0.1; x += 6) rand += `${rand ? 'L' : 'M'}${r(x)} ${r(tief(x))}`;
+    body += pfad('a', rand + `M${r(n0)} ${r(ny)}H${r(n1)}`);
+    body += massH(n0, xl, ny + 30, '3 m');
     body += massV(xl - 80, top, unten, '7,6 m', -1);
-    body += text(450, ny + 106, 'Netz aus Manilaseil', 'gross akz', 'text-anchor="middle"');
+    body += text(450, ny + 112, 'Netz aus Manilaseil', 'gross akz', 'text-anchor="middle"');
     // Wasser tief unten
-    let wellen = '';
-    for (let x = 60; x + 34 < 860; x += 60) wellen += `M${x} ${r(ny + 150)}q8 -6 17 0t17 0`;
-    body += pfad('t', wellen) + text(450, ny + 200, '67 m tiefer: das Wasser', 'hell', 'text-anchor="middle"');
+    body += pfad('t', wellen(60, 860, r(ny + 156)));
+    body += text(450, ny + 204, '67 m tiefer: das Wasser', 'hell', 'text-anchor="middle"');
     body += pfad('t', `M${r(xr + 4)} ${r(top + 60)}L${r(xr + 70)} ${r(top + 30)}`) + text(r(xr + 76), r(top + 36), 'Träger');
-    return svg(900, r(ny + 230), body);
+    return svg(900, r(ny + 228), body);
   }
 
   Object.assign(Zeichnung, { bruecke, pfeiler, kabelSchnitt, netz });

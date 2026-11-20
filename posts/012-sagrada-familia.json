@@ -9,7 +9,7 @@
       "zahl": "144",
       "headline": "Jahre im Bau",
       "text": ["Seit 1882 wächst die Sagrada Família in Barcelona. Sie hat den höchsten Kirchturm der Welt – fertig ist sie nicht."],
-      "figur": { "fn": "sagradaAnsicht" }
+      "figur": { "fn": "sagradaAnsicht", "ebene": "Geburtsfassade", "details": [{ "titel": "Portale", "box": [176, 640, 160, 190], "ecke": "ol", "breite": 260, "massstab": "M 1:400" }] }
     },
     {
       "typ": "bild-unten",
@@ -19,7 +19,7 @@
         "Der Buchhändler Josep Maria Bocabella will eine Sühnekirche, bezahlt nur aus Spenden. Sein Verein kauft 1881 einen Häuserblock am Rand von Barcelona.",
         "Am 19. März 1882 liegt der Grundstein. 1883 übernimmt Antoni Gaudí – und plant <em>fünf Schiffe und 18 Türme</em>."
       ],
-      "figur": { "fn": "sagradaGrundriss" }
+      "figur": { "fn": "sagradaGrundriss", "ebene": "Grundriss" }
     },
     {
       "typ": "bild-unten",
@@ -29,7 +29,7 @@
         "Zwölf Türme stehen für die Apostel, vier für die Evangelisten, einer für Maria. Der höchste in der Mitte gehört Jesus Christus.",
         "14 der 18 Türme sind gebaut. Es fehlen die vier der Hauptfassade (Stand 2026)."
       ],
-      "figur": { "fn": "sagradaAnsicht", "namen": true }
+      "figur": { "fn": "sagradaAnsicht", "namen": true, "ebene": "Geburtsfassade" }
     },
     {
       "typ": "bild-unten",
@@ -39,7 +39,7 @@
         "1925 wird der erste Turm fertig. Am 10. Juni 1926 stirbt Gaudí, drei Tage nachdem ihn eine Straßenbahn erfasst hat.",
         "1936, im Bürgerkrieg, wird seine Werkstatt verwüstet: Pläne verbrennen, Gipsmodelle zerbrechen. Mitarbeiter setzen sie später wieder zusammen."
       ],
-      "figur": { "fn": "sagrada1926" }
+      "figur": { "fn": "sagrada1926", "ebene": "Stand 1926", "details": [{ "titel": "Stand 1926", "box": [395, 330, 190, 165], "ecke": "or", "breite": 270, "massstab": "M 1:500" }] }
     },
     {
       "typ": "bild-unten",
@@ -71,7 +71,7 @@
         "Am 20. Februar 2026 bekommt der Christusturm sein Kreuz: 17 Meter hoch, gebaut in Gundelfingen bei Ulm. Mit 172,5 Metern ist er der <em>höchste Kirchturm der Welt</em>.",
         "Das Ulmer Münster hält den Titel zuvor 135 Jahre lang."
       ],
-      "figur": { "fn": "sagradaVergleich" }
+      "figur": { "fn": "sagradaVergleich", "ebene": "Höhenvergleich" }
     },
     {
       "typ": "punkte",

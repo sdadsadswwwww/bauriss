@@ -12,7 +12,8 @@
         "Seit 1994 fahren Züge unter dem Ärmelkanal von England nach Frankreich. Bezahlt hat den Tunnel kein Staat, sondern private Geldgeber."
       ],
       "figur": {
-        "fn": "eurotunnelProfil"
+        "fn": "eurotunnelProfil",
+        "ebene": "Längsschnitt"
       }
     },
     {
@@ -54,7 +55,11 @@
         "Alle 375 Meter führt ein Querschlag hinüber. Im Notfall gehen die Fahrgäste dort in Sicherheit."
       ],
       "figur": {
-        "fn": "eurotunnelQuerschnitt"
+        "fn": "eurotunnelQuerschnitt",
+        "ebene": "Querschnitt",
+        "details": [
+          { "titel": "Servicetunnel", "box": [390, 204, 124, 100], "ecke": "or", "breite": 224 }
+        ]
       }
     },
     {
@@ -67,7 +72,12 @@
       ],
       "figur": {
         "fn": "eurotunnelProfil",
-        "beschriftet": true
+        "beschriftet": true,
+        "ebene": "Längsschnitt",
+        "befehl": "_SCHRAFF Interne Punkte wählen:",
+        "details": [
+          { "titel": "Kreideschicht", "box": [250, 352, 128, 70], "ecke": "or", "breite": 240 }
+        ]
       }
     },
     {
@@ -79,7 +89,12 @@
         "Am 1. Dezember 1990 treffen sich die Mannschaften. Dank Lasermessung liegen die Röhren seitlich nur <em>gut 35 Zentimeter</em> auseinander."
       ],
       "figur": {
-        "fn": "vortriebe"
+        "fn": "vortriebe",
+        "ansicht": "Oben",
+        "ebene": "Vortriebe",
+        "details": [
+          { "titel": "Treffpunkt", "box": [420, 186, 100, 90], "ecke": "ur", "breite": 220 }
+        ]
       }
     },
     {

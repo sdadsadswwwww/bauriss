@@ -16,7 +16,7 @@ Damit sind die Posts vorab freigegeben: Niemand sieht sie vor der Veröffentlich
 ## Feste Regeln
 
 1. **Nicht selbst veröffentlichen.** Kein `gh workflow run post.yml`, kein `tools/publish.py` ohne `--probelauf`. Veröffentlicht wird allein durch den Zeitplan in `.github/workflows/post.yml` (Reel 12:15 Uhr, Post 18:00 Uhr, Story danach, zwei spätere Läufe als Reserve). Erlaubt ist nur das Anstoßen von `reel.yml`: Dieser Workflow rendert ein Video und veröffentlicht nichts.
-2. **Stil nicht anfassen.** Unverändert bleiben: `render/style.css`, `render/render.js`, `render/slide.html`, `render/sheet.html`, `render/fonts*`, `render/drawings.js`, `tools/`, `.github/`, `config.json`, `KONTO.md`. Neu entstehen pro Lauf nur `posts/<post>.json`, `render/zeichnungen/<thema>.js` und `out/<post>/`; geändert werden nur `plan.json` und `themen.json` (über `tools/automatik.py`). Fehlt der Vorlage etwas, wird es in der Zeichnungsdatei des Themas gelöst oder das Blatt anders aufgebaut.
+2. **Stil nicht anfassen.** Unverändert bleiben: `render/style.css`, `render/render.js`, `render/slide.html`, `render/sheet.html`, `render/fonts*`, `render/drawings.js`, `render/gotik.js`, `tools/`, `.github/`, `config.json`, `KONTO.md`. Neu entstehen pro Lauf nur `posts/<post>.json`, `render/zeichnungen/<thema>.js` und `out/<post>/`; geändert werden nur `plan.json` und `themen.json` (über `tools/automatik.py`). Fehlt der Vorlage etwas, wird es in der Zeichnungsdatei des Themas gelöst oder das Blatt anders aufgebaut.
 3. **Erschienene Posts bleiben, wie sie sind.** Nichts ändern, was in `veroeffentlicht.json` steht.
 4. **Dieses Repository gehört allein dem Kanal Bauriss.** Das Instagram-Konto `@der_bauriss` ist seit 16.11.2026 die Heimat des Kanals; sein letzter Stand davor steht unter dem Tag `archiv-2026-11-16`.
 5. **Keine Zugangsdaten.** Keine Tokens erzeugen, lesen oder ausgeben, nicht bei Instagram oder Meta anmelden, keine Secrets ändern. Läuft das Token ab, steht das im Bericht; erneuern muss es der Betreiber (`KONTO.md`).
@@ -167,7 +167,7 @@ Fertige Zeichnungen für jedes Thema (in `render/drawings.js`):
 
 ## Zeichnungen
 
-Jedes Thema bekommt eine eigene Datei `render/zeichnungen/<thema>.js` mit zwei bis vier Funktionen. Vorlagen: `render/zeichnungen/frauenkirche.js` (Ansicht mit Beschriftung, Zustand als gestrichelter Umriss, Detail), `render/zeichnungen/elbtunnel.js` (Schnitt durch Boden und Wasser), `render/zeichnungen/schwebebahn.js` (Seitenansicht, Querschnitt).
+Jedes Thema bekommt eine eigene Datei `render/zeichnungen/<thema>.js` mit zwei bis vier Funktionen. Vorlagen im CAD-Look mit hohem Detailgrad (seit 20.11.2026): `render/zeichnungen/gotthard.js` und `eurotunnel.js` (Längs- und Querschnitte durch Gestein), `neuschwanstein.js` und `sagrada.js` (Ansichten mit Fenstern, Bögen, Türmen, Grundriss), `goldengate.js` (Brücke, Pfeiler, Kabelschnitt), `olympiadach.js` (Seilnetz), `nordostseekanal.js` (Karte, Profil, Schleuse). Die älteren Dateien (z. B. `frauenkirche.js`, `elbtunnel.js`) zeigen den Aufbau, sind aber zu schlicht für den heutigen Detailgrad.
 
 Gerüst:
 
@@ -194,31 +194,48 @@ Werkzeug aus `Z` (Quelle: Anfang und Ende von `render/drawings.js`):
 - `kreis(cx, cy, radius)`, `bogen(x, yFuss, breite, hoehe)` (Spitzbogen): liefern Pfaddaten für `pfad`.
 - `boden(x1, x2, y)`: Bodenlinie mit Schraffur. `massV(x, y1, y2, 'Text', seite)`, `massH(x1, x2, y, 'Text')`: Maßlinien; `seite = -1` setzt die Maßzahl links statt rechts der Linie.
 
-Klassen für Linien und Flächen: `l` Hauptlinie, `t` dünne Linie für Details, `d` gestrichelt, `a` gelbe Akzentlinie, `hf` schraffierte Fläche mit Umriss, `hs` Schraffur ohne Umriss, `lf` Fläche in Blattfarbe mit Umriss (deckt Dahinterliegendes ab), `af` gelbe Fläche, `bgl` breite Unterlage in Blattfarbe unter einer Linie. Gruppen: `<g class="akzent">` färbt enthaltene `l`- und `lf`-Linien gelb, `<g class="geplant">` zeichnet sie gestrichelt (etwas, das nicht oder nicht mehr steht); `lf`-Flächen decken darin nicht mehr ab, dahinterliegende Linien scheinen durch.
+Klassen für Linien und Flächen (Ebenenfarben wie im CAD): `l` Hauptlinie (weiß), `t` dünne Linie für Details (hellblau), `z` sehr feine Linie für Zierrat und Kleinteile, `d` gestrichelt, `a` gelbe Akzentlinie, `m` Maßlinie (cyan; `massV` und `massH` nutzen sie), `ax` Achse (rot, Strich-Punkt), `hl` Höhenlinie (cyan, gepunktet), `hf` schraffierte Fläche mit Umriss, `hs` Schraffur ohne Umriss, `lf` Fläche in Blattfarbe mit Umriss (deckt Dahinterliegendes ab), `af` gelbe Fläche, `bgl` breite Unterlage in Blattfarbe unter einer Linie. Gruppen: `<g class="akzent">` färbt enthaltene `l`- und `lf`-Linien gelb, `<g class="geplant">` zeichnet sie gestrichelt (etwas, das nicht oder nicht mehr steht); `lf`-Flächen decken darin nicht mehr ab, dahinterliegende Linien scheinen durch.
 
-Klassen für Text: ohne Klasse 28 px, `gross` 36 px, `riesig` 60 px, `mass` 24 px für Maßzahlen, `akz` gelb, `hell` mit Rand in Blattfarbe (für Text über Linien). Breite eines Zeichens zum Ausrechnen von Platz: ohne Klasse etwa 17 Einheiten, `gross` etwa 22, `mass` etwa 16, `riesig` etwa 24.
+Klassen für Text: ohne Klasse 28 px, `gross` 36 px, `riesig` 60 px, `mass` 24 px für Maßzahlen (cyan), `kote` 20 px für Höhenkoten (cyan), `achse` 22 px für Achsbezeichnungen (rot), `akz` gelb, `hell` mit Rand in Grundfarbe (für Text über Linien). Breite eines Zeichens zum Ausrechnen von Platz: ohne Klasse etwa 17 Einheiten, `gross` etwa 22, `mass` etwa 16, `riesig` etwa 24.
 
 Regeln:
 
 - **Breite Zeichnungen** (`bild-unten`, `cover-breit`): Zeichenfläche 900 breit, 450 bis 660 hoch. Dann entspricht eine Einheit einem Pixel und die Schrift hat ihre volle Größe.
 - **Die Zeichnung muss in die freie Höhe passen,** sonst schrumpft sie samt Schrift, ohne Meldung. Freie Höhe bei `bild-unten` = 1114 − 42 (`kicker`) − 92 je Zeile der Überschrift − je Absatz (26 + 49 je Zeile, eine Zeile fasst etwa 52 Zeichen) − 30. Beispiel: Überschrift zweizeilig, zwei Absätze mit drei und zwei Zeilen: 1114 − 42 − 184 − 173 − 124 − 30 = 561. Die Zeichenfläche darf höchstens so hoch sein; ist sie höher, Text kürzen oder die Zeichnung flacher anlegen. Bei `cover-breit` nimmt der Kopf mit Zahl etwa 300 statt der Überschriftzeilen.
 - **Hohe Zeichnungen** (`cover`, `bild-rechts`): Zeichenfläche 440 bis 520 breit, 850 bis 1000 hoch. Breiter darf sie nicht sein, sonst schrumpft die Schrift unter die Lesbarkeit.
-- Nur Linien, Schraffur und Gelb. Keine weiteren Farben, keine Verläufe, keine Fotos, keine eingebetteten Bilder, keine eigenen `<style>`-Angaben.
+- Nur die Klassen oben (Linien, Schraffur, Gelb, dazu Cyan für Maße und Koten und Rot für Achsen). Keine weiteren Farben, keine Verläufe, keine Fotos, keine eingebetteten Bilder, keine eigenen `<style>`-Angaben.
 - Recherchierte Maße exakt umsetzen (Meter mal Maßstab `s`). Was nicht recherchiert ist, wird nach Fotos und Plänen vereinfacht gezeichnet und bekommt keine Maßzahl. Im Kopf der Datei steht „schematisch" und welche Maße belegt sind.
 - Gelb sparsam: das eine Teil, um das es auf dem Blatt geht.
 - Beschriftungen stehen frei: nicht über Linien, nicht übereinander, mindestens 20 Einheiten vom Rand der Zeichenfläche. Eine dünne Hinweislinie (`t`) verbindet Wort und Teil.
 - Jede Beschriftung und jede Maßzahl ist ein recherchierter Fakt.
 - Zwei bis vier Funktionen pro Thema reichen; eine Funktion darf über Optionen zwei Blätter bedienen (ganz und im Ausschnitt, mit und ohne Beschriftung).
 
+### Detailgrad und CAD-Look (seit 20.11.2026)
+
+Die Blätter sehen aus wie ein CAD-Programm, angelehnt an die Zeichnungen der YouTube-Videos von Bauriss: dunkler Modellbereich, jede Zeichnung in einem Ansichtsfenster mit Kopfleiste („Modell“, Ansicht, Ebene) und Befehlszeile. Das erledigt die Vorlage. Die Zeichnung selbst muss so detailliert sein, als wäre das Bauwerk konstruiert worden, nicht nur sein Umriss:
+
+- **Konstruktion sichtbar:** Achsen (`ax`, mit Kreis und Buchstabe oder Ziffer, Text `achse`), Höhenlinien (`hl`) mit Koten (`kote`, z. B. `±0,00`, `+72,00`; nur belegte Höhen mit Zahl), Maßketten (`massV`, `massH`).
+- **Bauteile statt Flächen:** Fenster mit Laibung, Bögen, Sprossen und Maßwerk; Gesimse, Galerien, Zinnen, Fialen; Pfeiler mit Rücksprüngen; Fachwerke mit Gurten, Diagonalen und Knoten; Seile mit Hängern und Schellen; Tunnel mit Ausbruch, Innenschale, Gleisen, Fahrleitung und Entwässerung; Erdreich und Gestein in Schichten mit Schraffur.
+- **Ebenen:** Kontur `l`, Bauteile `t`, Kleinteile und Zierrat `z`, Nichtgebautes `d` oder `<g class="geplant">`, das Thema des Blatts gelb.
+- **Ehrlich bleiben:** Details dürfen schematisch sein; Zahlen und Beschriftungen nur für Belegtes. Im Kopf der Datei steht „schematisch“.
+- **Bausteine wiederverwenden:** Gotische Bauteile (Lanzettfenster, Pässe, Rosetten, Wimperge, Fialen, Strebepfeiler, Galerien, Portale, Helme) liegen als `Gotik` in `render/gotik.js` bereit (Kopie aus dem YouTube-Projekt, auf jedem Blatt geladen). Maße in Metern mit `M = { X: m => x0 + m * s, Y: m => g - m * s, s }`; jedes Bauteil liefert `{ l, t, f }` als Pfaddaten (Klassen `l`, `t`, `z`), z. B. `Gotik.fenster(M, x, y, breite, hoehe, bahnen, { wimperg: true })`. Beispiele für den Einsatz: `render/zeichnungen/neuschwanstein.js`, `sagrada.js`.
+
+Optionale Felder in `figur` (die Vorlage wertet sie aus, die Zeichnungsfunktion sieht sie nicht):
+
+- `details`: bis zu zwei Detailfenster, die einen Ausschnitt derselben Zeichnung vergrößert zeigen, mit gelbem Bezugsrahmen auf der Hauptzeichnung: `[{ "titel": "Hauptportal", "box": [x, y, breite, hoehe], "ecke": "or" | "ol" | "ur" | "ul", "breite": 300, "hoehe": 240, "massstab": "M 1:150" }]`. `box` steht in den Einheiten der Zeichenfläche (`svg(breite, hoehe, …)`). Nur dort, wo in der Ecke Platz ist und der Ausschnitt echte Kleinteile zeigt. Texte erscheinen im Detailfenster nicht.
+- `ebene` (Name in der Kopfleiste, Standard ist der Titel des Posts), `ansicht` (`Vorne`, `Oben`, `Schnitt`, `Diagramm`; sonst aus dem Namen der Funktion geraten), `befehl` (Text der Befehlszeile, z. B. `_MASSWERK Einfügepunkt:`).
+
+Optional auf dem Titelblatt `cover-breit`: `eigenschaften`, eine Palette wie im CAD rechts neben Zahl und Überschrift (Zahl und Überschrift stehen dann untereinander, die Zeichnung wird etwa 130 px flacher): `[["Allgemein"], ["Ort", "Uri/Tessin"], ["Geometrie"], ["Länge", "57 km"], …]`; ein Eintrag mit einem Wert ist eine Zwischenüberschrift. Höchstens 9 Zeilen, Werte höchstens 12 Zeichen, nur Belegtes.
+
 ## Durchsicht
 
-Nach jedem Rendern `out/<post>/uebersicht.jpg` ansehen, dann jedes Blatt einzeln in voller Größe. Ein Blatt, das nur den blauen Grund zeigt, bedeutet einen Fehler im Skript der Zeichnung (meist ein Tippfehler oder eine fehlende Funktion); dann sind alle Blätter des Posts leer.
+Nach jedem Rendern `out/<post>/uebersicht.jpg` ansehen, dann jedes Blatt einzeln in voller Größe. Ein Blatt, das nur den dunklen Grund zeigt, bedeutet einen Fehler im Skript der Zeichnung (meist ein Tippfehler oder eine fehlende Funktion); dann sind alle Blätter des Posts leer.
 
 Liste, Punkt für Punkt:
 
 1. Kein Text läuft aus dem Rahmen, über das Schriftfeld unten oder in die Zeichnung. Kein Wort ist abgeschnitten oder mitten im Wort umbrochen.
 2. Zahl und Überschrift auf dem Titelblatt stehen vollständig da und überlappen die Zeichnung nicht.
-3. Jede Zeichnung ist als das Bauwerk erkennbar und füllt ihren Platz: nicht winzig in einer Ecke, nicht abgeschnitten.
+3. Jede Zeichnung ist als das Bauwerk erkennbar, detailliert wie eine CAD-Konstruktion (Abschnitt „Detailgrad“) und füllt ihren Platz: nicht winzig in einer Ecke, nicht abgeschnitten. Detailfenster verdecken nichts Wichtiges.
 4. Beschriftungen in Zeichnungen sind lesbar, überlappen weder einander noch Linien und sind nicht kleiner als der Fließtext im Schriftfeld.
 5. Maßlinien stehen neben dem Bauwerk, nicht darauf.
 6. Auf Blättern mit Kennzahlen und Balken bricht kein Wert um.

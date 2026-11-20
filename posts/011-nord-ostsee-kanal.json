@@ -9,7 +9,7 @@
       "zahl": "98",
       "headline": "Kilometer von Meer zu Meer",
       "text": ["Seit 1895 verbindet der Nord-Ostsee-Kanal die Elbe mit der Kieler Förde. Er erspart Schiffen den Weg um Dänemark."],
-      "figur": { "fn": "nokKarte" }
+      "figur": { "fn": "nokKarte", "ebene": "Lageplan", "ansicht": "Oben", "befehl": "_KANAL Stationierung alle 10 km:" }
     },
     {
       "typ": "bild-unten",
@@ -19,7 +19,7 @@
         "Wer von der Nordsee in die Ostsee will, muss um Jütland herum, durch Skagerrak und Kattegat. Im Skagerrak stranden damals rund 200 Schiffe im Jahr.",
         "Der Kanal kürzt den Weg im Schnitt um <em>250 Seemeilen</em>, rund 460 Kilometer."
       ],
-      "figur": { "fn": "nokUmweg" }
+      "figur": { "fn": "nokUmweg", "ebene": "Seewege", "ansicht": "Oben", "befehl": "_POLYLINIE Umweg um Skagen:" }
     },
     {
       "typ": "bild-unten",
@@ -29,7 +29,7 @@
         "Reichskanzler Bismarck will den Kanal für die Marine: Kriegsschiffe sollen zwischen Nord- und Ostsee wechseln, ohne dänische Gewässer zu befahren.",
         "Die Marine verlangt <em>42 Meter</em> Durchfahrtshöhe. So hoch sind die Kanalbrücken bis heute."
       ],
-      "figur": { "fn": "nokBruecke" }
+      "figur": { "fn": "nokBruecke", "ebene": "Hochbrücke", "ansicht": "Schnitt", "details": [{ "titel": "Auflager", "box": [672, 150, 130, 84], "ecke": "or", "breite": 210 }] }
     },
     {
       "typ": "bild-unten",
@@ -39,14 +39,14 @@
         "Bis zu 8900 Arbeiter heben eine Rinne quer durch Schleswig-Holstein aus – von Hand und mit Eimerkettenbaggern, die auf Schienen fahren.",
         "Der erste Kanal ist <em>67 Meter</em> breit und neun Meter tief."
       ],
-      "figur": { "fn": "nokProfil" }
+      "figur": { "fn": "nokProfil", "ebene": "Profil 1895", "ansicht": "Schnitt", "details": [{ "titel": "Eimerkette", "box": [118, 132, 100, 64], "ecke": "or", "breite": 220 }] }
     },
     {
       "typ": "bild-unten",
       "kicker": "Die Schleusen",
       "headline": "Ein Kanal ohne Gefälle",
       "text": ["Der Wasserstand ist im ganzen Kanal gleich. Schleusen braucht er trotzdem, <em>an beiden Enden</em>: In Brunsbüttel halten sie Ebbe und Flut draußen, in Kiel den Windstau der Ostsee."],
-      "figur": { "fn": "nokSchleusen" }
+      "figur": { "fn": "nokSchleusen", "ebene": "Schleusen", "ansicht": "Schnitt", "details": [{ "titel": "Tor Brunsbüttel", "box": [150, 156, 110, 90], "ecke": "ol", "breite": 300 }, { "titel": "Tor Kiel-Holtenau", "box": [610, 156, 110, 90], "ecke": "or", "breite": 300 }] }
     },
     {
       "typ": "bild-unten",
@@ -87,7 +87,7 @@
         "Für die neuen Schlachtschiffe ist der Kanal zu eng. Von 1907 bis 1914 wird er auf 102 Meter verbreitert – für 242 Millionen Mark, mehr als der ganze Neubau.",
         "Heute ist er bis zu <em>162 Meter</em> breit und die meistbefahrene künstliche Seeschifffahrtsstraße der Welt."
       ],
-      "figur": { "fn": "nokProfil", "heute": true }
+      "figur": { "fn": "nokProfil", "heute": true, "ebene": "Profil heute", "ansicht": "Schnitt", "details": [{ "titel": "Böschung", "box": [800, 100, 80, 64], "ecke": "ol", "breite": 240 }] }
     },
     {
       "typ": "outro",

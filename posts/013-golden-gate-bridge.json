@@ -9,7 +9,7 @@
       "zahl": "35",
       "headline": "Millionen Dollar auf Pump",
       "text": ["Gebaut wird die Golden Gate Bridge mit geliehenem Geld. Für die Anleihen bürgen die Bewohner rund um San Francisco."],
-      "figur": { "fn": "bruecke", "ausschnitt": true }
+      "figur": { "fn": "bruecke", "ausschnitt": true, "ebene": "Tragwerk", "befehl": "_ABHÄNGER Abstand angeben:" }
     },
     {
       "typ": "bild-unten",
@@ -19,7 +19,13 @@
         "Die Einfahrt in die Bucht von San Francisco ist 1,6 Kilometer breit. Dazwischen soll ein einziges Feld zwischen zwei Türmen liegen.",
         "Bei der Eröffnung 1937 ist das die <em>längste Hängebrücke der Welt</em>. Erst 1964 wird sie übertroffen."
       ],
-      "figur": { "fn": "bruecke", "mass": true }
+      "figur": {
+        "fn": "bruecke", "mass": true, "ebene": "Tragwerk",
+        "details": [
+          { "titel": "Pylonkopf", "box": [210, 380, 56, 34], "ecke": "ol", "breite": 430, "hoehe": 290 },
+          { "titel": "Fachwerkträger", "box": [563, 429, 30, 18], "ecke": "or", "breite": 430, "hoehe": 290 }
+        ]
+      }
     },
     {
       "typ": "bild-unten",
@@ -29,7 +35,7 @@
         "Der Nordturm steht auf Fels am Ufer. Der Südpfeiler entsteht gut 300 Meter vor der Küste: erst ein Schutzring, dann wird das Wasser darin abgepumpt.",
         "Ein Schiff rammt den Zugangssteg, ein Sturm zerschlägt ihn. Das Fundament dauert <em>zwei Jahre</em>."
       ],
-      "figur": { "fn": "pfeiler" }
+      "figur": { "fn": "pfeiler", "ansicht": "Schnitt", "ebene": "Gründung Südpfeiler" }
     },
     {
       "typ": "bild-unten",
@@ -39,7 +45,10 @@
         "Räder ziehen die Drähte einzeln über die Türme. Gebündelt und gepresst werden sie zu einem Kabel von 92 Zentimetern.",
         "Beide Kabel zusammen enthalten <em>129.000 Kilometer</em> Draht."
       ],
-      "figur": { "fn": "kabelSchnitt" }
+      "figur": {
+        "fn": "kabelSchnitt", "ebene": "Tragkabel",
+        "details": [{ "titel": "1 Bündel", "box": [405, 179, 70, 61], "ecke": "ur", "breite": 290, "hoehe": 280 }]
+      }
     },
     {
       "typ": "bild-unten",
@@ -49,7 +58,7 @@
         "Üblich ist damals ein Toter pro Million Dollar Baukosten. Chefingenieur Joseph Strauss verlangt Helme und lässt ein Netz spannen. Es fängt 19 Männer auf.",
         "Im Februar 1937 bricht ein Gerüst hindurch. Zehn Arbeiter sterben, insgesamt sind es <em>elf Tote</em>."
       ],
-      "figur": { "fn": "netz" }
+      "figur": { "fn": "netz", "ansicht": "Schnitt", "ebene": "Fahrbahn" }
     },
     {
       "typ": "bild-unten",

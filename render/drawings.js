@@ -37,11 +37,11 @@
   // Maßlinien mit Schrägstrichen an den Enden, wie auf Bauplänen
   function massV(x, y1, y2, label, seite = 1) {
     const ym = (y1 + y2) / 2, tx = seite > 0 ? x + 30 : x - 10;
-    return pfad('t', `M${r(x)} ${r(y1)}V${r(y2)}M${r(x - 7)} ${r(y1 + 7)}l14 -14M${r(x - 7)} ${r(y2 + 7)}l14 -14`) +
+    return pfad('m', `M${r(x)} ${r(y1)}V${r(y2)}M${r(x - 7)} ${r(y1 + 7)}l14 -14M${r(x - 7)} ${r(y2 + 7)}l14 -14`) +
       text(tx, ym, label, 'mass', `text-anchor="middle" transform="rotate(-90 ${r(tx)} ${r(ym)})"`);
   }
   function massH(x1, x2, y, label) {
-    return pfad('t', `M${r(x1)} ${r(y)}H${r(x2)}M${r(x1 - 7)} ${r(y + 7)}l14 -14M${r(x2 - 7)} ${r(y + 7)}l14 -14`) +
+    return pfad('m', `M${r(x1)} ${r(y)}H${r(x2)}M${r(x1 - 7)} ${r(y + 7)}l14 -14M${r(x2 - 7)} ${r(y + 7)}l14 -14`) +
       text((x1 + x2) / 2, y + 30, label, 'mass', 'text-anchor="middle"');
   }
 

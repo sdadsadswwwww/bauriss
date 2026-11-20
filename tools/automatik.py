@@ -222,7 +222,7 @@ def pruefe_bilder(name, post):
                 fehler.append(f'out/{name}/{bild.name}: {im.format} {im.size[0]} x {im.size[1]} statt JPEG 1080 x 1350.')
                 continue
             hell = sum(im.convert('L').histogram()[151:]) / (1080 * 1350)
-        # Ein Blatt ohne Inhalt (Fehler im Skript einer Zeichnung) zeigt nur den blauen Grund.
+        # Ein Blatt ohne Inhalt (Fehler im Skript einer Zeichnung) zeigt nur den dunklen Grund.
         if hell < 0.012:
             fehler.append(f'out/{name}/{bild.name} ist leer oder fast leer ({hell:.1%} helle Fläche). '
                           'Meist ein Fehler in der Zeichnungsdatei.')

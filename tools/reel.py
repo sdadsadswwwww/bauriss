@@ -32,10 +32,12 @@ import publish  # noqa: E402
 ROOT = publish.ROOT
 ABLAGE = ROOT / 'reels'                    # fertige Videos; der Workflow lädt sie in die Ablage auf GitHub hoch
 BREITE, HOEHE, BLATT_HOEHE = 1080, 1920, 1350
-RAND = (HOEHE - BLATT_HOEHE) // 2          # blauer Streifen über und unter dem Blatt
+RAND = (HOEHE - BLATT_HOEHE) // 2          # Streifen über und unter dem Blatt
 BILDER_JE_SEKUNDE = 30
 BLENDE = 0.5                               # Sekunden Überblendung zwischen zwei Blättern
-GRUND, NETZ, NETZ_STARK = (18, 64, 111), (29, 73, 118), (40, 82, 125)   # Farben wie in render/style.css
+# Farben und Raster wie in render/style.css (CAD-Look seit 20.11.2026): Grund #0a1320, feines Raster 21,6 px, grobes 108 px
+GRUND, NETZ, NETZ_STARK = (10, 19, 32), (16, 27, 41), (22, 35, 50)
+RASTER = 21.6
 
 
 def texte(wert, schluessel=''):
@@ -63,17 +65,28 @@ def standzeiten(post):
     return zeiten
 
 
+def raster(stift, links, oben, rechts, unten, bezug_y=0):
+    """Zeichenraster wie auf den Blättern; bezug_y ist die Höhe, an der das Raster des Blatts beginnt."""
+    i = 0
+    while i * RASTER < rechts:
+        x = round(i * RASTER)
+        if x >= links:
+            stift.line([(x, oben), (x, unten - 1)], fill=NETZ_STARK if i % 5 == 0 else NETZ, width=1)
+        i += 1
+    i = -int((bezug_y - oben) / RASTER) - 1
+    while bezug_y + i * RASTER < unten:
+        y = round(bezug_y + i * RASTER)
+        if oben <= y < unten:
+            stift.line([(links, y), (rechts - 1, y)], fill=NETZ_STARK if i % 5 == 0 else NETZ, width=1)
+        i += 1
+
+
 def baue_bild(blatt, ziel):
     """Setzt ein Blatt (1080 x 1350) mittig auf den hohen Grund und führt das Zeichenraster in den Streifen fort."""
     bild = Image.new('RGB', (BREITE, HOEHE), GRUND)
     stift = ImageDraw.Draw(bild)
     for oben, unten in ((0, RAND), (RAND + BLATT_HOEHE, HOEHE)):
-        for x in range(0, BREITE, 30):
-            stift.line([(x, oben), (x, unten - 1)], fill=NETZ_STARK if x % 150 == 0 else NETZ, width=2 if x % 150 == 0 else 1)
-        for y in range(oben, unten):
-            if (y - RAND) % 30 == 0:
-                stark = (y - RAND) % 150 == 0
-                stift.line([(0, y), (BREITE - 1, y)], fill=NETZ_STARK if stark else NETZ, width=2 if stark else 1)
+        raster(stift, 0, oben, BREITE, unten, bezug_y=RAND)
     with Image.open(blatt) as quelle:
         if quelle.size != (BREITE, BLATT_HOEHE):
             sys.exit(f'{blatt}: {quelle.size[0]} x {quelle.size[1]} statt {BREITE} x {BLATT_HOEHE}.')
@@ -82,7 +95,7 @@ def baue_bild(blatt, ziel):
 
 
 def baue_story(post_name):
-    """Story (Playbook): das Titelblatt verkleinert auf dem blauen Grund, darunter der Hinweis auf den neuen Beitrag.
+    """Story (Playbook): das Titelblatt verkleinert auf dem dunklen CAD-Grund, darunter der Hinweis auf den neuen Beitrag.
 
     Oben und unten bleibt frei, wo Instagram in Stories Kopfzeile und Antwortfeld zeigt.
     """
@@ -91,15 +104,12 @@ def baue_story(post_name):
     ordner = ROOT / 'out' / post_name
     bild = Image.new('RGB', (BREITE, HOEHE), GRUND)
     stift = ImageDraw.Draw(bild)
-    for x in range(0, BREITE, 30):
-        stift.line([(x, 0), (x, HOEHE - 1)], fill=NETZ_STARK if x % 150 == 0 else NETZ, width=2 if x % 150 == 0 else 1)
-    for y in range(0, HOEHE, 30):
-        stift.line([(0, y), (BREITE - 1, y)], fill=NETZ_STARK if y % 150 == 0 else NETZ, width=2 if y % 150 == 0 else 1)
+    raster(stift, 0, 0, BREITE, HOEHE)
     with Image.open(ordner / '01.jpg') as blatt:
         klein = blatt.convert('RGB').resize((936, 1170), Image.LANCZOS)
     links, oben = (BREITE - 936) // 2, 270
     bild.paste(klein, (links, oben))
-    stift.rectangle([links, oben, links + 935, oben + 1169], outline=(237, 243, 251), width=2)
+    stift.rectangle([links, oben, links + 935, oben + 1169], outline=(64, 92, 122), width=2)
     schrift = ImageFont.truetype(str(ROOT / 'render' / 'fonts' / 'barlow-condensed-700.woff2'), 58)
     text = 'NEUES BAUWERK · JETZT IM PROFIL'
     stift.text(((BREITE - stift.textlength(text, font=schrift)) / 2, oben + 1170 + 28), text, font=schrift, fill=(255, 201, 77))

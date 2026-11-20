@@ -9,7 +9,7 @@
       "zahl": "170",
       "headline": "Millionen Mark für ein Dach",
       "text": ["Das Zeltdach im Münchner Olympiapark spannt sich über Stadion, Halle und Schwimmhalle. Geschätzt waren anfangs 40 bis 45 Millionen."],
-      "figur": { "fn": "zeltLandschaft" }
+      "figur": { "fn": "zeltLandschaft", "ebene": "Zeltdach" }
     },
     {
       "typ": "bild-unten",
@@ -19,7 +19,7 @@
         "Ein Mitarbeiter von Günter Behnisch kennt Frei Ottos Zeltdach aus Montreal. Im Wettbewerbsmodell spannt das Büro einen <em>Nylonstrumpf</em> über Holzstäbe.",
         "Der Jury ist das zu gewagt. Juror Egon Eiermann setzt sich dafür ein, am 13. Oktober 1967 gewinnt der Entwurf."
       ],
-      "figur": { "fn": "strumpfModell" }
+      "figur": { "fn": "strumpfModell", "ebene": "Wettbewerbsmodell" }
     },
     {
       "typ": "bild-unten",
@@ -29,7 +29,7 @@
         "Das Seilnetz wird am Boden geknüpft und dann hochgezogen. Seine Knoten liegen 75 Zentimeter auseinander.",
         "Über dem Stadion hängt es an zwei <em>70 Meter</em> hohen Masten. Die Ränge bleiben frei von Stützen."
       ],
-      "figur": { "fn": "zeltLandschaft", "beschriftet": true }
+      "figur": { "fn": "zeltLandschaft", "beschriftet": true, "ebene": "Seilnetz", "befehl": "_NETZ Maschenweite angeben: 75 cm" }
     },
     {
       "typ": "bild-unten",
@@ -38,7 +38,7 @@
       "text": [
         "Vorn über den Rängen hält ein <em>Rundseil</em> den Rand des Dachs. Seine Enden sitzen in Betonquadern von bis zu 4000 Tonnen, bis 30 Meter tief im Boden."
       ],
-      "figur": { "fn": "rundseilPlan" }
+      "figur": { "fn": "rundseilPlan", "ebene": "Rundseil" }
     },
     {
       "typ": "bild-unten",
@@ -48,7 +48,10 @@
         "Ein undurchsichtiges Dach hätte harte Schatten geworfen – schlecht für die Fernsehbilder. Deshalb liegen auf dem Netz Platten aus Acrylglas.",
         "Die lichtdurchlässige Haut kostet zusätzlich <em>6 Millionen Mark</em>."
       ],
-      "figur": { "fn": "netzDetail" }
+      "figur": {
+        "fn": "netzDetail", "ebene": "Dachhaut",
+        "details": [{ "titel": "Knoten", "box": [498, 198, 44, 43], "ecke": "or", "breite": 280, "hoehe": 300 }]
+      }
     },
     {
       "typ": "bild-unten",

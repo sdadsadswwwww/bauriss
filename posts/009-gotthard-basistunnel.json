@@ -9,7 +9,7 @@
       "zahl": "57",
       "headline": "Kilometer durch den Berg",
       "text": ["Der Gotthard-Basistunnel ist der längste Eisenbahntunnel der Welt. Bezahlt haben ihn vor allem die Lastwagen."],
-      "figur": { "fn": "gotthardProfil" }
+      "figur": { "fn": "gotthardProfil", "ebene": "Längsschnitt" }
     },
     {
       "typ": "bild-unten",
@@ -19,14 +19,14 @@
         "Seit 1882 fahren Züge über den Gotthard: hinauf auf 1151 Meter und durch einen 15 Kilometer langen Scheiteltunnel. Für schwere Güterzüge ist das mühsam.",
         "Der Basistunnel bleibt unten. Sein höchster Punkt liegt auf <em>549 Metern</em>."
       ],
-      "figur": { "fn": "gotthardVergleich" }
+      "figur": { "fn": "gotthardVergleich", "ebene": "Höhenprofil" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Unter dem Berg",
       "headline": "Zwei Kilometer Fels darüber",
       "text": ["An der tiefsten Stelle liegen mehr als 2000 Meter Gestein über den Gleisen – so viel wie bei keinem anderen Eisenbahntunnel."],
-      "figur": { "fn": "gotthardProfil", "beschriftet": true }
+      "figur": { "fn": "gotthardProfil", "beschriftet": true, "ebene": "Längsschnitt", "befehl": "_SCHRAFF Interne Punkte wählen:" }
     },
     {
       "typ": "bild-unten",
@@ -36,7 +36,13 @@
         "Jede Fahrtrichtung hat ihre eigene Röhre. Alle 325 Meter verbindet ein Querschlag die beiden – als Fluchtweg.",
         "Mit allen Stollen und Schächten sind es <em>152 Kilometer</em> Tunnel."
       ],
-      "figur": { "fn": "roehrenPlan" }
+      "figur": {
+        "fn": "roehrenPlan",
+        "ebene": "Röhrensystem",
+        "details": [
+          { "titel": "Querschlag", "box": [370, 154, 100, 76], "ecke": "or", "breite": 260 }
+        ]
+      }
     },
     {
       "typ": "bild-unten",
@@ -46,7 +52,14 @@
         "Gebaut wird von mehreren Stellen zugleich. Als am 15. Oktober 2010 die letzte Felswand der Oströhre fällt, passen die Vortriebe fast genau aufeinander.",
         "28,2 Millionen Tonnen Gestein kommen insgesamt aus dem Berg."
       ],
-      "figur": { "fn": "durchschlag" }
+      "figur": {
+        "fn": "durchschlag",
+        "ansicht": "Oben",
+        "ebene": "Oströhre",
+        "details": [
+          { "titel": "Durchschlag", "box": [392, 104, 120, 74], "ecke": "or", "breite": 220 }
+        ]
+      }
     },
     {
       "typ": "bild-unten",

@@ -9,7 +9,7 @@
       "zahl": "6",
       "headline": "Millionen Mark aus eigener Kasse",
       "text": ["König Ludwig II. baut Neuschwanstein ohne Geld aus der Staatskasse. Die Kosten verdoppeln sich, seine Schulden wachsen."],
-      "figur": { "fn": "neuschwansteinAnsicht" }
+      "figur": { "fn": "neuschwansteinAnsicht", "ebene": "Südansicht", "details": [{ "titel": "Biforien", "box": [126, 228, 110, 66], "ecke": "ol", "breite": 250, "massstab": "M 1:150" }] }
     },
     {
       "typ": "bild-unten",
@@ -19,7 +19,7 @@
         "Ludwig II. wünscht sich eine Ritterburg wie aus den Opern Richard Wagners. Die Entwürfe liefert der Münchner Bühnenmaler Christian Jank, die Baupläne der Architekt Eduard Riedel.",
         "Für den Bauplatz werden bis zu <em>acht Meter Fels</em> abgetragen."
       ],
-      "figur": { "fn": "neuschwansteinAnsicht", "stand": "plan" }
+      "figur": { "fn": "neuschwansteinAnsicht", "stand": "plan", "ebene": "Entwurf 1868" }
     },
     {
       "typ": "bild-unten",
@@ -29,7 +29,7 @@
         "Die Mauern sind aus Ziegeln, der helle Kalkstein ist nur Verkleidung. <em>Dampfkräne</em> ziehen das Material auf den Fels.",
         "1880 arbeiten täglich rund 200 Handwerker am Schloss. 39 Familien erhalten eine Rente für tödlich Verunglückte."
       ],
-      "figur": { "fn": "neuschwansteinKran" }
+      "figur": { "fn": "neuschwansteinKran", "ebene": "Baustelle", "befehl": "_SCHRAFF Interne Punkte wählen:" }
     },
     {
       "typ": "bild-unten",
@@ -39,7 +39,7 @@
         "Der Thronsaal kommt erst nachträglich in die Pläne. Damit das Haus ihn trägt, wird er als <em>Stahlkonstruktion</em> eingezogen.",
         "Dazu kommen Warmluftheizung, fließendes Wasser auf jeder Etage, Telefon und ein Speiseaufzug."
       ],
-      "figur": { "fn": "palasSchnitt" }
+      "figur": { "fn": "palasSchnitt", "ebene": "Längsschnitt Palas", "details": [{ "titel": "Thronsaal", "box": [326, 196, 228, 150], "ecke": "or", "breite": 270, "massstab": "M 1:100" }] }
     },
     {
       "typ": "bild-unten",
@@ -92,7 +92,7 @@
         "Nach dem Tod des Königs wird nur noch vereinfacht fertiggebaut. Der geplante Bergfried kommt nie über das Fundament hinaus.",
         "Schon am 1. August 1886 öffnet das Schloss für Besucher. Heute kommen <em>mehr als eine Million</em> im Jahr."
       ],
-      "figur": { "fn": "neuschwansteinAnsicht", "stand": "tuerme" }
+      "figur": { "fn": "neuschwansteinAnsicht", "stand": "tuerme", "ebene": "Südansicht" }
     },
     {
       "typ": "outro",
