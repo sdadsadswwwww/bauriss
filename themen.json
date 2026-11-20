@@ -13,7 +13,7 @@
   {"name": "Sagrada Família", "art": "Kirche", "region": "Europa", "post": "012-sagrada-familia"},
   {"name": "Golden Gate Bridge", "art": "Brücke", "region": "Welt", "post": "013-golden-gate-bridge"},
   {"name": "Olympiastadion München (Zeltdach)", "art": "Stadion", "region": "DACH", "post": "014-olympiastadion-muenchen"},
-  {"name": "Eurotunnel", "art": "Tunnel", "region": "Europa"},
+  {"name": "Eurotunnel", "art": "Tunnel", "region": "Europa", "post": "015-eurotunnel"},
   {"name": "Müngstener Brücke", "art": "Brücke", "region": "DACH"},
   {"name": "Burj Khalifa", "art": "Hochhaus", "region": "Welt"},
   {"name": "Ulmer Münster", "art": "Kirche", "region": "DACH"},

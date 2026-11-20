@@ -1,0 +1,363 @@
+{
+  "nr": "015",
+  "titel": "Eurotunnel",
+  "zeichnungen": "eurotunnel",
+  "slides": [
+    {
+      "typ": "cover-breit",
+      "kicker": "Bauwerk Nr. 015",
+      "zahl": "38",
+      "headline": "Kilometer unter dem Meer",
+      "text": [
+        "Seit 1994 fahren Züge unter dem Ärmelkanal von England nach Frankreich. Bezahlt hat den Tunnel kein Staat, sondern private Geldgeber."
+      ],
+      "figur": {
+        "fn": "eurotunnelProfil"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1803–1994 · Die Idee",
+      "headline": "191 Jahre Anlauf",
+      "text": [
+        "Pläne gibt es viele: Röhren auf dem Meeresgrund, Brücken, Dämme. Sie scheitern an Technik und Politik."
+      ],
+      "punkte": [
+        {
+          "wert": "1803",
+          "name": "Erster Tunnelentwurf",
+          "zusatz": "die technischen Probleme bleiben ungelöst"
+        },
+        {
+          "wert": "1875",
+          "name": "Bauerlaubnis per Gesetz",
+          "zusatz": "für eine französisch-britische Tunnelgesellschaft"
+        },
+        {
+          "wert": "1975",
+          "name": "Projekt gestoppt",
+          "zusatz": "wegen der Ölkrise, zwei Jahre nach der Vereinbarung"
+        },
+        {
+          "wert": "1986",
+          "name": "Vertrag von Canterbury",
+          "zusatz": "ein reiner Eisenbahntunnel, privat finanziert"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Aufbau",
+      "headline": "Drei Röhren nebeneinander",
+      "text": [
+        "Jede Fahrtrichtung hat ihren eigenen Tunnel. Dazwischen liegt ein schmaler <em>Servicetunnel</em> für Wartung und Rettung.",
+        "Alle 375 Meter führt ein Querschlag hinüber. Im Notfall gehen die Fahrgäste dort in Sicherheit."
+      ],
+      "figur": {
+        "fn": "eurotunnelQuerschnitt"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Route",
+      "headline": "Immer in der Kreide",
+      "text": [
+        "Der Tunnel folgt einer einzigen Kreideschicht. Sie lässt sich leicht bohren und senkt die Gefahr, dass Wasser eindringt.",
+        "Meist liegt er <em>rund 40 Meter</em> unter dem Meeresgrund."
+      ],
+      "figur": {
+        "fn": "eurotunnelProfil",
+        "beschriftet": true
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1990 · Der Durchschlag",
+      "headline": "Gut 35 Zentimeter daneben",
+      "text": [
+        "Elf Bohrmaschinen graben von beiden Küsten aus, ins Land und unter das Meer.",
+        "Am 1. Dezember 1990 treffen sich die Mannschaften. Dank Lasermessung liegen die Röhren seitlich nur <em>gut 35 Zentimeter</em> auseinander."
+      ],
+      "figur": {
+        "fn": "vortriebe"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1987–1994 · Der Bau",
+      "headline": "Der Preis der Baustelle",
+      "text": [
+        "Im Dezember 1987 beginnt der Vortrieb in England, im Februar 1988 in Frankreich. Am 6. Mai 1994 wird der Tunnel eröffnet."
+      ],
+      "punkte": [
+        {
+          "wert": "13.000",
+          "name": "Arbeiter zur Spitzenzeit",
+          "zusatz": "eine andere Quelle nennt 15.000"
+        },
+        {
+          "wert": "10 bis 11",
+          "name": "Tote auf der Baustelle",
+          "zusatz": "die Zahl unterscheidet sich je nach Quelle"
+        },
+        {
+          "wert": "12.000 t",
+          "name": "wiegen die Bohrmaschinen",
+          "zusatz": "alle elf zusammen, nach Angaben des Betreibers"
+        }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Kein Geld vom Staat",
+      "text": [
+        "Beide Regierungen wollen einen privat finanzierten Tunnel. Er kostet am Ende rund <em>10 Milliarden Pfund</em> – doppelt so viel wie geplant."
+      ],
+      "punkte": [
+        {
+          "wert": "0 £",
+          "name": "Staatshilfe",
+          "zusatz": "darauf besteht Margaret Thatcher"
+        },
+        {
+          "wert": "200",
+          "name": "Banken geben Kredit",
+          "zusatz": "ein Konsortium aus rund 200 Banken"
+        },
+        {
+          "wert": "1987",
+          "name": "Die Aktie geht an die Börse",
+          "zusatz": "Aktionäre bringen weiteres Geld"
+        }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Folgen",
+      "headline": "Neun Milliarden Euro Schulden",
+      "text": [
+        "Es fahren weniger Menschen als geplant. Die Zinsen für die Kredite führen zu hohen Verlusten."
+      ],
+      "punkte": [
+        {
+          "wert": "9 Mrd. €",
+          "name": "Schulden des Betreibers",
+          "zusatz": "Stand 2006"
+        },
+        {
+          "wert": "1997",
+          "name": "Erste Umschuldung",
+          "zusatz": "die Konzession läuft seitdem bis 2086"
+        },
+        {
+          "wert": "2006",
+          "name": "Gläubigerschutz",
+          "zusatz": "ein Pariser Gericht bewahrt ihn vor dem Konkurs"
+        }
+      ],
+      "fuss": "Von Folkestone nach Calais dauert die Fahrt heute 35&nbsp;Minuten."
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "quellen": [
+    "Wikipedia: Eurotunnel",
+    "LeShuttle (Betreiber): The Channel Tunnel – interesting facts",
+    "Getlink: The Channel Tunnel",
+    "Discovery UK",
+    "RTÉ",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "38 Kilometer unter dem Meer: Seit 1994 fahren Züge durch den Eurotunnel von England nach Frankreich. Elf Bohrmaschinen gruben sich von beiden Küsten aus entgegen.",
+    "Bezahlt haben ihn Banken und Aktionäre, nicht der Staat. Er kostete rund 10 Milliarden Pfund, doppelt so viel wie geplant.",
+    "Bist du schon einmal durchgefahren?"
+  ],
+  "hashtags": [
+    "eurotunnel",
+    "kanaltunnel",
+    "aermelkanal",
+    "eisenbahntunnel",
+    "baugeschichte",
+    "ingenieurbau",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Unterseeischer Abschnitt 38 km, längster der Welt",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/"
+      ],
+      "hinweis": "Getlink nennt 37 km"
+    },
+    {
+      "angabe": "Gesamtlänge 50,5 km (50.450 m)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.getlinkgroup.com/uk/the-channel-tunnel/"
+      ]
+    },
+    {
+      "angabe": "Eröffnung 6. Mai 1994 durch Elisabeth II. und François Mitterrand",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/"
+      ]
+    },
+    {
+      "angabe": "Privat finanziert, ohne Staatshilfe, auf Drängen von Margaret Thatcher",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.discoveryuk.com/?p=23587015"
+      ],
+      "hinweis": "Thatcher nur bei Wikipedia"
+    },
+    {
+      "angabe": "Baukosten rund 10 Milliarden Pfund, doppelt so hoch wie geplant",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.discoveryuk.com/?p=23587015"
+      ],
+      "hinweis": "Wikipedia: ca. 10 Mrd. Pfund bzw. 15 Mrd. Euro, doppelt so hoch wie geplant; Discovery: approximately £10 billion, more than twice the original estimate"
+    },
+    {
+      "angabe": "Konsortium aus rund 200 Banken gibt Kredit (1987)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.discoveryuk.com/?p=23587015"
+      ],
+      "hinweis": "Discovery: more than 200 banks; Kreditbetrag nur bei Wikipedia, daher nicht verwendet"
+    },
+    {
+      "angabe": "Aktie 1987 an der Börse",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "nur eine Quelle"
+    },
+    {
+      "angabe": "Erster Tunnelentwurf 1803, Prüfung durch Napoleon III. 1856, Bauerlaubnis 1875, Stopp 1975 wegen Ölkrise, Vertrag von Canterbury 12.02.1986",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "nur eine Quelle; Vertrag Februar 1986 auch bei LeShuttle"
+    },
+    {
+      "angabe": "Drei Röhren: zwei Fahrtunnel 7,6 m, Servicetunnel 4,8 m, Abstand rund 30 m",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "Maße nur eine Quelle; drei Röhren auch bei Getlink"
+    },
+    {
+      "angabe": "Querschläge alle 375 m",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.getlinkgroup.com/uk/the-channel-tunnel/"
+      ]
+    },
+    {
+      "angabe": "In einer Kreideschicht, im Mittel rund 40 m unter dem Meeresgrund",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.getlinkgroup.com/uk/the-channel-tunnel/"
+      ]
+    },
+    {
+      "angabe": "Tiefster Punkt 75 m unter dem Meeresspiegel",
+      "quellen": [
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/"
+      ],
+      "hinweis": "nur eine Quelle (Betreiber)"
+    },
+    {
+      "angabe": "Elf Bohrmaschinen, sechs von England, fünf von Frankreich",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.discoveryuk.com/?p=23587015"
+      ]
+    },
+    {
+      "angabe": "Durchschlag 1. Dezember 1990, seitliche Abweichung 35 cm (Discovery: 35,8 cm)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.discoveryuk.com/?p=23587015"
+      ],
+      "hinweis": "auf dem Blatt: gut 35 Zentimeter; Höhenabweichung widersprüchlich, nicht verwendet"
+    },
+    {
+      "angabe": "Vortrieb ab Dezember 1987 in England, ab Februar 1988 in Frankreich",
+      "quellen": [
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/",
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "Wikipedia: Baubeginn 15. Dezember 1987; Februar 1988 nur LeShuttle"
+    },
+    {
+      "angabe": "13.000 Arbeiter zur Spitzenzeit, andere Quelle 15.000",
+      "quellen": [
+        "https://www.discoveryuk.com/?p=23587015",
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/",
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ]
+    },
+    {
+      "angabe": "10 Tote (Discovery) bzw. 11 Tote (Wikipedia)",
+      "quellen": [
+        "https://www.discoveryuk.com/?p=23587015",
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "Spanne 10 bis 11"
+    },
+    {
+      "angabe": "Bohrmaschinen zusammen 12.000 t",
+      "quellen": [
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/"
+      ],
+      "hinweis": "nur eine Quelle (Betreiber)"
+    },
+    {
+      "angabe": "Weniger Fahrgäste als geplant, Verluste durch Zinsen",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "nur eine Quelle"
+    },
+    {
+      "angabe": "Schulden rund 9 Milliarden Euro (2006)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://www.rte.ie/news/business/2006/0802/78958-eurotunnel-business"
+      ]
+    },
+    {
+      "angabe": "Umschuldung Ende November 1997, Konzession bis 2086",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel"
+      ],
+      "hinweis": "nur eine Quelle"
+    },
+    {
+      "angabe": "Gläubigerschutz durch Pariser Handelsgericht, 2. August 2006",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Eurotunnel",
+        "https://press.getlinkgroup.com/news/eurotunnel-obtains-protection-from-paris-commercial-court-fee4-0791e.html"
+      ]
+    },
+    {
+      "angabe": "Fahrzeit Folkestone–Calais 35 Minuten",
+      "quellen": [
+        "https://www.leshuttle.com/uk/build/the-channel-tunnel-interesting-facts/"
+      ],
+      "hinweis": "nur eine Quelle (Betreiber)"
+    }
+  ]
+}
