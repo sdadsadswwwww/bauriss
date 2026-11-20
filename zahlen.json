@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-19T06:24",
+  "stand": "2026-11-20T06:21",
   "konto": {
     "follower": 5,
-    "beitraege": 10
+    "beitraege": 12
   },
   "medien": [
     {
@@ -82,6 +82,22 @@
       "art": "carousel",
       "datum": "2026-11-18",
       "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "007-berliner-fernsehturm",
+      "art": "reel",
+      "datum": "2026-11-19",
+      "likes": 0,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "007-berliner-fernsehturm",
+      "art": "carousel",
+      "datum": "2026-11-19",
+      "likes": 1,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     }
