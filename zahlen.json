@@ -1,15 +1,15 @@
 {
-  "stand": "2026-11-20T06:21",
+  "stand": "2026-11-21T06:15",
   "konto": {
     "follower": 5,
-    "beitraege": 12
+    "beitraege": 14
   },
   "medien": [
     {
       "post": "001-eiffelturm",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 0,
+      "likes": 1,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -17,7 +17,7 @@
       "post": "002-alter-elbtunnel",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 1,
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -25,7 +25,7 @@
       "post": "003-wuppertaler-schwebebahn",
       "art": "reel",
       "datum": "2026-11-16",
-      "likes": 1,
+      "likes": 3,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -33,7 +33,7 @@
       "post": "003-wuppertaler-schwebebahn",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 1,
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -41,7 +41,7 @@
       "post": "004-frauenkirche-dresden",
       "art": "reel",
       "datum": "2026-11-16",
-      "likes": 0,
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -49,7 +49,7 @@
       "post": "004-frauenkirche-dresden",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 1,
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -57,7 +57,7 @@
       "post": "005-koelner-dom",
       "art": "reel",
       "datum": "2026-11-17",
-      "likes": 1,
+      "likes": 3,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -65,7 +65,7 @@
       "post": "005-koelner-dom",
       "art": "carousel",
       "datum": "2026-11-17",
-      "likes": 0,
+      "likes": 1,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -73,7 +73,7 @@
       "post": "006-elbphilharmonie",
       "art": "reel",
       "datum": "2026-11-18",
-      "likes": 0,
+      "likes": 2,
       "kommentare": 2,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -81,7 +81,7 @@
       "post": "006-elbphilharmonie",
       "art": "carousel",
       "datum": "2026-11-18",
-      "likes": 0,
+      "likes": 1,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -89,7 +89,7 @@
       "post": "007-berliner-fernsehturm",
       "art": "reel",
       "datum": "2026-11-19",
-      "likes": 0,
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     },
@@ -97,7 +97,23 @@
       "post": "007-berliner-fernsehturm",
       "art": "carousel",
       "datum": "2026-11-19",
-      "likes": 1,
+      "likes": 3,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "008-goeltzschtalbruecke",
+      "art": "reel",
+      "datum": "2026-11-20",
+      "likes": 2,
+      "kommentare": 0,
+      "fehler": "(#10) Application does not have permission for this action"
+    },
+    {
+      "post": "008-goeltzschtalbruecke",
+      "art": "carousel",
+      "datum": "2026-11-20",
+      "likes": 2,
       "kommentare": 0,
       "fehler": "(#10) Application does not have permission for this action"
     }
