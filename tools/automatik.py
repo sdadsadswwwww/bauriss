@@ -28,7 +28,19 @@ HEUTE_BIS = '20:30'            # bis dahin erreicht ein Post für heute noch den
 BILDER_BEHALTEN_TAGE = 30
 SCHLUSSZEILE = 'Ein Bauwerk pro Tag'
 BELEGE_AB = 10                 # ab dieser Nummer verlangt die Prüfung das Feld "belege"
-TYPEN = {'cover', 'cover-breit', 'bild-unten', 'bild-rechts', 'balken', 'punkte', 'outro'}
+TYPEN = {'titel', 'cover', 'cover-breit', 'bild-unten', 'bild-rechts', 'balken', 'punkte', 'outro'}
+# Lesbare Vorlage (seit 21.11.2026, Posts mit "vorlage": "lesbar"). Gemessen wird am gerenderten Bild (out/<post>/mess.json).
+MIN_SCHRIFT = 32               # kleinste Schrift im Blatt in px (11,6 px am Handy)
+MIN_SCHRIFT_REEL = 44          # kleinste Schrift in den Bildern des kurzen Reels
+MAX_LESETEXT = 35              # Wörter Lesetext je Blatt: kicker, headline, text, Kennzahlen, Balken, fuss
+MAX_BLATT = 45                 # Lesetext und Beschriftung der Zeichnung zusammen
+MAX_TITEL = 20                 # Wörter auf dem ganzen Titelblatt (ohne Schriftfeld)
+MAX_TITEL_BESCHRIFTUNGEN = 4   # Beschriftungen in der Zeichnung des Titelblatts
+MIN_LINIE = 1.9                # dünnste Linie in einer Zeichnung in px (Soll 2; Schraffuren schrumpfen mit der Zeichnung leicht mit)
+MAX_REEL = {'1': 16, '2': 12, '3': 24}   # Wörter je Reel-Bild (Frage, Zeichnung, Antwort), Kopfzeile eingerechnet
+TITEL_GRENZEN = (('unterzeile', 38), ('zahl', 4), ('headline', 20), ('aufhaenger', 50))
+REEL_GRENZEN = {'frage': (('zeile', 45), ('frage', 24)), 'zeichnung': (('zahl', 4), ('aussage', 30)),
+                'antwort': (('zahl', 4), ('einheit', 20), ('antwort', 30), ('zusatz', 60))}
 WOCHENTAGE = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
 
@@ -68,6 +80,145 @@ def sichtbar(text):
     return len(re.sub(r'<[^>]+>', '', text).replace('&nbsp;', ' '))
 
 
+def pruefe_blatt_lesbar(wo, sl):
+    """Lesbare Vorlage: Grenzen eines Blatts, soweit sie am Text abzulesen sind. Wörter und Schrift misst tools/render.py."""
+    fehler = []
+    typ, absaetze, figur = sl['typ'], sl.get('text', []), sl.get('figur') or {}
+    for feld in ('ebene', 'ansicht', 'befehl', 'details'):
+        if feld in figur:
+            fehler.append(f'{wo}: "figur.{feld}" gibt es in der lesbaren Vorlage nicht (das Fenster zeigt keinen Text).')
+    if 'eigenschaften' in sl:
+        fehler.append(f'{wo}: "eigenschaften" gibt es in der lesbaren Vorlage nicht.')
+    if typ in ('cover', 'cover-breit'):
+        return fehler + [f'{wo}: in der lesbaren Vorlage heißt das Titelblatt "titel", nicht "{typ}".']
+    if typ == 'titel':
+        for feld, grenze in TITEL_GRENZEN:
+            wert = str(sl.get(feld, ''))
+            if not wert:
+                fehler.append(f'{wo}: das Titelblatt braucht "{feld}".')
+            elif sichtbar(wert) > grenze:
+                fehler.append(f'{wo}: "{feld}" hat {sichtbar(wert)} Zeichen, erlaubt sind {grenze}.')
+        if str(sl.get('aufhaenger', '')).count('<em>') != 1:
+            fehler.append(f'{wo}: der Aufhänger hat genau eine Hervorhebung mit <em>.')
+        if sl.get('kicker') or absaetze:
+            fehler.append(f'{wo}: das Titelblatt hat weder "kicker" noch "text".')
+        return fehler
+    if typ == 'outro':
+        return fehler
+    if sichtbar(sl.get('headline', '')) > 40:
+        fehler.append(f'{wo}: Überschrift hat {sichtbar(sl.get("headline", ""))} Zeichen, erlaubt sind 40.')
+    if len(absaetze) > 1:
+        fehler.append(f'{wo}: höchstens ein Absatz Text (jetzt {len(absaetze)}).')
+    if sichtbar(sl.get('fuss', '')) > 60:
+        fehler.append(f'{wo}: "fuss" höchstens 60 Zeichen.')
+    for p in sl.get('punkte') or []:
+        if len(str(p.get('wert', ''))) > 9 or len(p.get('name', '')) > 20 or len(p.get('zusatz', '')) > 26:
+            fehler.append(f'{wo}: Kennzahl "{p.get("wert")}": "wert" höchstens 9, "name" höchstens 20, "zusatz" höchstens 26 Zeichen.')
+    for b in sl.get('balken') or []:
+        if len(b.get('zusatz', '')) > 40 or len(str(b.get('anzeige', ''))) > 12:
+            fehler.append(f'{wo}: Balken "{b.get("name")}": "zusatz" höchstens 40, "anzeige" höchstens 12 Zeichen.')
+    if figur.get('fn') == 'zeitleiste':
+        marken = figur.get('marken') or []
+        if absaetze:
+            fehler.append(f'{wo}: ein Blatt mit Zeitleiste hat keinen Text.')
+        if any(len(str(m.get('text', ''))) > 28 for m in marken):
+            fehler.append(f'{wo}: Markentexte der Zeitleiste höchstens 28 Zeichen.')
+        if any(len(str(ph.get('text', ''))) > 20 for ph in figur.get('phasen') or []):
+            fehler.append(f'{wo}: Phasentexte der Zeitleiste höchstens 20 Zeichen.')
+        spanne = figur.get('bis', 0) - figur.get('von', 0)
+        jahre = sorted(m.get('jahr', 0) for m in marken)
+        if spanne > 0 and any(b - a < 0.06 * spanne for a, b in zip(jahre, jahre[1:])):
+            fehler.append(f'{wo}: zwei Marken der Zeitleiste liegen enger als 6 % der Spanne beieinander.')
+    return fehler
+
+
+def pruefe_reel_feld(post, skripte):
+    """Lesbare Vorlage: das Feld "reel" mit den Angaben für die Bilder Frage, Zeichnung und Antwort."""
+    reel = post.get('reel')
+    if not isinstance(reel, dict):
+        return ['Feld "reel" fehlt: die Angaben für das kurze Reel ("frage", "zeichnung", "antwort").']
+    fehler = []
+    for bild, felder in REEL_GRENZEN.items():
+        teil = reel.get(bild)
+        if not isinstance(teil, dict):
+            fehler.append(f'"reel.{bild}" fehlt.')
+            continue
+        for feld, grenze in felder:
+            wert = str(teil.get(feld, ''))
+            if not wert:
+                fehler.append(f'"reel.{bild}.{feld}" fehlt.')
+            elif sichtbar(wert) > grenze:
+                fehler.append(f'"reel.{bild}.{feld}" hat {sichtbar(wert)} Zeichen, erlaubt sind {grenze}.')
+        if bild != 'antwort':
+            fn = (teil.get('figur') or {}).get('fn', '')
+            if not fn or not re.search(rf'\b{re.escape(fn)}\b', skripte):
+                fehler.append(f'"reel.{bild}.figur": Zeichnung "{fn}" gibt es weder in drawings.js noch in der Themen-Datei.')
+    if isinstance(reel.get('antwort'), dict) and str(reel['antwort'].get('antwort', '')).count('<em>') != 1:
+        fehler.append('"reel.antwort.antwort" hat genau eine Hervorhebung mit <em>.')
+    return fehler
+
+
+def pruefe_messung(name, post):
+    """Lesbare Vorlage: wertet out/<post>/mess.json aus. tools/render.py misst die Blätter nach, tools/reel.py die Reel-Bilder."""
+    from PIL import Image
+    import render
+
+    datei = ROOT / 'out' / name / 'mess.json'
+    if not datei.exists():
+        return [f'out/{name}/mess.json fehlt. Erst tools/render.py {name} und tools/reel.py {name} ausführen.']
+    messung, stand, fehler = lies(datei), render.stand(name), []
+
+    blaetter = messung.get('blaetter') or {}
+    if blaetter.get('stand') != stand or len(blaetter.get('liste') or []) != len(post['slides']):
+        fehler.append(f'Die Blätter in out/{name}/ stammen nicht aus dem letzten Stand von Post und Zeichnung. tools/render.py {name} ausführen.')
+    else:
+        for b in blaetter['liste']:
+            wo, w, klein = f'Blatt {b["nr"]}', b['woerter'], b.get('kleinste') or {'px': 0, 'text': ''}
+            if klein['px'] < MIN_SCHRIFT:
+                grund = ' Die Zeichnung ist zu hoch für ihren Platz und schrumpft samt Schrift.' if (b.get('massstab') or 1) < 0.99 else ''
+                fehler.append(f'{wo}: kleinste Schrift {klein["px"]:g} px („{klein["text"]}“), erlaubt sind mindestens {MIN_SCHRIFT} px.{grund}')
+            if b['typ'] == 'titel':
+                if w['lesetext'] + w['zeichnung'] > MAX_TITEL:
+                    fehler.append(f'{wo}: {w["lesetext"] + w["zeichnung"]} Wörter auf dem Titelblatt, erlaubt sind {MAX_TITEL}.')
+                if b['beschriftungen'] > MAX_TITEL_BESCHRIFTUNGEN:
+                    fehler.append(f'{wo}: {b["beschriftungen"]} Beschriftungen in der Zeichnung, erlaubt sind {MAX_TITEL_BESCHRIFTUNGEN}.')
+            else:
+                if w['lesetext'] > MAX_LESETEXT:
+                    fehler.append(f'{wo}: {w["lesetext"]} Wörter Lesetext, erlaubt sind {MAX_LESETEXT}.')
+                if w['lesetext'] + w['zeichnung'] > MAX_BLATT:
+                    fehler.append(f'{wo}: {w["lesetext"] + w["zeichnung"]} Wörter mit der Beschriftung der Zeichnung, erlaubt sind {MAX_BLATT}.')
+            if b.get('linie') and b['linie']['px'] < MIN_LINIE:
+                fehler.append(f'{wo}: dünnste Linie {b["linie"]["px"]:g} px (Klasse "{b["linie"]["klasse"]}"), erlaubt sind mindestens 2 px.')
+            if b['ueberlauf']:
+                fehler.append(f'{wo}: der Inhalt läuft {b["ueberlauf"]} px über das Blatt hinaus.')
+            fehler += [f'{wo}: „{t}“ steht außerhalb von Rahmen oder Fenster.' for t in b['aussen']]
+            fehler += [f'{wo}: die Beschriftungen „{x}“ und „{y}“ überdecken sich.' for x, y in b['ueberlappt']]
+            if b['schild_voll']:
+                fehler.append(f'{wo}: der Titel passt nicht ins Schriftfeld.')
+
+    reel = messung.get('reel') or {}
+    if reel.get('stand') != stand or len(reel.get('bilder') or []) != 5:
+        fehler.append(f'Die Reel-Bilder in out/{name}/ fehlen oder stammen nicht aus dem letzten Stand. tools/reel.py {name} ausführen.')
+    else:
+        for b in reel['bilder']:
+            wo, klein = f'Reel-Bild {b["bild"]}', b.get('kleinste') or {'px': 0, 'text': ''}
+            bild = ROOT / 'out' / name / f'reel-{b["bild"]}.jpg'
+            if not bild.exists():
+                fehler.append(f'Bild fehlt: out/{name}/{bild.name}. tools/reel.py {name} --neu ausführen.')
+                continue
+            with Image.open(bild) as im:
+                if im.format != 'JPEG' or im.size != (1080, 1920):
+                    fehler.append(f'out/{name}/{bild.name}: {im.format} {im.size[0]} x {im.size[1]} statt JPEG 1080 x 1920.')
+            if klein['px'] < MIN_SCHRIFT_REEL:
+                fehler.append(f'{wo}: kleinste Schrift {klein["px"]:g} px („{klein["text"]}“), erlaubt sind mindestens {MIN_SCHRIFT_REEL} px.')
+            if b['woerter'] > MAX_REEL.get(b['bild'], 99):
+                fehler.append(f'{wo}: {b["woerter"]} Wörter, erlaubt sind {MAX_REEL[b["bild"]]}.')
+            if b['ueberlauf'] or b['in_zeichnung']:
+                fehler.append(f'{wo}: der Text passt nicht in den sicheren Bereich oder läuft in die Zeichnung. Texte kürzen.')
+            fehler += [f'{wo}: „{t}“ steht in einem Bereich, den Instagram mit Bedienelementen überdeckt.' for t in b['aussen']]
+    return fehler
+
+
 def pruefe_inhalt(name, post):
     """Liefert eine Liste von Fehlern im Inhalt des Posts (leer, wenn alles stimmt)."""
     fehler = []
@@ -94,6 +245,7 @@ def pruefe_inhalt(name, post):
             fehler.append(f'Zeichnungsdatei fehlt: render/zeichnungen/{post["zeichnungen"]}.js')
 
     slides = post['slides']
+    lesbar = post.get('vorlage') == 'lesbar'
     if not 7 <= len(slides) <= 9:
         fehler.append(f'{len(slides)} Blätter; erlaubt sind 7 bis 9.')
     for i, sl in enumerate(slides, 1):
@@ -117,7 +269,11 @@ def pruefe_inhalt(name, post):
             fehler.append(f'{wo}: „Maße" wird in Großbuchstaben zu „MASSE". Anderes Wort nehmen, etwa „Abmessungen".')
         if sum(a.count('<em>') for a in absaetze) > 1:
             fehler.append(f'{wo}: höchstens eine Hervorhebung mit <em> pro Blatt.')
-        if typ in ('cover', 'cover-breit'):
+        if lesbar:
+            fehler += pruefe_blatt_lesbar(wo, sl)
+        elif typ == 'titel':
+            fehler.append(f'{wo}: den Typ "titel" gibt es nur in der lesbaren Vorlage ("vorlage": "lesbar").')
+        elif typ in ('cover', 'cover-breit'):
             zahl = str(sl.get('zahl', ''))
             if len(zahl) > 3:
                 fehler.append(f'{wo}: "zahl" hat {len(zahl)} Zeichen, erlaubt sind 3.')
@@ -139,10 +295,10 @@ def pruefe_inhalt(name, post):
                     fehler.append(f'{wo}: Text über Kennzahlen oder Balken höchstens 200 Zeichen (jetzt {textlaenge}).')
                 if sichtbar(sl.get('fuss', '')) > 90:
                     fehler.append(f'{wo}: "fuss" höchstens 90 Zeichen.')
-        for p in sl.get('punkte') or []:
+        for p in ([] if lesbar else sl.get('punkte') or []):
             if len(str(p.get('wert', ''))) > 9 or len(p.get('name', '')) > 30 or len(p.get('zusatz', '')) > 62:
                 fehler.append(f'{wo}: Kennzahl "{p.get("wert")}": "wert" höchstens 9, "name" höchstens 30, "zusatz" höchstens 62 Zeichen.')
-        for b in sl.get('balken') or []:
+        for b in ([] if lesbar else sl.get('balken') or []):
             if len(b.get('zusatz', '')) > 70 or len(str(b.get('anzeige', ''))) > 11:
                 fehler.append(f'{wo}: Balken "{b.get("name")}": "zusatz" höchstens 70, "anzeige" höchstens 11 Zeichen.')
 
@@ -150,7 +306,7 @@ def pruefe_inhalt(name, post):
             fn = sl['figur'].get('fn', '')
             if not re.search(rf'\b{re.escape(fn)}\b', skripte):
                 fehler.append(f'{wo}: Zeichnung "{fn}" gibt es weder in drawings.js noch in der Themen-Datei.')
-        elif sl['typ'] in ('cover', 'cover-breit', 'bild-unten', 'bild-rechts'):
+        elif sl['typ'] in ('titel', 'cover', 'cover-breit', 'bild-unten', 'bild-rechts'):
             fehler.append(f'{wo}: Typ "{sl["typ"]}" braucht eine Zeichnung ("figur").')
         if sl['typ'] == 'balken':
             if not 2 <= len(sl.get('balken') or []) <= 3:
@@ -164,7 +320,11 @@ def pruefe_inhalt(name, post):
             if not 2 <= len(punkte) <= 4 or any(not p.get('wert') or not p.get('name') for p in punkte):
                 fehler.append(f'{wo}: "punkte" braucht 2 bis 4 Einträge mit "wert" und "name".')
     erstes, letztes = slides[0], slides[-1]
-    if erstes.get('typ') not in ('cover', 'cover-breit'):
+    if lesbar:
+        if erstes.get('typ') != 'titel' or sum(1 for sl in slides if sl.get('typ') == 'titel') != 1:
+            fehler.append('Lesbare Vorlage: Blatt 1, und nur Blatt 1, hat den Typ "titel".')
+        fehler += pruefe_reel_feld(post, skripte)
+    elif erstes.get('typ') not in ('cover', 'cover-breit'):
         fehler.append('Blatt 1 muss ein Titelblatt sein (cover oder cover-breit).')
     else:
         if erstes.get('kicker') != f'Bauwerk Nr. {nr}':
@@ -235,6 +395,8 @@ def pruefe_bilder(name, post):
         with Image.open(story) as im:
             if im.format != 'JPEG' or im.size != (1080, 1920):
                 fehler.append(f'out/{name}/story.jpg: {im.format} {im.size[0]} x {im.size[1]} statt JPEG 1080 x 1920.')
+    if post.get('vorlage') == 'lesbar':
+        fehler += pruefe_messung(name, post)
     return fehler
 
 
@@ -246,6 +408,12 @@ def pruefe(name):
         post = lies(datei)
     except ValueError as fehler:
         return [f'posts/{name}.json ist kein gültiges JSON: {fehler}']
+    if post.get('vorlage') != 'lesbar':
+        # Die alte Vorlage gilt nur noch für Posts, die schon geplant oder erschienen sind.
+        bekannt = {e['post'] for e in lies(publish.PLAN)['posts']} | {e['post'] for e in lies(publish.PROTOKOLL)}
+        if name not in bekannt:
+            return ['Neue Posts entstehen in der lesbaren Vorlage: "vorlage": "lesbar", Titelblatt vom Typ "titel", '
+                    'Feld "reel" (AUTOMATIK.md, Abschnitt „Aufbau eines Posts“).']
     fehler = pruefe_inhalt(name, post)
     if fehler:
         return fehler
