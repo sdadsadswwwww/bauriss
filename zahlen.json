@@ -1,5 +1,5 @@
 {
-  "stand": "2026-11-21T06:15",
+  "stand": "2026-11-21T12:08",
   "konto": {
     "follower": 5,
     "beitraege": 14
@@ -11,7 +11,11 @@
       "datum": "2026-11-16",
       "likes": 1,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 4,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 15,
+      "interaktionen": 1
     },
     {
       "post": "002-alter-elbtunnel",
@@ -19,7 +23,11 @@
       "datum": "2026-11-16",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 4,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 11,
+      "interaktionen": 2
     },
     {
       "post": "003-wuppertaler-schwebebahn",
@@ -27,7 +35,11 @@
       "datum": "2026-11-16",
       "likes": 3,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 138,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 152,
+      "interaktionen": 3
     },
     {
       "post": "003-wuppertaler-schwebebahn",
@@ -35,7 +47,11 @@
       "datum": "2026-11-16",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 4,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 6,
+      "interaktionen": 2
     },
     {
       "post": "004-frauenkirche-dresden",
@@ -43,7 +59,11 @@
       "datum": "2026-11-16",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 146,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 159,
+      "interaktionen": 2
     },
     {
       "post": "004-frauenkirche-dresden",
@@ -51,7 +71,11 @@
       "datum": "2026-11-16",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 10,
+      "gespeichert": 0,
+      "geteilt": 1,
+      "aufrufe": 24,
+      "interaktionen": 4
     },
     {
       "post": "005-koelner-dom",
@@ -59,7 +83,11 @@
       "datum": "2026-11-17",
       "likes": 3,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 55,
+      "gespeichert": 0,
+      "geteilt": 3,
+      "aufrufe": 67,
+      "interaktionen": 6
     },
     {
       "post": "005-koelner-dom",
@@ -67,7 +95,11 @@
       "datum": "2026-11-17",
       "likes": 1,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 3,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 12,
+      "interaktionen": 1
     },
     {
       "post": "006-elbphilharmonie",
@@ -75,7 +107,11 @@
       "datum": "2026-11-18",
       "likes": 2,
       "kommentare": 2,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 53,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 66,
+      "interaktionen": 4
     },
     {
       "post": "006-elbphilharmonie",
@@ -83,7 +119,11 @@
       "datum": "2026-11-18",
       "likes": 1,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 3,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 13,
+      "interaktionen": 1
     },
     {
       "post": "007-berliner-fernsehturm",
@@ -91,7 +131,11 @@
       "datum": "2026-11-19",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 114,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 131,
+      "interaktionen": 2
     },
     {
       "post": "007-berliner-fernsehturm",
@@ -99,7 +143,11 @@
       "datum": "2026-11-19",
       "likes": 3,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 9,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 21,
+      "interaktionen": 4
     },
     {
       "post": "008-goeltzschtalbruecke",
@@ -107,18 +155,23 @@
       "datum": "2026-11-20",
       "likes": 2,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 102,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 112,
+      "interaktionen": 2
     },
     {
       "post": "008-goeltzschtalbruecke",
       "art": "carousel",
       "datum": "2026-11-20",
-      "likes": 2,
+      "likes": 3,
       "kommentare": 0,
-      "fehler": "(#10) Application does not have permission for this action"
+      "reichweite": 3,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 8,
+      "interaktionen": 3
     }
-  ],
-  "fehler": [
-    "(#10) Application does not have permission for this action"
   ]
 }
