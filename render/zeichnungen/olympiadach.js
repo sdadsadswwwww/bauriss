@@ -3,6 +3,9 @@
 // Netzmaschen 75 cm, Acrylglasplatten etwa 3 × 3 m (= 4 × 4 Maschen), Modell im Maßstab 1 : 1000.
 // Alle übrigen Proportionen nach Fotos vereinfacht und ohne Maßzahl: Lage und Neigung der Masten, Abspannseile,
 // Hochpunkte, Ränge, Laufbahn, Klemmen an den Knoten, Halter der Platten, Holzstäbe und Strumpf im Modell.
+// Lesbare Vorlage (seit 21.11.2026): Mit lesbar: true zeichnet jede Funktion eine ruhige Fassung (unten, „…Ruhig“):
+// Netz und Maschen stark ausgedünnt, ohne Achsen, Klemmen und Sitzreihen, höchstens vier Beschriftungen
+// (Schrift 34/40/60 px, Linien ab 2 px); mit reel: true zusätzlich ohne Maß- und Hinweislinien.
 (function () {
   const { r, svg, pfad, text, kreis, boden, massH } = Z;
 
@@ -33,7 +36,8 @@
   }
 
   // Ansicht der Zeltlandschaft: vorn die Ränge, darüber das Netz zwischen Rundseil und Hochpunkten, dahinter die Masten
-  function zeltLandschaft({ beschriftet = false } = {}) {
+  function zeltLandschaft({ beschriftet = false, lesbar = false, reel = false } = {}) {
+    if (lesbar) return zeltRuhig({ beschriftet, reel });
     const g = 480, H = 540;
     const tief = [[30, g], [290, 300], [500, 318], [700, 306], [880, g]];
     const hoch = [[160, 238], [400, 150], [600, 218], [790, 258]];
@@ -116,7 +120,8 @@
   }
 
   // Wettbewerbsmodell 1967: Holzstäbe, darüber ein gespannter Nylonstrumpf
-  function strumpfModell() {
+  function strumpfModell({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return strumpfRuhig({ reel });
     const brett = 440, H = 520;
     let body = '';
     // Grundplatte im Schnitt
@@ -159,7 +164,8 @@
   }
 
   // Grundriss: das Dach über der Westtribüne, vorn gehalten vom Rundseil
-  function rundseilPlan() {
+  function rundseilPlan({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return rundseilRuhig({ reel });
     const cx = 520, cy = 316, H = 640;
     const N = [460, 92], S = [460, 540];
     const seil = `M${N[0]} ${N[1]}Q140 ${cy} ${S[0]} ${S[1]}`;
@@ -211,7 +217,8 @@
   }
 
   // Ausschnitt der Dachhaut: Seilnetz mit 75-cm-Maschen und Klemmen an den Knoten, darauf eine Acrylglasplatte
-  function netzDetail() {
+  function netzDetail({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return netzRuhig({ reel });
     const x0 = 40, y0 = 40, m = 60, nx = 9, ny = 6, x1 = x0 + nx * m, y1 = y0 + ny * m;
     let seile = '', klemmen = '', bolzen = '';
     // jedes Netzseil als Seilpaar
@@ -233,6 +240,136 @@
     body += massH(x0, x0 + m, y1 + 36, '75 cm');
     body += pfad('t', `M${px + pw / 2} ${py + pw}V${y1 + 30}`) + text(200, 466, 'Acrylglasplatte, etwa 3 × 3 m', 'akz');
     return svg(900, 490, body);
+  }
+
+  // ---------------------------------------------------------------------------------------------
+  // Lesbare Vorlage: ruhige Fassungen. reel: true lässt Maß- und Hinweislinien weg (das Reel entfernt allen Text).
+
+  // Ansicht der Zeltlandschaft: Netz gelb mit weitem Maschenbild, vier Masten mit je einem Hänge- und einem Abspannseil,
+  // Ränge ohne Sitzreihen. Ohne Beschriftung 900 × 450 (Titelblatt), mit Beschriftung 900 × 570 (Blatt „Der Bau“).
+  function zeltRuhig({ beschriftet = false, reel = false } = {}) {
+    const H = beschriftet ? 570 : 450, spitze = beschriftet ? 92 : 28, g = beschriftet ? 494 : 420;
+    // Höhen der alten Ansicht (Boden 480, höchste Mastspitze 40) auf die neue Fläche umrechnen
+    const k = (g - spitze) / 440, Y = y => r(g - (480 - y) * k);
+    const tief = [[30, g], [290, Y(300)], [500, Y(318)], [700, Y(306)], [880, g]];
+    const hoch = [[160, Y(238)], [400, Y(150)], [600, Y(218)], [790, Y(258)]];
+    const pk = [];
+    tief.forEach((t, i) => { pk.push(t); if (hoch[i]) pk.push(hoch[i]); });
+    let oben = `M${pk[0][0]} ${pk[0][1]}`;
+    for (let i = 1; i < pk.length; i++) {
+      const [ax, ay] = pk[i - 1], [bx, by] = pk[i], mx = r((ax + bx) / 2);
+      oben += `C${mx} ${ay} ${mx} ${by} ${bx} ${by}`;
+    }
+    const netz = `${oben}C670 ${Y(296)} 230 ${Y(296)} 30 ${g}Z`;
+    const id = `od-netz-r${beschriftet ? 1 : 0}`;
+    let body = `<clipPath id="${id}"><path d="${netz}"/></clipPath>`;
+
+    // Masten hinter dem Netz: Rohr, ein Hängeseil zum Hochpunkt, ein Abspannseil zum Anker
+    let seile = '', rohre = '', anker = '';
+    hoch.forEach(([px, py], i) => {
+      const fx = i === 1 ? 322 : px + 60, tx = px + 30, ty = py - (i === 1 ? 110 : 96) * k;
+      const n = Math.hypot(tx - fx, ty - g), nx = -(ty - g) / n, ny = (tx - fx) / n;
+      rohre += `M${r(fx + nx * 8)} ${r(g + ny * 8)}L${r(tx + nx * 4)} ${r(ty + ny * 4)}L${r(tx - nx * 4)} ${r(ty - ny * 4)}L${r(fx - nx * 8)} ${r(g - ny * 8)}Z`;
+      const a = Math.min(tx + 120, 856);
+      seile += `M${r(tx)} ${r(ty)}L${px} ${py}M${r(tx)} ${r(ty)}L${a} ${g}`;
+      anker += `M${a - 12} ${g}h24v14h-24z`;
+    });
+    body += pfad('t', seile) + `<path class="lf" d="${rohre}"/><path class="hf" d="${anker}"/>`;
+
+    // Netz als deckende Fläche mit gelbem Rand, darin ein weites Maschenbild
+    body += `<path class="lf" d="${netz}"/>`;
+    body += `<g clip-path="url(#${id})">${pfad('z', diagonalen(20, Y(130), 890, g, 30))}</g>`;
+    body += pfad('a', netz);
+
+    // Ränge unter dem Dach (links) und gegenüber (rechts): Erdwall mit Stufen, ohne Sitzreihen
+    let links = `M60 ${g}`;
+    for (let i = 0; i < 5; i++) links += `h46v${r(-16 * k)}`;
+    links += `h24L330 ${g}Z`;
+    let rechts = `M610 ${g}`;
+    for (let i = 0; i < 4; i++) rechts += `v${r(-14 * k)}h39`;
+    rechts += `L860 ${g}Z`;
+    for (const d of [links, rechts]) body += `<path class="lf" d="${d}"/><path class="hs" d="${d}"/>`;
+    body += pfad('l', `M20 ${g}H880`);
+
+    if (beschriftet) {
+      if (!reel) body += pfad('t', 'M112 180L132 280');
+      body += text(24, 168, 'Seilnetz', 'gross akz');
+      body += text(462, spitze + 48, '70 m', 'riesig akz');
+      body += text(40, g + 46, 'Ränge');
+    } else {
+      body += text(462, spitze + 48, '70 m', 'riesig');
+    }
+    return svg(900, H, body);
+  }
+
+  // Wettbewerbsmodell: drei Holzstäbe, der Strumpf gelb mit wenigen Fäden, drei Beschriftungen (900 × 570)
+  function strumpfRuhig({ reel = false } = {}) {
+    const brett = 470, H = 570;
+    let body = `<path class="hf" d="M80 ${brett}H820V${brett + 30}H80Z"/>`;
+    const staebe = [[250, 170], [470, 120], [650, 200]];
+    let sl = '';
+    for (const [x, y] of staebe) sl += `M${x - 6} ${brett}V${y + 8}Q${x} ${y - 2} ${x + 6} ${y + 8}V${brett}`;
+    const haut = abtasten([[100, brett], [170, 280], [250, 170], [360, 230], [470, 120], [560, 230], [650, 200], [740, 290], [800, brett]]);
+    // Maschenbild: wenige Fäden von der Haut zur Platte (nicht an den Stäben) und zwei Reihen dazwischen
+    let maschen = '';
+    for (let i = 8; i < haut.length - 4; i += 8) if (i % 24) maschen += `M${r(haut[i][0])} ${r(haut[i][1])}V${brett}`;
+    for (const f of [0.34, 0.67]) maschen += zug(haut.map(([x, y]) => [x, y + f * (brett - y)]));
+    body += pfad('l', sl);
+    body += `<g class="akzent">${pfad('z', maschen)}</g>`;
+    body += pfad('a', zug(haut));
+    if (!reel) body += pfad('t', 'M196 124L243 166M664 82L606 198');
+    body += text(40, 112, 'Holzstäbe', 'gross') + text(560, 70, 'Nylonstrumpf', 'gross akz');
+    body += text(450, brett + 74, 'Modell im Maßstab 1 : 1000', '', 'text-anchor="middle"');
+    return svg(900, H, body);
+  }
+
+  // Grundriss: Stadion mit wenigen Ringen, Dach mit weitem Maschenbild, Rundseil und Anker gelb (900 × 624)
+  function rundseilRuhig({ reel = false } = {}) {
+    const cx = 520, cy = 318, H = 624;
+    const N = [460, 94], S = [460, 542];
+    const seil = `M${N[0]} ${N[1]}Q140 ${cy} ${S[0]} ${S[1]}`;
+    const dach = `${seil}Q-240 ${cy} ${N[0]} ${N[1]}Z`;
+    let body = `<clipPath id="od-dach-r"><path d="${dach}"/></clipPath>`;
+    // Stadion: Außenrand, zwei Ringe für die Ränge, Laufbahn, Spielfeld
+    const ell = (rx, ry, cls) => `<ellipse class="${cls}" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>`;
+    body += ell(330, 214, 'l') + ell(205, 128, 'l') + ell(246, 157, 't') + ell(288, 186, 't') + ell(176, 104, 't');
+    body += pfad('t', `M440 ${cy - 54}h160v108h-160ZM520 ${cy - 54}v108` + kreis(520, cy, 18));
+    // Dachfläche zwischen Rundseil und Außenrand
+    body += `<path class="lf" d="${dach}"/>`;
+    body += `<g clip-path="url(#od-dach-r)">${pfad('z', diagonalen(-20, 60, 520, 580, 30))}</g>`;
+    body += pfad('l', `M${S[0]} ${S[1]}Q-240 ${cy} ${N[0]} ${N[1]}`);
+    // zwei Masten außerhalb, je ein Hängeseil zum Dach und ein Abspannseil nach außen
+    let mast = '', seile = '';
+    for (const s of [-1, 1]) {
+      const mx = 70, my = cy + s * 98;
+      mast += kreis(mx, my, 11) + `M${mx - 18} ${my}h36M${mx} ${my - 18}v36`;
+      seile += `M${mx} ${my}L236 ${cy + s * 86}M${mx} ${my}L36 ${my + s * 58}`;
+    }
+    body += pfad('t', seile) + pfad('l', mast);
+    // Rundseil und die beiden Anker
+    body += pfad('bgl', seil) + pfad('a', seil);
+    body += `<path class="af" d="M${N[0] - 15} ${N[1] - 15}h30v30h-30ZM${S[0] - 15} ${S[1] - 15}h30v30h-30Z"/>`;
+    if (!reel) body += pfad('t', 'M300 562L362 468');
+    body += text(24, 54, 'Betonanker, bis 4000 t');
+    body += text(30, 600, '440 m', 'riesig akz') + text(178, 600, 'Rundseil', 'gross akz');
+    body += text(150, cy + 14, 'Dach', 'gross hell');
+    return svg(900, H, body);
+  }
+
+  // Ausschnitt der Dachhaut: Netz als einfache Linien mit Knotenpunkten, eine Platte gelb (4 × 4 Maschen), 900 × 574
+  function netzRuhig({ reel = false } = {}) {
+    const m = 76, x0 = 32, y0 = 20, nx = 11, ny = 6, x1 = x0 + nx * m, y1 = y0 + ny * m;
+    let seile = '', knoten = '';
+    for (let i = 0; i <= nx; i++) seile += `M${x0 + i * m} ${y0 - 12}V${y1 + 12}`;
+    for (let j = 0; j <= ny; j++) seile += `M${x0 - 12} ${y0 + j * m}H${x1 + 12}`;
+    for (let i = 0; i <= nx; i++) for (let j = 0; j <= ny; j++) knoten += kreis(x0 + i * m, y0 + j * m, 5);
+    let body = pfad('t', seile);
+    const px = x0 + 3 * m, py = y0 + m, pw = 4 * m;
+    body += `<g class="akzent">${pfad('t', `M${px + 14} ${py + 14}h${pw - 28}v${pw - 28}h${-(pw - 28)}z`)}</g>`;
+    body += pfad('a', `M${px} ${py}h${pw}v${pw}h${-pw}Z`) + pfad('punkt', knoten);
+    if (!reel) body += massH(x0 + m, x0 + 2 * m, y1 + 28, '75 cm', 40) + pfad('t', `M${px + pw / 2 + m / 2} ${py + pw}V${y1 + 32}`);
+    body += text(px, y1 + 68, 'Acrylglasplatte, etwa 3 × 3 m', 'akz');
+    return svg(900, 574, body);
   }
 
   Object.assign(Zeichnung, { zeltLandschaft, strumpfModell, rundseilPlan, netzDetail });

@@ -15,7 +15,7 @@ Ein Eintrag mit `"freigabe": false` wird nicht veröffentlicht; so lässt sich e
 
 ## Musik
 
-Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an. Deshalb baut der Workflow „Reel rendern" zu jedem Post ein Reel: die Blätter nacheinander im Hochformat, dazu ein Klangbett, das `tools/musik.py` vollständig aus Code berechnet (keine fremden Aufnahmen, keine Rechte Dritter). Die Videos liegen nicht im Repository, sondern als Dateien im Release „medien" (`<post>.mp4`); so wächst das Repository nicht. Einige Tage nach dem Erscheinen löscht der Workflow sie dort wieder.
+Instagram nimmt über die Schnittstelle Musik nur zusammen mit einem Video an. Deshalb baut der Workflow „Reel rendern" zu jedem Post ein Reel: seit 21.11.2026 ein kurzes Video aus vier eigenen Bildern (Posts bis 010: die Blätter nacheinander) im Hochformat, dazu ein Klangbett, das `tools/musik.py` vollständig aus Code berechnet (keine fremden Aufnahmen, keine Rechte Dritter). Die Videos liegen nicht im Repository, sondern als Dateien im Release „medien" (`<post>.mp4`); so wächst das Repository nicht. Einige Tage nach dem Erscheinen löscht der Workflow sie dort wieder.
 
 Was erscheint, steht in `plan.json` unter `"reel"`:
 
@@ -37,7 +37,7 @@ Prüfen, ob Instagram ein Reel annimmt, ohne es zu veröffentlichen: Actions →
 | `tools/publish.py` | Veröffentlicht über die Instagram Graph API |
 | `tools/automatik.py` | Stand, Prüfung, Einplanen und Aufräumen für den täglichen Lauf |
 | `tools/wiki.py` | Holt Wikipedia-Artikel für die Recherche |
-| `tools/reel.py` | Baut aus den Blättern eines Posts das Reel (braucht ffmpeg, läuft auf GitHub) |
+| `tools/reel.py` | Rendert die Bilder des kurzen Reels und die Story; schneidet mit ffmpeg das Reel (das Video entsteht auf GitHub) |
 | `tools/musik.py` | Berechnet die Musik zum Reel |
 | `AUTOMATIK.md` | Arbeitsanweisung für den täglichen Lauf |
 | `themen.json` | Themenliste: erschienene und offene Bauwerke |

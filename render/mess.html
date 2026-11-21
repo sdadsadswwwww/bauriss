@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bauriss Messung</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="sheet"></div>
+<pre id="out"></pre>
+<script src="drawings.js"></script>
+<script src="gotik.js"></script>
+<script src="render.js"></script>
+<script>
+  // Misst jedes Blatt eines Posts so, wie es gerendert wird: Schriftgröße jedes Textes im Blatt (bei Zeichnungen
+  // mal Maßstab des SVG), Wörter, Linienbreiten, Text außerhalb von Rahmen oder Fenster, überlappende Beschriftungen.
+  // Aufruf über tools/render.py: mess.html?post=<name>&konto=<handle>. Das Ergebnis steht als JSON in #out;
+  // tools/render.py schreibt daraus out/<post>/mess.json, tools/automatik.py pruefen wertet es aus.
+  const q = new URLSearchParams(location.search);
+  const schriften = ['600 10px "Barlow Condensed"', '700 10px "Barlow Condensed"', '400 10px Barlow', '600 10px Barlow',
+    '400 10px "IBM Plex Mono"', '500 10px "IBM Plex Mono"'];
+  const ladeSkript = name => new Promise((fertig, fehler) => {
+    const s = document.createElement('script');
+    s.src = 'zeichnungen/' + name + '.js';
+    s.onload = fertig;
+    s.onerror = fehler;
+    document.head.appendChild(s);
+  });
+  const rund = n => Math.round(n * 10) / 10;
+  const woerter = t => t.split(/\s+/).filter(w => /[0-9A-Za-zÄÖÜäöüß]/.test(w)).length;
+
+  // Wo ein Text steht: Schriftfeld, Zeichnung, Quellenzeile oder Lesetext
+  function ort(el) {
+    if (el.closest('.schild')) return 'schild';
+    if (el.closest('.vp-kopf, .vp-befehl, .detail .dk, .palette')) return 'rahmen';
+    if (el.closest('.inhalt svg.marke')) return 'marke';
+    if (el.closest('svg')) return 'zeichnung';
+    if (el.closest('.quellen')) return 'quellen';
+    return 'lesetext';
+  }
+
+  function messe(nr, sl) {
+    const sheet = document.getElementById('sheet');
+    const inhalt = sheet.querySelector('.inhalt');
+    const fenster = sheet.querySelector('.figur .vp');
+    const fr = fenster ? fenster.getBoundingClientRect() : null;
+    const texte = [];
+    const lauf = document.createTreeWalker(sheet, NodeFilter.SHOW_TEXT);
+    let n;
+    while ((n = lauf.nextNode())) {
+      const t = n.nodeValue.replace(/\s+/g, ' ').trim();
+      if (!t) continue;
+      const el = n.parentElement;
+      let sichtbar = true;
+      for (let e = el; e && e !== sheet; e = e.parentElement) {
+        const cs = getComputedStyle(e);
+        if (cs.display === 'none' || cs.visibility === 'hidden') { sichtbar = false; break; }
+      }
+      if (!sichtbar) continue;
+      const fs = parseFloat(getComputedStyle(el).fontSize);
+      const te = el.closest('text');
+      const m = te && te.getScreenCTM ? te.getScreenCTM() : null;
+      const faktor = m ? Math.hypot(m.a, m.b) : 1;
+      const bereich = document.createRange();
+      bereich.selectNodeContents(n);
+      const b = bereich.getBoundingClientRect();
+      const wo = ort(el);
+      // Außerhalb: Lesetext jenseits des Blattrahmens (90 bis 990, unten 1196), Beschriftung jenseits des Fensters
+      let aussen = false;
+      if (wo === 'lesetext' || wo === 'quellen') aussen = b.left < 80 || b.right > 994 || b.top < 60 || b.bottom > 1200;
+      else if (wo === 'zeichnung' && fr) aussen = b.left < fr.left + 4 || b.right > fr.right - 4 || b.top < fr.top + 4 || b.bottom > fr.bottom - 4;
+      else if (wo === 'schild') aussen = b.left < 34 || b.right > 1046;
+      texte.push({ t, ort: wo, px: rund(fs * faktor), x: Math.round(b.left), y: Math.round(b.top), w: Math.round(b.width), h: Math.round(b.height), aussen });
+    }
+    // Beschriftungen in der Zeichnung, die einander überdecken
+    const zt = texte.filter(t => t.ort === 'zeichnung');
+    const ueberlappt = [];
+    for (let i = 0; i < zt.length; i++) for (let j = i + 1; j < zt.length; j++) {
+      const a = zt[i], b = zt[j];
+      const dx = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x), dy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+      if (dx > 4 && dy > 8) ueberlappt.push([a.t, b.t]);
+    }
+    // Zellen des Schriftfelds, deren Inhalt nicht hineinpasst
+    const schildVoll = [...sheet.querySelectorAll('.schild > div')].some(d => d.scrollWidth > d.clientWidth + 1);
+    // Hauptzeichnung: Zeichenfläche, Platz und Maßstab; Abstand des Fensters zum Text darüber
+    const haupt = sheet.querySelector('.figur > svg');
+    let zeichnung = null;
+    if (haupt) {
+      const vb = haupt.viewBox.baseVal, r = haupt.getBoundingClientRect();
+      zeichnung = { fn: sl.figur && sl.figur.fn, flaeche: [vb.width, vb.height], platz: [Math.round(r.width), Math.round(r.height)],
+        massstab: Math.round(haupt.getScreenCTM().a * 1000) / 1000, beschriftungen: haupt.querySelectorAll('text').length };
+    }
+    // Linienbreiten in den Zeichnungen in Bildpunkten des Blatts (Schraffurmuster skalieren mit, alle anderen nicht)
+    let duenn = null;
+    sheet.querySelectorAll('.figur svg *').forEach(e => {
+      if (!(e instanceof SVGGeometryElement)) return;
+      const cs = getComputedStyle(e);
+      let w = parseFloat(cs.strokeWidth);
+      if (cs.stroke === 'none' || !w || cs.display === 'none') return;
+      if (cs.vectorEffect !== 'non-scaling-stroke' && zeichnung) w *= zeichnung.massstab;
+      const klasse = (e.getAttribute('class') || '').trim() || e.tagName;
+      if (!duenn || w < duenn.px) duenn = { px: Math.round(w * 100) / 100, klasse };
+    });
+    const klein = texte.reduce((a, t) => (!a || t.px < a.px ? t : a), null);
+    return {
+      nr, typ: sl.typ,
+      woerter: { lesetext: texte.filter(t => t.ort === 'lesetext').reduce((s, t) => s + woerter(t.t), 0),
+        zeichnung: zt.reduce((s, t) => s + woerter(t.t), 0),
+        quellen: texte.filter(t => t.ort === 'quellen').reduce((s, t) => s + woerter(t.t), 0) },
+      kleinste: klein ? { px: klein.px, text: klein.t.slice(0, 40), ort: klein.ort } : null,
+      linie: duenn, zeichnung,
+      ueberlauf: Math.max(0, inhalt.scrollHeight - inhalt.clientHeight, inhalt.scrollWidth - inhalt.clientWidth),
+      aussen: texte.filter(t => t.aussen).map(t => t.t.slice(0, 40)),
+      ueberlappt, schildVoll, texte,
+    };
+  }
+
+  (async () => {
+    const aus = document.getElementById('out');
+    try {
+      const post = await (await fetch('../posts/' + q.get('post') + '.json')).json();
+      if (post.zeichnungen) await ladeSkript(post.zeichnungen);
+      await Promise.all(schriften.map(s => document.fonts.load(s)));
+      const erg = { post: q.get('post'), slides: [] };
+      for (let nr = 1; nr <= post.slides.length; nr++) {
+        render({ ...post, konto: '@' + (q.get('konto') || 'der_bauriss') }, nr);
+        await document.fonts.ready;
+        erg.slides.push(messe(nr, post.slides[nr - 1]));
+      }
+      aus.textContent = JSON.stringify(erg);
+    } catch (e) {
+      aus.textContent = JSON.stringify({ fehler: String(e) + ' ' + (e.stack || '') });
+    }
+  })();
+</script>
+</body>
+</html>

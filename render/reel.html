@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Bauriss Reel</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Reel als kurzes eigenes Video (seit 21.11.2026): vier bildfüllende Standbilder 1080 x 1920 aus dem Feld "reel" des Posts.
+     Aufruf über tools/reel.py: reel.html?post=<name>&konto=<handle>&bild=1|2|3|4|4m   ein Bild, randlos
+                                 …&bild=alle&mess=1   alle Bilder nebeneinander, Messung als JSON in #out
+                                 …&zonen=1            zeigt, wo Instagram Bedienelemente legt
+     Bilder: 1 Frage, 2 Zeichnung, 3 Antwort, 4 Schluss, 4m Schluss mit „Morgen:“ (den Namen setzt tools/reel.py ein).
+     Sicherer Bereich für Text: links 88, rechts 148, oben 262, unten 410 px. Das sind die Bereiche, in die Instagram
+     Bedienelemente legt (Richtwerte: links 70, rechts 130, oben 236, unten 384 px), plus Reserve für den Zoom im Video.
+     Keine Schrift unter 44 px. */
+  html, body { margin: 0; overflow: hidden; }
+  body { background: #2a2a2a; }
+  #buehne { display: flex; gap: 40px; padding: 40px; }
+  #buehne.einzeln { padding: 0; gap: 0; }
+
+  .bild { position: relative; flex: none; width: 1080px; height: 1920px; overflow: hidden; background-color: var(--bg); color: var(--ink); font-family: var(--f-text);
+    background-image:
+      radial-gradient(ellipse at 50% 34%, rgba(31, 111, 184, 0.2), transparent 70%),
+      linear-gradient(var(--netz2) 1px, transparent 1px), linear-gradient(90deg, var(--netz2) 1px, transparent 1px),
+      linear-gradient(var(--netz) 1px, transparent 1px), linear-gradient(90deg, var(--netz) 1px, transparent 1px);
+    background-size: 100% 100%, 108px 108px, 108px 108px, 21.6px 21.6px, 21.6px 21.6px; }
+  .bild .sicher { position: absolute; left: 88px; right: 148px; top: 262px; bottom: 410px; display: flex; flex-direction: column; z-index: 2; }
+  .bild h1 { margin: 0; }
+  .bild em { font-style: normal; color: var(--acc); }
+
+  /* Kopf: Marke, auf den Bildern 2 und 3 rechts der Name des Bauwerks */
+  .kopf { display: flex; align-items: center; gap: 18px; font-family: var(--f-kopf); font-weight: 600; font-size: 54px; line-height: 1; letter-spacing: 0.08em; text-transform: uppercase; flex: none; }
+  .kopf .marke { width: 62px; height: 62px; flex: none; }
+  .kopf .wo { margin-left: auto; font-size: 44px; letter-spacing: 0.04em; color: rgba(234, 241, 248, 0.72); white-space: nowrap; }
+
+  /* Zeichnungen im Reel: ohne Text, kräftige Linien */
+  .bild .fig .l { stroke-width: 4; }
+  .bild .fig .t { stroke-width: 3; opacity: 0.95; }
+  .bild .fig .z { stroke-width: 2.5; opacity: 0.32; }
+  .bild .fig .d { stroke-width: 3; }
+  .bild .fig .a { stroke-width: 6; }
+  .bild .fig .m, .bild .fig .ax, .bild .fig .hl { stroke-width: 3; }
+  .bild .fig .hf, .bild .fig .lf, .bild .fig .af { stroke-width: 4; }
+  .bild .fig .ph { stroke-width: 2.4; opacity: 0.4; }
+  .bild .fig .bgl { stroke-width: 20; }
+  .bild .fig .akzent .l, .bild .fig .akzent .lf { stroke-width: 6; }
+  .bild .zeichnung { position: absolute; left: 0; width: 1080px; z-index: 1; }
+  .bild .zeichnung svg { display: block; width: 100%; height: 100%; }
+
+  /* Bild 1: Name und Frage, unten die Zeichnung als Schmuck */
+  .b-frage .sicher { bottom: 650px; }   /* der Text endet über der Zeichnung (y 1270) */
+  .b-frage .name { font-family: var(--f-kopf); font-weight: 700; font-size: 190px; line-height: 0.92; text-transform: uppercase; margin-top: 76px; }
+  .b-frage .zeile { font-family: var(--f-kopf); font-weight: 600; font-size: 66px; line-height: 1.04; text-transform: uppercase; color: var(--detail); margin-top: 34px; }
+  .b-frage .frage { font-family: var(--f-kopf); font-weight: 700; font-size: 168px; line-height: 0.92; text-transform: uppercase; color: var(--acc); margin-top: 64px; }
+  .b-frage .zeichnung { top: 1290px; height: 630px; opacity: 0.85; }
+
+  /* Bild 2: eine Zahl mit Aussage, darunter die Zeichnung groß */
+  .b-zeichnung .aussage { display: flex; align-items: flex-end; gap: 34px; margin-top: 70px; }
+  .b-zeichnung .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 400px; line-height: 0.78; color: var(--acc); white-space: nowrap; flex: none; }
+  .b-zeichnung h1 { font-family: var(--f-kopf); font-weight: 600; font-size: 124px; line-height: 0.92; text-transform: uppercase; padding-bottom: 6px; }
+  .b-zeichnung .zeichnung { top: 780px; height: 780px; }
+
+  /* Bild 3: die Antwort mit der großen Zahl */
+  .b-antwort .kicker { font-family: var(--f-mono); font-size: 46px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); margin: 62px 0 0; }
+  .b-antwort .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 420px; line-height: 0.8; margin: 24px 0 0 -6px; color: var(--acc); white-space: nowrap; }
+  .b-antwort .zahlzeile { display: flex; align-items: flex-end; gap: 26px; margin-top: 24px; }
+  .b-antwort .zahlzeile .zahl { margin-top: 0; }
+  .b-antwort .vorsatz { font-family: var(--f-kopf); font-weight: 600; font-size: 84px; line-height: 1; text-transform: uppercase; padding-bottom: 26px; flex: none; }
+  .b-antwort h1 { font-family: var(--f-kopf); font-weight: 600; font-size: 108px; line-height: 0.94; text-transform: uppercase; margin-top: 40px; }
+  .b-antwort .antwort { font-family: var(--f-kopf); font-weight: 700; font-size: 132px; line-height: 0.94; text-transform: uppercase; margin-top: 52px; }
+  .b-antwort .zusatz { font-size: 58px; line-height: 1.2; color: rgba(234, 241, 248, 0.88); margin-top: 26px; }
+
+  /* Bild 4: Schluss. Fassung „m“ lässt unter „Morgen:“ Platz für den Namen des nächsten Bauwerks (y 1065 bis 1330). */
+  .b-schluss .sicher { justify-content: center; }
+  .b-schluss .gross { width: 300px; height: 300px; margin: 0 0 0 -66px; flex: none; }
+  .b-schluss h1 { font-family: var(--f-kopf); font-weight: 600; font-size: 170px; line-height: 0.92; text-transform: uppercase; margin-top: 34px; }
+  .b-schluss .fragen { font-size: 58px; line-height: 1.2; color: rgba(234, 241, 248, 0.88); margin-top: 40px; }
+  .b-schluss .konto { align-self: flex-start; font-family: var(--f-mono); font-size: 52px; color: var(--acc); border: 3px solid var(--acc); padding: 20px 30px; margin-top: 70px; }
+  .b-schluss.mit-morgen .sicher { justify-content: flex-start; }
+  .b-schluss.mit-morgen .morgen { position: absolute; left: 0; top: 723px; font-family: var(--f-mono); font-size: 48px; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); }
+  .b-schluss.mit-morgen .konto { position: absolute; left: 0; bottom: 0; margin: 0; }
+
+  /* Kontrollansicht: Bereiche, in die Instagram Bedienelemente legt */
+  .zone { position: absolute; z-index: 5; background: repeating-linear-gradient(135deg, rgba(255, 90, 90, 0.34) 0 6px, rgba(255, 90, 90, 0.12) 6px 22px); outline: 3px dashed rgba(255, 120, 120, 0.9); outline-offset: -3px; }
+  .zone.unten { left: 0; right: 0; bottom: 0; height: 384px; }
+  .zone.rechts { right: 0; top: 0; bottom: 384px; width: 130px; }
+  .zone.oben { left: 0; right: 130px; top: 0; height: 236px; }
+  #out { display: none; }
+</style>
+</head>
+<body>
+<div id="buehne"></div>
+<pre id="out"></pre>
+<script src="drawings.js"></script>
+<script src="gotik.js"></script>
+<script>
+  const q = new URLSearchParams(location.search);
+  const welche = q.get('bild') || 'alle';
+  const schriften = ['600 10px "Barlow Condensed"', '700 10px "Barlow Condensed"', '400 10px Barlow', '600 10px Barlow',
+    '400 10px "IBM Plex Mono"', '500 10px "IBM Plex Mono"'];
+  const ladeSkript = name => new Promise((fertig, fehler) => {
+    const s = document.createElement('script');
+    s.src = 'zeichnungen/' + name + '.js';
+    s.onload = fertig;
+    s.onerror = fehler;
+    document.head.appendChild(s);
+  });
+  const SICHER = { links: 88, rechts: 932, oben: 262, unten: 1510 };
+  const MIN_SCHRIFT = 44;
+  const ZONEN = q.get('zonen') ? '<div class="zone unten"></div><div class="zone rechts"></div><div class="zone oben"></div>' : '';
+  const woerter = t => t.split(/\s+/).filter(w => /[0-9A-Za-zÄÖÜäöüß]/.test(w)).length;
+
+  // Zeichnung fürs Reel: ruhige Fassung, ohne jeden Text (Schrift stünde sonst in den Bedienbereichen oder wäre zu klein)
+  function zeichnung(figur, anker) {
+    if (!figur || !Zeichnung[figur.fn]) return '';
+    const svg = Zeichnung[figur.fn]({ ...figur, lesbar: true, reel: true })
+      .replace(/<text[\s\S]*?<\/text>/g, '').replace(/<rect class="platte"[^>]*\/>/g, '')
+      .replace(/preserveAspectRatio="[^"]*"/, `preserveAspectRatio="${anker}"`);
+    return `<div class="zeichnung">${svg}</div>`;
+  }
+  const kopf = (post, mitName) => `<div class="kopf">${Zeichnung.marke()}<span>Bauriss</span>${mitName ? `<span class="wo">${post.titel}</span>` : ''}</div>`;
+  const marke = () => Zeichnung.marke().replace('fig marke', 'fig marke gross');
+
+  function bild(nr, post, konto) {
+    const r = post.reel;
+    let art, innen;
+    if (nr === '1') {
+      art = 'frage';
+      innen = `${zeichnung(r.frage.figur, 'xMidYMin meet')}<div class="sicher">${kopf(post)}` +
+        `<div class="name">${post.titel}</div><div class="zeile">${r.frage.zeile}</div><div class="frage">${r.frage.frage}</div></div>`;
+    } else if (nr === '2') {
+      art = 'zeichnung';
+      innen = `${zeichnung(r.zeichnung.figur, 'xMidYMid meet')}<div class="sicher">${kopf(post, true)}` +
+        `<div class="aussage"><div class="zahl">${r.zeichnung.zahl}</div><h1>${r.zeichnung.aussage}</h1></div></div>`;
+    } else if (nr === '3') {
+      art = 'antwort';
+      const a = r.antwort;
+      innen = `<div class="sicher">${kopf(post, true)}<div class="kicker">${a.kicker || 'Wer hat bezahlt?'}</div>` +
+        (a.vorsatz ? `<div class="zahlzeile"><div class="vorsatz">${a.vorsatz}</div><div class="zahl">${a.zahl}</div></div>` : `<div class="zahl">${a.zahl}</div>`) +
+        `<h1>${a.einheit}</h1><div class="antwort">${a.antwort}</div>` +
+        `<div class="zusatz">${a.zusatz || ''}</div></div>`;
+    } else if (nr === '4') {
+      art = 'schluss';
+      innen = `<div class="sicher">${marke()}<h1>Ein Bauwerk pro Tag</h1>` +
+        `<div class="fragen">Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?</div><div class="konto">Folgen: ${konto}</div></div>`;
+    } else {
+      art = 'schluss mit-morgen';
+      innen = `<div class="sicher">${marke()}<h1>Ein Bauwerk pro Tag</h1><div class="morgen">Morgen:</div><div class="konto">Folgen: ${konto}</div></div>`;
+    }
+    return `<div class="bild b-${art}" data-nr="${nr}">${innen}${ZONEN}</div>`;
+  }
+
+  // Einpassen: Schrift verkleinern, bis das Element in die Breite passt (lange Wörter) und der Block in die Höhe
+  function einpassen(b) {
+    const zuBreit = el => el.scrollWidth - el.clientWidth > 0;
+    const schrumpfe = (el, min, pruefe) => {
+      if (!el) return;
+      let px = parseFloat(getComputedStyle(el).fontSize);
+      while (px > min && pruefe()) el.style.fontSize = (px -= 2) + 'px';
+    };
+    const kasten = b.querySelector('.sicher');
+    const zuHoch = () => kasten.scrollHeight - kasten.clientHeight > 0;
+    for (const [sel, min] of [['.name', 96], ['.frage', 110], ['.antwort', 92], ['.b-antwort h1', 80], ['.b-zeichnung h1', 84]]) {
+      const el = b.querySelector(sel);
+      if (el) schrumpfe(el, min, () => zuBreit(el));
+    }
+    // Der Name steht in höchstens zwei Zeilen
+    const name = b.querySelector('.name');
+    if (name) schrumpfe(name, 96, () => name.getBoundingClientRect().height > 2.2 * parseFloat(getComputedStyle(name).fontSize));
+    // Zahl und Aussage teilen sich eine Zeile
+    const zeile = b.querySelector('.aussage');
+    if (zeile) {
+      schrumpfe(zeile.querySelector('h1'), 84, () => zuBreit(zeile));
+      schrumpfe(zeile.querySelector('.zahl'), 240, () => zuBreit(zeile));
+    }
+    const zahl = b.querySelector('.b-antwort .zahl');
+    if (zahl) schrumpfe(zahl, 260, () => zuBreit(zahl) || zuHoch());
+    // Reicht die Höhe noch nicht, die großen Zeilen der Reihe nach kleiner setzen
+    for (const [sel, min] of [['.name', 96], ['.frage', 110], ['.antwort', 92], ['.b-antwort h1', 80]]) {
+      const el = b.querySelector(sel);
+      if (el) schrumpfe(el, min, zuHoch);
+    }
+  }
+
+  // Misst alle sichtbaren Texte: Schriftgröße, Lage im Bild, außerhalb des sicheren Bereichs, Überlauf
+  function messen() {
+    const erg = [];
+    document.querySelectorAll('.bild').forEach(el => {
+      const b0 = el.getBoundingClientRect(), texte = [];
+      const lauf = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = lauf.nextNode())) {
+        const t = n.nodeValue.replace(/\s+/g, ' ').trim();
+        if (!t) continue;
+        const fs = parseFloat(getComputedStyle(n.parentElement).fontSize);
+        const bereich = document.createRange();
+        bereich.selectNodeContents(n);
+        const r = bereich.getBoundingClientRect();
+        const x = Math.round(r.left - b0.left), y = Math.round(r.top - b0.top), w = Math.round(r.width), h = Math.round(r.height);
+        texte.push({ t, px: Math.round(fs * 10) / 10, x, y, w, h,
+          aussen: x < SICHER.links - 8 || x + w > SICHER.rechts + 2 || y < SICHER.oben - 2 || y + h > SICHER.unten + 2 });
+      }
+      const kasten = el.querySelector('.sicher'), zeichn = el.querySelector('.zeichnung');
+      const textUnten = Math.max(...[...kasten.children].map(k => k.getBoundingClientRect().bottom - b0.top));
+      const klein = texte.reduce((a, t) => (!a || t.px < a.px ? t : a), null);
+      erg.push({ bild: el.dataset.nr, woerter: texte.reduce((s, t) => s + woerter(t.t), 0),
+        kleinste: klein ? { px: klein.px, text: klein.t.slice(0, 40) } : null,
+        aussen: texte.filter(t => t.aussen).map(t => t.t.slice(0, 40)),
+        zu_klein: texte.filter(t => t.px < MIN_SCHRIFT).map(t => `${t.t.slice(0, 30)} (${t.px} px)`),
+        ueberlauf: Math.max(0, kasten.scrollHeight - kasten.clientHeight, kasten.scrollWidth - kasten.clientWidth),
+        // Bild 1: der Text darf nicht in die Zeichnung darunter laufen
+        in_zeichnung: el.classList.contains('b-frage') && zeichn ? Math.max(0, Math.round(textUnten - (zeichn.getBoundingClientRect().top - b0.top))) : 0 });
+    });
+    return erg;
+  }
+
+  (async () => {
+    const aus = document.getElementById('out');
+    try {
+      const post = await (await fetch('../posts/' + q.get('post') + '.json')).json();
+      if (post.zeichnungen) await ladeSkript(post.zeichnungen);
+      await Promise.all(schriften.map(s => document.fonts.load(s)));
+      const konto = '@' + (q.get('konto') || 'der_bauriss');
+      const buehne = document.getElementById('buehne');
+      const liste = welche === 'alle' ? ['1', '2', '3', '4', '4m'] : [welche];
+      buehne.innerHTML = liste.map(nr => bild(nr, post, konto)).join('');
+      if (welche !== 'alle') buehne.className = 'einzeln';
+      await document.fonts.ready;
+      buehne.querySelectorAll('.bild').forEach(einpassen);
+      if (q.get('mess')) aus.textContent = JSON.stringify({ bilder: messen() });
+    } catch (e) {
+      aus.textContent = JSON.stringify({ fehler: String(e) + ' ' + (e.stack || '') });
+    }
+  })();
+</script>
+</body>
+</html>
