@@ -2,63 +2,43 @@
   "nr": "013",
   "titel": "Golden Gate Bridge",
   "zeichnungen": "goldengate",
+  "vorlage": "lesbar",
   "slides": [
     {
-      "typ": "cover-breit",
-      "kicker": "Bauwerk Nr. 013",
+      "typ": "titel",
+      "unterzeile": "Hängebrücke in San Francisco",
       "zahl": "35",
-      "headline": "Millionen Dollar auf Pump",
-      "text": ["Gebaut wird die Golden Gate Bridge mit geliehenem Geld. Für die Anleihen bürgen die Bewohner rund um San Francisco."],
-      "figur": { "fn": "bruecke", "ausschnitt": true, "ebene": "Tragwerk", "befehl": "_ABHÄNGER Abstand angeben:" }
+      "headline": "Millionen Dollar",
+      "aufhaenger": "<em>Die Maut</em> zahlt die Schulden.",
+      "figur": { "fn": "bruecke", "ausschnitt": true }
     },
     {
       "typ": "bild-unten",
       "kicker": "Die Aufgabe",
       "headline": "1280 Meter ohne Stütze",
-      "text": [
-        "Die Einfahrt in die Bucht von San Francisco ist 1,6 Kilometer breit. Dazwischen soll ein einziges Feld zwischen zwei Türmen liegen.",
-        "Bei der Eröffnung 1937 ist das die <em>längste Hängebrücke der Welt</em>. Erst 1964 wird sie übertroffen."
-      ],
-      "figur": {
-        "fn": "bruecke", "mass": true, "ebene": "Tragwerk",
-        "details": [
-          { "titel": "Pylonkopf", "box": [210, 380, 56, 34], "ecke": "ol", "breite": 430, "hoehe": 290 },
-          { "titel": "Fachwerkträger", "box": [563, 429, 30, 18], "ecke": "or", "breite": 430, "hoehe": 290 }
-        ]
-      }
+      "text": ["Die Einfahrt in die Bucht von San Francisco ist 1,6&nbsp;Kilometer breit. Dazwischen soll ein einziges Feld zwischen zwei Türmen liegen. 1937 ist das die <em>längste Hängebrücke der Welt</em>."],
+      "figur": { "fn": "bruecke", "mass": true }
     },
     {
       "typ": "bild-unten",
       "kicker": "1933–1935 · Die Fundamente",
       "headline": "Ein Pfeiler im offenen Meer",
-      "text": [
-        "Der Nordturm steht auf Fels am Ufer. Der Südpfeiler entsteht gut 300 Meter vor der Küste: erst ein Schutzring, dann wird das Wasser darin abgepumpt.",
-        "Ein Schiff rammt den Zugangssteg, ein Sturm zerschlägt ihn. Das Fundament dauert <em>zwei Jahre</em>."
-      ],
-      "figur": { "fn": "pfeiler", "ansicht": "Schnitt", "ebene": "Gründung Südpfeiler" }
+      "text": ["Der Südpfeiler entsteht gut 300 Meter vor der Küste: erst ein Schutzring, dann wird das Wasser darin abgepumpt. Das Fundament dauert <em>zwei&nbsp;Jahre</em>."],
+      "figur": { "fn": "pfeiler" }
     },
     {
       "typ": "bild-unten",
       "kicker": "1935–1936 · Die Kabel",
       "headline": "27.572 Drähte pro Kabel",
-      "text": [
-        "Räder ziehen die Drähte einzeln über die Türme. Gebündelt und gepresst werden sie zu einem Kabel von 92 Zentimetern.",
-        "Beide Kabel zusammen enthalten <em>129.000 Kilometer</em> Draht."
-      ],
-      "figur": {
-        "fn": "kabelSchnitt", "ebene": "Tragkabel",
-        "details": [{ "titel": "1 Bündel", "box": [405, 179, 70, 61], "ecke": "ur", "breite": 290, "hoehe": 280 }]
-      }
+      "text": ["Räder ziehen die Drähte einzeln über die Türme. Gebündelt und gepresst werden sie zu einem Kabel von 92 Zentimetern. Beide Kabel zusammen enthalten <em>129.000 Kilometer</em> Draht."],
+      "figur": { "fn": "kabelSchnitt" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Die Sicherheit",
       "headline": "Ein Netz unter der Baustelle",
-      "text": [
-        "Üblich ist damals ein Toter pro Million Dollar Baukosten. Chefingenieur Joseph Strauss verlangt Helme und lässt ein Netz spannen. Es fängt 19 Männer auf.",
-        "Im Februar 1937 bricht ein Gerüst hindurch. Zehn Arbeiter sterben, insgesamt sind es <em>elf Tote</em>."
-      ],
-      "figur": { "fn": "netz", "ansicht": "Schnitt", "ebene": "Fahrbahn" }
+      "text": ["Chefingenieur Joseph Strauss lässt ein Netz spannen. Es fängt 19 Männer auf. Im Februar 1937 bricht ein Gerüst hindurch. Zehn Arbeiter sterben, insgesamt sind es <em>elf Tote</em>."],
+      "figur": { "fn": "netz" }
     },
     {
       "typ": "bild-unten",
@@ -73,9 +53,9 @@
           { "von": 1933.01, "bis": 1937.41, "art": "bau", "text": "1604 Tage" }
         ],
         "marken": [
-          { "jahr": 1930.84, "label": "1930", "text": "Wähler sagen Ja zu den Anleihen" },
+          { "jahr": 1930.84, "label": "1930", "text": "Wähler sagen Ja zu Anleihen" },
           { "jahr": 1933.01, "label": "1933", "text": "Baubeginn am 5. Januar" },
-          { "jahr": 1936.88, "label": "1936", "text": "Fahrbahn in der Mitte geschlossen" },
+          { "jahr": 1936.88, "label": "1936", "text": "Fahrbahnlücke geschlossen" },
           { "jahr": 1937.41, "label": "1937", "text": "Eröffnung am 28. Mai" }
         ]
       }
@@ -84,11 +64,11 @@
       "typ": "punkte",
       "kicker": "Wer hat bezahlt?",
       "headline": "Die Maut zahlt die Schulden",
-      "text": ["1930 stimmen 145.057 Wähler für die Anleihen, 46.954 dagegen. Als Sicherheit dienen Häuser, Höfe und Betriebe in sechs Countys."],
+      "text": ["Als Sicherheit dienen Häuser, Höfe und Betriebe in <em>sechs Countys</em>."],
       "punkte": [
-        { "wert": "35 Mio. $", "name": "Anleihen für den Bau", "zusatz": "Bund und Staat bezahlen nur eine Zufahrt" },
-        { "wert": "39 Mio. $", "name": "Zinsen, knapp", "zusatz": "Tilgung und Zinsen kommen allein aus der Maut" },
-        { "wert": "1971", "name": "letzte Anleihe getilgt", "zusatz": "34 Jahre nach der Eröffnung" }
+        { "wert": "35 Mio. $", "name": "Anleihen für den Bau", "zusatz": "" },
+        { "wert": "39 Mio. $", "name": "Zinsen, knapp", "zusatz": "" },
+        { "wert": "1971", "name": "Anleihen getilgt", "zusatz": "allein aus der Maut" }
       ]
     },
     {
@@ -97,6 +77,11 @@
       "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
     }
   ],
+  "reel": {
+    "frage": { "zeile": "1937 die längste Hängebrücke der Welt.", "frage": "Wer hat sie bezahlt?", "figur": { "fn": "bruecke", "ausschnitt": true } },
+    "zeichnung": { "zahl": "1280", "aussage": "Meter ohne Stütze", "figur": { "fn": "bruecke" } },
+    "antwort": { "zahl": "35", "einheit": "Millionen Dollar", "antwort": "<em>Die Maut</em> zahlt die Schulden.", "zusatz": "Bis 1971 kommen knapp 39 Millionen Dollar Zinsen dazu." }
+  },
   "quellen": ["Wikipedia: Golden Gate Bridge", "goldengate.org (Betreiber)", "Abruf 11/2026"],
   "caption": [
     "35 Millionen Dollar, geliehen mitten in der Weltwirtschaftskrise: Die Golden Gate Bridge wurde 1933 bis 1937 mit Anleihen gebaut.",

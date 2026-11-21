@@ -2,56 +2,43 @@
   "nr": "014",
   "titel": "Olympiastadion München",
   "zeichnungen": "olympiadach",
+  "vorlage": "lesbar",
   "slides": [
     {
-      "typ": "cover-breit",
-      "kicker": "Bauwerk Nr. 014",
+      "typ": "titel",
+      "unterzeile": "Zeltdach im Münchner Olympiapark",
       "zahl": "170",
-      "headline": "Millionen Mark für ein Dach",
-      "text": ["Das Zeltdach im Münchner Olympiapark spannt sich über Stadion, Halle und Schwimmhalle. Geschätzt waren anfangs 40 bis 45 Millionen."],
-      "figur": { "fn": "zeltLandschaft", "ebene": "Zeltdach" }
+      "headline": "Millionen Mark",
+      "aufhaenger": "<em>Sammler und Lotterie</em> zahlen&nbsp;mit.",
+      "figur": { "fn": "zeltLandschaft" }
     },
     {
       "typ": "bild-unten",
       "kicker": "1967 · Der Wettbewerb",
       "headline": "Ein Zeltdach aus einem Strumpf",
-      "text": [
-        "Ein Mitarbeiter von Günter Behnisch kennt Frei Ottos Zeltdach aus Montreal. Im Wettbewerbsmodell spannt das Büro einen <em>Nylonstrumpf</em> über Holzstäbe.",
-        "Der Jury ist das zu gewagt. Juror Egon Eiermann setzt sich dafür ein, am 13. Oktober 1967 gewinnt der Entwurf."
-      ],
-      "figur": { "fn": "strumpfModell", "ebene": "Wettbewerbsmodell" }
+      "text": ["Im Wettbewerbsmodell spannt das Büro von Günter Behnisch einen <em>Nylonstrumpf</em> über Holzstäbe. Der Jury ist das zu gewagt, doch am 13. Oktober 1967 gewinnt der Entwurf."],
+      "figur": { "fn": "strumpfModell" }
     },
     {
       "typ": "bild-unten",
       "kicker": "1969–1972 · Der Bau",
       "headline": "Ein Netz, an Masten aufgehängt",
-      "text": [
-        "Das Seilnetz wird am Boden geknüpft und dann hochgezogen. Seine Knoten liegen 75 Zentimeter auseinander.",
-        "Über dem Stadion hängt es an zwei <em>70 Meter</em> hohen Masten. Die Ränge bleiben frei von Stützen."
-      ],
-      "figur": { "fn": "zeltLandschaft", "beschriftet": true, "ebene": "Seilnetz", "befehl": "_NETZ Maschenweite angeben: 75 cm" }
+      "text": ["Das Seilnetz wird am Boden geknüpft und dann hochgezogen. Über dem Stadion hängt es an zwei <em>70&nbsp;Meter</em> hohen Masten. Die Ränge bleiben frei von Stützen."],
+      "figur": { "fn": "zeltLandschaft", "beschriftet": true }
     },
     {
       "typ": "bild-unten",
       "kicker": "Über der Tribüne",
       "headline": "440 Meter Seil statt Stützen",
-      "text": [
-        "Vorn über den Rängen hält ein <em>Rundseil</em> den Rand des Dachs. Seine Enden sitzen in Betonquadern von bis zu 4000 Tonnen, bis 30 Meter tief im Boden."
-      ],
-      "figur": { "fn": "rundseilPlan", "ebene": "Rundseil" }
+      "text": ["Vorn über den Rängen hält ein <em>Rundseil</em> den Rand des Dachs. Seine Enden sitzen in Betonquadern, bis zu 30&nbsp;Meter tief im Boden."],
+      "figur": { "fn": "rundseilPlan" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Die Dachhaut",
       "headline": "Durchsichtig für das Fernsehen",
-      "text": [
-        "Ein undurchsichtiges Dach hätte harte Schatten geworfen – schlecht für die Fernsehbilder. Deshalb liegen auf dem Netz Platten aus Acrylglas.",
-        "Die lichtdurchlässige Haut kostet zusätzlich <em>6 Millionen Mark</em>."
-      ],
-      "figur": {
-        "fn": "netzDetail", "ebene": "Dachhaut",
-        "details": [{ "titel": "Knoten", "box": [498, 198, 44, 43], "ecke": "or", "breite": 280, "hoehe": 300 }]
-      }
+      "text": ["Ein undurchsichtiges Dach hätte harte Schatten geworfen – schlecht für die Fernsehbilder. Deshalb liegen auf dem Netz Platten aus Acrylglas. Sie kosten <em>6&nbsp;Millionen Mark</em> zusätzlich."],
+      "figur": { "fn": "netzDetail" }
     },
     {
       "typ": "bild-unten",
@@ -69,7 +56,7 @@
           { "jahr": 1967.78, "label": "1967", "text": "Entwurf gewinnt" },
           { "jahr": 1969.44, "label": "1969", "text": "Baubeginn am 9. Juni" },
           { "jahr": 1972.3, "label": "1972", "text": "Dach fertig am 21. April" },
-          { "jahr": 1972.65, "label": "1972", "text": "Spiele eröffnet am 26. August" }
+          { "jahr": 1972.65, "label": "1972", "text": "Spiele ab 26. August" }
         ]
       }
     },
@@ -77,25 +64,24 @@
       "typ": "balken",
       "kicker": "Die Kosten",
       "headline": "Aus 45 Millionen werden 170",
-      "text": ["Für ein Netz dieser Größe gibt es kein Vorbild und keine sichere Schätzung. Beträge in D-Mark:"],
+      "text": ["Ein solches Netz hat kein Vorbild. Beträge&nbsp;in&nbsp;Mark:"],
       "balken": [
-        { "wert": 45, "anzeige": "45 Mio.", "name": "Schätzung Dezember 1967", "zusatz": "40 bis 45 Millionen für das ganze Dach" },
-        { "wert": 80, "anzeige": "80 Mio.", "name": "Plan Dezember 1969", "zusatz": "erster Kosten- und Finanzierungsplan, rund 80 Millionen" },
-        { "wert": 170.6, "anzeige": "170,6 Mio.", "name": "Abrechnung 1974", "zusatz": "vorläufige Schlussabrechnung", "akzent": true }
+        { "wert": 45, "anzeige": "40–45 Mio.", "name": "Schätzung 1967", "zusatz": "" },
+        { "wert": 80, "anzeige": "rund 80 Mio.", "name": "Plan 1969", "zusatz": "" },
+        { "wert": 170.6, "anzeige": "170,6 Mio.", "name": "Abrechnung 1974", "zusatz": "", "akzent": true }
       ],
-      "fuss": "Das geplante Ostdach über dem Stadion wird nie gebaut."
+      "fuss": "Das geplante Ostdach wird nie gebaut."
     },
     {
       "typ": "punkte",
       "kicker": "Wer hat bezahlt?",
       "headline": "Sammler und Lotterie zahlen mit",
-      "text": ["Gebaut wird von einer Gesellschaft des Bundes, Bayerns und Münchens. Die ganzen Spiele kosten fast <em>2 Milliarden Mark</em>. Das Geld kommt vor allem aus:"],
+      "text": ["Die Spiele kosten fast <em>2&nbsp;Milliarden Mark</em>. Bezahlt wird vor allem aus:"],
       "punkte": [
-        { "wert": "731 Mio.", "name": "DM Gewinn aus Olympiamünzen", "zusatz": "fünf Silbermünzen zu je 10 DM" },
-        { "wert": "250 Mio.", "name": "DM aus der Olympia-Lotterie", "zusatz": "Zweckertrag bis 1974, gerundet" },
-        { "wert": "635 Mio.", "name": "DM aus Steuergeld", "zusatz": "rund ein Drittel; knapp die Hälfte davon trägt der Bund" }
-      ],
-      "fuss": "Nach den Spielen sollte das Dach eigentlich weg. Seit 1997 steht es unter Denkmalschutz."
+        { "wert": "731 Mio.", "name": "Olympiamünzen", "zusatz": "fünf Silbermünzen" },
+        { "wert": "250 Mio.", "name": "Olympia-Lotterie", "zusatz": "gerundet" },
+        { "wert": "635 Mio.", "name": "Steuergeld", "zusatz": "rund ein Drittel" }
+      ]
     },
     {
       "typ": "outro",
@@ -103,6 +89,11 @@
       "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
     }
   ],
+  "reel": {
+    "frage": { "zeile": "Das Zeltdach im Münchner Olympiapark.", "frage": "Wer hat es bezahlt?", "figur": { "fn": "zeltLandschaft" } },
+    "zeichnung": { "zahl": "440", "aussage": "Meter Seil statt Stützen", "figur": { "fn": "rundseilPlan" } },
+    "antwort": { "zahl": "170", "einheit": "Millionen Mark", "antwort": "Auch <em>Sammler und Lotterie</em>.", "zusatz": "Olympiamünzen bringen den Spielen 731 Millionen Mark." }
+  },
   "quellen": ["Wikipedia: Olympiastadion München", "Wikipedia: Olympiadach", "Wikipedia: Olympische Sommerspiele 1972", "Deutscher Bundestag: Drucksache 7/3066", "ingenieur.de", "Abruf 11/2026"],
   "caption": [
     "Geschätzt waren 40 bis 45 Millionen Mark, abgerechnet wurden 170,6 Millionen: Das Zeltdach im Münchner Olympiapark war 1972 ein Bau ohne Vorbild.",

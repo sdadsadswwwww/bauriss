@@ -2,18 +2,16 @@
   "nr": "015",
   "titel": "Eurotunnel",
   "zeichnungen": "eurotunnel",
+  "vorlage": "lesbar",
   "slides": [
     {
-      "typ": "cover-breit",
-      "kicker": "Bauwerk Nr. 015",
-      "zahl": "38",
-      "headline": "Kilometer unter dem Meer",
-      "text": [
-        "Seit 1994 fahren Züge unter dem Ärmelkanal von England nach Frankreich. Bezahlt hat den Tunnel kein Staat, sondern private Geldgeber."
-      ],
+      "typ": "titel",
+      "unterzeile": "Eisenbahntunnel unter dem Ärmelkanal",
+      "zahl": "10",
+      "headline": "Milliarden Pfund",
+      "aufhaenger": "Bezahlt hat ihn <em>kein Staat</em>.",
       "figur": {
-        "fn": "eurotunnelProfil",
-        "ebene": "Längsschnitt"
+        "fn": "eurotunnelProfil"
       }
     },
     {
@@ -21,28 +19,28 @@
       "kicker": "1803–1994 · Die Idee",
       "headline": "191 Jahre Anlauf",
       "text": [
-        "Pläne gibt es viele: Röhren auf dem Meeresgrund, Brücken, Dämme. Sie scheitern an Technik und Politik."
+        "Viele Pläne scheitern an Technik und Politik."
       ],
       "punkte": [
         {
           "wert": "1803",
           "name": "Erster Tunnelentwurf",
-          "zusatz": "die technischen Probleme bleiben ungelöst"
+          "zusatz": "technisch ungelöst"
         },
         {
           "wert": "1875",
-          "name": "Bauerlaubnis per Gesetz",
-          "zusatz": "für eine französisch-britische Tunnelgesellschaft"
+          "name": "Bauerlaubnis",
+          "zusatz": "per Gesetz"
         },
         {
           "wert": "1975",
           "name": "Projekt gestoppt",
-          "zusatz": "wegen der Ölkrise, zwei Jahre nach der Vereinbarung"
+          "zusatz": "wegen der Ölkrise"
         },
         {
           "wert": "1986",
-          "name": "Vertrag von Canterbury",
-          "zusatz": "ein reiner Eisenbahntunnel, privat finanziert"
+          "name": "Canterbury-Vertrag",
+          "zusatz": "privat finanziert"
         }
       ]
     },
@@ -51,15 +49,10 @@
       "kicker": "Der Aufbau",
       "headline": "Drei Röhren nebeneinander",
       "text": [
-        "Jede Fahrtrichtung hat ihren eigenen Tunnel. Dazwischen liegt ein schmaler <em>Servicetunnel</em> für Wartung und Rettung.",
-        "Alle 375 Meter führt ein Querschlag hinüber. Im Notfall gehen die Fahrgäste dort in Sicherheit."
+        "Jede Fahrtrichtung hat ihren Tunnel. Dazwischen liegt der <em>Servicetunnel</em> für Wartung und Rettung. Alle 375&nbsp;Meter führt ein Querschlag hinüber."
       ],
       "figur": {
-        "fn": "eurotunnelQuerschnitt",
-        "ebene": "Querschnitt",
-        "details": [
-          { "titel": "Servicetunnel", "box": [390, 204, 124, 100], "ecke": "or", "breite": 224 }
-        ]
+        "fn": "eurotunnelQuerschnitt"
       }
     },
     {
@@ -67,17 +60,11 @@
       "kicker": "Die Route",
       "headline": "Immer in der Kreide",
       "text": [
-        "Der Tunnel folgt einer einzigen Kreideschicht. Sie lässt sich leicht bohren und senkt die Gefahr, dass Wasser eindringt.",
-        "Meist liegt er <em>rund 40 Meter</em> unter dem Meeresgrund."
+        "Der Tunnel folgt einer einzigen Kreideschicht, meist <em>rund 40&nbsp;Meter</em> unter dem Meeresgrund. Sie lässt sich leicht bohren und senkt die Gefahr, dass Wasser eindringt."
       ],
       "figur": {
         "fn": "eurotunnelProfil",
-        "beschriftet": true,
-        "ebene": "Längsschnitt",
-        "befehl": "_SCHRAFF Interne Punkte wählen:",
-        "details": [
-          { "titel": "Kreideschicht", "box": [250, 352, 128, 70], "ecke": "or", "breite": 240 }
-        ]
+        "beschriftet": true
       }
     },
     {
@@ -85,16 +72,10 @@
       "kicker": "1990 · Der Durchschlag",
       "headline": "Gut 35 Zentimeter daneben",
       "text": [
-        "Elf Bohrmaschinen graben von beiden Küsten aus, ins Land und unter das Meer.",
-        "Am 1. Dezember 1990 treffen sich die Mannschaften. Dank Lasermessung liegen die Röhren seitlich nur <em>gut 35 Zentimeter</em> auseinander."
+        "Elf Bohrmaschinen graben von beiden Küsten aus. Am&nbsp;1.&nbsp;Dezember 1990 gelingt der Durchschlag – seitlich nur <em>gut 35&nbsp;Zentimeter</em> daneben."
       ],
       "figur": {
-        "fn": "vortriebe",
-        "ansicht": "Oben",
-        "ebene": "Vortriebe",
-        "details": [
-          { "titel": "Treffpunkt", "box": [420, 186, 100, 90], "ecke": "ur", "breite": 220 }
-        ]
+        "fn": "vortriebe"
       }
     },
     {
@@ -102,48 +83,44 @@
       "kicker": "1987–1994 · Der Bau",
       "headline": "Der Preis der Baustelle",
       "text": [
-        "Im Dezember 1987 beginnt der Vortrieb in England, im Februar 1988 in Frankreich. Am 6. Mai 1994 wird der Tunnel eröffnet."
+        "Gebohrt wird ab Dezember 1987, eröffnet am 6.&nbsp;Mai&nbsp;1994."
       ],
       "punkte": [
         {
           "wert": "13.000",
-          "name": "Arbeiter zur Spitzenzeit",
-          "zusatz": "eine andere Quelle nennt 15.000"
+          "name": "Arbeiter",
+          "zusatz": "zur Spitzenzeit"
         },
         {
           "wert": "10 bis 11",
-          "name": "Tote auf der Baustelle",
-          "zusatz": "die Zahl unterscheidet sich je nach Quelle"
-        },
-        {
-          "wert": "12.000 t",
-          "name": "wiegen die Bohrmaschinen",
-          "zusatz": "alle elf zusammen, nach Angaben des Betreibers"
+          "name": "Tote beim Bau",
+          "zusatz": ""
         }
-      ]
+      ],
+      "fuss": "Eine andere Quelle nennt 15.000 Arbeiter."
     },
     {
       "typ": "punkte",
       "kicker": "Wer hat bezahlt?",
       "headline": "Kein Geld vom Staat",
       "text": [
-        "Beide Regierungen wollen einen privat finanzierten Tunnel. Er kostet am Ende rund <em>10 Milliarden Pfund</em> – doppelt so viel wie geplant."
+        "Der Tunnel kostet rund <em>10&nbsp;Milliarden Pfund</em> – doppelt so viel wie geplant."
       ],
       "punkte": [
         {
           "wert": "0 £",
           "name": "Staatshilfe",
-          "zusatz": "darauf besteht Margaret Thatcher"
+          "zusatz": "darauf besteht Thatcher"
         },
         {
-          "wert": "200",
+          "wert": "rund 200",
           "name": "Banken geben Kredit",
-          "zusatz": "ein Konsortium aus rund 200 Banken"
+          "zusatz": ""
         },
         {
           "wert": "1987",
-          "name": "Die Aktie geht an die Börse",
-          "zusatz": "Aktionäre bringen weiteres Geld"
+          "name": "Börsengang",
+          "zusatz": "Aktionäre bringen Geld"
         }
       ]
     },
@@ -152,26 +129,25 @@
       "kicker": "Die Folgen",
       "headline": "Neun Milliarden Euro Schulden",
       "text": [
-        "Es fahren weniger Menschen als geplant. Die Zinsen für die Kredite führen zu hohen Verlusten."
+        "Es fahren weniger Menschen als geplant. Die Zinsen führen zu hohen Verlusten."
       ],
       "punkte": [
         {
           "wert": "9 Mrd. €",
-          "name": "Schulden des Betreibers",
+          "name": "Schulden",
           "zusatz": "Stand 2006"
         },
         {
           "wert": "1997",
           "name": "Erste Umschuldung",
-          "zusatz": "die Konzession läuft seitdem bis 2086"
+          "zusatz": "Konzession bis 2086"
         },
         {
           "wert": "2006",
           "name": "Gläubigerschutz",
-          "zusatz": "ein Pariser Gericht bewahrt ihn vor dem Konkurs"
+          "zusatz": "vor dem Konkurs"
         }
-      ],
-      "fuss": "Von Folkestone nach Calais dauert die Fahrt heute 35&nbsp;Minuten."
+      ]
     },
     {
       "typ": "outro",
@@ -181,6 +157,28 @@
       ]
     }
   ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 1994 ein Tunnel unter dem Ärmelkanal.",
+      "frage": "Wer hat ihn bezahlt?",
+      "figur": {
+        "fn": "eurotunnelProfil"
+      }
+    },
+    "zeichnung": {
+      "zahl": "38",
+      "aussage": "Kilometer unter dem Meer",
+      "figur": {
+        "fn": "eurotunnelProfil"
+      }
+    },
+    "antwort": {
+      "zahl": "10",
+      "einheit": "Milliarden Pfund",
+      "antwort": "Private Geldgeber, <em>kein Staat</em>.",
+      "zusatz": "Rund 200 Banken geben Kredit, Aktionäre weiteres Geld."
+    }
+  },
   "quellen": [
     "Wikipedia: Eurotunnel",
     "LeShuttle (Betreiber): The Channel Tunnel – interesting facts",

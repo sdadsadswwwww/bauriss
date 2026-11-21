@@ -4,6 +4,8 @@
 // von Ulmer Münster (161,5 m) und Kölner Dom (157 m). Alles andere ist nach Fotos vereinfacht und trägt keine Maßzahl:
 // Lamellen und Durchbrüche der Turmhelme, Pinakel, Portale, Fenster, Stützenraster und Achsbezeichnungen sind schematisch.
 // Seit 20.11.2026 im CAD-Stil (Achsen rot, Koten cyan nur für belegte Höhen).
+// Lesbare Vorlage (seit 21.11.2026): Mit lesbar: true zeichnet jede Funktion ruhig, nur Umrisse ohne Lamellen, Fenster,
+// Achsen und Koten, mit höchstens fünf großen Beschriftungen; mit reel: true außerdem ohne Maß- und Hinweislinien.
 (function () {
   const { r, svg, pfad, text, kreis, bogen, boden, massV, massH, formen } = Z;
   const G = Gotik;
@@ -178,7 +180,8 @@
   }
 
   // Titelblatt (hoch), mit namen: breite Ansicht mit beschrifteten Türmen
-  function sagradaAnsicht({ namen = false } = {}) {
+  function sagradaAnsicht({ namen = false, lesbar = false, reel = false } = {}) {
+    if (lesbar) return namen ? tuermeRuhig(reel) : ansichtRuhig(reel);
     if (!namen) {
       const s = 4.7, oy = 16, g = oy + 172.5 * s, cx = 256;
       let body = koerper(cx, g, s, { kreuzGelb: true }) + boden(4, 446, g) + massV(460, oy, g, '172,5 m');
@@ -198,7 +201,8 @@
   }
 
   // Stand beim Tod Gaudís 1926
-  function sagrada1926() {
+  function sagrada1926({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return stand1926Ruhig(reel);
     const s = 2.75, oy = 16, g = oy + 172.5 * s, cx = 470;
     let body = koerper(cx, g, s, { stand1926: true }) + boden(300, 640, g);
     body += pfad('a', 'M30 52h54') + text(100, 62, 'fertig 1925');
@@ -218,7 +222,8 @@
   }
 
   // Grundriss: lateinisches Kreuz, links die Hauptfassade, rechts die Apsis
-  function sagradaGrundriss() {
+  function sagradaGrundriss({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return grundrissRuhig(reel);
     const s = 5.6, x0 = 170, ym = 223;
     const X = m => x0 + m * s, Y = m => ym + m * s;
     const Q = (x, y) => `${r(X(x))} ${r(Y(y))}`;
@@ -316,7 +321,8 @@
   };
 
   // Höhenvergleich in einem Maßstab: Köln, Ulm, Barcelona
-  function sagradaVergleich() {
+  function sagradaVergleich({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return vergleichRuhig(reel);
     const s = 3, g = 586;
     const bauten = [
       { mitte: 130, hoehe: 157, label: '157 m', name: 'Kölner Dom', jahr: '1880', bau: () => koeln(130 - 30.5 * s, g, s) },
@@ -334,6 +340,153 @@
     }
     body += boden(10, 890, g);
     return svg(900, 676, body);
+  }
+
+  // ---------------------------------------------------------------------------------------------
+  // Lesbare Vorlage (lesbar: true): ruhige Fassungen. Schrift 34/40/60 px, Linien ab 2 px, Zeichenfläche 900 breit.
+  // reel: true lässt Maß- und Hinweislinien weg, weil das Reel allen Text entfernt.
+
+  // Umrisse der Ansicht als Pfaddaten (dieselben Maße wie in koerper)
+  const teile = (X, Y) => ({
+    kreuz: `M${r(X(-1.6))} ${r(Y(155.5))}V${r(Y(163))}H${r(X(-6.5))}V${r(Y(166.2))}H${r(X(-1.6))}V${r(Y(172.5))}H${r(X(1.6))}V${r(Y(166.2))}H${r(X(6.5))}V${r(Y(163))}H${r(X(1.6))}V${r(Y(155.5))}Z`,
+    schiff: `M${r(X(-52))} ${r(Y(0))}V${r(Y(45))}H${r(X(15))}V${r(Y(40))}H${r(X(33))}Q${r(X(38))} ${r(Y(40))} ${r(X(38))} ${r(Y(34))}V${r(Y(0))}Z`,
+    apsis: `M${r(X(16))} ${r(Y(0))}V${r(Y(40))}H${r(X(33))}Q${r(X(38))} ${r(Y(40))} ${r(X(38))} ${r(Y(34))}V${r(Y(0))}Z`,
+    vorbau: `M${r(X(-16))} ${r(Y(0))}V${r(Y(24))}L${r(X(-8.5))} ${r(Y(36))}L${r(X(-4.5))} ${r(Y(28))}L${r(X(0))} ${r(Y(48))}L${r(X(4.5))} ${r(Y(28))}L${r(X(8.5))} ${r(Y(36))}L${r(X(16))} ${r(Y(24))}V${r(Y(0))}Z`,
+  });
+  const portale = M => para(M, 0, 0, 7, 21) + para(M, -9.5, 0, 4.6, 14) + para(M, 9.5, 0, 4.6, 14);
+  const APOSTEL = [[-12, 98.5], [-4.5, 107], [4.5, 107], [12, 98.5]];
+
+  // Die Kirche als Umriss: Türme, Schiff, Giebel und Portale; ohne Lamellen, Pinakel und Zierrat.
+  // gelb: Christusturm samt Kreuz gelb; glorie: die fehlenden Türme der Hauptfassade gestrichelt;
+  // fenster: je drei Fenster in zwei Reihen (nur bei großem Maßstab, sonst werden sie zu Flecken)
+  function umriss(cx, g, s, { glorie = true, gelb = true, fenster = false } = {}) {
+    const X = m => cx + m * s, Y = m => g - m * s, M = { X, Y, s }, p = teile(X, Y);
+    const turm = (x, von, bis, w) => `<path class="lf" d="${spindel(X(x), Y(von), Y(bis), w * s)}"/>`;
+    let body = turm(-11.5, 45, 135, 13) + turm(11.5, 45, 135, 13) + turm(27, 40, 134.5, 18);
+    body += `<path class="lf" d="${stern(X(27), Y(135.6), 2.6 * s)}"/>`;
+    const jesus = turm(0, 45, 157, 22) + `<path class="af" d="${p.kreuz}"/>`;
+    body += gelb ? `<g class="akzent">${jesus}</g>` : jesus;
+    if (glorie) body += `<g class="geplant">${turm(-48.5, 0, 112, 7)}${turm(-42, 0, 118, 7)}</g>`;
+    body += `<path class="lf" d="${p.schiff}"/>`;
+    for (const [x, h] of APOSTEL) body += turm(x, 0, h, 7);
+    body += `<path class="lf" d="${p.vorbau}"/>`;
+    let t = portale(M);
+    if (fenster) {
+      for (const x of [-44.5, -34, -23.5]) t += para(M, x, 25, 4.6, 15) + para(M, x, 4, 4.6, 13);
+      t += para(M, 27, 22, 4.6, 14) + para(M, 27, 4, 4.6, 12);
+    }
+    return body + pfad('t', t);
+  }
+
+  // Titelblatt: breite Zeichenfläche (900 × 450), die Kirche als Umriss und das eine Maß groß und gelb.
+  // Fürs Reel steht die Kirche allein und größer in der Mitte.
+  function ansichtRuhig(reel) {
+    if (reel) {
+      const s = 3.2, g = 574;
+      return svg(900, 600, umriss(450 + 7 * s, g, s, { fenster: true }) + boden(40, 860, g));
+    }
+    const s = 2.35, g = 424, cx = 336, oben = g - 172.5 * s, xm = cx + 38 * s + 52;
+    let body = umriss(cx, g, s, { fenster: true }) + boden(30, 870, g);
+    body += pfad('t', `M${r(cx + 5 * s)} ${r(oben)}H${r(xm + 16)}`);
+    body += pfad('a', `M${r(xm)} ${r(oben + 6)}V${g - 6}m-11 -19l11 19l11 -19M${r(xm - 11)} ${r(oben + 25)}l11 -19l11 19`);
+    body += text(xm + 28, (oben + g) / 2 + 21, '172,5 m', 'riesig akz');
+    return svg(900, 450, body);
+  }
+
+  // Blatt „18 Türme mit Namen“: vier Namen und die fehlenden Türme
+  function tuermeRuhig(reel) {
+    const s = 3.7, g = 692, cx = reel ? 450 + 7 * s : 556;
+    const X = m => cx + m * s, Y = m => g - m * s;
+    let body = umriss(cx, g, s, { fenster: true }) + boden(X(-62), X(48), g);
+    if (reel) return svg(900, 716, body);
+    body += pfad('t', `M${r(X(8))} ${r(Y(164.6))}H728`) + text(740, Y(164.6) + 14, 'Jesus', 'gross akz');
+    body += pfad('t', `M${r(X(30.5))} ${r(Y(136))}L728 ${r(Y(128))}`) + text(740, Y(128) + 14, 'Maria', 'gross');
+    body += pfad('t', `M${r(X(-14.5))} ${r(Y(128))}H342`) + text(330, Y(128) + 14, 'Evangelisten', 'gross', 'text-anchor="end"');
+    body += pfad('t', `M${r(X(-51.5))} ${r(Y(84))}H342`) + text(330, Y(84) + 14, 'Apostel', 'gross', 'text-anchor="end"') +
+      text(330, Y(84) + 60, '4 fehlen noch', '', 'text-anchor="end"');
+    return svg(900, 716, body);
+  }
+
+  // Obere Hüllkurve von Gaudís Plan in Metern (ohne Kreuz): der höchste Punkt aller Teile über der Stelle x
+  function huelle(x) {
+    let h = x <= 15 ? 45 : x <= 33 ? 40 : 40 - 6 * Math.pow(1 - Math.sqrt(Math.max(0, 1 - (x - 33) / 5)), 2);
+    const sp = (x0, von, bis, w) => {
+      const d = Math.abs(x - x0) / (w / 2);
+      if (d < 1) h = Math.max(h, von + (bis - von) * (1 - Math.pow(d, 1 / 0.55)));
+    };
+    sp(-11.5, 45, 135, 13); sp(11.5, 45, 135, 13); sp(27, 40, 134.5, 18); sp(0, 45, 157, 22);
+    sp(-48.5, 0, 112, 7); sp(-42, 0, 118, 7);
+    return h;
+  }
+
+  // Stand 1926: Gaudís Plan als eine gestrichelte Hüllkurve, das Gebaute durchgezogen, der fertige Turm gelb
+  function stand1926Ruhig(reel) {
+    const s = 3.2, g = 596, cx = reel ? 450 + 7 * s : 676;
+    const X = m => cx + m * s, Y = m => g - m * s, M = { X, Y, s }, p = teile(X, Y);
+    const pts = [`${r(X(-52))} ${g}`];
+    for (let i = 0; i <= 360; i++) pts.push(`${r(X(-52 + i * 0.25))} ${r(Y(huelle(-52 + i * 0.25)))}`);
+    pts.push(`${r(X(38))} ${g}`);
+    let body = `<g class="geplant">${pfad('l', 'M' + pts.join('L'))}<path class="lf" d="${p.kreuz}"/></g>`;
+    body += `<path class="lf" d="${p.apsis}"/>`;
+    body += `<g class="akzent"><path class="lf" d="${spindel(X(-12), Y(0), Y(98.5), 7 * s)}"/></g>`;
+    body += `<path class="lf" d="${p.vorbau}"/>` + pfad('t', portale(M) + para(M, 27, 22, 4.6, 14) + para(M, 27, 4, 4.6, 12));
+    if (reel) return svg(900, 620, body + boden(X(-62), X(48), g));
+    body += boden(40, 860, g);
+    body += pfad('a', 'M70 250h54') + text(144, 264, 'fertig 1925', 'gross akz');
+    body += pfad('l', 'M70 326h54') + text(144, 338, '1926 im Bau');
+    body += pfad('d', 'M70 398h54') + text(144, 410, 'Gaudís Plan');
+    return svg(900, 620, body);
+  }
+
+  // Grundriss: Umriss, die fünf Schiffe als Linien, die Türme als Ringe (gelb), die fehlenden gestrichelt
+  function grundrissRuhig(reel) {
+    const s = 8, x0 = 90, ym = 272;
+    const X = m => x0 + m * s, Y = m => ym + m * s;
+    const Q = (x, y) => `${r(X(x))} ${r(Y(y))}`;
+    const form = `M${Q(0, -22.5)}H${r(X(35))}V${r(Y(-30))}H${r(X(65))}V${r(Y(-22.5))}H${r(X(67.5))}A${r(22.5 * s)} ${r(22.5 * s)} 0 0 1 ${Q(67.5, 22.5)}H${r(X(65))}V${r(Y(30))}H${r(X(35))}V${r(Y(22.5))}H${r(X(0))}Z`;
+    let body = `<path class="lf" d="${form}"/>`;
+    let t = '';
+    for (const y of [-15, -7.5, 7.5, 15]) t += `M${Q(9, y)}H${r(X(35))}`;
+    t += `M${Q(67.5, -15)}A${r(15 * s)} ${r(15 * s)} 0 0 1 ${Q(67.5, 15)}`;
+    body += pfad('t', t);
+    let stehen = '', fehlen = '';
+    for (const [x, y] of [[44, -6], [56, -6], [44, 6], [56, 6]]) stehen += kreis(X(x), Y(y), 2.1 * s);
+    stehen += kreis(X(76), Y(0), 3 * s);
+    for (const x of [38.5, 46, 54, 61.5]) for (const y of [-26, 26]) stehen += kreis(X(x), Y(y), 1.7 * s);
+    for (const y of [-17, -6, 6, 17]) fehlen += kreis(X(4), Y(y), 1.7 * s);
+    body += `<g class="akzent"><path class="lf" d="${stehen}"/></g>` + pfad('d', fehlen);
+    body += `<path class="af" d="${kreis(X(50), Y(0), 3.2 * s)}"/>`;
+    if (reel) return svg(900, 614, body);
+    body += text(X(0), Y(-22.5) - 24, '18 Türme', 'riesig akz');
+    body += text(X(22), ym + 12, '5 Schiffe', '', 'text-anchor="middle"');
+    body += pfad('d', kreis(X(0) + 14, Y(22.5) + 36, 1.7 * s)) + text(X(0) + 42, Y(22.5) + 48, '4 fehlen');
+    body += massH(X(0), X(90), Y(30) + 38, '90 m', 40);
+    return svg(900, 614, body);
+  }
+
+  // Ulmer Münster als Umriss (Maße wie in ulm): Schiff, Turm, Achteck, Helm, Portal und ein Fenster
+  const ulmRuhig = (xm, g, s) => {
+    const X = m => xm + m * s, Y = m => g - m * s;
+    let l = `M${r(X(-24))} ${g}V${r(Y(22))}L${r(X(-13))} ${r(Y(30))}M${r(X(24))} ${g}V${r(Y(22))}L${r(X(13))} ${r(Y(30))}`;
+    l += `M${r(X(-13))} ${g}V${r(Y(70))}H${r(X(13))}V${g}`;
+    l += `M${r(X(-9))} ${r(Y(70))}V${r(Y(100))}H${r(X(9))}V${r(Y(70))}`;
+    l += `M${r(X(-9))} ${r(Y(100))}L${r(X(0))} ${r(Y(152.5))}L${r(X(9))} ${r(Y(100))}`;
+    l += `M${r(X(0))} ${r(Y(152.5))}V${r(Y(161.5))}M${r(X(-1.6))} ${r(Y(158))}H${r(X(1.6))}`;
+    l += bogen(X(-5), g, 10 * s, 20 * s) + bogen(X(-4), Y(34), 8 * s, 28 * s);
+    return pfad('l', l);
+  };
+
+  // Höhenvergleich: drei Umrisse in einem Maßstab, die Sagrada Família gelb, eine Linie in Höhe des Ulmer Münsters
+  function vergleichRuhig(reel) {
+    const s = 3.15, g = 640, Y = m => g - m * s, xk = 126, xu = 404, xs = 749;
+    let body = reel ? '' : pfad('d', `M${xu + 8} ${r(Y(161.5))}H${r(xs - 1.6 * s)}`);
+    body += formen.koeln.bau(xk - 30.5 * s, g, s) + ulmRuhig(xu, g, s);
+    body += `<g class="akzent">${umriss(xs, g, s, { glorie: false, gelb: false, fenster: true })}</g>` + boden(10, 890, g);
+    if (reel) return svg(900, 716, body);
+    body += text(xk, Y(157) - 16, '157 m', 'gross', 'text-anchor="middle"') + text(xk, g + 50, 'Kölner Dom', '', 'text-anchor="middle"');
+    body += text(xu, Y(161.5) - 16, '161,5 m', 'gross', 'text-anchor="middle"') + text(xu, g + 50, 'Ulmer Münster', '', 'text-anchor="middle"');
+    body += text(xs, Y(172.5) - 18, '172,5 m', 'riesig akz', 'text-anchor="middle"');
+    return svg(900, 716, body);
   }
 
   Object.assign(Zeichnung, { sagradaAnsicht, sagrada1926, sagradaGrundriss, sagradaVergleich });

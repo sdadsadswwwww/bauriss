@@ -4,6 +4,9 @@
 // 6 Bohrmaschinen von England, 5 von Frankreich; Durchschlag am 1. Dezember 1990, seitlich gut 35 cm Abweichung.
 // Schematisch und ohne Maßzahl: Küsten, Meeresgrund, Gesteinsschichten über und unter der Kreideschicht, Tübbinge, Gleise,
 // Fahrleitung, Fahrzeuge, Bohrmaschinen. Seit 20.11.2026 als CAD-Konstruktion mit Achsen, Koten, Schraffuren und Ausrüstung.
+// Lesbare Vorlage (seit 21.11.2026): Mit lesbar: true zeichnet jede Funktion ruhig (profilRuhig, querschnittRuhig,
+// vortriebeRuhig), ohne Achsen, Koten und Kleinteile, mit höchstens fünf großen Beschriftungen (Schrift 34/40/60 px,
+// Linien ab 2 px); mit reel: true zusätzlich ohne Maß- und Hinweislinien. Ohne lesbar bleibt alles wie zuvor.
 (function () {
   const { r, svg, pfad, text, kreis, massH, massV } = Z;
 
@@ -79,7 +82,8 @@
   };
 
   // Längsschnitt von Folkestone bis Coquelles. km 0 = Portal England, Küste England bei km 9, Küste Frankreich bei km 47.
-  function eurotunnelProfil({ beschriftet = false } = {}) {
+  function eurotunnelProfil({ beschriftet = false, lesbar = false, reel = false } = {}) {
+    if (lesbar) return profilRuhig(beschriftet, reel);
     const id = beschriftet ? 'epb' : 'epa';
     const ox = 60, sx = 780 / 50.5, meer = beschriftet ? 210 : 190, sy = 2.4;
     const X = km => ox + km * sx, Y = m => meer + m * sy;
@@ -151,7 +155,8 @@
   }
 
   // Querschnitt: zwei Fahrtunnel, dazwischen der Servicetunnel, verbunden durch einen Querschlag
-  function eurotunnelQuerschnitt() {
+  function eurotunnelQuerschnitt({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return querschnittRuhig(reel);
     const s = 18, cy = 260, xl = 450 - 15 * s, xr = 450 + 15 * s, R = 3.8 * s, Rs = 2.4 * s, dA = 9, dS = 7;
     const loecher = [[64, 100, 232, 40], [604, 100, 232, 40], [301, 138, 298, 40], [xl - 46, 368, 92, 28], [xr - 46, 368, 92, 28], [404, 343, 92, 28], [306, 416, 288, 28]];
     // Kreide: Schichtfugen und Schraffur
@@ -257,7 +262,8 @@
   }
 
   // Draufsicht: elf Bohrmaschinen starten an zwei Küsten und graben in beide Richtungen
-  function vortriebe() {
+  function vortriebe({ lesbar = false, reel = false } = {}) {
+    if (lesbar) return vortriebeRuhig(reel);
     const y = 230, xE = 230, xF = 690, xT = 470;
     let body = '';
     // Küstenlinien mit Tiefenlinien zur See und Höhenlinien an Land
@@ -313,6 +319,174 @@
     body += text(40, 430, 'Treffpunkt unter dem Meer', 'gross akz') + text(40, 466, '1. Dezember 1990', 'akz');
     body += text(60, 300, 'ins Land') + text(840, 160, 'ins Land', '', 'text-anchor="end"');
     return svg(900, 490, body);
+  }
+
+  // =============================================================================================
+  // Lesbare Vorlage: ruhige Fassungen. Zeichenfläche 900 breit, eine Einheit ist ein Pixel im Blatt.
+  // =============================================================================================
+
+  // Band gleicher Dicke um eine Linie (senkrecht zur Laufrichtung um d versetzt)
+  const bandUm = (pts, d) => {
+    const o = [], u = [];
+    pts.forEach(([x, y], i) => {
+      const [xa, ya] = pts[Math.max(0, i - 1)], [xb, yb] = pts[Math.min(pts.length - 1, i + 1)];
+      const l = Math.hypot(xb - xa, yb - ya) || 1, nx = -(yb - ya) / l, ny = (xb - xa) / l;
+      o.push([x + nx * d, y + ny * d]);
+      u.push([x - nx * d, y - ny * d]);
+    });
+    return zu(o.concat(u.reverse()));
+  };
+
+  // Längsschnitt, ruhig. Ohne beschriftet (Titelblatt, Reel): Boden schraffiert, Tunnel gelb, ein Maß „38 km“.
+  // Mit beschriftet (Blatt „Die Route“): nur die Kreideschicht schraffiert und gelb gefasst, Tunnel weiß, „rund 40 m“ groß.
+  function profilRuhig(beschriftet, reel) {
+    const id = beschriftet ? 'erb' : 'era';
+    const ox = 60, sx = 780 / 50.5, sy = beschriftet ? 3.2 : 2.4, meer = beschriftet ? 212 : 176;
+    const X = km => ox + km * sx, Y = m => meer + m * sy;
+    const kE = 9, kF = 47, unten = r(Y(beschriftet ? 108 : 90));
+    // Meeresgrund und Tunnelachse wie in der CAD-Fassung (schematisch)
+    const GRUND = [[kE, 0], [10, 9], [12, 22], [15, 29], [18, 32], [25, 32], [28, 34], [32, 35], [35, 33], [38, 30], [43, 30], [45, 18], [kF, 0]];
+    const ACHSE = [[0, -40], [5, 10], [kE, 38], [12, 62], [18, 72], [25, 72], [32, 75], [38, 70], [43, 70], [kF, 42], [50.5, -12]];
+    const glatt = km => bei(ACHSE, km);
+    const oberflaeche = [[30, Y(-40)]];
+    for (let km = -1.5, i = 0; km < 7.6; km += 0.5, i++) oberflaeche.push([X(km), Y(-40 + (rausch(i, 3) - 0.5) * 3)]);
+    oberflaeche.push([X(7.6), Y(-40)], [X(8.1), Y(-37)], [X(8.35), Y(-12)], [X(8.7), Y(-5)], [X(kE), Y(0)]);
+    for (let km = kE + 0.5, i = 0; km < kF; km += 0.5, i++) oberflaeche.push([X(km), Y(bei(GRUND, km) + (rausch(i, 7) - 0.5) * 2.2)]);
+    oberflaeche.push([X(kF), Y(0)], [X(47.6), Y(-8)], [X(48.2), Y(-12)]);
+    for (let km = 48.7, i = 0; X(km) < 870; km += 0.5, i++) oberflaeche.push([X(km), Y(-12 + (rausch(i, 9) - 0.5) * 2)]);
+    oberflaeche.push([870, Y(-12)]);
+    const boden = zu(oberflaeche.concat([[870, unten], [30, unten]]));
+    const achsPts = [];
+    for (let km = 0; km <= 50.5 + 1e-6; km += 0.25) achsPts.push([X(km), Y(glatt(km))]);
+
+    let body = '';
+    if (beschriftet) {
+      // Kreideschicht um den Tunnel (oben −14 m, unten +12 m): schraffiert, Grenzen gelb
+      const schicht = dm => { const p = []; for (let km = -3; km <= 54; km += 0.5) p.push([X(km), Y(glatt(km) + dm)]); return p; };
+      const kOben = schicht(-14), kUnten = schicht(12);
+      body += flaeche(`${id}k`, boden, zu(kOben.concat(kUnten.slice().reverse())), 'hs');
+      body += flaeche(`${id}g`, boden, zug(kOben) + zug(kUnten), 'a');
+    } else {
+      body += pfad('hs', boden);
+    }
+    // Schnittbegrenzung, Gelände und Meeresgrund
+    body += pfad('t', `M30 ${r(Y(-40))}V${unten}H870V${r(Y(-12))}`) + pfad('l', zug(oberflaeche));
+    // Meer: Wasserspiegel und zwei Reihen Wellen
+    const welle = (m, k1, k2) => wellen(r(X(k1)), r(X(k2)), r(Y(m)));
+    body += pfad('t', `M${r(X(kE))} ${meer}H${r(X(kF))}` + welle(9, 10.8, 45.6) + welle(20, 12.8, 44));
+    // Tunnel als Band, Portale als Punkte
+    const portale = `<path class="lf" d="${kreis(X(0), Y(-40), 8)}${kreis(X(50.5), Y(-12), 8)}"/>`;
+    if (beschriftet) body += `<path class="lf" d="${bandUm(achsPts, 4)}"/>` + portale;
+    else body += pfad('bgl', zug(achsPts)) + `<path class="af" d="${bandUm(achsPts, 3)}"/><g class="akzent">${portale}</g>`;
+    body += text(40, r(Y(-40)) - 26, 'England', 'gross') + text(860, r(Y(-12)) - 26, 'Frankreich', 'gross', 'text-anchor="end"');
+
+    if (!beschriftet) {
+      // Fürs Reel ohne Maß, oben und unten knapp beschnitten
+      if (reel) return svg(900, unten - r(Y(-40)) + 60, `<g transform="translate(0 ${30 - r(Y(-40))})">${body}</g>`);
+      // Ein großes Maß von Küste zu Küste
+      const ym = unten + 28, x1 = r(X(kE)), x2 = r(X(kF));
+      body += pfad('m', `M${x1} ${unten + 8}V${ym + 10}M${x2} ${unten + 8}V${ym + 10}M${x1} ${ym}H${x2}M${x1 - 7} ${ym + 7}l14 -14M${x2 - 7} ${ym + 7}l14 -14`);
+      body += text((x1 + x2) / 2, ym + 56, '38 km', 'riesig mass', 'text-anchor="middle"');
+      return svg(900, unten + 106, body);
+    }
+    // Blatt „Die Route“: Abstand zwischen Meeresgrund und Tunnel groß und gelb, Gesamtlänge als Maß
+    const xm = r(X(25)), y1 = r(Y(32)) + 7, y2 = r(Y(72)) - 10;
+    if (!reel) body += pfad('a', `M${xm} ${y1}V${y2}M${xm - 10} ${y1 + 15}L${xm} ${y1}L${xm + 10} ${y1 + 15}M${xm - 10} ${y2 - 15}L${xm} ${y2}L${xm + 10} ${y2 - 15}`);
+    body += text(xm + 24, r(Y(58)) - 18, 'rund 40 m', 'riesig akz hell');
+    body += text(X(31), r(Y(87)) + 48, 'Kreideschicht', 'gross akz hell', 'text-anchor="middle"');
+    if (!reel) body += massH(X(0), X(50.5), unten + 28, '50,5 km', 40);
+    return svg(900, unten + (reel ? 30 : 90), body);
+  }
+
+  // Querschnitt, ruhig: drei Röhren im schraffierten Gestein, Servicetunnel und Querschläge gelb, fünf Beschriftungen.
+  // Von den Maßen bleibt nur der Fahrtunnel (7,6 m); Servicetunnel 4,8 m und Abstand rund 30 m stehen in der CAD-Fassung.
+  function querschnittRuhig(reel) {
+    const s = 20, cy = 310, xl = 450 - 15 * s, xr = 450 + 15 * s, R = 3.8 * s, Rs = 2.4 * s, dA = 10, dS = 8;
+    const oben = cy - 290, unten = cy + 270;
+    // Gestein als Schraffur, mit freien Feldern für die Beschriftungen
+    const fels = rechteck(30, oben, 840, unten - oben);
+    const loecher = reel ? [] : [[20, cy - 200, 260, 54], [620, cy - 200, 260, 54], [284, cy - 136, 332, 54],
+      [xl - R - 14, cy + 104, 2 * R + 28, 66], [336, cy + 160, 228, 50]];
+    let body = flaeche('erq', fels, fels, 'hs', loecher);
+
+    // Querschläge zwischen den Röhren: gelb gefasst, Pfeile zum Servicetunnel
+    const qO = cy - 22, qU = cy + 24;
+    body += `<path class="lf" d="${rechteck(xl, qO, xr - xl, qU - qO)}"/>`;
+    const a1 = xl + R + dA - 3, a2 = 450 - Rs - dS + 3, b1 = 450 + Rs + dS - 3, b2 = xr - R - dA + 3;
+    body += `<g class="akzent">${pfad('l', `M${a1} ${qO}H${a2}M${a1} ${qU}H${a2}M${b1} ${qO}H${b2}M${b1} ${qU}H${b2}`)}</g>`;
+    body += pfad('a', `M${a1 + 26} ${cy + 1}H${a2 - 22}m-13 -9l13 9l-13 9M${b2 - 26} ${cy + 1}H${b1 + 22}m13 -9l-13 9l13 9`);
+
+    // Röhre: Tübbingring, Sohle schraffiert
+    const roehre = (x, Ri, d, yF, gelb) => {
+      const ring = `<path class="lf" d="${kreis(x, cy, Ri + d)}"/>`;
+      const hx = Math.sqrt(Ri * Ri - (yF - cy) ** 2);
+      const sohle = `M${r(x - hx)} ${r(yF)}H${r(x + hx)}A${r(Ri)} ${r(Ri)} 0 0 1 ${r(x - hx)} ${r(yF)}Z`;
+      return (gelb ? `<g class="akzent">${ring}</g>` : ring) + pfad('hs', sohle) + pfad('t', kreis(x, cy, Ri) + `M${r(x - hx)} ${r(yF)}H${r(x + hx)}`);
+    };
+    const yF = cy + 0.55 * R, yF2 = cy + 0.5 * Rs;
+    body += roehre(xl, R, dA, yF, false) + roehre(xr, R, dA, yF, false) + roehre(450, Rs, dS, yF2, true);
+    // Zug von vorn in jedem Fahrtunnel, Fahrzeug im Servicetunnel (schematisch)
+    const zugVorn = x => {
+      const zb = 0.5 * R, zo = cy - 0.3 * R, zu1 = yF - 10;
+      return `<path class="lf" d="M${r(x - zb)} ${r(zu1)}V${r(zo)}Q${r(x)} ${r(cy - 0.58 * R)} ${r(x + zb)} ${r(zo)}V${r(zu1)}Z"/>` +
+        pfad('t', rechteck(x - zb + 8, cy - 0.18 * R, 22, 16) + rechteck(x + zb - 30, cy - 0.18 * R, 22, 16) + `M${r(x - 24)} ${r(zu1)}v10M${r(x + 24)} ${r(zu1)}v10`);
+    };
+    body += zugVorn(xl) + zugVorn(xr);
+    body += `<path class="lf" d="${rechteck(450 - 24, yF2 - 28, 48, 20)}"/>` + pfad('punkt', kreis(450 - 13, yF2 - 4, 4) + kreis(450 + 13, yF2 - 4, 4));
+
+    body += text(xl, cy - 160, 'Fahrtunnel', 'gross', 'text-anchor="middle"') + text(xr, cy - 160, 'Fahrtunnel', 'gross', 'text-anchor="middle"');
+    body += text(450, cy - 96, 'Servicetunnel', 'gross akz', 'text-anchor="middle"');
+    body += text(450, cy + 196, 'Querschlag', 'akz', 'text-anchor="middle"');
+    if (!reel) {
+      // ein Maß am Fahrtunnel, Hinweislinien vom Wort zu beiden Querschlägen
+      body += massH(xl - R, xl + R, cy + 118, '7,6 m', 40);
+      body += `<g class="akzent">${pfad('t', `M404 ${cy + 156}L330 ${qU + 4}M496 ${cy + 156}L570 ${qU + 4}`)}</g>`;
+    }
+    return svg(900, cy + 290, body);
+  }
+
+  // Draufsicht, ruhig: Land schraffiert, elf Bohrmaschinen, die sechs unter dem Meer gelb und sichtbar versetzt
+  function vortriebeRuhig(reel) {
+    const y = 314, xE = 240, xF = 660, xT = 450, yo = 134, yu = 494;
+    const kueste = (x0, sg, i0) => {
+      const p = [];
+      for (let yy = yo, i = 0; yy <= yu; yy += 8, i++) p.push([x0 + sg * 22 * Math.sin(((yy - yo) / (yu - yo)) * PI) + (rausch(i + i0, 3) - 0.5) * 5, yy]);
+      return p;
+    };
+    const kE = kueste(xE + 34, -1, 0), kF = kueste(xF - 34, 1, 40);
+    let body = pfad('hs', zu([[20, yo], ...kE, [20, yu]]) + zu([[880, yo], ...kF, [880, yu]]));
+    body += pfad('l', zug(kE) + zug(kF));
+    body += pfad('t', wellen(300, 600, yo + 42) + wellen(300, 420, yu - 42) + wellen(486, 606, yu - 42));
+
+    // Röhren als Doppellinien, Bohrmaschine am Kopf jeder Röhre (xk = Bohrkopf, d = Vortriebsrichtung)
+    const rohr = (x1, x2, yy) => `M${Math.min(x1, x2)} ${yy - 7}H${Math.max(x1, x2)}M${Math.min(x1, x2)} ${yy + 7}H${Math.max(x1, x2)}`;
+    const tbm = (xk, yy, d) => ({ koerper: rechteck(d > 0 ? xk - 40 : xk, yy - 11, 40, 22), kopf: `M${xk} ${yy - 15}V${yy + 15}` });
+    let rohre = '', gelbK = '', gelbL = '', weissK = '', weissL = '';
+    for (const dy of [-44, 0, 44]) {
+      // England unter das Meer und ins Land; Frankreich unter das Meer, seitlich versetzt (gut 35 cm, übertrieben)
+      rohre += rohr(xE + 10, xT - 45, y + dy) + rohr(xE - 10, 110, y + dy) + rohr(xF - 10, xT + 45, y + dy + 10);
+      let m = tbm(xT - 5, y + dy, 1); gelbK += m.koerper; gelbL += m.kopf;
+      m = tbm(xT + 5, y + dy + 10, -1); gelbK += m.koerper; gelbL += m.kopf;
+      m = tbm(70, y + dy, -1); weissK += m.koerper; weissL += m.kopf;
+    }
+    for (const dy of [-22, 22]) {
+      rohre += rohr(xF + 10, 790, y + 5 + dy);
+      const m = tbm(830, y + 5 + dy, 1); weissK += m.koerper; weissL += m.kopf;
+    }
+    body += pfad('t', rohre);
+    body += `<path class="lf" d="${weissK}"/>` + pfad('l', weissL);
+    body += `<g class="akzent"><path class="lf" d="${gelbK}"/>${pfad('l', gelbL)}</g>`;
+    // Startplätze an den Küsten, Pfeile der Vortriebsrichtung
+    body += `<path class="lf" d="${rechteck(xE - 10, y - 68, 20, 136)}${rechteck(xF - 10, y - 58, 20, 136)}"/>`;
+    const pfeil = (x, d) => `M${x} ${y - 90}h${d * 56}m${-d * 12} -8l${d * 12} 8l${-d * 12} 8`;
+    body += pfad('t', pfeil(xE + 44, 1) + pfeil(xE - 44, -1) + pfeil(xF - 44, -1) + pfeil(xF + 44, 1));
+
+    body += text(xE, 58, 'England', 'gross', 'text-anchor="middle"') + text(xE, 102, '6 Maschinen', '', 'text-anchor="middle"');
+    body += text(xF, 58, 'Frankreich', 'gross', 'text-anchor="middle"') + text(xF, 102, '5 Maschinen', '', 'text-anchor="middle"');
+    // Treffpunkt unter dem Meer: Pfeil und das eine große Maß
+    if (!reel) body += pfad('a', `M${xT} ${yu + 18}V${y + 86}m-11 16l11 -16l11 16`);
+    body += text(xT, yu + 78, 'gut 35 cm', 'riesig akz', 'text-anchor="middle"');
+    return svg(900, yu + 114, body);
   }
 
   Object.assign(Zeichnung, { eurotunnelProfil, eurotunnelQuerschnitt, vortriebe });

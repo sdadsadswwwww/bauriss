@@ -2,51 +2,43 @@
   "nr": "011",
   "titel": "Nord-Ostsee-Kanal",
   "zeichnungen": "nordostseekanal",
+  "vorlage": "lesbar",
   "slides": [
     {
-      "typ": "cover-breit",
-      "kicker": "Bauwerk Nr. 011",
-      "zahl": "98",
-      "headline": "Kilometer von Meer zu Meer",
-      "text": ["Seit 1895 verbindet der Nord-Ostsee-Kanal die Elbe mit der Kieler Förde. Er erspart Schiffen den Weg um Dänemark."],
-      "figur": { "fn": "nokKarte", "ebene": "Lageplan", "ansicht": "Oben", "befehl": "_KANAL Stationierung alle 10 km:" }
+      "typ": "titel",
+      "unterzeile": "Von der Elbe zur Kieler Förde",
+      "zahl": "156",
+      "headline": "Millionen Mark",
+      "aufhaenger": "Das Reich zahlt <em>auf Kredit</em>.",
+      "figur": { "fn": "nokKarte" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Das Problem",
       "headline": "Der Umweg um Skagen",
-      "text": [
-        "Wer von der Nordsee in die Ostsee will, muss um Jütland herum, durch Skagerrak und Kattegat. Im Skagerrak stranden damals rund 200 Schiffe im Jahr.",
-        "Der Kanal kürzt den Weg im Schnitt um <em>250 Seemeilen</em>, rund 460 Kilometer."
-      ],
-      "figur": { "fn": "nokUmweg", "ebene": "Seewege", "ansicht": "Oben", "befehl": "_POLYLINIE Umweg um Skagen:" }
+      "text": ["Wer von der Nordsee in die Ostsee will, muss um Jütland herum. Der Kanal kürzt den Weg im Schnitt um <em>250 Seemeilen</em>, rund 460 Kilometer."],
+      "figur": { "fn": "nokUmweg" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Für die Flotte",
       "headline": "42 Meter unter jeder Brücke",
-      "text": [
-        "Reichskanzler Bismarck will den Kanal für die Marine: Kriegsschiffe sollen zwischen Nord- und Ostsee wechseln, ohne dänische Gewässer zu befahren.",
-        "Die Marine verlangt <em>42 Meter</em> Durchfahrtshöhe. So hoch sind die Kanalbrücken bis heute."
-      ],
-      "figur": { "fn": "nokBruecke", "ebene": "Hochbrücke", "ansicht": "Schnitt", "details": [{ "titel": "Auflager", "box": [672, 150, 130, 84], "ecke": "or", "breite": 210 }] }
+      "text": ["Bismarck will den Kanal für die Marine. Sie verlangt <em>42 Meter</em> Durchfahrtshöhe. So hoch sind die Kanalbrücken bis heute."],
+      "figur": { "fn": "nokBruecke" }
     },
     {
       "typ": "bild-unten",
       "kicker": "1887–1895 · Der Bau",
       "headline": "80 Millionen Kubikmeter Erde",
-      "text": [
-        "Bis zu 8900 Arbeiter heben eine Rinne quer durch Schleswig-Holstein aus – von Hand und mit Eimerkettenbaggern, die auf Schienen fahren.",
-        "Der erste Kanal ist <em>67 Meter</em> breit und neun Meter tief."
-      ],
-      "figur": { "fn": "nokProfil", "ebene": "Profil 1895", "ansicht": "Schnitt", "details": [{ "titel": "Eimerkette", "box": [118, 132, 100, 64], "ecke": "or", "breite": 220 }] }
+      "text": ["Bis zu 8900 Arbeiter heben die Rinne aus – von Hand und mit Eimerkettenbaggern. Der erste Kanal ist <em>67 Meter</em> breit und neun Meter tief."],
+      "figur": { "fn": "nokProfil" }
     },
     {
       "typ": "bild-unten",
       "kicker": "Die Schleusen",
       "headline": "Ein Kanal ohne Gefälle",
-      "text": ["Der Wasserstand ist im ganzen Kanal gleich. Schleusen braucht er trotzdem, <em>an beiden Enden</em>: In Brunsbüttel halten sie Ebbe und Flut draußen, in Kiel den Windstau der Ostsee."],
-      "figur": { "fn": "nokSchleusen", "ebene": "Schleusen", "ansicht": "Schnitt", "details": [{ "titel": "Tor Brunsbüttel", "box": [150, 156, 110, 90], "ecke": "ol", "breite": 300 }, { "titel": "Tor Kiel-Holtenau", "box": [610, 156, 110, 90], "ecke": "or", "breite": 300 }] }
+      "text": ["Der Wasserstand ist im ganzen Kanal gleich. Schleusen braucht er <em>an beiden Enden</em>: gegen die Gezeiten der Nordsee und den Windstau der Ostsee."],
+      "figur": { "fn": "nokSchleusen" }
     },
     {
       "typ": "bild-unten",
@@ -71,23 +63,19 @@
       "typ": "punkte",
       "kicker": "Die Rechnung",
       "headline": "Wer hat bezahlt?",
-      "text": ["Das Gesetz von 1886 veranschlagt <em>156 Millionen Mark</em>. Dabei bleibt es: Der Bau wird nicht teurer als geplant."],
+      "text": ["Veranschlagt sind <em>156 Millionen Mark</em>. Dabei bleibt es."],
       "punkte": [
-        { "wert": "106 Mio.", "name": "Mark vom Reich", "zusatz": "über eine Anleihe, also auf Kredit" },
-        { "wert": "50 Mio.", "name": "Mark von Preußen", "zusatz": "im Voraus, so verlangt es das Gesetz" },
-        { "wert": "3,30 Mark", "name": "Schichtlohn eines Erdarbeiters", "zusatz": "nach Angabe der heutigen Kanalverwaltung" }
+        { "wert": "106 Mio.", "name": "Mark vom Reich", "zusatz": "auf Kredit" },
+        { "wert": "50 Mio.", "name": "Mark von Preußen", "zusatz": "im Voraus" }
       ],
-      "fuss": "1902 kommt die Schaumweinsteuer: Sie soll Flotte und Kanalausbau mitfinanzieren."
+      "fuss": "1902 kommt die Schaumweinsteuer, auch für den Kanalausbau."
     },
     {
       "typ": "bild-unten",
       "kicker": "Ab 1907 · Der Ausbau",
       "headline": "Schon bald zu klein",
-      "text": [
-        "Für die neuen Schlachtschiffe ist der Kanal zu eng. Von 1907 bis 1914 wird er auf 102 Meter verbreitert – für 242 Millionen Mark, mehr als der ganze Neubau.",
-        "Heute ist er bis zu <em>162 Meter</em> breit und die meistbefahrene künstliche Seeschifffahrtsstraße der Welt."
-      ],
-      "figur": { "fn": "nokProfil", "heute": true, "ebene": "Profil heute", "ansicht": "Schnitt", "details": [{ "titel": "Böschung", "box": [800, 100, 80, 64], "ecke": "ol", "breite": 240 }] }
+      "text": ["Für neue Schlachtschiffe ist der Kanal zu eng. Bis 1914 wird er auf 102 Meter verbreitert – für <em>242 Millionen Mark</em>, mehr als der Neubau."],
+      "figur": { "fn": "nokProfil", "heute": true }
     },
     {
       "typ": "outro",
@@ -95,6 +83,11 @@
       "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
     }
   ],
+  "reel": {
+    "frage": { "zeile": "Seit 1895 quer durch Schleswig-Holstein.", "frage": "Wer hat ihn bezahlt?", "figur": { "fn": "nokKarte" } },
+    "zeichnung": { "zahl": "98", "aussage": "Kilometer von Meer zu Meer", "figur": { "fn": "nokKarte" } },
+    "antwort": { "zahl": "156", "einheit": "Millionen Mark", "antwort": "Das Reich, <em>auf Kredit</em>.", "zusatz": "106 Millionen leiht es sich, 50 Millionen gibt Preußen." }
+  },
   "quellen": ["Wikipedia: Nord-Ostsee-Kanal", "WSA Nord-Ostsee-Kanal", "Gesellschaft für Schleswig-Holsteinische Geschichte", "NDR", "Abruf 11/2026"],
   "caption": [
     "98 Kilometer quer durch Schleswig-Holstein: Seit 1895 erspart der Nord-Ostsee-Kanal Schiffen den Umweg um Dänemark.",

@@ -5,6 +5,8 @@
 // Belegt: Länge 98 km, Umweg rund 460 km bzw. 250 Seemeilen, Durchfahrtshöhe 42 m, Profil 1895 (67 m breit,
 // Sohle 22 m, 9 m tief), Profil heute (162 m breit, Sohle 90 m, 11 m tief). Tiefen in den Profilen überhöht.
 // Koten relativ zum Kanalwasserspiegel (±0,00), nur mit belegten Maßen.
+// Lesbare Vorlage (seit 21.11.2026): Mit lesbar: true zeichnet jede Funktion ruhig, ohne Raster, Koten, Achsen und
+// Kleinteile, mit höchstens fünf großen Beschriftungen (Schrift 34/40/60 px, Linien ab 2 px).
 (function () {
   const { r, svg, pfad, text, kreis, massV, massH } = Z;
 
@@ -48,7 +50,7 @@
 
   // ---------------------------------------------------------------------------------------------
   // Lageplan Schleswig-Holstein: der Kanal von der Elbe zur Kieler Förde (900 × 500)
-  function nokKarte() {
+  function nokKarte({ lesbar = false } = {}) {
     const P = ([lon, lat]) => [(lon - 8.2) * 366, (54.52 - lat) * 625];
     const pp = a => a.map(P);
     const westkueste = pp([[9.0, 54.52], [9.05, 54.48], [8.92, 54.43], [8.80, 54.42], [8.70, 54.40], [8.62, 54.34], [8.60, 54.31],
@@ -73,6 +75,15 @@
     const land = ring([...westkueste, ...elbeNord.slice(1), [P([9.53, 53.72])[0], 500], [900, 500], ...ostkueste]);
     let body = pfad('hs', land) + pfad('hs', ring([...sued, [P([9.45, 0])[0], 500], [P([8.48, 0])[0], 500]]));
     for (const i of inseln) body += pfad('hs', ring(i));
+    if (lesbar) {
+      // ruhig: Küsten, Kanal in Gelb mit beiden Enden, drei Beschriftungen
+      body += pfad('l', linie(westkueste) + linie(elbeNord) + linie(ostkueste) + linie(sued) + inseln.map(linie).join(''));
+      body += pfad('bgl', linie(kanal)) + pfad('a', linie(kanal));
+      for (const p of [kanal[0], kanal[kanal.length - 1]]) body += `<path class="lf" d="${kreis(p[0], p[1], 9)}"/>`;
+      body += text(60, 262, 'Nordsee', 'gross hell') + text(730, 38, 'Ostsee', 'gross hell');
+      body += text(530, 318, '98 km', 'riesig akz hell');
+      return svg(900, 500, body);
+    }
     // Raster
     let raster = '';
     for (const x of [150, 300, 450, 600, 750]) raster += `M${x} 20V456`;
@@ -123,7 +134,7 @@
 
   // ---------------------------------------------------------------------------------------------
   // Übersicht: der Seeweg um Skagen und die Abkürzung durch den Kanal (900 × 540)
-  function nokUmweg() {
+  function nokUmweg({ lesbar = false } = {}) {
     const P = ([lon, lat]) => [20 + (lon - 4.6) * 88, (58.45 - lat) * 112];
     const pp = a => a.map(P);
     const fest = pp([[6.9, 53.44], [7.0, 53.62], [7.6, 53.70], [8.1, 53.70], [8.3, 53.56], [8.5, 53.64], [8.7, 53.88], [9.1, 53.84],
@@ -157,7 +168,7 @@
     let netz = '';
     for (let lat = 54; lat <= 58; lat++) netz += `M20 ${r(P([0, lat])[1])}H880`;
     for (let lon = 5; lon <= 14; lon += 2) netz += `M${r(P([lon, 0])[0])} 20V520`;
-    let body = pfad('hl', netz);
+    let body = lesbar ? '' : pfad('hl', netz);
     body += pfad('hs', ring([...fest, [900, 540], [P([6.9, 0])[0], 540]]));
     body += pfad('hs', ring([...schweden, [900, 0]]));
     body += pfad('hs', ring([...norwegen]));
@@ -174,11 +185,18 @@
       const p = beiLaenge(weg, l);
       marken += `M${r(p.x - p.dy * 5)} ${r(p.y + p.dx * 5)}l${r(p.dy * 10)} ${r(-p.dx * 10)}`;
     }
-    body += pfad('t', marken);
+    if (!lesbar) body += pfad('t', marken);
     body += pfad('bgl', linie(kanal)) + pfad('a', linie(kanal));
     for (const p of [kanal[0], kanal[2]]) body += `<path class="lf" d="${kreis(p[0], p[1], 6)}"/>`;
     const sk = P([10.62, 57.74]);
     body += `<path class="lf" d="${kreis(sk[0], sk[1], 5)}"/>`;
+    if (lesbar) {
+      // ruhig: vier Beschriftungen
+      body += text(40, 372, 'Nordsee', 'gross hell') + text(716, 398, 'Ostsee', 'gross hell');
+      body += text(560, 46, 'Skagen', 'gross hell', 'text-anchor="middle"');
+      body += text(566, 520, 'Kanal', 'gross akz hell');
+      return svg(900, 540, body);
+    }
     // Beschriftung
     body += text(50, 360, 'Nordsee', 'gross hell') + text(730, 395, 'Ostsee', 'gross hell');
     body += text(190, 100, 'Skagerrak', 'hell');
@@ -192,7 +210,7 @@
 
   // ---------------------------------------------------------------------------------------------
   // Hochbrücke im Schnitt quer zum Kanal: 42 Meter frei über dem Wasser (5 Pixel pro Meter), 900 × 510
-  function fachwerk(x1, x2, n, yu, hoehe) {
+  function fachwerk(x1, x2, n, yu, hoehe, ruhig = false) {
     const xs = [], yo = [];
     for (let i = 0; i <= n; i++) { const x = x1 + ((x2 - x1) * i) / n; xs.push(x); yo.push(yu - hoehe(x)); }
     const gurt = `M${r(x1)} ${r(yu)}H${r(x2)}` + linie(xs.map((x, i) => [x, yo[i]]));
@@ -202,10 +220,10 @@
       if (i < n) stab += i < n / 2 ? `M${r(xs[i])} ${r(yo[i])}L${r(xs[i + 1])} ${r(yu)}` : `M${r(xs[i])} ${r(yu)}L${r(xs[i + 1])} ${r(yo[i + 1])}`;
       knoten += kreis(xs[i], yu, 2.2) + kreis(xs[i], yo[i], 2.2);
     }
-    return pfad('t', stab) + pfad('z', knoten) + pfad('l', gurt);
+    return pfad('t', stab) + (ruhig ? '' : pfad('z', knoten)) + pfad('l', gurt);
   }
   // Gitterpfeiler: zwei geneigte Stiele mit Riegeln und Kreuzen
-  function pfeiler(x, yo, yu) {
+  function pfeiler(x, yo, yu, ruhig = false) {
     const bo = 12, bu = 26, n = Math.max(2, Math.round((yu - yo) / 22));
     const xl = y => x - bo - ((bu - bo) * (y - yo)) / (yu - yo), xr = y => 2 * x - xl(y);
     const st = `M${r(xl(yo))} ${r(yo)}L${r(xl(yu))} ${r(yu)}M${r(xr(yo))} ${r(yo)}L${r(xr(yu))} ${r(yu)}`;
@@ -215,32 +233,38 @@
       k += `M${r(xl(y))} ${r(y)}H${r(xr(y))}`;
       if (i < n) { const y2 = yo + ((yu - yo) * (i + 1)) / n; k += `M${r(xl(y))} ${r(y)}L${r(xr(y2))} ${r(y2)}M${r(xr(y))} ${r(y)}L${r(xl(y2))} ${r(y2)}`; }
     }
-    return pfad('l', st) + pfad('z', k);
+    return pfad('l', st) + pfad(ruhig ? 't' : 'z', k);
   }
-  function nokBruecke() {
+  function nokBruecke({ lesbar = false } = {}) {
     const s = 5, wasser = 430, unten = wasser - 42 * s, gel = 300, sohle = wasser + 9 * s;
     const ufL = 160, xl = 238, xr = 662, ufR = 740, sl = 318, sr = 582;
     // Achse und Höhenlinien
-    let body = pfad('ax', 'M450 52V500') + text(462, 46, 'Kanalachse', 'achse');
-    body += pfad('hl', `M20 ${unten}H880M20 ${wasser}H${xl}M${xr} ${wasser}H880`);
+    let body = lesbar ? '' : pfad('ax', 'M450 52V500') + text(462, 46, 'Kanalachse', 'achse');
+    if (!lesbar) body += pfad('hl', `M20 ${unten}H880M20 ${wasser}H${xl}M${xr} ${wasser}H880`);
     // Boden mit Böschungen, Fundamente
     body += `<path class="hf" d="M20 ${gel}H${ufL}L${xl} ${wasser}L${sl} ${sohle}H${sr}L${xr} ${wasser}L${ufR} ${gel}H880V505H20Z"/>`;
-    for (const x of [ufL - 4, ufR + 4, 60, 840]) body += `<path class="lf" d="M${x - 34} ${gel - 4}h68v34h-68Z"/>` + pfad('z', `M${x - 34} ${gel + 8}h68M${x - 24} ${gel + 30}v12M${x + 24} ${gel + 30}v12`);
+    for (const x of [ufL - 4, ufR + 4, 60, 840]) body += `<path class="lf" d="M${x - 34} ${gel - 4}h68v34h-68Z"/>` + (lesbar ? '' : pfad('z', `M${x - 34} ${gel + 8}h68M${x - 24} ${gel + 30}v12M${x + 24} ${gel + 30}v12`));
     body += pfad('t', wellen(xl + 20, xr - 20, wasser) + `M${xl} ${wasser}H${xr}`);
     // Pfeiler, Überbau
     for (const x of [ufL - 4, ufR + 4, 60, 840]) {
-      body += pfeiler(x, unten + 12, gel - 4);
-      body += pfad('l', `M${x - 16} ${unten + 12}h32M${x - 12} ${unten + 8}h24`) + pfad('t', `M${x - 7} ${unten + 8}L${x} ${unten}L${x + 7} ${unten + 8}`) + pfad('z', kreis(x, unten + 3, 2));
+      body += pfeiler(x, unten + 12, gel - 4, lesbar);
+      body += pfad('l', `M${x - 16} ${unten + 12}h32M${x - 12} ${unten + 8}h24`) + pfad('t', `M${x - 7} ${unten + 8}L${x} ${unten}L${x + 7} ${unten + 8}`) + (lesbar ? '' : pfad('z', kreis(x, unten + 3, 2)));
     }
     const haupt = x => 40 + 78 * (1 - ((x - 450) / 286) ** 2);
-    body += fachwerk(164, 736, 22, unten - 4, haupt);
-    body += fachwerk(20, 164, 6, unten - 4, () => 30) + fachwerk(736, 880, 6, unten - 4, () => 30);
+    body += fachwerk(164, 736, lesbar ? 14 : 22, unten - 4, haupt, lesbar);
+    body += fachwerk(20, 164, lesbar ? 4 : 6, unten - 4, () => 30, lesbar) + fachwerk(736, 880, lesbar ? 4 : 6, unten - 4, () => 30, lesbar);
     body += pfad('l', `M20 ${unten}H880`) + pfad('t', `M20 ${unten - 4}H880`);
     // Kriegsschiff von vorn, Masten bis knapp unter die Brücke
     body += `<g class="akzent">` + pfad('l', `M396 ${wasser}l6 -24h96l6 24M422 ${wasser - 24}v-30h56v30M436 ${wasser - 54}v-34h28v34`) +
       pfad('t', `M450 ${wasser - 88}V${unten + 14}M426 ${wasser - 128}h48M434 ${wasser - 168}h32M402 ${wasser - 12}h96M428 ${wasser - 40}h44` +
         `M450 ${wasser - 128}l-24 40M450 ${wasser - 128}l24 40`) + `</g>`;
     // Lichtraum gestrichelt, Maß und Koten
+    if (lesbar) {
+      // ruhig: nur das eine Maß, groß und gelb
+      body += pfad('a', `M560 ${unten + 6}V${wasser - 6}m-12 -20l12 20l12 -20M548 ${unten + 26}l12 -20l12 20`);
+      body += text(584, (unten + wasser) / 2 + 22, '42 m', 'riesig akz hell');
+      return svg(900, 510, body);
+    }
     body += pfad('d', `M${xl + 30} ${wasser}V${unten + 8}H${xr - 30}V${wasser}`);
     body += massV(532, unten, wasser, '42 m');
     body += kote(580, wasser, '±0,00') + kote(580, unten, '+42,00', true);
@@ -249,7 +273,7 @@
 
   // ---------------------------------------------------------------------------------------------
   // Querschnitt des Kanals. Ohne Option das Profil von 1895, mit heute: true das heutige mit dem alten gestrichelt darin.
-  function nokProfil({ heute = false } = {}) {
+  function nokProfil({ heute = false, lesbar = false } = {}) {
     const s = heute ? 5 : 9, v = heute ? 20 : 22, gel = heute ? 104 : 156, wasser = gel + 22;
     const prof = (breit, sohle, tief) => {
       const a = 450 - (breit * s) / 2, b = 450 - (sohle * s) / 2, y = wasser + tief * v;
@@ -264,14 +288,14 @@
     const yb = r(wasser + (neu.y - wasser) * 0.5);
     let body = '';
     // Höhenlinien
-    body += pfad('hl', `M20 ${wasser}H880M20 ${neu.y}H880`);
+    if (!lesbar) body += pfad('hl', `M20 ${wasser}H880M20 ${neu.y}H880`);
     // Untere Schicht schraffiert, obere punktiert, Schichtgrenze und Oberboden als Linie
     body += pfad('hs', `M20 ${yb}H${r(xL(yb))}L${neu.b} ${neu.y}H${neu.c}L${r(xR(yb))} ${yb}H880V${hoch}H20Z`);
     let punkte = '';
     for (let y = gel + 12, z = 0; y < yb - 4; y += 11, z++) {
       for (let x = 26 + (z % 2) * 8; x < 876; x += 16) if (x < xL(y) - 8 || x > xR(y) + 8) punkte += `M${x} ${y}h2`;
     }
-    body += pfad('z', punkte);
+    if (!lesbar) body += pfad('z', punkte);
     body += pfad('t', `M20 ${yb}H${r(xL(yb))}M${r(xR(yb))} ${yb}H880M20 ${gel + 7}H${r(xL(gel + 7))}M${r(xR(gel + 7))} ${gel + 7}H880`);
     // Bruchkanten links und rechts
     const bruch = x => `M${x} ${gel}V${r((gel + hoch) / 2 - 12)}l-8 8l16 8l-8 8V${hoch}`;
@@ -285,15 +309,20 @@
       body += pfad('lf', ring(band));
       let st = '';
       for (let y = y1 + 4; y < y2 - 2; y += 6) st += kreis(X(y) - seite * dick * 0.7, y + dick * 0.2, 2);
-      body += pfad('z', st);
+      if (!lesbar) body += pfad('z', st);
     }
     // Profil: Gelände, Böschungen, Sohle
     body += pfad('l', `M20 ${gel}H${aus}L${neu.a} ${wasser}L${neu.b} ${neu.y}H${neu.c}L${neu.d} ${wasser}L${ein} ${gel}H880`);
     body += pfad('a', `M${neu.a} ${wasser}L${neu.b} ${neu.y}H${neu.c}L${neu.d} ${wasser}`);
     // Wasser, Achse
     body += pfad('t', `M${neu.a} ${wasser}H${neu.d}` + wellen(neu.a + 40, neu.d - 30, wasser + 20));
-    body += pfad('ax', `M450 ${gel - (heute ? 76 : 20)}V${hoch - 6}`);
-    if (heute) {
+    if (!lesbar) body += pfad('ax', `M450 ${gel - (heute ? 76 : 20)}V${hoch - 6}`);
+    if (heute && lesbar) {
+      // ruhig: heutiges Profil mit dem von 1895 gestrichelt darin, fünf Beschriftungen
+      body += `<g class="geplant">${pfad('l', `M${alt.a} ${wasser}L${alt.b} ${alt.y}H${alt.c}L${alt.d} ${wasser}`)}</g>`;
+      body += text(450, wasser + 84, '1895', 'gross hell', 'text-anchor="middle"') + text(450, wasser + 130, '67 m', 'hell', 'text-anchor="middle"');
+      body += massH(neu.a, neu.d, gel - 52, '162 m', 40) + massV(neu.c - 30, wasser, neu.y, '11 m', -1, 40);
+    } else if (heute) {
       body += `<g class="geplant">${pfad('l', `M${alt.a} ${wasser}L${alt.b} ${alt.y}H${alt.c}L${alt.d} ${wasser}`)}</g>`;
       body += text(450, wasser + 78, '1895', 'gross hell', 'text-anchor="middle"') + text(450, wasser + 118, '67 m', 'hell', 'text-anchor="middle"');
       body += massH(neu.a, neu.d, gel - 40, '162 m') + massV(neu.c - 26, wasser, neu.y, '11 m', -1);
@@ -304,9 +333,13 @@
       const sx = 600;
       body += pfad('l', `M${sx - 40} ${wasser}l4 -26h72l4 26M${sx - 20} ${wasser - 26}v-26h40v26M${sx - 6} ${wasser - 52}v-30h12v30`) +
         pfad('t', `M${sx - 38} ${wasser - 14}h76M${sx - 18} ${wasser - 40}h36M${sx} ${wasser - 82}v-26`);
-      body += massH(neu.a, neu.d, gel - 60, '67 m') + massV(neu.b + 46, wasser, neu.y, '9 m');
-      body += massH(neu.b, neu.c, neu.y + 44, '22 m');
-      body += kote(470, neu.y, '−9,00') + kote(370, wasser, '±0,00');
+      if (lesbar) {
+        body += massH(neu.a, neu.d, gel - 104, '67 m', 40) + massV(neu.b + 60, wasser, neu.y, '9 m', 1, 40);
+      } else {
+        body += massH(neu.a, neu.d, gel - 60, '67 m') + massV(neu.b + 46, wasser, neu.y, '9 m');
+        body += massH(neu.b, neu.c, neu.y + 44, '22 m');
+        body += kote(470, neu.y, '−9,00') + kote(370, wasser, '±0,00');
+      }
       // Eimerkettenbagger auf Schienen an der linken Böschungskante (Maße schematisch, k = Vergrößerung)
       const g = gel, bx = 22, k = 1.3, X = dx => r(bx + dx * k), Y = dy => r(g - dy * k);
       const gl = `M${bx} ${g - 3}H${aus + 4}`;
@@ -330,20 +363,20 @@
       }
       let raeder = '';
       for (const x of [16, 30, 60, 74]) raeder += kreis(bx + x * k, g - 9, 5.5) + kreis(bx + x * k, g - 9, 1.5);
-      body += pfad('t', gl + bt) + pfad('z', sw + eimer + raeder) + pfad('l', bl);
+      body += pfad('t', gl + bt) + (lesbar ? '' : pfad('z', sw + eimer + raeder)) + pfad('l', bl);
     }
-    body += text(34, hoch - 22, 'Tiefe überhöht', 'mass hell');
+    body += text(34, hoch - 22, 'Tiefe überhöht', lesbar ? 'hell' : 'mass hell');
     return svg(900, hoch, body);
   }
 
   // ---------------------------------------------------------------------------------------------
   // Längsschnitt, stark verkürzt: Schleusen an beiden Enden, dazwischen ein Wasserstand (900 × 450)
-  function nokSchleusen() {
+  function nokSchleusen({ lesbar = false } = {}) {
     const kanal = 240, sohle = 340, krone = 176;
     const schleusen = [{ tore: [204, 296] }, { tore: [604, 696] }];
     // Achsen
-    let body = pfad('ax', 'M250 74V430M650 74V430');
-    body += pfad('hl', `M20 ${kanal}H880`);
+    let body = lesbar ? '' : pfad('ax', 'M250 74V430M650 74V430');
+    if (!lesbar) body += pfad('hl', `M20 ${kanal}H880`);
     // Boden und Schleusensohlen
     body += `<path class="hf" d="M20 392L175 352V${sohle}H725V352L880 392V450H20Z"/>`;
     let beton = '', t = '', z = '', akz = '', akzT = '';
@@ -372,11 +405,18 @@
         akzT += kreis(tx - 4, sohle - 11, 3) + kreis(tx + 4, sohle - 11, 3);
       }
     }
-    body += pfad('z', beton) + pfad('t', t) + pfad('z', z);
-    body += `<g class="akzent">${pfad('l', akz)}${pfad('z', akzT)}</g>`;
+    body += (lesbar ? '' : pfad('z', beton)) + pfad('t', t) + (lesbar ? '' : pfad('z', z));
+    body += `<g class="akzent">${pfad('l', akz)}${lesbar ? '' : pfad('z', akzT)}</g>`;
     // Wasserstände: Elbe mit Flut und Ebbe, Kammern und Kanal, Ostsee mit Windstau
     body += pfad('l', `M20 208H196M212 ${kanal}H288M304 ${kanal}H596M612 ${kanal}H688M704 ${kanal + 4}H880`);
     body += pfad('d', 'M20 276H175M704 216H880');
+    if (lesbar) {
+      // ruhig: Dampfer und drei Beschriftungen; der leere Streifen oben entfällt
+      body += pfad('l', `M340 ${kanal}l10 16h90l10 -16M365 ${kanal}v-20h56v20M385 ${kanal - 20}v-22h12v22`);
+      body += text(250, 132, 'Brunsbüttel', 'gross hell', 'text-anchor="middle"') + text(650, 132, 'Kiel-Holtenau', 'gross hell', 'text-anchor="middle"');
+      body += text(450, kanal + 54, 'gleicher', 'akz hell', 'text-anchor="middle"') + text(450, kanal + 92, 'Wasserstand', 'akz hell', 'text-anchor="middle"');
+      return svg(900, 372, `<g transform="translate(0 -78)">${body}</g>`);
+    }
     body += pfad('t', wellen(326, 580, kanal + 22) + wellen(222, 284, kanal + 22) + wellen(620, 690, kanal + 22));
     body += pfad('m', wsym(140, 208) + wsym(540, kanal) + wsym(800, kanal + 4));
     // Bruchlinie: stark verkürzt

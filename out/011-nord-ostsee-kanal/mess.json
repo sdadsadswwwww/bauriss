@@ -1,0 +1,226 @@
+{
+ "blaetter": {
+  "stand": "660e6b346964bf40",
+  "liste": [
+   {
+    "nr": 1,
+    "typ": "titel",
+    "woerter": {
+     "lesetext": 15,
+     "zeichnung": 4,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Von der Elbe zur Kieler Förde",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 3,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 2,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 31,
+     "zeichnung": 4,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Das Problem",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 4,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 3,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 27,
+     "zeichnung": 2,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Für die Flotte",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 1,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 4,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 31,
+     "zeichnung": 6,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1887–1895 · Der Bau",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 3,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 5,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 29,
+     "zeichnung": 4,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Die Schleusen",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 4,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 6,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 6,
+     "zeichnung": 18,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Der Zeitplan",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 1.98,
+     "klasse": "ph"
+    },
+    "massstab": 0.992,
+    "beschriftungen": 8,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 7,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 35,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Die Rechnung",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 8,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 32,
+     "zeichnung": 9,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Ab 1907 · Der Ausbau",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 5,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 9,
+    "typ": "outro",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 12
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Quellen: Wikipedia: Nord-Ostsee-Kanal · ",
+     "ort": "quellen"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   }
+  ]
+ }
+}
