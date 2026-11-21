@@ -110,14 +110,37 @@ def baue_reel_caption(post, modus):
     return '\n\n'.join(teile)
 
 
-def finde_video(name, config):
+def naechster_post(plan, name):
+    """Der freigegebene Post, der laut Plan am Tag nach <name> erscheint, sonst None (für „Morgen: …“ im Reel)."""
+    eintrag = next((e for e in plan['posts'] if e['post'] == name), None)
+    if not eintrag:
+        return None
+    folgetag = (dt.date.fromisoformat(eintrag['datum']) + dt.timedelta(days=1)).isoformat()
+    folgt = next((e for e in plan['posts'] if e['datum'] == folgetag and e.get('freigabe')), None)
+    return folgt['post'] if folgt else None
+
+
+def video_name(name, morgen=None):
+    """Name des Videos in der Ablage, ohne .mp4. Mit <morgen> die Fassung, deren Schluss dieses Bauwerk ankündigt."""
+    return f'{name}-morgen-{morgen.split("-")[0]}' if morgen else name
+
+
+def ablage_adresse(config, datei):
+    return f'https://github.com/{config.get("repository")}/releases/download/medien/{datei}.mp4'
+
+
+def finde_video(name, config, morgen=None):
     """Sucht das Reel zu einem Post und liefert (Adresse, Größe in Bytes) oder (None, 0).
 
     Neue Videos liegen in der Ablage auf GitHub (Release "medien"), damit das Repository nicht wächst;
     die ersten Videos (Posts 003 bis 010) lagen noch als out/<post>/reel.mp4 im Repository.
+    Mit <morgen> (Post des Folgetags) wird zuerst die Fassung gesucht, deren Schluss dieses Bauwerk ankündigt;
+    fehlt sie, gilt die neutrale Fassung <post>.mp4. Wiederholungen rufen ohne <morgen> auf.
     """
     repo = config.get('repository')
     kandidaten = []
+    if repo and morgen:
+        kandidaten.append(ablage_adresse(config, video_name(name, morgen)))
     if repo:
         kandidaten.append(f'https://github.com/{repo}/releases/download/medien/{name}.mp4')
     if (ROOT / 'out' / name / 'reel.mp4').exists():
@@ -151,7 +174,8 @@ def reel_lauf(args, config, plan, protokoll, jetzt, heute, modus, uhrzeit_feld):
     eintrag = (offen or treffer)[0]
     name = eintrag['post']
     post = lies(ROOT / 'posts' / f'{name}.json')
-    adresse, groesse = finde_video(name, config)
+    # Kurzes Reel: die Fassung mit „Morgen: …“ nur, wenn der Plan heute noch denselben Folge-Post nennt
+    adresse, groesse = finde_video(name, config, naechster_post(plan, name) if 'reel' in post else None)
     if not adresse:
         print(f'Zu {name} gibt es kein Reel: weder in der Ablage auf GitHub noch im Repository.')
         return False

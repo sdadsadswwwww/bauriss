@@ -222,5 +222,70 @@
     "zu_klein": []
    }
   ]
+ },
+ "reel": {
+  "stand": "660e6b346964bf40",
+  "bilder": [
+   {
+    "bild": "1",
+    "woerter": 11,
+    "kleinste": {
+     "px": 54,
+     "text": "Bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "2",
+    "woerter": 8,
+    "kleinste": {
+     "px": 44,
+     "text": "Nord-Ostsee-Kanal"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "3",
+    "woerter": 21,
+    "kleinste": {
+     "px": 44,
+     "text": "Nord-Ostsee-Kanal"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4",
+    "woerter": 17,
+    "kleinste": {
+     "px": 52,
+     "text": "Folgen: @der_bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4m",
+    "woerter": 7,
+    "kleinste": {
+     "px": 48,
+     "text": "Morgen:"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   }
+  ]
  }
 }
