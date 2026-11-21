@@ -98,6 +98,8 @@ def pruefe_blatt_lesbar(wo, sl):
                 fehler.append(f'{wo}: das Titelblatt braucht "{feld}".')
             elif sichtbar(wert) > grenze:
                 fehler.append(f'{wo}: "{feld}" hat {sichtbar(wert)} Zeichen, erlaubt sind {grenze}.')
+        if len(str(sl.get('vorsatz', ''))) > 6:
+            fehler.append(f'{wo}: "vorsatz" höchstens 6 Zeichen (etwa "rund", "fast", "über").')
         if str(sl.get('aufhaenger', '')).count('<em>') != 1:
             fehler.append(f'{wo}: der Aufhänger hat genau eine Hervorhebung mit <em>.')
         if sl.get('kicker') or absaetze:
@@ -153,6 +155,8 @@ def pruefe_reel_feld(post, skripte):
             fn = (teil.get('figur') or {}).get('fn', '')
             if not fn or not re.search(rf'\b{re.escape(fn)}\b', skripte):
                 fehler.append(f'"reel.{bild}.figur": Zeichnung "{fn}" gibt es weder in drawings.js noch in der Themen-Datei.')
+    if isinstance(reel.get('antwort'), dict) and len(str(reel['antwort'].get('vorsatz', ''))) > 6:
+        fehler.append('"reel.antwort.vorsatz" höchstens 6 Zeichen.')
     if isinstance(reel.get('antwort'), dict) and str(reel['antwort'].get('antwort', '')).count('<em>') != 1:
         fehler.append('"reel.antwort.antwort" hat genau eine Hervorhebung mit <em>.')
     return fehler

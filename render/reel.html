@@ -64,6 +64,9 @@
   /* Bild 3: die Antwort mit der großen Zahl */
   .b-antwort .kicker { font-family: var(--f-mono); font-size: 46px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); margin: 62px 0 0; }
   .b-antwort .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 420px; line-height: 0.8; margin: 24px 0 0 -6px; color: var(--acc); white-space: nowrap; }
+  .b-antwort .zahlzeile { display: flex; align-items: flex-end; gap: 26px; margin-top: 24px; }
+  .b-antwort .zahlzeile .zahl { margin-top: 0; }
+  .b-antwort .vorsatz { font-family: var(--f-kopf); font-weight: 600; font-size: 84px; line-height: 1; text-transform: uppercase; padding-bottom: 26px; flex: none; }
   .b-antwort h1 { font-family: var(--f-kopf); font-weight: 600; font-size: 108px; line-height: 0.94; text-transform: uppercase; margin-top: 40px; }
   .b-antwort .antwort { font-family: var(--f-kopf); font-weight: 700; font-size: 132px; line-height: 0.94; text-transform: uppercase; margin-top: 52px; }
   .b-antwort .zusatz { font-size: 58px; line-height: 1.2; color: rgba(234, 241, 248, 0.88); margin-top: 26px; }
@@ -134,7 +137,8 @@
       art = 'antwort';
       const a = r.antwort;
       innen = `<div class="sicher">${kopf(post, true)}<div class="kicker">${a.kicker || 'Wer hat bezahlt?'}</div>` +
-        `<div class="zahl">${a.zahl}</div><h1>${a.einheit}</h1><div class="antwort">${a.antwort}</div>` +
+        (a.vorsatz ? `<div class="zahlzeile"><div class="vorsatz">${a.vorsatz}</div><div class="zahl">${a.zahl}</div></div>` : `<div class="zahl">${a.zahl}</div>`) +
+        `<h1>${a.einheit}</h1><div class="antwort">${a.antwort}</div>` +
         `<div class="zusatz">${a.zusatz || ''}</div></div>`;
     } else if (nr === '4') {
       art = 'schluss';

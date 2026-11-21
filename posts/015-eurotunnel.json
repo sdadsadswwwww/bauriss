@@ -7,6 +7,7 @@
     {
       "typ": "titel",
       "unterzeile": "Eisenbahntunnel unter dem Ärmelkanal",
+      "vorsatz": "rund",
       "zahl": "10",
       "headline": "Milliarden Pfund",
       "aufhaenger": "Bezahlt hat ihn <em>kein Staat</em>.",
@@ -173,6 +174,7 @@
       }
     },
     "antwort": {
+      "vorsatz": "rund",
       "zahl": "10",
       "einheit": "Milliarden Pfund",
       "antwort": "Private Geldgeber, <em>kein Staat</em>.",

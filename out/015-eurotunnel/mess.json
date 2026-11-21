@@ -1,12 +1,12 @@
 {
  "blaetter": {
-  "stand": "bab654d08fb4139c",
+  "stand": "a46595ecce7fb874",
   "liste": [
    {
     "nr": 1,
     "typ": "titel",
     "woerter": {
-     "lesetext": 13,
+     "lesetext": 14,
      "zeichnung": 4,
      "quellen": 0
     },
@@ -215,7 +215,7 @@
   ]
  },
  "reel": {
-  "stand": "bab654d08fb4139c",
+  "stand": "a46595ecce7fb874",
   "bilder": [
    {
     "bild": "1",
@@ -243,7 +243,7 @@
    },
    {
     "bild": "3",
-    "woerter": 20,
+    "woerter": 21,
     "kleinste": {
      "px": 44,
      "text": "Eurotunnel"

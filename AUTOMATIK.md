@@ -160,7 +160,7 @@ Vorlagen zum Nachlesen, bevor du schreibst: `posts/011-nord-ostsee-kanal.json` (
 
 - Oben steht groß der Name des Bauwerks (`titel` des Posts). Kein `kicker`, kein `text`.
 - `unterzeile`: was das Bauwerk ist oder wo es steht, höchstens 38 Zeichen.
-- `zahl`: höchstens 4 Zeichen (`156`, `12,2`), sie erscheint groß und gelb. `headline`: die Einheit dazu, ein bis zwei Wörter, höchstens 20 Zeichen.
+- `zahl`: höchstens 4 Zeichen (`156`, `12,2`), sie erscheint groß und gelb. Ist die Zahl gerundet oder eine Spanne, steht `"vorsatz": "rund"` (oder „fast“, „über“, höchstens 6 Zeichen) klein davor; ebenso in `reel.antwort`. `headline`: die Einheit dazu, ein bis zwei Wörter, höchstens 20 Zeichen.
 - `aufhaenger`: ein kurzer Satz mit Spannung, höchstens 50 Zeichen, genau eine Hervorhebung mit `<em>`. Am liebsten die Antwort auf „Wer hat bezahlt?" („Die Maut zahlt die Schulden.", „Bezahlt hat ihn kein Staat."). Lässt sich das nicht belegen, der Kniff oder die Pointe des Baus. Nie mehr behaupten als die Belege.
 - Die Zahl ist tragend: zwei unabhängige Quellen in `belege`. Am besten die Baukosten oder der Betrag zur Frage, wer bezahlt hat. Ein reines Maß (Länge, Höhe, Dauer) kommt nur aufs Titelblatt, wenn kein Geldbetrag doppelt belegt ist; sein Platz ist `reel.zeichnung`.
 - Zeichnung: ruhig und breit, Zeichenfläche 900 × höchstens 450 (bei einzeiligem Aufhänger bis 520), höchstens 4 Beschriftungen, besser eine bis drei.

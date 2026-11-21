@@ -97,7 +97,7 @@ function render(post, nr) {
     // Die Schriftgrößen von Name, Einheit und Zahl passt einpassen() unten an die Breite an.
     const unter = sl.unterzeile ? `<div class="unterzeile">${sl.unterzeile}</div>` : '';
     inhalt = `<div class="bauwerk">${sl.name || post.titel}</div>${unter}` +
-      `<div class="titel"><div class="zahl">${sl.zahl}</div><h1>${sl.headline}</h1></div>` +
+      `<div class="titel">${sl.vorsatz ? `<div class="vorsatz">${sl.vorsatz}</div>` : ''}<div class="zahl">${sl.zahl}</div><h1>${sl.headline}</h1></div>` +
       `<div class="aufhaenger">${sl.aufhaenger || ''}</div>${figur}`;
   } else if (sl.typ === 'cover') {
     // hohe Zeichnung rechts

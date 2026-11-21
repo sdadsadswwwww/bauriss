@@ -271,6 +271,8 @@ p em { font-style: normal; color: var(--acc); }
 .inhalt.titel .unterzeile { font-family: var(--f-mono); font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acc); margin-top: 14px; white-space: nowrap; }
 .inhalt.titel .titel { display: flex; align-items: flex-end; gap: 30px; margin-top: 40px; }
 .inhalt.titel .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 280px; line-height: 0.78; margin-left: -6px; color: var(--acc); white-space: nowrap; flex: none; }
+/* optional "vorsatz" (z. B. „rund“) klein vor der Zahl */
+.inhalt.titel .vorsatz { font-family: var(--f-kopf); font-weight: 600; font-size: 64px; line-height: 1; text-transform: uppercase; padding-bottom: 8px; margin-right: -14px; flex: none; }
 .inhalt.titel h1 { font-size: 92px; line-height: 0.94; padding-bottom: 4px; }
 .inhalt.titel .aufhaenger { font-family: var(--f-kopf); font-weight: 600; font-size: 72px; line-height: 1; text-transform: uppercase; margin-top: 38px; }
 .inhalt.titel .aufhaenger em { font-style: normal; color: var(--acc); }
