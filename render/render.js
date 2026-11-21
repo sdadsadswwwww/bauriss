@@ -1,10 +1,20 @@
 // Baut ein Blatt aus den Daten eines Posts (posts/<name>.json).
 // Seit 20.11.2026 im CAD-Look: Jede Zeichnung steht in einem Ansichtsfenster mit Kopfleiste und Befehlszeile;
 // optional zeigen Detailfenster einen Ausschnitt derselben Zeichnung vergrößert (Feld figur.details).
+//
+// Seit 21.11.2026 gibt es dazu die lesbare Vorlage. Sie greift nur, wenn der Post sie verlangt ("vorlage": "lesbar");
+// Posts ohne dieses Feld rendern unverändert.
+//   - #sheet bekommt die Klasse „lesbar“: keine Schrift unter 32 px, Linien ab 2 px (render/style.css).
+//   - Blatt-Typ "titel": Name des Bauwerks groß, gelbe Zahl mit Einheit, Aufhänger, ruhige Zeichnung.
+//   - Ansichtsfenster ohne Text: "rahmen": "zier" (Lineal und Achsenkreuz, Standard) oder "glatt" (nur Fläche,
+//     Standard auf dem Titelblatt). Kopfzeile, Befehlszeile, Koordinaten und Detailfenster entfallen.
+//   - Die Zeichnungsfunktion bekommt zusätzlich lesbar: true und kann damit ruhiger zeichnen.
+//   - Schriftfeld: „Bauriss | <Titel> | Blatt nn/nn“ in 34 px.
 function render(post, nr) {
   const sl = post.slides[nr - 1];
   const zwei = n => String(n).padStart(2, '0');
   const komma = n => n.toFixed(2).replace('.', ',');
+  const lesbar = post.vorlage === 'lesbar' || sl.typ === 'titel';
 
   // Kopfleiste: Ansicht aus figur.ansicht oder aus dem Namen der Zeichnung geraten
   function ansichtVon(f) {
@@ -42,7 +52,15 @@ function render(post, nr) {
   }
 
   let figur = '';
-  if (sl.figur) {
+  if (sl.figur && lesbar) {
+    // Lesbare Vorlage: Fenster ohne Text. „zier“ zeigt ein Lineal und ein Achsenkreuz, „glatt“ nur die Fläche.
+    const f = sl.figur;
+    const rahmen = f.rahmen || (sl.typ === 'titel' ? 'glatt' : 'zier');
+    const zier = rahmen === 'zier'
+      ? `<div class="vp-lineal"></div><svg class="vp-ucs" viewBox="0 0 46 46"><path d="M8 38V6M8 38H40M2 14l6 -9l6 9M32 32l9 6l-9 6"/></svg>`
+      : '';
+    figur = `<div class="figur ruhig${rahmen === 'zier' ? ' zier' : ''}"><div class="vp">${zier}</div>${Zeichnung[f.fn]({ ...f, lesbar: true })}</div>`;
+  } else if (sl.figur) {
     const f = sl.figur;
     let zeichnung = Zeichnung[f.fn](f);
     const details = f.details || [];
@@ -72,7 +90,14 @@ function render(post, nr) {
     : '';
   let inhalt;
 
-  if (sl.typ === 'cover') {
+  if (sl.typ === 'titel') {
+    // Titelblatt der lesbaren Vorlage: Name oben (statt „Bauwerk Nr. …“), Zahl mit Einheit, Aufhänger, breite ruhige Zeichnung.
+    // Die Schriftgrößen von Name, Einheit und Zahl passt einpassen() unten an die Breite an.
+    const unter = sl.unterzeile ? `<div class="unterzeile">${sl.unterzeile}</div>` : '';
+    inhalt = `<div class="bauwerk">${sl.name || post.titel}</div>${unter}` +
+      `<div class="titel"><div class="zahl">${sl.zahl}</div><h1>${sl.headline}</h1></div>` +
+      `<div class="aufhaenger">${sl.aufhaenger || ''}</div>${figur}`;
+  } else if (sl.typ === 'cover') {
     // hohe Zeichnung rechts
     inhalt = `<div class="spalte">${kicker}<div class="zahl">${sl.zahl}</div><h1>${sl.headline}</h1>${absaetze}</div>${figur}`;
   } else if (sl.typ === 'cover-breit') {
@@ -100,8 +125,34 @@ function render(post, nr) {
     inhalt = `${kopf}${figur}`;
   }
 
-  document.getElementById('sheet').innerHTML =
-    `<div class="rahmen"></div><div class="inhalt ${sl.typ}">${inhalt}</div>` +
-    `<div class="schild"><div>${Zeichnung.marke()}<span class="name">Bauriss</span></div>` +
-    `<div>Nr. ${post.nr} · ${post.titel}</div><div class="blatt">Blatt ${zwei(nr)}/${zwei(post.slides.length)}</div></div>`;
+  const sheet = document.getElementById('sheet');
+  const marke = `<div>${Zeichnung.marke()}<span class="name">Bauriss</span></div>`;
+  const blatt = `<div class="blatt">Blatt ${zwei(nr)}/${zwei(post.slides.length)}</div>`;
+  if (!lesbar) {
+    sheet.removeAttribute('class');
+    sheet.innerHTML =
+      `<div class="rahmen"></div><div class="inhalt ${sl.typ}">${inhalt}</div>` +
+      `<div class="schild">${marke}<div>Nr. ${post.nr} · ${post.titel}</div>${blatt}</div>`;
+    return;
+  }
+  sheet.className = 'lesbar';
+  sheet.innerHTML = `<div class="rahmen"></div><div class="inhalt ${sl.typ}">${inhalt}</div>` +
+    `<div class="schild">${marke}<div>${post.titel}</div>${blatt}</div>`;
+
+  // Einpassen: Schrift eines Elements verkleinern, bis es in die Breite passt (nie unter min).
+  // Läuft, nachdem die Schriften geladen sind (slide.html wartet darauf), und ist damit bei jedem Lauf gleich.
+  function einpassen(el, breite, min) {
+    if (!el) return;
+    let px = parseFloat(getComputedStyle(el).fontSize);
+    while (px > min && breite() > 0) el.style.fontSize = (px -= 2) + 'px';
+  }
+  if (sl.typ === 'titel') {
+    const q = s => sheet.querySelector('.inhalt ' + s);
+    const zuBreit = el => () => el.scrollWidth - el.clientWidth;
+    einpassen(q('.bauwerk'), zuBreit(q('.bauwerk')), 60);
+    // Zahl und Einheit teilen sich eine Zeile: erst die Einheit kleiner, dann die Zahl
+    const zeile = q('.titel');
+    einpassen(q('h1'), zuBreit(zeile), 64);
+    einpassen(q('.zahl'), zuBreit(zeile), 180);
+  }
 }

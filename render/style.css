@@ -212,3 +212,65 @@ p em { font-style: normal; color: var(--acc); }
 .marke .mb { fill: none; stroke: var(--ink); stroke-width: 5.6; stroke-linejoin: miter; vector-effect: none; }
 .marke .mi { fill: none; stroke: var(--acc); stroke-width: 3.8; vector-effect: none; }
 .marke .mk { fill: none; stroke: var(--acc); stroke-width: 0.7; stroke-dasharray: 1.7 1.3; opacity: 0.9; vector-effect: none; }
+
+/* ===================================================================================================
+   Lesbare Vorlage (seit 21.11.2026). Alles ab hier greift nur, wenn #sheet die Klasse „lesbar“ trägt;
+   render.js setzt sie, wenn der Post "vorlage": "lesbar" verlangt. Posts ohne dieses Feld rendern unverändert.
+   Regeln: keine Schrift unter 32 px im Blatt (11,6 px am Handy bei 390 px Breite), keine Linie unter 2 px,
+   Ansichtsfenster ohne Text. tools/render.py misst das nach jedem Rendern nach (out/<post>/mess.json).
+   =================================================================================================== */
+
+/* --- Schrift: Kicker, Fließtext, Schriftfeld --- */
+#sheet.lesbar .kicker { font-size: 32px; letter-spacing: 0.1em; margin-bottom: 16px; }
+#sheet.lesbar p { font-size: 40px; line-height: 1.34; margin-top: 24px; }
+#sheet.lesbar .schild { font-family: var(--f-kopf); font-size: 34px; font-weight: 600; letter-spacing: 0.06em; color: rgba(234, 241, 248, 0.8); border-width: 2px; }
+#sheet.lesbar .schild > div + div { border-left-width: 2px; }
+#sheet.lesbar .rahmen { border-width: 2px; }
+
+/* --- Schrift in Zeichnungen: Grundgröße 34 px, groß 40 px, Maßzahl 34 px --- */
+#sheet.lesbar .fig text { font-size: 34px; }
+#sheet.lesbar .fig text.mass, #sheet.lesbar .fig text.kote, #sheet.lesbar .fig text.achse { font-size: 34px; letter-spacing: 0; }
+#sheet.lesbar .fig text.gross { font-size: 40px; }
+#sheet.lesbar .fig text.riesig { font-size: 60px; }
+
+/* --- Linien: Kontur 3 px, alles Feine 2 px, Gelb 4 px --- */
+#sheet.lesbar .fig .l { stroke-width: 3; }
+#sheet.lesbar .fig .t { stroke-width: 2; opacity: 0.95; }
+#sheet.lesbar .fig .z { stroke-width: 2; opacity: 0.36; }
+#sheet.lesbar .fig .d { stroke-width: 2.4; }
+#sheet.lesbar .fig .a { stroke-width: 4; }
+#sheet.lesbar .fig .m { stroke-width: 2; }
+#sheet.lesbar .fig .ax { stroke-width: 2; opacity: 0.8; }
+#sheet.lesbar .fig .hl { stroke-width: 2; opacity: 0.6; }
+#sheet.lesbar .fig .hf, #sheet.lesbar .fig .lf, #sheet.lesbar .fig .af { stroke-width: 3; }
+#sheet.lesbar .fig .ph { stroke-width: 2; opacity: 0.4; }
+#sheet.lesbar .fig .akzent .l, #sheet.lesbar .fig .akzent .lf { stroke-width: 4; }
+#sheet.lesbar .fig .geplant .l, #sheet.lesbar .fig .geplant .lf { stroke-width: 2.4; }
+
+/* Schild hinter einer Beschriftung, die über Linien liegt (deckt ab, gelber Rand) */
+.fig .platte { fill: var(--vp); stroke: var(--acc); stroke-width: 3; }
+
+/* --- Ruhiges Ansichtsfenster ohne Text: "rahmen": "zier" (Lineal und Achsenkreuz) oder "glatt" (nur Fläche) --- */
+.figur.ruhig { margin-top: 40px; }
+.figur.ruhig .vp { inset: -20px -26px -22px; border-width: 2px; }
+.figur.ruhig.zier { margin-top: 58px; }
+.figur.ruhig.zier .vp { inset: -38px -26px -22px; }
+/* Lineal: Teilstriche im Takt des Rasters (18 px, jeder fünfte lang), 2 px breit, ohne Zahlen */
+.figur .vp-lineal { position: absolute; left: 0; right: 0; top: 0; height: 22px; border-bottom: 2px solid var(--rand);
+  background:
+    linear-gradient(90deg, rgba(120, 165, 215, 0.6) 2px, transparent 2px) 0 0 / 90px 100% repeat-x,
+    linear-gradient(90deg, rgba(120, 165, 215, 0.36) 2px, transparent 2px) 0 100% / 18px 9px repeat-x,
+    var(--kopfleiste); }
+/* Achsenkreuz unten links, wie das UCS-Symbol im CAD, ohne Buchstaben */
+.figur .vp-ucs { position: absolute; left: 12px; bottom: 10px; width: 46px; height: 46px; }
+.figur .vp-ucs path { fill: none; stroke: var(--rand); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* --- Titelblatt: Typ "titel" (Name oben, Zahl mit Einheit, Aufhänger, ruhige Zeichnung) --- */
+.inhalt.titel { padding-top: 46px; }
+.inhalt.titel .bauwerk { font-family: var(--f-kopf); font-weight: 600; font-size: 100px; line-height: 0.96; text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap; }
+.inhalt.titel .unterzeile { font-family: var(--f-mono); font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acc); margin-top: 14px; white-space: nowrap; }
+.inhalt.titel .titel { display: flex; align-items: flex-end; gap: 30px; margin-top: 40px; }
+.inhalt.titel .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 280px; line-height: 0.78; margin-left: -6px; color: var(--acc); white-space: nowrap; flex: none; }
+.inhalt.titel h1 { font-size: 92px; line-height: 0.94; padding-bottom: 4px; }
+.inhalt.titel .aufhaenger { font-family: var(--f-kopf); font-weight: 600; font-size: 72px; line-height: 1; text-transform: uppercase; margin-top: 38px; }
+.inhalt.titel .aufhaenger em { font-style: normal; color: var(--acc); }
