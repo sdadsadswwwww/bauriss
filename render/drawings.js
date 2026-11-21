@@ -35,14 +35,15 @@
     return pfad('l', `M${r(x1)} ${r(y)}H${r(x2)}`) + pfad('t', t);
   }
   // Maßlinien mit Schrägstrichen an den Enden, wie auf Bauplänen
-  function massV(x, y1, y2, label, seite = 1) {
-    const ym = (y1 + y2) / 2, tx = seite > 0 ? x + 30 : x - 10;
+  // abstand: Abstand der Maßzahl von der Linie; in der lesbaren Vorlage (Schrift 34 px) 40 angeben
+  function massV(x, y1, y2, label, seite = 1, abstand = 30) {
+    const ym = (y1 + y2) / 2, tx = seite > 0 ? x + abstand : x - abstand + 20;
     return pfad('m', `M${r(x)} ${r(y1)}V${r(y2)}M${r(x - 7)} ${r(y1 + 7)}l14 -14M${r(x - 7)} ${r(y2 + 7)}l14 -14`) +
       text(tx, ym, label, 'mass', `text-anchor="middle" transform="rotate(-90 ${r(tx)} ${r(ym)})"`);
   }
-  function massH(x1, x2, y, label) {
+  function massH(x1, x2, y, label, abstand = 30) {
     return pfad('m', `M${r(x1)} ${r(y)}H${r(x2)}M${r(x1 - 7)} ${r(y + 7)}l14 -14M${r(x2 - 7)} ${r(y + 7)}l14 -14`) +
-      text((x1 + x2) / 2, y + 30, label, 'mass', 'text-anchor="middle"');
+      text((x1 + x2) / 2, y + abstand, label, 'mass', 'text-anchor="middle"');
   }
 
   // ---- Kölner Dom, Westfassade ----
@@ -232,8 +233,10 @@
   // ---- Zeitleiste, senkrecht ----
   // o.phasen: [{von, bis, art: 'bau' | 'pause' | 'schluss', text}], o.marken: [{jahr, text, label}]
   // jahr darf Nachkommastellen haben (2011.8 = Oktober 2011); label ersetzt dann die angezeigte Jahreszahl.
+  // o.lesbar (setzt die lesbare Vorlage): Zeichenfläche 820 statt 860 hoch, damit die Schrift (34 px) unter einer
+  // zweizeiligen Überschrift nicht schrumpft. Markentext dann höchstens 28 Zeichen, Phasentext höchstens 20.
   function zeitleiste(o) {
-    const y0 = 40, y1 = 820, bx = 170, bw = 64;
+    const y0 = 40, y1 = o.lesbar ? 780 : 820, bx = 170, bw = 64;
     const Y = j => y0 + ((j - o.von) / (o.bis - o.von)) * (y1 - y0);
     let body = '';
     for (const ph of o.phasen) {
@@ -247,7 +250,7 @@
       body += pfad('l', `M${bx - 16} ${r(y)}H${bx + bw + 16}`);
       body += text(bx - 30, y + 12, m.label || m.jahr, 'gross', 'text-anchor="end"') + text(bx + bw + 46, y + 10, m.text);
     }
-    return svg(900, 860, body);
+    return svg(900, y1 + 40, body);
   }
 
   // ---- Höhenvergleich ----
@@ -279,7 +282,9 @@
       { form: 'washington', name: 'Washington', jahr: 1884, hoehe: 169 },
     ];
     const g = 566, s = Math.min(3.1, 500 / Math.max(...bauten.map(b => b.hoehe)));
-    const namen = o.klein ? '' : 'gross', zeichen = o.klein ? 17 : 21.6;
+    // o.lesbar: Schrift 34/40 px statt 28/36 px, also breitere Felder und mehr Abstand zwischen Name und Jahr
+    const namen = o.klein ? '' : 'gross', zeichen = o.lesbar ? (o.klein ? 20.4 : 24) : o.klein ? 17 : 21.6;
+    const zeile = o.lesbar ? 42 : 34;
     // Jeder Bau bekommt ein Feld, das für Umriss und Namen reicht
     const felder = bauten.map(b => Math.max(formen[b.form].breite * s, String(b.name).length * zeichen));
     const luecke = (900 - 40 - felder.reduce((a, b) => a + b, 0)) / (bauten.length - 1);
@@ -289,11 +294,11 @@
       const umriss = formen[b.form].bau(mitte - (formen[b.form].breite * s) / 2, g, s);
       body += b.akzent ? `<g class="akzent">${umriss}</g>` : umriss;
       body += text(mitte, g - b.hoehe * s - 14, b.hoehe + ' m', 'gross' + akz, 'text-anchor="middle"');
-      body += text(mitte, g + 44, b.name, namen + akz, 'text-anchor="middle"') + text(mitte, g + 78, b.jahr, akz, 'text-anchor="middle"');
+      body += text(mitte, g + 44, b.name, namen + akz, 'text-anchor="middle"') + text(mitte, g + 44 + zeile, b.jahr, akz, 'text-anchor="middle"');
       x += felder[i] + luecke;
     });
     body += boden(10, 890, g);
-    return svg(900, 656, body);
+    return svg(900, o.lesbar ? 668 : 656, body);
   }
 
   // ---- Marke: Spitzbogenfenster mit Y-Maßwerk ----

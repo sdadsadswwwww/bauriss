@@ -59,7 +59,9 @@ function render(post, nr) {
     const zier = rahmen === 'zier'
       ? `<div class="vp-lineal"></div><svg class="vp-ucs" viewBox="0 0 46 46"><path d="M8 38V6M8 38H40M2 14l6 -9l6 9M32 32l9 6l-9 6"/></svg>`
       : '';
-    figur = `<div class="figur ruhig${rahmen === 'zier' ? ' zier' : ''}"><div class="vp">${zier}</div>${Zeichnung[f.fn]({ ...f, lesbar: true })}</div>`;
+    // Die Zeichnung steht mittig im Fenster (in der alten Vorlage unten), damit über ihr kein leerer Streifen bleibt.
+    const zeichnung = Zeichnung[f.fn]({ ...f, lesbar: true }).replace('preserveAspectRatio="xMidYMax meet"', 'preserveAspectRatio="xMidYMid meet"');
+    figur = `<div class="figur ruhig${rahmen === 'zier' ? ' zier' : ''}"><div class="vp">${zier}</div>${zeichnung}</div>`;
   } else if (sl.figur) {
     const f = sl.figur;
     let zeichnung = Zeichnung[f.fn](f);

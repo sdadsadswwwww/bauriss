@@ -4,12 +4,19 @@ Aufruf:  python tools/render.py                    alle Posts
          python tools/render.py 001-koelner-dom    einzelner Post
 
 Instagram nimmt über die Schnittstelle nur JPEG an, deshalb die Umwandlung am Ende.
+
+Posts der lesbaren Vorlage ("vorlage": "lesbar") werden nach dem Rendern nachgemessen: kleinste Schrift, Wörter,
+Linienbreiten, Text außerhalb des Rahmens. Das Ergebnis steht in out/<post>/mess.json und auf dem Bildschirm;
+tools/automatik.py pruefen wertet es aus.
 """
 import functools
+import hashlib
+import html
 import http.server
 import json
 import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -74,6 +81,69 @@ def aufnahme(chrome, profil, url, ziel, breite, hoehe):
         bild.save(ziel)
 
 
+def lies_messung(chrome, profil, url, breite=1080, hoehe=1350):
+    """Öffnet eine Mess-Seite (render/mess.html, render/reel.html?mess=1) und liefert ihr Ergebnis aus <pre id="out">."""
+    antwort = subprocess.run(
+        [
+            chrome, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--disable-extensions',
+            '--force-device-scale-factor=1', f'--user-data-dir={profil}', f'--window-size={breite},{hoehe}',
+            '--virtual-time-budget=10000', '--dump-dom', url,
+        ],
+        check=True, capture_output=True, timeout=180,
+    )
+    treffer = re.search(r'<pre id="out">(.*?)</pre>', antwort.stdout.decode('utf-8', 'replace'), re.S)
+    if not treffer or not treffer.group(1).strip():
+        sys.exit(f'Die Messung liefert kein Ergebnis ({url}). Meist ein Fehler in der Zeichnungsdatei.')
+    daten = json.loads(html.unescape(treffer.group(1)))
+    if 'fehler' in daten:
+        sys.exit(f'Die Messung meldet einen Fehler: {daten["fehler"]}')
+    return daten
+
+
+def stand(post_name):
+    """Fingerabdruck von Post und Zeichnungsdatei. Daran erkennt die Prüfung Bilder, die nicht zum letzten Stand passen."""
+    datei = ROOT / 'posts' / f'{post_name}.json'
+    teile = [datei.read_text(encoding='utf-8')]
+    zeichnungen = json.loads(teile[0]).get('zeichnungen')
+    if zeichnungen and (ROOT / 'render' / 'zeichnungen' / f'{zeichnungen}.js').exists():
+        teile.append((ROOT / 'render' / 'zeichnungen' / f'{zeichnungen}.js').read_text(encoding='utf-8'))
+    # Zeilenenden angleichen, damit der Fingerabdruck unter Windows und Linux gleich ist
+    return hashlib.sha256('\n'.join(t.replace('\r\n', '\n') for t in teile).encode('utf-8')).hexdigest()[:16]
+
+
+def schreibe_messung(post_name, teil, inhalt):
+    """Legt einen Teil der Messung ("blaetter" oder "reel") in out/<post>/mess.json ab; der andere Teil bleibt stehen."""
+    ziel = ROOT / 'out' / post_name / 'mess.json'
+    daten = json.loads(ziel.read_text(encoding='utf-8')) if ziel.exists() else {}
+    daten[teil] = {'stand': stand(post_name), **inhalt}
+    ziel.write_text(json.dumps(daten, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+
+
+def messe_blaetter(chrome, profil, basis, post, konto):
+    """Misst alle Blätter eines Posts der lesbaren Vorlage nach und schreibt out/<post>/mess.json."""
+    roh = lies_messung(chrome, profil, f'{basis}/mess.html?post={post}&konto={konto}')
+    blaetter = []
+    for b in roh['slides']:
+        blaetter.append({
+            'nr': b['nr'], 'typ': b['typ'], 'woerter': b['woerter'], 'kleinste': b['kleinste'], 'linie': b['linie'],
+            'massstab': b['zeichnung']['massstab'] if b['zeichnung'] else None,
+            'beschriftungen': b['zeichnung']['beschriftungen'] if b['zeichnung'] else 0,
+            'ueberlauf': b['ueberlauf'], 'aussen': b['aussen'], 'ueberlappt': b['ueberlappt'], 'schild_voll': b['schildVoll'],
+            'zu_klein': [f'{t["t"][:30]} ({t["px"]:g} px)' for t in b['texte'] if t['px'] < 32][:8],
+        })
+    schreibe_messung(post, 'blaetter', {'liste': blaetter})
+    for b in blaetter:
+        w, k = b['woerter'], b['kleinste'] or {'px': 0, 'text': ''}
+        zeile = f'  Blatt {b["nr"]:02d} {b["typ"]:10}  Lesetext {w["lesetext"]:2d} Wörter, Zeichnung {w["zeichnung"]:2d}  kleinste Schrift {k["px"]:g} px'
+        if b['massstab']:
+            zeile += f'  Maßstab {b["massstab"]:g}'
+        if b['linie']:
+            zeile += f'  dünnste Linie {b["linie"]["px"]:g} px'
+        hinweise = (['ÜBERLAUF'] if b['ueberlauf'] else []) + [f'AUSSEN: {t}' for t in b['aussen']]
+        hinweise += [f'ÜBERLAPPT: {x} / {y}' for x, y in b['ueberlappt']] + [f'ZU KLEIN: {t}' for t in b['zu_klein']]
+        print(zeile + ''.join('\n      ' + h for h in hinweise))
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
     posts = sys.argv[1:] or sorted(p.stem for p in (ROOT / 'posts').glob('*.json'))
@@ -94,6 +164,8 @@ def main():
             aufnahme(chrome, profil, f'{basis}/sheet.html?post={post}&n={anzahl}',
                      ziel / 'uebersicht.jpg', 2260, 60 + zeilen * 675 + (zeilen - 1) * 20)
             print(f'{post}: {anzahl} Blätter -> {ziel.relative_to(ROOT)}')
+            if daten.get('vorlage') == 'lesbar':
+                messe_blaetter(chrome, profil, basis, post, konto)
         aufnahme(chrome, profil, f'{basis}/avatar.html', ROOT / 'out' / 'profilbild.png', 1080, 1080)
     finally:
         server.shutdown()

@@ -267,10 +267,31 @@ p em { font-style: normal; color: var(--acc); }
 
 /* --- Titelblatt: Typ "titel" (Name oben, Zahl mit Einheit, Aufhänger, ruhige Zeichnung) --- */
 .inhalt.titel { padding-top: 46px; }
-.inhalt.titel .bauwerk { font-family: var(--f-kopf); font-weight: 600; font-size: 100px; line-height: 0.96; text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap; }
+.inhalt.titel .bauwerk { font-family: var(--f-kopf); font-weight: 600; font-size: 130px; line-height: 0.96; text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap; }
 .inhalt.titel .unterzeile { font-family: var(--f-mono); font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acc); margin-top: 14px; white-space: nowrap; }
 .inhalt.titel .titel { display: flex; align-items: flex-end; gap: 30px; margin-top: 40px; }
 .inhalt.titel .zahl { font-family: var(--f-kopf); font-weight: 700; font-size: 280px; line-height: 0.78; margin-left: -6px; color: var(--acc); white-space: nowrap; flex: none; }
 .inhalt.titel h1 { font-size: 92px; line-height: 0.94; padding-bottom: 4px; }
 .inhalt.titel .aufhaenger { font-family: var(--f-kopf); font-weight: 600; font-size: 72px; line-height: 1; text-transform: uppercase; margin-top: 38px; }
 .inhalt.titel .aufhaenger em { font-style: normal; color: var(--acc); }
+
+/* --- Kennzahlen (Typ "punkte"): Zusatzzeile in 32 px statt 23 px, Ränder 2 px --- */
+/* Tafel und Tabelle stehen mittig zwischen Text und Fußzeile, damit bei wenigen Zeilen kein Loch entsteht */
+#sheet.lesbar .kennzahlen, #sheet.lesbar .tafel { margin-top: auto; margin-bottom: auto; border-width: 2px; }
+#sheet.lesbar .inhalt.punkte > p, #sheet.lesbar .inhalt.balken > p { margin-bottom: 36px; }
+#sheet.lesbar .inhalt.punkte > h2:nth-last-child(3), #sheet.lesbar .inhalt.balken > h2:nth-last-child(3) { margin-bottom: 36px; }
+#sheet.lesbar .punkt { grid-template-columns: 380px 1fr; padding: 26px 0; }
+#sheet.lesbar .punkt + .punkt { border-top-width: 2px; }
+#sheet.lesbar .punkt .wer, #sheet.lesbar .reihe .wer { font-size: 40px; }
+#sheet.lesbar .punkt .zusatz, #sheet.lesbar .reihe .zusatz { font-family: var(--f-text); font-size: 32px; line-height: 1.25; color: rgba(234, 241, 248, 0.78); margin-top: 6px; }
+#sheet.lesbar .punkt .zusatz:empty, #sheet.lesbar .reihe .zusatz:empty, #sheet.lesbar .fuss:empty { display: none; }
+
+/* --- Balken: Rand und Schraffur 2 px --- */
+#sheet.lesbar .reihe .bahn { height: 40px; border-width: 2px; margin-top: 12px; }
+#sheet.lesbar .reihe .bahn i { border-right-width: 3px; background: repeating-linear-gradient(135deg, var(--detail) 0 2px, transparent 2px 11px); }
+#sheet.lesbar .reihe.akz .bahn i { background: var(--acc); }
+#sheet.lesbar .fuss { margin-top: 0; font-size: 36px; line-height: 1.3; padding-top: 24px; }
+
+/* --- Schlussblatt: Quellen in 32 px statt 22 px --- */
+#sheet.lesbar .outro .konto { font-size: 40px; }
+#sheet.lesbar .outro .quellen { font-family: var(--f-text); font-size: 32px; line-height: 1.3; padding-top: 24px; }
