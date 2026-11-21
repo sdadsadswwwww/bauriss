@@ -68,10 +68,18 @@ def anfrage(methode, url, token=None, daten=None):
         sys.exit(f'Instagram meldet einen Fehler ({fehler.code}): {text}')
 
 
+MAX_HASHTAGS = 5  # Instagram erlaubt seit 18.12.2025 höchstens 5 Hashtags je Beitrag oder Reel
+
+
+def hashtag_zeile(post):
+    """Die ersten 5 Hashtags: Name, zweite Schreibweise, Ort, Art, Fachgebiet. Die übrigen sind allgemein und entfallen."""
+    return ' '.join('#' + h for h in post['hashtags'][:MAX_HASHTAGS])
+
+
 def baue_caption(post):
     teile = list(post['caption'])
     teile.append('Quellen: ' + ' · '.join(post['quellen']))
-    teile.append(' '.join('#' + h for h in post['hashtags']))
+    teile.append(hashtag_zeile(post))
     return '\n\n'.join(teile)
 
 
@@ -106,7 +114,7 @@ def baue_reel_caption(post, modus):
     # Neben dem Carousel bewusst ein anderer Text: Der Schutz vor Doppelposts vergleicht die Texte.
     teile = [post['caption'][0], 'Alle Blätter zum Durchblättern stehen als Beitrag auf dem Profil.']
     teile.append('Quellen: ' + ' · '.join(post['quellen']))
-    teile.append(' '.join('#' + h for h in post['hashtags']))
+    teile.append(hashtag_zeile(post))
     return '\n\n'.join(teile)
 
 

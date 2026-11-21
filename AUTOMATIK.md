@@ -148,7 +148,7 @@ Vorlagen zum Nachlesen, bevor du schreibst: `posts/011-nord-ostsee-kanal.json` (
   { "typ": "outro", "headline": "Ein Bauwerk pro Tag", "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"] }
   ```
 - `caption`: zwei kurze Absätze mit dem Kern der Geschichte und eine Frage an die Leser, zusammen (Summe der Absätze) 230 bis 320 Zeichen, keine Emojis. Die Bildunterschrift darf im Präteritum stehen. Quellen und Hashtags hängt das Veröffentlichungsskript selbst an.
-- `hashtags`: genau 8, klein geschrieben, ohne `#`: Name des Bauwerks, eine zweite Schreibweise oder der Beiname, Ort, Art des Bauwerks, dazu `baugeschichte`, `architektur` oder `ingenieurbau`, `geschichte`, `bauwerke`.
+- `hashtags`: genau 8, klein geschrieben, ohne `#`: Name des Bauwerks, eine zweite Schreibweise oder der Beiname, Ort, Art des Bauwerks, dazu `baugeschichte`, `architektur` oder `ingenieurbau`, `geschichte`, `bauwerke`. Veröffentlicht werden nur die ersten 5 (Instagram erlaubt seit 18.12.2025 höchstens 5 je Beitrag), die Reihenfolge zählt also: die genauesten zuerst.
 - Alle Längenangaben in dieser Anleitung zählen den sichtbaren Text: ohne `<em>`, `&nbsp;` als ein Zeichen.
 
 ### Titelblatt
