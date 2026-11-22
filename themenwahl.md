@@ -1,5 +1,43 @@
 # Themenwahl Bauriss
 
+<!-- ideen-pool anfang: wird von ideen.py geschrieben, nicht von Hand ändern -->
+## Reihenfolge aus dem Ideen-Pool
+
+Stand 22.11.2026 09:08. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook (Bewertung und Begründung je Idee, mein Votum als Inhaber). Dieser Abschnitt geht der übrigen Themenliste vor (bei Bauriss auch dem Vorschlag aus `stand`); die Regeln für Recherche, Quellen, Belege und Abstand gelten weiter. Scheitert ein Thema an ihnen, das nächste nehmen und den Grund im Bericht nennen. Ein Jahrestag oder eine neue amtliche Zahl genau am Tag geht weiterhin vor. Der Wochenbericht ändert diesen Abschnitt nicht; er wird bei jedem Abgleich neu geschrieben.
+
+**Feste Tage** (an diesem Tag dieses Thema):
+
+- 07.12.2026: **Notre-Dame de Paris**. Nach dem Brand in fünf Jahren wieder aufgebaut, bezahlt mit Spenden von Hunderttausenden
+- 14.12.2026: **Viaduc de Millau**. Der höchste Pfeiler ist höher als der Eiffelturm
+- 22.12.2026: **Brandenburger Tor**. Seit 1989 wieder offen: Was das Tor gekostet hat und wer es baute
+- 23.12.2026: **Zeche Zollverein**. 40 Jahre nach der letzten Schicht: vom Bergwerk zum Welterbe
+- 31.12.2026: **Panamakanal**. 1999 an Panama übergeben: Was der Bau gekostet hat, an Geld und an Menschenleben
+
+**Als Nächstes, in dieser Reihenfolge** (für freie Tage ohne festes Thema):
+
+1. **Ulmer Münster**: Höchster Kirchturm der Welt, 1890 nach über 500 Jahren vollendet: Wer hat das bezahlt?
+2. **Freiheitsstatue**: Den Sockel bezahlten über 120.000 Menschen mit Kleinspenden, gesammelt von einer Zeitung
+3. **Flughafen Berlin Brandenburg**: Neun Jahre zu spät und ein Vielfaches teurer: Wo ist das Geld geblieben?
+4. **Reichstagsgebäude mit Kuppel**: Die Glaskuppel: Was der Umbau gekostet hat und wer entschieden hat
+5. **Sydney Opera House**: Mit einer Lotterie bezahlt, am Ende vielfach teurer als geplant
+6. **Jungfraubahn**: Ein Bahnhof auf 3.454 Metern, durch den Eiger gebohrt
+7. **Speicherstadt Hamburg**: Ein Stadtviertel auf Eichenpfählen
+
+**Jetzt nicht nehmen** (auch nicht, wenn die Liste sie vorschlägt):
+
+- Schiefer Turm von Pisa (später)
+- Edertalsperre (später)
+- Brooklyn Bridge (später)
+- Stuttgart 21 (nicht jetzt)
+- Kolosseum (später)
+- Cheops-Pyramide (nicht jetzt)
+- Chinesische Mauer (verworfen)
+- Drei-Schluchten-Talsperre (nicht jetzt)
+- Parlamentspalast Bukarest (später)
+
+Ist die Reihe abgearbeitet, gilt wieder die Themenliste.
+<!-- ideen-pool ende -->
+
 Stand: 22.11.2026 (Wochenbericht)
 
 Noch keine belastbaren Hinweise für die Themenwahl.
