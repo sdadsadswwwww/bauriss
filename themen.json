@@ -15,7 +15,7 @@
   {"name": "Olympiastadion München (Zeltdach)", "art": "Stadion", "region": "DACH", "post": "014-olympiastadion-muenchen"},
   {"name": "Eurotunnel", "art": "Tunnel", "region": "Europa", "post": "015-eurotunnel"},
   {"name": "Müngstener Brücke", "art": "Brücke", "region": "DACH", "post": "016-muengstener-bruecke"},
-  {"name": "Burj Khalifa", "art": "Hochhaus", "region": "Welt"},
+  {"name": "Burj Khalifa", "art": "Hochhaus", "region": "Welt", "post": "017-burj-khalifa"},
   {"name": "Ulmer Münster", "art": "Kirche", "region": "DACH"},
   {"name": "Speicherstadt Hamburg", "art": "Industriebau", "region": "DACH"},
   {"name": "Kolosseum", "art": "Antike", "region": "Europa"},

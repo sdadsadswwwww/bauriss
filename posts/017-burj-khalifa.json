@@ -1,0 +1,327 @@
+{
+  "nr": "017",
+  "titel": "Burj Khalifa",
+  "zeichnungen": "burjkhalifa",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Wolkenkratzer in Dubai",
+      "vorsatz": "rund",
+      "zahl": "1,5",
+      "headline": "Milliarden Dollar",
+      "aufhaenger": "Den Namen bekommt <em>Abu Dhabis</em> Herrscher.",
+      "figur": {
+        "fn": "burjVergleich"
+      }
+    },
+    {
+      "typ": "bild-rechts",
+      "kicker": "Der Rekord",
+      "headline": "828 Meter hoch",
+      "text": [
+        "Am 17. Januar 2009 erreicht der Turm seine Endhöhe. Das ist <em>320&nbsp;Meter</em> mehr als Taipei&nbsp;101, das bis dahin höchste Gebäude der Welt."
+      ],
+      "figur": {
+        "fn": "burjTurm"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2004 · Die Gründung",
+      "headline": "Ein Turm auf 850 Pfählen",
+      "text": [
+        "Zuerst kommen rund 200 große und 650 kleine Betonpfähle in den Boden. Darauf liegt eine Platte von <em>7000&nbsp;Quadratmetern</em>."
+      ],
+      "figur": {
+        "fn": "burjPfaehle"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Beton",
+      "headline": "Gepumpt bis auf 606 Meter",
+      "text": [
+        "Tagsüber ist es zu heiß, betoniert wird fast nur nachts. Eigens gebaute Pumpen drücken den Beton bis auf <em>606&nbsp;Meter</em> Höhe."
+      ],
+      "figur": {
+        "fn": "burjTurm",
+        "pumpe": true
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Baustelle",
+      "headline": "Die Arbeiter am Turm",
+      "punkte": [
+        {
+          "wert": "12.000",
+          "name": "Arbeiter",
+          "zusatz": "in Spitzenzeiten"
+        },
+        {
+          "wert": "4–8 $",
+          "name": "Lohn am Tag",
+          "zusatz": "Streik im März 2006"
+        },
+        {
+          "wert": "57",
+          "name": "Aufzüge",
+          "zusatz": ""
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "Sechs Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 2003.6,
+        "bis": 2010.5,
+        "phasen": [
+          {
+            "von": 2004.1,
+            "bis": 2010.01,
+            "art": "bau"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 2004.1,
+            "label": "2004",
+            "text": "Arbeiten an der Gründung"
+          },
+          {
+            "jahr": 2007.55,
+            "label": "2007",
+            "text": "höher als Taipei 101"
+          },
+          {
+            "jahr": 2009.05,
+            "label": "2009",
+            "text": "828 Meter erreicht"
+          },
+          {
+            "jahr": 2010.01,
+            "label": "2010",
+            "text": "Einweihung am 4. Januar"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Der Name dankt dem Nachbarn",
+      "text": [
+        "Dubai steckt in der Schuldenkrise, <em>Abu Dhabi</em> hilft."
+      ],
+      "punkte": [
+        {
+          "wert": "1,5 Mrd.",
+          "name": "Dollar Baukosten",
+          "zusatz": "Bauherr: Emaar"
+        },
+        {
+          "wert": "25 Mrd.",
+          "name": "Dollar Hilfe",
+          "zusatz": "aus Abu Dhabi für Dubai"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Von Berlin nach Dubai",
+      "headline": "Stahl aus dem Palast der Republik",
+      "text": [
+        "Nach dem Abriss des Palasts wird sein Stahl eingeschmolzen. In der Türkei entstehen daraus Träger, und ein Teil davon landet <em>im höchsten Haus der Welt</em>."
+      ],
+      "figur": {
+        "fn": "burjPalast"
+      }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 2010 das höchste Gebäude der Welt.",
+      "frage": "Wer hat ihn bezahlt?",
+      "figur": {
+        "fn": "burjVergleich"
+      }
+    },
+    "zeichnung": {
+      "zahl": "828",
+      "aussage": "Meter bis zur Spitze",
+      "figur": {
+        "fn": "burjTurm"
+      }
+    },
+    "antwort": {
+      "vorsatz": "rund",
+      "zahl": "1,5",
+      "einheit": "Milliarden Dollar",
+      "antwort": "Bauherr ist <em>Emaar</em>.",
+      "zusatz": "Den Namen gibt der Herrscher von Abu Dhabi."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Burj Khalifa",
+    "Al Jazeera",
+    "Der Standard",
+    "RTÉ",
+    "NBC News/AP",
+    "The Globe and Mail",
+    "Der Spiegel",
+    "Gulf News",
+    "baulinks.de",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "828 Meter: Seit 2010 ist der Burj Khalifa in Dubai das höchste Gebäude der Welt. Rund 1,5 Milliarden Dollar soll er gekostet haben.",
+    "Bei der Einweihung bekam er den Namen des Herrschers von Abu Dhabi, das Dubai in der Schuldenkrise half. Ein Teil seines Stahls stammt aus Berlin.",
+    "Warst du schon einmal oben?"
+  ],
+  "hashtags": [
+    "burjkhalifa",
+    "burjdubai",
+    "dubai",
+    "wolkenkratzer",
+    "hochhaus",
+    "ingenieurbau",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Baukosten rund 1,5 Milliarden US-Dollar",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower",
+        "https://www.derstandard.at/story/1262208761780/dubai-hoechstes-gebaeude-der-welt-eroeffnet",
+        "https://www.rte.ie/news/2010/0104/125944-dubai"
+      ],
+      "hinweis": "Al Jazeera und RTÉ schreiben „believed to have cost“, daher „rund“ und in der Bildunterschrift „soll gekostet haben“; die F.A.Z. nennt laut Suchtreffer geschätzte 1,8 Mrd. $ (nicht im Wortlaut geprüft)"
+    },
+    {
+      "angabe": "Bei der Einweihung am 4. Januar 2010 umbenannt von Burj Dubai in Burj Khalifa, nach Scheich Chalifa bin Zayid Al Nahyan, Herrscher von Abu Dhabi und Präsident der VAE",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.nbcnews.com/id/wbna34678889",
+        "https://www.baulinks.de/webplugin/2010/0054.php4",
+        "https://www.rte.ie/news/2010/0104/125944-dubai"
+      ]
+    },
+    {
+      "angabe": "Dubai in der Schuldenkrise; Abu Dhabi hilft im Jahr vor der Eröffnung mit rund 25 Milliarden Dollar; Namensgebung als Dank für die Hilfe gedeutet",
+      "quellen": [
+        "https://www.nbcnews.com/id/wbna34678889",
+        "https://beta.theglobeandmail.com/report-on-business/dubais-burj-khalifa-built-out-of-opulence-named-for-its-saviour/article1208413/",
+        "https://de.wikipedia.org/wiki/Burj_Khalifa"
+      ],
+      "hinweis": "NBC/AP: „direct and indirect injections totaling $25 billion last year“; Globe and Mail: „about $25-billion in bailout funds for Dubai in the past year“"
+    },
+    {
+      "angabe": "Bauherr und Eigentümer Emaar Properties",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower"
+      ]
+    },
+    {
+      "angabe": "Höhe 828 Meter, am 17. Januar 2009 erreicht; höchstes Gebäude der Welt",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.baulinks.de/webplugin/2010/0054.php4",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower"
+      ],
+      "hinweis": "Datum 17. Januar 2009 nur Wikipedia"
+    },
+    {
+      "angabe": "320 Meter höher als Taipei 101 (508 m), das bisher höchste Gebäude; übertroffen im Juli 2007",
+      "quellen": [
+        "https://www.baulinks.de/webplugin/2010/0054.php4",
+        "https://de.wikipedia.org/wiki/Burj_Khalifa"
+      ],
+      "hinweis": "Juli 2007 nur Wikipedia"
+    },
+    {
+      "angabe": "Berliner Fernsehturm 368 Meter (Vergleich in der Zeichnung)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Berliner_Fernsehturm"
+      ],
+      "hinweis": "seit 1997 368 m (vorher 365 m); nur Nebenangabe im Vergleich"
+    },
+    {
+      "angabe": "Gründung: rund 200 große und 650 kleine Betonpfähle, zusammen 850; Plattenfundament von 7000 Quadratmetern; Arbeiten ab Februar 2004",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.spiegel.de/reise/staedte/burj-chalifa-so-deutsch-ist-das-hoechste-haus-der-welt-a-670209.html"
+      ],
+      "hinweis": "7000 m² nur im Spiegel"
+    },
+    {
+      "angabe": "Beton bis auf 606 Meter gepumpt, eigens entwickelte Hochdruckpumpen",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.spiegel.de/reise/staedte/burj-chalifa-so-deutsch-ist-das-hoechste-haus-der-welt-a-670209.html"
+      ]
+    },
+    {
+      "angabe": "Wegen der Hitze fast nur nachts betoniert",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa"
+      ],
+      "hinweis": "nur eine Quelle (Wikipedia, mit Beleg F.A.Z.); Nebenangabe"
+    },
+    {
+      "angabe": "In Spitzenzeiten 12.000 Arbeiter",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower",
+        "https://www.nbcnews.com/id/wbna34678889"
+      ]
+    },
+    {
+      "angabe": "Lohn 4 bis 8 US-Dollar am Tag; Streik von etwa 2500 Bauarbeitern im März 2006",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower"
+      ],
+      "hinweis": "Al Jazeera nennt 5 $ Tageslohn (innerhalb der Spanne); Streik nur Wikipedia"
+    },
+    {
+      "angabe": "57 Aufzüge",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.aljazeera.com/news/2010/1/4/dubai-opens-worlds-tallest-tower"
+      ],
+      "hinweis": "Wikipedia nennt an anderer Stelle 54 Aufzüge"
+    },
+    {
+      "angabe": "Baubeginn 2004, Einweihung 4. Januar 2010",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.rte.ie/news/2010/0104/125944-dubai",
+        "https://www.baulinks.de/webplugin/2010/0054.php4"
+      ],
+      "hinweis": "Bauzeit gerundet „sechs Jahre“"
+    },
+    {
+      "angabe": "Stahl des Palasts der Republik nach dem Abriss (ab 2006) eingeschmolzen, über Sachsen-Anhalt in die Türkei, dort zu Trägern für den Turm verarbeitet; teilweise im Burj verbaut",
+      "quellen": [
+        "https://www.spiegel.de/reise/staedte/burj-chalifa-so-deutsch-ist-das-hoechste-haus-der-welt-a-670209.html",
+        "https://gulfnews.com/business/property/steel-from-historic-east-german-palace-used-to-build-burj-dubai-1.124124",
+        "https://de.wikipedia.org/wiki/Burj_Khalifa"
+      ],
+      "hinweis": "Menge je nach Quelle unterschiedlich (Gulf News: 25.000 t Stahl aus dem Abriss; Wikipedia: einige tausend Tonnen im Turm), deshalb keine Zahl"
+    }
+  ]
+}
