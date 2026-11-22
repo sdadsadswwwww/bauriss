@@ -1,0 +1,288 @@
+{
+ "blaetter": {
+  "stand": "b6fbb322b182bb8e",
+  "liste": [
+   {
+    "nr": 1,
+    "typ": "titel",
+    "woerter": {
+     "lesetext": 15,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Eisenbahnbrücke über der Wupper",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 2,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 33,
+     "zeichnung": 6,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Das Problem",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 4,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 3,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 32,
+     "zeichnung": 2,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1892 · Der Wettbewerb",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 1,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 4,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 30,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1896–1897 · Der Bogen",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 5,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 26,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "In Zahlen",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 6,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 6,
+     "zeichnung": 19,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Der Zeitplan",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 8,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 7,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 30,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Wer hat bezahlt?",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 8,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "2010–2021 · Die Sanierung",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 9,
+    "typ": "outro",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 15
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Quellen: Wikipedia: Müngstener Brücke · ",
+     "ort": "quellen"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   }
+  ]
+ },
+ "reel": {
+  "stand": "b6fbb322b182bb8e",
+  "bilder": [
+   {
+    "bild": "1",
+    "woerter": 15,
+    "kleinste": {
+     "px": 54,
+     "text": "Bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "2",
+    "woerter": 8,
+    "kleinste": {
+     "px": 44,
+     "text": "Müngstener Brücke"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "3",
+    "woerter": 21,
+    "kleinste": {
+     "px": 44,
+     "text": "Müngstener Brücke"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4",
+    "woerter": 17,
+    "kleinste": {
+     "px": 52,
+     "text": "Folgen: @der_bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4m",
+    "woerter": 7,
+    "kleinste": {
+     "px": 48,
+     "text": "Morgen:"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   }
+  ]
+ }
+}

@@ -1,0 +1,331 @@
+{
+  "nr": "016",
+  "titel": "Müngstener Brücke",
+  "zeichnungen": "muengsten",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Eisenbahnbrücke über der Wupper",
+      "vorsatz": "fast",
+      "zahl": "5",
+      "headline": "Millionen Mark",
+      "aufhaenger": "Bezahlt hat <em>der preußische Staat</em>.",
+      "figur": {
+        "fn": "muengstenBruecke",
+        "halb": 160
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Problem",
+      "headline": "Acht Kilometer, 44 auf Schienen",
+      "text": [
+        "Solingen und Remscheid liegen nah beieinander. Dazwischen liegt das tiefe Tal der Wupper. Der Zug fährt deshalb den Umweg über Vohwinkel, Elberfeld und Barmen: <em>44&nbsp;Kilometer</em>."
+      ],
+      "figur": {
+        "fn": "muengstenUmweg"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1892 · Der Wettbewerb",
+      "headline": "Ein Bogen statt 20 Pfeilern",
+      "text": [
+        "Ein Entwurf sieht 20 Pfeiler im Tal vor. Es gewinnt die Maschinenfabrik Augsburg-Nürnberg mit einem Bogen über <em>170&nbsp;Meter</em>. Im Fluss steht kein Pfeiler."
+      ],
+      "figur": {
+        "fn": "muengstenBruecke",
+        "mass": true
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1896–1897 · Der Bogen",
+      "headline": "Zwei Hälften ohne Gerüst",
+      "text": [
+        "Von beiden Hängen wachsen die Bogenhälften frei aufeinander zu, an der Spitze je ein Drehkran. Am <em>21.&nbsp;März 1897</em> schließt sich der Bogen."
+      ],
+      "figur": {
+        "fn": "muengstenBruecke",
+        "teil": "vorbau"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "In Zahlen",
+      "headline": "Höchste Bahnbrücke Deutschlands",
+      "punkte": [
+        {
+          "wert": "107 m",
+          "name": "über der Wupper",
+          "zusatz": "Höhe der Schienen"
+        },
+        {
+          "wert": "465 m",
+          "name": "Gesamtlänge",
+          "zusatz": ""
+        },
+        {
+          "wert": "5000 t",
+          "name": "Stahl",
+          "zusatz": ""
+        },
+        {
+          "wert": "950.000",
+          "name": "Niete",
+          "zusatz": "die letzte im März 1897"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Zeitplan",
+      "headline": "Gut drei Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1889.5,
+        "bis": 1898.3,
+        "phasen": [
+          {
+            "von": 1894.15,
+            "bis": 1897.54,
+            "art": "bau"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1890.3,
+            "label": "1890",
+            "text": "Landtag bewilligt das Geld"
+          },
+          {
+            "jahr": 1892.5,
+            "label": "1892",
+            "text": "Bogen gewinnt Wettbewerb"
+          },
+          {
+            "jahr": 1894.15,
+            "label": "1894",
+            "text": "Spatenstich am 26. Februar"
+          },
+          {
+            "jahr": 1897.54,
+            "label": "1897",
+            "text": "Einweihung am 15. Juli"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Preußen zahlt die Strecke",
+      "text": [
+        "<em>Die Städte</em> zahlen den Grund."
+      ],
+      "punkte": [
+        {
+          "wert": "4,98 Mio.",
+          "name": "Mark vom Landtag",
+          "zusatz": "für die ganze Bahnlinie"
+        },
+        {
+          "wert": "2,65 Mio.",
+          "name": "Mark für die Brücke",
+          "zusatz": "Eisen, Erde, Mauerwerk"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2010–2021 · Die Sanierung",
+      "headline": "Gesperrt und gerettet",
+      "text": [
+        "2010 sperrt die Bahn die Brücke: Lager beschädigt, Stahl verrostet. Bis 2021 saniert sie das Bauwerk für mehr als <em>30&nbsp;Millionen Euro</em>."
+      ],
+      "figur": {
+        "fn": "muengstenBruecke",
+        "akzent": "fahrbahn",
+        "halb": 160
+      }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 1897 hoch über dem Tal der Wupper.",
+      "frage": "Wer hat sie bezahlt?",
+      "figur": {
+        "fn": "muengstenBruecke",
+        "halb": 160
+      }
+    },
+    "zeichnung": {
+      "zahl": "107",
+      "aussage": "Meter über der Wupper",
+      "figur": {
+        "fn": "muengstenBruecke",
+        "halb": 120
+      }
+    },
+    "antwort": {
+      "vorsatz": "fast",
+      "zahl": "5",
+      "einheit": "Millionen Mark",
+      "antwort": "Der <em>preußische Staat</em>.",
+      "zusatz": "Bewilligt 1890 für die ganze Strecke samt Brücke."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Müngstener Brücke",
+    "Welterbe Müngstener Brücke e. V.",
+    "Deutsche Bahn",
+    "structurae.net",
+    "KuLaDig",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Seit 1897 fahren Züge 107 Meter hoch über die Wupper. Vorher waren es von Solingen nach Remscheid 44 Kilometer auf Schienen, in Luftlinie nur acht.",
+    "Fast fünf Millionen Mark bewilligte Preußen für die Strecke. Der Bogen wuchs ohne Gerüst von beiden Hängen aufeinander zu.",
+    "Kennst du jemanden aus Solingen oder Remscheid?"
+  ],
+  "hashtags": [
+    "muengstenerbruecke",
+    "kaiserwilhelmbruecke",
+    "solingen",
+    "eisenbahnbruecke",
+    "ingenieurbau",
+    "baugeschichte",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Bausumme 1890 vom preußischen Landtag genehmigt: knapp fünf Millionen Mark (4.978.000 Mark) für die Bahnverbindung Remscheid–Solingen samt Brücke",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie",
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086",
+        "https://www.kuladig.de/Objektansicht/KLD-258388"
+      ],
+      "hinweis": "genaue Summe 4.978.000 Mark nur bei der DB; Wikipedia und KuLaDig nennen fünf Millionen, der Welterbe-Verein knapp fünf Millionen; KuLaDig datiert die Bewilligung auf 1889, die übrigen auf 1890"
+    },
+    {
+      "angabe": "Die Städte trugen den Grunderwerb",
+      "quellen": [
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie"
+      ],
+      "hinweis": "nur eine Quelle (Verein der Städte); Nebenangabe ohne Betrag"
+    },
+    {
+      "angabe": "Kosten der Brücke 2.646.386,25 Mark: Eisenkonstruktion 2.276.751,22 Mark, Erd- und Mauerwerk 369.635,03 Mark",
+      "quellen": [
+        "https://structurae.net/de/bauwerke/muengstener-bruecke"
+      ],
+      "hinweis": "nur eine Quelle (Fachlexikon); Summe nachgerechnet, auf 2,65 Mio. gerundet; deshalb nicht auf dem Titelblatt"
+    },
+    {
+      "angabe": "Luftlinie zwischen Remscheid und Solingen acht Kilometer; kürzester Schienenweg vorher 44 Kilometer über Vohwinkel, Elberfeld und Barmen",
+      "quellen": [
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie",
+        "https://www.kuladig.de/Objektansicht/KLD-258388",
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke"
+      ],
+      "hinweis": "Wikipedia nennt abweichend 42 km Schienenweg; 44 km bei Welterbe-Verein und KuLaDig"
+    },
+    {
+      "angabe": "Wettbewerb Ende 1891; Gutehoffnungshütte schlägt Gerüstbrücke mit 20 Pfeilern vor; Brückenbauanstalt Gustavsburg der Maschinenfabrik Augsburg-Nürnberg gewinnt 1892 mit einer Bogenbrücke; kein Pfeiler im Flussbett",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie"
+      ]
+    },
+    {
+      "angabe": "Bogen mit 170 Meter Stützweite",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086"
+      ],
+      "hinweis": "KuLaDig nennt abweichend 160 m"
+    },
+    {
+      "angabe": "Bogen im freien Vorbau ohne Gerüst, beide Hälften wachsen aufeinander zu, Drehkrane an den Spitzen; Bogenmontage ab Sommer 1896, Bogenschluss am 21. März 1897",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie"
+      ],
+      "hinweis": "Drehkrane nur beim Welterbe-Verein"
+    },
+    {
+      "angabe": "Schienen 107 Meter über der Wupper, höchste Eisenbahnbrücke Deutschlands",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086",
+        "https://structurae.net/de/bauwerke/muengstener-bruecke"
+      ]
+    },
+    {
+      "angabe": "Gesamtlänge 465 Meter",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086"
+      ],
+      "hinweis": "KuLaDig nennt abweichend 494 m"
+    },
+    {
+      "angabe": "5000 Tonnen Stahl",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086",
+        "https://www.kuladig.de/Objektansicht/KLD-258388"
+      ],
+      "hinweis": "DB: über 5.000 t; structurae nennt genau 4.978,4 t Metall"
+    },
+    {
+      "angabe": "950.000 Niete, der letzte am 22. März 1897 eingeschlagen",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie",
+        "https://www.kuladig.de/Objektansicht/KLD-258388"
+      ],
+      "hinweis": "die DB nennt über 900.000 bzw. rund 960.000"
+    },
+    {
+      "angabe": "Erster Spatenstich 26. Februar 1894; Einweihung 15. Juli 1897",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://www.welterbe-muengstener-bruecke.de/die-muengstener-bruecke/historie"
+      ],
+      "hinweis": "Bauzeit rund dreieinhalb Jahre, auf dem Blatt „gut drei Jahre“; die DB nennt Baubeginn Sommer 1893 (Vorarbeiten)"
+    },
+    {
+      "angabe": "Bis 1918 Kaiser-Wilhelm-Brücke",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke",
+        "https://structurae.net/de/bauwerke/muengstener-bruecke"
+      ]
+    },
+    {
+      "angabe": "2010 Lagerschäden und Rost; Sperrung durch DB Netz am 19. November 2010",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke"
+      ],
+      "hinweis": "nur Wikipedia (mit Belegen aus der Presse); Nebenangabe"
+    },
+    {
+      "angabe": "Sanierung 2021 abgeschlossen, Kosten mehr als 30 Millionen Euro",
+      "quellen": [
+        "https://www.deutschebahn.com/de/presse/presse-regional/pr-duesseldorf-de/DB-in-NRW/Muengstener-Bruecke-10389086",
+        "https://de.wikipedia.org/wiki/M%C3%BCngstener_Br%C3%BCcke"
+      ],
+      "hinweis": "Betreiber nennt mehr als 30 Mio. €; Wikipedia nennt 30 Mio. € als Schätzung"
+    }
+  ]
+}
