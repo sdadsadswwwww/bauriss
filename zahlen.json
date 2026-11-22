@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-21T12:08",
+  "stand": "2026-11-22T06:17",
   "konto": {
-    "follower": 5,
-    "beitraege": 14
+    "follower": 6,
+    "beitraege": 17
   },
   "medien": [
     {
@@ -14,7 +14,7 @@
       "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 15,
+      "aufrufe": 16,
       "interaktionen": 1
     },
     {
@@ -74,7 +74,7 @@
       "reichweite": 10,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 24,
+      "aufrufe": 27,
       "interaktionen": 4
     },
     {
@@ -95,10 +95,10 @@
       "datum": "2026-11-17",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 3,
+      "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 12,
+      "aufrufe": 14,
       "interaktionen": 1
     },
     {
@@ -109,9 +109,9 @@
       "kommentare": 2,
       "reichweite": 53,
       "gespeichert": 0,
-      "geteilt": 0,
-      "aufrufe": 66,
-      "interaktionen": 4
+      "geteilt": 1,
+      "aufrufe": 72,
+      "interaktionen": 5
     },
     {
       "post": "006-elbphilharmonie",
@@ -122,7 +122,7 @@
       "reichweite": 3,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 13,
+      "aufrufe": 15,
       "interaktionen": 1
     },
     {
@@ -167,11 +167,35 @@
       "datum": "2026-11-20",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 3,
+      "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 8,
+      "aufrufe": 10,
       "interaktionen": 3
+    },
+    {
+      "post": "009-gotthard-basistunnel",
+      "art": "reel",
+      "datum": "2026-11-21",
+      "likes": 3,
+      "kommentare": 0,
+      "reichweite": 116,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 124,
+      "interaktionen": 3
+    },
+    {
+      "post": "009-gotthard-basistunnel",
+      "art": "carousel",
+      "datum": "2026-11-21",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 2,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 5,
+      "interaktionen": 0
     }
   ]
 }
