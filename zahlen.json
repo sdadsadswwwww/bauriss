@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-22T06:17",
+  "stand": "2026-11-23T06:36",
   "konto": {
     "follower": 6,
-    "beitraege": 17
+    "beitraege": 19
   },
   "medien": [
     {
@@ -83,10 +83,10 @@
       "datum": "2026-11-17",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 55,
+      "reichweite": 56,
       "gespeichert": 0,
       "geteilt": 3,
-      "aufrufe": 67,
+      "aufrufe": 70,
       "interaktionen": 6
     },
     {
@@ -95,10 +95,10 @@
       "datum": "2026-11-17",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 14,
+      "aufrufe": 15,
       "interaktionen": 1
     },
     {
@@ -107,10 +107,10 @@
       "datum": "2026-11-18",
       "likes": 2,
       "kommentare": 2,
-      "reichweite": 53,
+      "reichweite": 55,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 72,
+      "aufrufe": 74,
       "interaktionen": 5
     },
     {
@@ -119,10 +119,10 @@
       "datum": "2026-11-18",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 3,
+      "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 15,
+      "aufrufe": 16,
       "interaktionen": 1
     },
     {
@@ -131,10 +131,10 @@
       "datum": "2026-11-19",
       "likes": 2,
       "kommentare": 0,
-      "reichweite": 114,
+      "reichweite": 116,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 131,
+      "aufrufe": 132,
       "interaktionen": 2
     },
     {
@@ -143,10 +143,10 @@
       "datum": "2026-11-19",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 9,
+      "reichweite": 10,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 21,
+      "aufrufe": 22,
       "interaktionen": 4
     },
     {
@@ -155,10 +155,10 @@
       "datum": "2026-11-20",
       "likes": 2,
       "kommentare": 0,
-      "reichweite": 102,
+      "reichweite": 104,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 112,
+      "aufrufe": 117,
       "interaktionen": 2
     },
     {
@@ -167,10 +167,10 @@
       "datum": "2026-11-20",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 10,
+      "aufrufe": 11,
       "interaktionen": 3
     },
     {
@@ -179,10 +179,10 @@
       "datum": "2026-11-21",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 116,
+      "reichweite": 118,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 124,
+      "aufrufe": 127,
       "interaktionen": 3
     },
     {
@@ -191,11 +191,35 @@
       "datum": "2026-11-21",
       "likes": 0,
       "kommentare": 0,
+      "reichweite": 5,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 10,
+      "interaktionen": 0
+    },
+    {
+      "post": "010-schloss-neuschwanstein",
+      "art": "reel",
+      "datum": "2026-11-22",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 119,
+      "gespeichert": 0,
+      "geteilt": 1,
+      "aufrufe": 136,
+      "interaktionen": 2
+    },
+    {
+      "post": "010-schloss-neuschwanstein",
+      "art": "carousel",
+      "datum": "2026-11-22",
+      "likes": 1,
+      "kommentare": 0,
       "reichweite": 2,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 5,
-      "interaktionen": 0
+      "aufrufe": 2,
+      "interaktionen": 1
     }
   ]
 }
