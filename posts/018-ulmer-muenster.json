@@ -1,0 +1,115 @@
+{
+  "nr": "018",
+  "titel": "Ulmer Münster",
+  "zeichnungen": "ulmermuenster",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Evangelische Kirche in Ulm, seit 1377",
+      "zahl": "25",
+      "headline": "Millionen Euro",
+      "aufhaenger": "Soll allein die Kur des <em>alten Turms</em> kosten.",
+      "figur": { "fn": "ulmAnsicht", "hoehe": 450 }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1377 · Der Anfang",
+      "headline": "Die Bürger bauen selbst",
+      "text": ["Ulm hat kaum 10.000 Einwohner. Sie bezahlen ihre neue Kirche <em>selbst</em>. Am 30.&nbsp;Juni 1377 legt Bürgermeister Lutz Krafft den Grundstein."],
+      "figur": { "fn": "ulmAnsicht", "stand": "1377", "akzent": "chor", "beschriftung": "chor", "hoehe": 560 }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1392 · Der Plan",
+      "headline": "Aus der Halle wird eine Basilika",
+      "text": ["Baumeister Ulrich Ensinger träumt von einem Hauptturm über 150&nbsp;Meter. Damit die Maße stimmen, soll das Mittelschiff <em>deutlich höher</em> werden."],
+      "figur": { "fn": "ulmSchnitt" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1543 · Der Stillstand",
+      "headline": "Rund 300 Jahre Pause",
+      "text": ["Reformation, Spannungen in der Stadt und Geldmangel: 1543 ruht der Bau. Der Hauptturm ist rund <em>100&nbsp;Meter</em> hoch, die Chortürme etwa 32."],
+      "figur": { "fn": "ulmAnsicht", "stand": "1543", "akzent": "stumpf", "beschriftung": "stumpf", "hoehe": 560 }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1885–1890 · Der Turm",
+      "headline": "Zehn Meter höher als geplant",
+      "text": ["Ab 1844 wird weitergebaut. Ab 1885 vollendet August von Beyer den Hauptturm. Am 31.&nbsp;Mai 1890 sitzt die Kreuzblume: <em>161,53&nbsp;Meter</em>."],
+      "figur": { "fn": "ulmAnsicht", "akzent": "helm", "beschriftung": "turm", "hoehe": 560 }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "513 Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1360,
+        "bis": 1910,
+        "phasen": [
+          { "von": 1377.5, "bis": 1543, "art": "bau" },
+          { "von": 1543, "bis": 1844, "art": "pause", "text": "300 Jahre Stillstand" },
+          { "von": 1844, "bis": 1890.4, "art": "bau" }
+        ],
+        "marken": [
+          { "jahr": 1377.5, "label": "1377", "text": "Grundstein am 30. Juni" },
+          { "jahr": 1543, "text": "Baustopp" },
+          { "jahr": 1844, "text": "Weiterbau" },
+          { "jahr": 1890.4, "label": "1890", "text": "Kreuzblume: 161,53 m" }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2025 · Der Rekord",
+      "headline": "135 Jahre ganz oben",
+      "text": ["So lange steht in Ulm der höchste Kirchturm der Welt. Im Oktober 2025 zieht der Christusturm der <em>Sagrada Família</em> vorbei."],
+      "figur": { "fn": "ulmVergleich" }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Viele zahlen für den Turm",
+      "text": ["Kirche, Stadt, Denkmalpflege und Münsterbauverein wollen sich die Kosten teilen. Dazu kommen <em>Spenden</em>."],
+      "punkte": [
+        { "wert": "25 Mio.", "name": "Euro veranschlagt", "zusatz": "zehn Jahre Arbeit ab 2015" },
+        { "wert": "2700", "name": "Steine zu ersetzen", "zusatz": "" }
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "reel": {
+    "frage": { "zeile": "Gebaut von 1377 bis 1890, mitten in Ulm.", "frage": "Wer hat es bezahlt?", "figur": { "fn": "ulmAnsicht" } },
+    "zeichnung": { "zahl": "513", "aussage": "Jahre bis zur Kreuzblume", "figur": { "fn": "ulmAnsicht" } },
+    "antwort": { "zahl": "1377", "einheit": "Grundsteinlegung", "antwort": "Die <em>Bürger</em> selbst.", "zusatz": "Ulm hat damals kaum 10.000 Einwohner." }
+  },
+  "quellen": ["Wikipedia: Ulmer Münster", "ulmer-muenster.de", "Sonntagsblatt", "Schwäbische Zeitung", "BauNetz Wissen", "taz", "Abruf 11/2026"],
+  "caption": [
+    "1377 legten die Ulmer den Grundstein für ihr Münster und bezahlten es selbst. Fertig war es erst 1890, nach 513 Jahren und rund 300 Jahren Stillstand.",
+    "Mit 161,53 Metern hatte Ulm 135 Jahre lang den höchsten Kirchturm der Welt. Die Sanierung des alten Turmteils war mit 25 Millionen Euro veranschlagt.",
+    "Kennst du jemanden aus Ulm?"
+  ],
+  "hashtags": ["ulmermuenster", "ulmminster", "ulm", "kirchturm", "baugeschichte", "architektur", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Sanierung des mittelalterlichen Teils des Hauptturms: 25 Millionen Euro veranschlagt, zehn Jahre ab Mai 2015", "quellen": ["https://www.schwaebische.de/regional/ulm-alb-donau/ulm/muensterturm-verschlingt-25-millionen-euro-771845", "https://www.baunetzwissen.de/gerueste-und-schalungen/objekte/bildung-kultur/ulmer-muenster-4779823"], "hinweis": "Stand der Planung 2014; ob der Betrag eingehalten wurde, nennen die Quellen nicht, deshalb „veranschlagt“" },
+    { "angabe": "Kosten tragen Kirche, Stadt, Landesdenkmalpflege und Münsterbauverein, dazu Spenden", "quellen": ["https://www.schwaebische.de/regional/ulm-alb-donau/ulm/muensterturm-verschlingt-25-millionen-euro-771845", "https://www.baunetzwissen.de/gerueste-und-schalungen/objekte/bildung-kultur/ulmer-muenster-4779823"], "hinweis": "Schwäbische: Kirche, Stadt, Landesdenkmalpflege, Münsterbauverein „wollen gemeinsam schultern“, dazu Spenden; BauNetz: Kirchengemeinde, Landeskirche, Denkmalamt und Spenden" },
+    { "angabe": "2700 Steine zu ersetzen, 1800 zu restaurieren, alter Turmteil 70 m", "quellen": ["https://www.schwaebische.de/regional/ulm-alb-donau/ulm/muensterturm-verschlingt-25-millionen-euro-771845"], "hinweis": "nur eine Quelle (Zeitung, Angabe des Münsterbaumeisters)" },
+    { "angabe": "Grundstein am 30. Juni 1377 durch Bürgermeister Ludwig (Lutz) Krafft", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://sonntagsblatt.de/artikel/kirche/protestantisch-ulm-hoeher-weiter-laenger", "https://www.ulmer-muenster.de/entdecken/baugeschichte"] },
+    { "angabe": "Von den Bürgern selbst finanziert; Ulm hatte kaum 10.000 Einwohner", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://www.oberschwaben-tourismus.de/attraktionen/ulmer-muenster-e99566ae37", "https://sonntagsblatt.de/artikel/kirche/protestantisch-ulm-hoeher-weiter-laenger"], "hinweis": "Oberschwaben-Tourismus: „finanziert allein von ihnen selbst“; Sonntagsblatt: ungefähr 10.000 Einwohner" },
+    { "angabe": "513 Jahre von 1377 bis zur Vollendung am 31. Mai 1890 (Kreuzblume), Baumeister August von Beyer, Turmbau ab 1885", "quellen": ["https://www.ulmer-muenster.de/entdecken/baugeschichte", "https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"], "hinweis": "„Nach 513 Jahren“ steht bei der Gemeinde; Wikipedia nennt 1377 und 31. Mai 1890; Beginn 1885 nur bei Wikipedia" },
+    { "angabe": "Hauptturm 161,53 m", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://sonntagsblatt.de/artikel/kirche/protestantisch-ulm-hoeher-weiter-laenger", "https://www.oberschwaben-tourismus.de/attraktionen/ulmer-muenster-e99566ae37"] },
+    { "angabe": "Rund 135 Jahre höchster Kirchturm der Welt, im Oktober 2025 vom Christusturm der Sagrada Família übertroffen (172,5 m)", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://taz.de/Segrada-Familia-in-Barcelona/!6125814"], "hinweis": "Wikipedia: 30. Oktober 2025; taz vom 31.10.2025; daher nur der Monat" },
+    { "angabe": "Baustopp 1543 (Reformation, innenpolitische Spannungen, Geldknappheit), Hauptturm rund 100 m, Chortürme etwa 32 m", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"], "hinweis": "nur eine Quelle; Pause von 1543 an „für ca. 300 Jahre“ auch bei https://www.ulmer-muenster.de/entdecken/baugeschichte" },
+    { "angabe": "Weiterbau ab 1844", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster", "https://www.ulmer-muenster.de/entdecken/baugeschichte"] },
+    { "angabe": "Hauptturm gegenüber den ursprünglichen Plänen um zehn Meter erhöht", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"], "hinweis": "nur eine Quelle" },
+    { "angabe": "1392 Ulrich Ensinger, träumte von einem über 150 m hohen Hauptturm; Schiff sollte deutlich höher werden (Basilika statt Halle)", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"], "hinweis": "nur eine Quelle" },
+    { "angabe": "Mittelschiff 41,6 m, Seitenschiffe 20,55 m hoch; Kirche 48,8 m breit, 123,56 m lang; Chor 29 m lang; Chortürme 86 m", "quellen": ["https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"], "hinweis": "Maße der Zeichnungen nur aus einer Quelle; Länge 123,56 m auch im Sonntagsblatt" },
+    { "angabe": "Kölner Dom 157 m, vollendet 1880", "quellen": ["https://de.wikipedia.org/wiki/K%C3%B6lner_Dom", "https://de.wikipedia.org/wiki/Ulmer_M%C3%BCnster"] }
+  ]
+}

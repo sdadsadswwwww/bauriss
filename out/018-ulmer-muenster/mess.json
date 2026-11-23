@@ -1,0 +1,291 @@
+{
+ "blaetter": {
+  "stand": "c814357b6139cf36",
+  "liste": [
+   {
+    "nr": 1,
+    "typ": "titel",
+    "woerter": {
+     "lesetext": 19,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Evangelische Kirche in Ulm, seit 1377",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 2,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 4,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1377 · Der Anfang",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 3,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 3,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 29,
+     "zeichnung": 6,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1392 · Der Plan",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 4,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 4,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 29,
+     "zeichnung": 6,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1543 · Der Stillstand",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 2,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 5,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 29,
+     "zeichnung": 3,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1885–1890 · Der Turm",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 2,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 6,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 5,
+     "zeichnung": 16,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Die Zeit",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 9,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 7,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 27,
+     "zeichnung": 12,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "2025 · Der Rekord",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 9,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 8,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 34,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Wer hat bezahlt?",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 9,
+    "typ": "outro",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 13
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Quellen: Wikipedia: Ulmer Münster · ulme",
+     "ort": "quellen"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   }
+  ]
+ },
+ "reel": {
+  "stand": "c814357b6139cf36",
+  "bilder": [
+   {
+    "bild": "1",
+    "woerter": 15,
+    "kleinste": {
+     "px": 54,
+     "text": "Bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "2",
+    "woerter": 8,
+    "kleinste": {
+     "px": 44,
+     "text": "Ulmer Münster"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "3",
+    "woerter": 17,
+    "kleinste": {
+     "px": 44,
+     "text": "Ulmer Münster"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4",
+    "woerter": 17,
+    "kleinste": {
+     "px": 52,
+     "text": "Folgen: @der_bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4m",
+    "woerter": 7,
+    "kleinste": {
+     "px": 48,
+     "text": "Morgen:"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   }
+  ]
+ }
+}

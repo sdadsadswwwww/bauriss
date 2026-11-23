@@ -16,7 +16,7 @@
   {"name": "Eurotunnel", "art": "Tunnel", "region": "Europa", "post": "015-eurotunnel"},
   {"name": "Müngstener Brücke", "art": "Brücke", "region": "DACH", "post": "016-muengstener-bruecke"},
   {"name": "Burj Khalifa", "art": "Hochhaus", "region": "Welt", "post": "017-burj-khalifa"},
-  {"name": "Ulmer Münster", "art": "Kirche", "region": "DACH"},
+  {"name": "Ulmer Münster", "art": "Kirche", "region": "DACH", "post": "018-ulmer-muenster"},
   {"name": "Speicherstadt Hamburg", "art": "Industriebau", "region": "DACH"},
   {"name": "Kolosseum", "art": "Antike", "region": "Europa"},
   {"name": "Panamakanal", "art": "Kanal", "region": "Welt"},
