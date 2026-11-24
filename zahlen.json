@@ -1,21 +1,21 @@
 {
-  "stand": "2026-11-23T06:36",
+  "stand": "2026-11-24T06:26",
   "konto": {
     "follower": 6,
-    "beitraege": 19
+    "beitraege": 22
   },
   "medien": [
     {
       "post": "001-eiffelturm",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 1,
+      "likes": 3,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
-      "geteilt": 0,
-      "aufrufe": 16,
-      "interaktionen": 1
+      "geteilt": 1,
+      "aufrufe": 17,
+      "interaktionen": 4
     },
     {
       "post": "002-alter-elbtunnel",
@@ -95,10 +95,10 @@
       "datum": "2026-11-17",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 5,
+      "reichweite": 6,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 15,
+      "aufrufe": 19,
       "interaktionen": 1
     },
     {
@@ -143,10 +143,10 @@
       "datum": "2026-11-19",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 10,
+      "reichweite": 11,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 22,
+      "aufrufe": 23,
       "interaktionen": 4
     },
     {
@@ -167,10 +167,10 @@
       "datum": "2026-11-20",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 5,
+      "reichweite": 6,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 11,
+      "aufrufe": 12,
       "interaktionen": 3
     },
     {
@@ -179,10 +179,10 @@
       "datum": "2026-11-21",
       "likes": 3,
       "kommentare": 0,
-      "reichweite": 118,
+      "reichweite": 119,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 127,
+      "aufrufe": 128,
       "interaktionen": 3
     },
     {
@@ -191,10 +191,10 @@
       "datum": "2026-11-21",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 5,
+      "reichweite": 6,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 10,
+      "aufrufe": 11,
       "interaktionen": 0
     },
     {
@@ -203,10 +203,10 @@
       "datum": "2026-11-22",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 119,
+      "reichweite": 123,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 136,
+      "aufrufe": 140,
       "interaktionen": 2
     },
     {
@@ -215,11 +215,35 @@
       "datum": "2026-11-22",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 2,
+      "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 2,
+      "aufrufe": 7,
       "interaktionen": 1
+    },
+    {
+      "post": "011-nord-ostsee-kanal",
+      "art": "reel",
+      "datum": "2026-11-23",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 105,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 122,
+      "interaktionen": 0
+    },
+    {
+      "post": "011-nord-ostsee-kanal",
+      "art": "carousel",
+      "datum": "2026-11-23",
+      "likes": 2,
+      "kommentare": 0,
+      "reichweite": 3,
+      "gespeichert": 0,
+      "geteilt": 1,
+      "aufrufe": 7,
+      "interaktionen": 4
     }
   ]
 }
