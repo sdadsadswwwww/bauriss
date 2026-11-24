@@ -1,0 +1,311 @@
+{
+  "nr": "019",
+  "titel": "Freiheitsstatue",
+  "zeichnungen": "freiheitsstatue",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Denkmal im Hafen von New York",
+      "vorsatz": "über",
+      "zahl": "100",
+      "headline": "Tausend Dollar",
+      "aufhaenger": "Gespendet von <em>120.000 Menschen</em>.",
+      "figur": {
+        "fn": "libertyAnsicht"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1875 · Die Abmachung",
+      "headline": "Statue aus Paris, Sockel aus New York",
+      "text": [
+        "Édouard de Laboulaye schlägt 1875 vor: Die Franzosen bezahlen die Statue, die Amerikaner den Sockel. In Frankreich hilft auch <em>eine Lotterie</em>."
+      ],
+      "figur": {
+        "fn": "libertyAnsicht",
+        "hoehe": 540,
+        "akzent": "statue",
+        "mass": false,
+        "teilung": true
+      }
+    },
+    {
+      "typ": "bild-rechts",
+      "kicker": "Die Hülle",
+      "headline": "Kupfer auf Eisen",
+      "text": [
+        "Getriebene Kupferplatten hängen an einem Eisengerüst von Gustave Eiffel. Die Haut ist nur <em>2,4&nbsp;Millimeter</em> dick."
+      ],
+      "figur": {
+        "fn": "libertyGeruest"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1885 · Die Reise",
+      "headline": "In 350 Teilen verschifft",
+      "text": [
+        "Im Juni 1885 bringt die Fregatte Isère die Statue in 214 Kisten über den Atlantik. Der Sockel ist da noch <em>nicht fertig</em>."
+      ],
+      "figur": {
+        "fn": "libertySchiff"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Zeitungsleser zahlen den Rest",
+      "text": [
+        "Für den Sockel fehlt Geld. Joseph Pulitzer sammelt in seiner Zeitung und druckt <em>jeden Namen</em>."
+      ],
+      "punkte": [
+        {
+          "wert": "120.000",
+          "name": "Spender",
+          "zusatz": "1885"
+        },
+        {
+          "wert": "102.000 $",
+          "name": "gesammelt",
+          "zusatz": "meist bis 1 Dollar"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Sockel",
+      "headline": "Zement aus Wiesbaden",
+      "text": [
+        "Der Sockel ist aus Beton, außen mit Granit verkleidet. Den Zement liefert Dyckerhoff aus Amöneburg: <em>8.000 Holzfässer</em>."
+      ],
+      "figur": {
+        "fn": "libertySockel"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Die Zeit",
+      "headline": "Elf Jahre Arbeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1874,
+        "bis": 1888,
+        "phasen": [
+          {
+            "von": 1875,
+            "bis": 1884.5,
+            "art": "bau",
+            "text": "Statue in Paris"
+          },
+          {
+            "von": 1884.6,
+            "bis": 1886.82,
+            "art": "bau"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1875,
+            "text": "Laboulayes Vorschlag"
+          },
+          {
+            "jahr": 1885.45,
+            "label": "1885",
+            "text": "Statue in New York"
+          },
+          {
+            "jahr": 1886.82,
+            "label": "1886",
+            "text": "Einweihung am 28. Oktober"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 1886 im Hafen von New York.",
+      "frage": "Wer hat sie bezahlt?",
+      "figur": {
+        "fn": "libertyAnsicht"
+      }
+    },
+    "zeichnung": {
+      "zahl": "93",
+      "aussage": "Meter bis zur Fackel",
+      "figur": {
+        "fn": "libertyAnsicht"
+      }
+    },
+    "antwort": {
+      "vorsatz": "über",
+      "zahl": "100",
+      "einheit": "Tausend Dollar",
+      "antwort": "<em>120.000 Menschen</em> spenden.",
+      "zusatz": "So wird der Sockel fertig."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Freiheitsstatue",
+    "nps.gov (National Park Service)",
+    "Columbia University Libraries",
+    "history.com",
+    "dyckerhoff.com",
+    "Stadtlexikon Wiesbaden",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Die Freiheitsstatue war ein Geschenk Frankreichs. Den Sockel mussten die Amerikaner bezahlen, und dafür fehlte lange das Geld.",
+    "1885 sammelte Joseph Pulitzer mit seiner Zeitung über 100.000 Dollar von über 120.000 Menschen, meist in Gaben bis zu einem Dollar. Der Zement kam aus Wiesbaden.",
+    "Kennst du jemanden, der schon oben war?"
+  ],
+  "hashtags": [
+    "freiheitsstatue",
+    "statueofliberty",
+    "newyork",
+    "denkmal",
+    "baugeschichte",
+    "architektur",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Spendenaktion der New York World 1885 für den Sockel: über 100.000 Dollar (genau 102.000 Dollar) von über 120.000 Spendern, bis 11. August 1885",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://home.nps.gov/stli/learn/historyculture/pulitzer-in-depth.htm",
+        "https://exhibitions.library.columbia.edu/exhibits/show/pulitzer/the-statue-of-liberty"
+      ],
+      "hinweis": "102.000 $ und 120.000 Spender stehen so in Wikipedia; NPS und Columbia nennen „over $100,000“ und „over 120,000“; eine andere NPS-Seite nennt rund 125.000 Spender. Groß steht deshalb „über 100 Tausend Dollar“."
+    },
+    {
+      "angabe": "Die meisten Spenden betrugen einen Dollar oder weniger",
+      "quellen": [
+        "https://www.nps.gov/stli/learn/historyculture/joseph-pulitzer.htm",
+        "https://www.history.com/articles/statue-of-liberty-icon-building",
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "Wikipedia: 80 Prozent der Summe aus Spenden unter einem Dollar"
+    },
+    {
+      "angabe": "Pulitzer druckte den Namen jedes Spenders in der New York World, egal wie klein die Spende",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.nps.gov/stli/learn/historyculture/joseph-pulitzer.htm",
+        "https://exhibitions.library.columbia.edu/exhibits/show/pulitzer/the-statue-of-liberty"
+      ]
+    },
+    {
+      "angabe": "Für den Sockel fehlte Geld; das amerikanische Komitee war 100.000 Dollar knapp",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://exhibitions.library.columbia.edu/exhibits/show/pulitzer/the-statue-of-liberty"
+      ]
+    },
+    {
+      "angabe": "1875: Laboulaye schlägt vor, die Franzosen finanzieren die Statue, die Amerikaner den Sockel",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.history.com/articles/statue-of-liberty-icon-building"
+      ]
+    },
+    {
+      "angabe": "Lotterie in Frankreich, von der Regierung bewilligt",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe ohne Zahl"
+    },
+    {
+      "angabe": "Gesamthöhe 92,99 m (Boden bis Fackel), Statue 46,05 m",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm"
+      ],
+      "hinweis": "gerundet auf 93 m"
+    },
+    {
+      "angabe": "Kupferhaut 2,4 mm dick, aus getriebenen Kupferplatten",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm"
+      ],
+      "hinweis": "NPS: 3/32 Zoll (2,38 mm), „so dick wie zwei Pennys“"
+    },
+    {
+      "angabe": "Tragendes Eisengerüst von Gustave Eiffel",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "nur eine Quelle; Name als Nebenangabe"
+    },
+    {
+      "angabe": "Statue in 350 Teile zerlegt, in 214 Kisten verpackt, mit der Fregatte Isère im Juni 1885 nach New York",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.history.com/articles/statue-of-liberty-icon-building"
+      ],
+      "hinweis": "350 Teile in beiden Quellen; 214 Kisten, Isère und Juni nur Wikipedia"
+    },
+    {
+      "angabe": "Sockel bei Ankunft nicht fertig, vollendet im April 1886",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://www.history.com/articles/statue-of-liberty-icon-building"
+      ]
+    },
+    {
+      "angabe": "Grundstein des Sockels am 5. August 1884",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "nur eine Quelle; Jahreszahl als Nebenangabe"
+    },
+    {
+      "angabe": "Sockel aus Beton, mit Granit verkleidet; Sockel 27,13 m hoch, unten 18,90 m, oben 12,01 m breit",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "nur eine Quelle; Maße nur in der Zeichnung, ohne Maßzahl"
+    },
+    {
+      "angabe": "Dyckerhoff aus Amöneburg (Wiesbaden) lieferte 8.000 Holzfässer Zement für das Fundament der Freiheitsstatue",
+      "quellen": [
+        "https://www.wiesbaden.de/stadtlexikon/stadtlexikon-a-z/Dyckerhoff_Soehne",
+        "https://dyckerhoff.com/geschichte",
+        "https://www.chemie.de/lexikon/Dyckerhoff.html"
+      ],
+      "hinweis": "Jahr der Lieferung je nach Quelle verschieden, deshalb ohne Jahr; Wikipedia nennt 1360 Tonnen Portlandzement"
+    },
+    {
+      "angabe": "Einweihung am 28. Oktober 1886",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue",
+        "https://exhibitions.library.columbia.edu/exhibits/show/pulitzer/the-statue-of-liberty"
+      ]
+    },
+    {
+      "angabe": "Elf Jahre von Laboulayes Vorschlag 1875 bis zur Einweihung 1886",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "gerechnet: 1886 − 1875"
+    },
+    {
+      "angabe": "Statue in Paris gebaut, dort 1884 vormontiert übergeben",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Freiheitsstatue"
+      ],
+      "hinweis": "nur eine Quelle; Phase in der Zeitleiste vereinfacht 1875 bis 1884"
+    }
+  ]
+}

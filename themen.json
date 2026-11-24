@@ -43,7 +43,7 @@
   {"name": "Brooklyn Bridge", "art": "Brücke", "region": "Welt"},
   {"name": "Schiffshebewerk Niederfinow", "art": "Kanal", "region": "DACH"},
   {"name": "Sturmflutwehr Oosterschelde", "art": "Wasserbau", "region": "Europa"},
-  {"name": "Freiheitsstatue", "art": "Denkmal", "region": "Welt"},
+  {"name": "Freiheitsstatue", "art": "Denkmal", "region": "Welt", "post": "019-freiheitsstatue"},
   {"name": "Berliner Hauptbahnhof", "art": "Verkehrsbau", "region": "DACH"},
   {"name": "Staumauer Grande Dixence", "art": "Staudamm", "region": "DACH"},
   {"name": "Kuppel des Doms von Florenz", "art": "Kirche", "region": "Europa"},
