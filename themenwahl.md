@@ -3,7 +3,7 @@
 <!-- ideen-pool anfang: wird von ideen.py geschrieben, nicht von Hand ändern -->
 ## Reihenfolge aus dem Ideen-Pool
 
-Stand 23.11.2026 04:21. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook (Bewertung und Begründung je Idee, mein Votum als Inhaber). Dieser Abschnitt geht der übrigen Themenliste vor (bei Bauriss auch dem Vorschlag aus `stand`); die Regeln für Recherche, Quellen, Belege und Abstand gelten weiter. Scheitert ein Thema an ihnen, das nächste nehmen und den Grund im Bericht nennen. Ein Jahrestag oder eine neue amtliche Zahl genau am Tag geht weiterhin vor. Der Wochenbericht ändert diesen Abschnitt nicht; er wird bei jedem Abgleich neu geschrieben.
+Stand 24.11.2026 04:23. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook (Bewertung und Begründung je Idee, mein Votum als Inhaber). Dieser Abschnitt geht der übrigen Themenliste vor (bei Bauriss auch dem Vorschlag aus `stand`); die Regeln für Recherche, Quellen, Belege und Abstand gelten weiter. Scheitert ein Thema an ihnen, das nächste nehmen und den Grund im Bericht nennen. Ein Jahrestag oder eine neue amtliche Zahl genau am Tag geht weiterhin vor. Der Wochenbericht ändert diesen Abschnitt nicht; er wird bei jedem Abgleich neu geschrieben.
 
 **Feste Tage** (an diesem Tag dieses Thema):
 
@@ -15,14 +15,14 @@ Stand 23.11.2026 04:21. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook 
 
 **Als Nächstes, in dieser Reihenfolge** (für freie Tage ohne festes Thema):
 
-1. **Ulmer Münster**: Höchster Kirchturm der Welt, 1890 nach über 500 Jahren vollendet: Wer hat das bezahlt?
-2. **Freiheitsstatue**: Den Sockel bezahlten über 120.000 Menschen mit Kleinspenden, gesammelt von einer Zeitung
-3. **Flughafen Berlin Brandenburg**: Neun Jahre zu spät und ein Vielfaches teurer: Wo ist das Geld geblieben?
-4. **Reichstagsgebäude mit Kuppel**: Die Glaskuppel: Was der Umbau gekostet hat und wer entschieden hat
-5. **Sydney Opera House**: Mit einer Lotterie bezahlt, am Ende vielfach teurer als geplant
-6. **Jungfraubahn**: Ein Bahnhof auf 3.454 Metern, durch den Eiger gebohrt
-7. **Speicherstadt Hamburg**: Ein Stadtviertel auf Eichenpfählen
-8. **Hoover-Staumauer**: Vor dem Termin fertig und im Budget: Wie die Staumauer am Colorado gebaut und bezahlt wurde
+1. **Freiheitsstatue**: Den Sockel bezahlten über 120.000 Menschen mit Kleinspenden, gesammelt von einer Zeitung
+2. **Flughafen Berlin Brandenburg**: Neun Jahre zu spät und ein Vielfaches teurer: Wo ist das Geld geblieben?
+3. **Reichstagsgebäude mit Kuppel**: Die Glaskuppel: Was der Umbau gekostet hat und wer entschieden hat
+4. **Sydney Opera House**: Mit einer Lotterie bezahlt, am Ende vielfach teurer als geplant
+5. **Jungfraubahn**: Ein Bahnhof auf 3.454 Metern, durch den Eiger gebohrt
+6. **Speicherstadt Hamburg**: Ein Stadtviertel auf Eichenpfählen
+7. **Hoover-Staumauer**: Vor dem Termin fertig und im Budget: Wie die Staumauer am Colorado gebaut und bezahlt wurde
+8. **Empire State Building**: Mitten in der Weltwirtschaftskrise hochgezogen: Wer hat den Wolkenkratzer bezahlt?
 
 **Jetzt nicht nehmen** (auch nicht, wenn die Liste sie vorschlägt):
 
