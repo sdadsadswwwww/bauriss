@@ -1,0 +1,285 @@
+{
+ "blaetter": {
+  "stand": "83521b112d7f32b0",
+  "liste": [
+   {
+    "nr": 1,
+    "typ": "titel",
+    "woerter": {
+     "lesetext": 16,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Hauptstadtflughafen in Schönefeld",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 2,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 31,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1992–2006 · Die Planung",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 3,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 21,
+     "zeichnung": 9,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Der Aufbau",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 4,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 4,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 22,
+     "zeichnung": 3,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Das Terminal",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 1,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 5,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 31,
+     "zeichnung": 2,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "8. Mai 2012 · Die Absage",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 2,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 6,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 7,
+     "zeichnung": 17,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "2006–2020 · Die Zeit",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 10,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 7,
+    "typ": "balken",
+    "woerter": {
+     "lesetext": 35,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Was hat es gekostet?",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 8,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Wer hat bezahlt?",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 9,
+    "typ": "outro",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 30
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Quellen: Wikipedia: Flughafen Berlin Bra",
+     "ort": "quellen"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   }
+  ]
+ },
+ "reel": {
+  "stand": "83521b112d7f32b0",
+  "bilder": [
+   {
+    "bild": "1",
+    "woerter": 13,
+    "kleinste": {
+     "px": 54,
+     "text": "Bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "2",
+    "woerter": 8,
+    "kleinste": {
+     "px": 44,
+     "text": "Flughafen BER"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "3",
+    "woerter": 24,
+    "kleinste": {
+     "px": 44,
+     "text": "Flughafen BER"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4",
+    "woerter": 17,
+    "kleinste": {
+     "px": 52,
+     "text": "Folgen: @der_bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4m",
+    "woerter": 7,
+    "kleinste": {
+     "px": 48,
+     "text": "Morgen:"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   }
+  ]
+ }
+}

@@ -28,7 +28,7 @@
   {"name": "Brandenburger Tor", "art": "Denkmal", "region": "DACH"},
   {"name": "Viaduc de Millau", "art": "Brücke", "region": "Europa"},
   {"name": "Hoover-Staumauer", "art": "Staudamm", "region": "Welt"},
-  {"name": "Flughafen Berlin Brandenburg", "art": "Verkehrsbau", "region": "DACH"},
+  {"name": "Flughafen Berlin Brandenburg", "art": "Verkehrsbau", "region": "DACH", "post": "020-flughafen-ber"},
   {"name": "Semmeringbahn", "art": "Bahn", "region": "DACH"},
   {"name": "Petersdom", "art": "Kirche", "region": "Europa"},
   {"name": "Sydney Opera House", "art": "Kulturbau", "region": "Welt"},

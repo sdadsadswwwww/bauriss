@@ -1,0 +1,350 @@
+{
+  "nr": "020",
+  "titel": "Flughafen BER",
+  "zeichnungen": "ber",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Hauptstadtflughafen in Schönefeld",
+      "vorsatz": "über",
+      "zahl": "6",
+      "headline": "Milliarden Euro",
+      "aufhaenger": "Bezahlt haben <em>zwei Länder und der Bund</em>.",
+      "figur": {
+        "fn": "berLageplan"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1992–2006 · Die Planung",
+      "headline": "Fast 15 Jahre bis zum Spatenstich",
+      "text": [
+        "Ein privater Bau scheitert 2003."
+      ],
+      "punkte": [
+        {
+          "wert": "1992",
+          "name": "Sieben Standorte",
+          "zusatz": "werden verglichen"
+        },
+        {
+          "wert": "1996",
+          "name": "Wahl: Schönefeld",
+          "zusatz": "Tegel, Tempelhof schließen"
+        },
+        {
+          "wert": "2006",
+          "name": "Erster Spatenstich",
+          "zusatz": "am 5. September"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Aufbau",
+      "headline": "Terminal zwischen zwei Bahnen",
+      "text": [
+        "Die Start- und Landebahnen liegen <em>1900&nbsp;Meter</em> auseinander. So lassen sich beide unabhängig voneinander nutzen."
+      ],
+      "figur": {
+        "fn": "berLageplan",
+        "beschriftet": true
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Terminal",
+      "headline": "Umgeplant nach Baubeginn",
+      "text": [
+        "Nach Baubeginn kommt <em>ein Geschoss</em> dazu, außerdem Gates für den Airbus A380. Die Pläne ändern sich oft."
+      ],
+      "figur": {
+        "fn": "berTerminal",
+        "akzent": "geschoss"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "8. Mai 2012 · Die Absage",
+      "headline": "Abgesagt 27 Tage vor dem Start",
+      "text": [
+        "Der Brandschutz ist nicht fertig. Der Rauch soll über Ventilatoren <em>erst in den Keller</em> und dann seitlich hinaus – ein Planungsfehler."
+      ],
+      "figur": {
+        "fn": "berRauch"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "2006–2020 · Die Zeit",
+      "headline": "Rund 14 Jahre Bauzeit",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1995,
+        "bis": 2022,
+        "phasen": [
+          {
+            "von": 2006.68,
+            "bis": 2012.35,
+            "art": "bau",
+            "text": "Bau"
+          },
+          {
+            "von": 2012.35,
+            "bis": 2020.83,
+            "art": "bau",
+            "text": "Mängel beheben"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1996.4,
+            "label": "1996",
+            "text": "Standort Schönefeld"
+          },
+          {
+            "jahr": 2006.68,
+            "label": "2006",
+            "text": "Erster Spatenstich"
+          },
+          {
+            "jahr": 2012.35,
+            "label": "2012",
+            "text": "Eröffnung abgesagt"
+          },
+          {
+            "jahr": 2020.83,
+            "label": "2020",
+            "text": "Eröffnung am 31. Oktober"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Was hat es gekostet?",
+      "headline": "Von 2 auf über 6 Mrd. Euro",
+      "text": [
+        "<em>Mehr als dreimal</em> so viel wie geplant."
+      ],
+      "balken": [
+        {
+          "wert": 2,
+          "anzeige": "rund 2 Mrd.",
+          "name": "Plan 2006",
+          "zusatz": ""
+        },
+        {
+          "wert": 6,
+          "anzeige": "über 6 Mrd.",
+          "name": "Kosten bis 2020",
+          "zusatz": "je nach Quelle bis 7,3 Mrd.",
+          "akzent": true
+        }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Zwei Länder und der Bund",
+      "text": [
+        "Ihnen gehört der Flughafen. Sie geben Eigenkapital und Darlehen und <em>bürgen</em> für die Bankkredite."
+      ],
+      "punkte": [
+        {
+          "wert": "37 %",
+          "name": "Berlin",
+          "zusatz": ""
+        },
+        {
+          "wert": "37 %",
+          "name": "Brandenburg",
+          "zusatz": ""
+        },
+        {
+          "wert": "26 %",
+          "name": "Bund",
+          "zusatz": ""
+        }
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 2020 der Flughafen der Hauptstadt.",
+      "frage": "Wer hat ihn bezahlt?",
+      "figur": {
+        "fn": "berTerminal"
+      }
+    },
+    "zeichnung": {
+      "zahl": "9",
+      "aussage": "Jahre zu spät eröffnet",
+      "figur": {
+        "fn": "berLageplan"
+      }
+    },
+    "antwort": {
+      "vorsatz": "über",
+      "zahl": "6",
+      "einheit": "Milliarden Euro",
+      "antwort": "Zwei Länder <em>und der Bund</em>.",
+      "zusatz": "Anteile: Berlin und Brandenburg je 37, Bund 26 Prozent."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Flughafen Berlin Brandenburg",
+    "Wikipedia: Bau des Flughafens Berlin Brandenburg",
+    "bundesregierung.de: Der BER geht ans Netz",
+    "ORF",
+    "Institut der deutschen Wirtschaft",
+    "Bund der Steuerzahler",
+    "n-tv",
+    "CAPA",
+    "visitBerlin",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Geplant war die Eröffnung für 2011. Erst am 31. Oktober 2020 ging der Flughafen BER in Betrieb, neun Jahre zu spät. Vor allem der Brandschutz machte Probleme.",
+    "Statt rund 2 Milliarden Euro kostete er über 6 Milliarden. Bezahlt haben Berlin, Brandenburg und der Bund, denen der Flughafen gehört.",
+    "Bist du schon vom BER geflogen?"
+  ],
+  "hashtags": [
+    "flughafenber",
+    "flughafenberlinbrandenburg",
+    "schoenefeld",
+    "flughafen",
+    "baugeschichte",
+    "architektur",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Kosten bis zur Eröffnung über 6 Milliarden Euro",
+      "quellen": [
+        "https://orf.at/stories/3186867/",
+        "https://www.iwkoeln.de/studien/klaus-heiner-roehl-die-eroeffnung-des-neuen-berliner-grossflughafens-wird-von-der-corona-pandemie-und-finanziellen-problemen-ueberschattet.html",
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ],
+      "hinweis": "Quellen widersprechen sich: ORF „über sechs Milliarden“, IW 6,5 Mrd., Bund der Steuerzahler 6,5–7 Mrd., Wikipedia 7,3 Mrd. (Schätzung 2018); bundesregierung.de nennt 5,9 Mrd. nur für die Baukosten der ersten Ausbaustufe. Deshalb gerundet „über 6 Milliarden“, die Spanne bis 7,3 klein auf dem Balkenblatt."
+    },
+    {
+      "angabe": "Kalkulation zum Baustart rund 2 Milliarden Euro (ORF: 1,9 Mrd. zum Baustart 2006)",
+      "quellen": [
+        "https://orf.at/stories/3186867/",
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/",
+        "https://de.wikipedia.org/wiki/Bau_des_Flughafens_Berlin_Brandenburg"
+      ],
+      "hinweis": "gerundet auf rund 2 Milliarden"
+    },
+    {
+      "angabe": "Kosten mehr als verdreifacht",
+      "quellen": [
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/",
+        "https://orf.at/stories/3186867/"
+      ],
+      "hinweis": "Steuerzahlerbund wörtlich; ORF: 1,9 Mrd. gegen über 6 Mrd."
+    },
+    {
+      "angabe": "Gesellschafter: Berlin und Brandenburg je 37 Prozent, Bund 26 Prozent",
+      "quellen": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/ber-eroeffnung-1804372",
+        "https://orf.at/stories/3186867/",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ]
+    },
+    {
+      "angabe": "Finanzierung über Eigenbeiträge der FBB, Eigenkapital und Gesellschafterdarlehen sowie verbürgte Bankkredite; Gesellschafter bürgen zu 100 Prozent",
+      "quellen": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/ber-eroeffnung-1804372",
+        "https://orf.at/stories/3186867/"
+      ]
+    },
+    {
+      "angabe": "Neun Jahre Verspätung; geplant war Herbst/Oktober 2011",
+      "quellen": [
+        "https://orf.at/stories/3186867/",
+        "https://www.iwkoeln.de/studien/klaus-heiner-roehl-die-eroeffnung-des-neuen-berliner-grossflughafens-wird-von-der-corona-pandemie-und-finanziellen-problemen-ueberschattet.html",
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ]
+    },
+    {
+      "angabe": "Eröffnung am 31. Oktober 2020",
+      "quellen": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/ber-eroeffnung-1804372",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg",
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/"
+      ]
+    },
+    {
+      "angabe": "Rund 14 Jahre Bauzeit (Spatenstich 5. September 2006)",
+      "quellen": [
+        "https://www.steuerzahler.de/aktuelles/detail/endlich-ber-geht-in-betrieb/",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg",
+        "https://www.n-tv.de/archiv/Erster-Spatenstich-fuer-BBI-article199076.html"
+      ]
+    },
+    {
+      "angabe": "Fast 15 Jahre Planung bis zum Spatenstich; 1992 sieben Standorte verglichen; Entscheidung für Schönefeld am 28. Mai 1996 mit Schließung von Tegel und Tempelhof",
+      "quellen": [
+        "https://www.n-tv.de/archiv/Erster-Spatenstich-fuer-BBI-article199076.html",
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ],
+      "hinweis": "„fast 15 Jahren Planung“ bei n-tv; Jahreszahlen und Standorte nur Wikipedia; „Tegel, Tempelhof schließen“ gibt die Bedingung des Beschlusses von 1996 wieder"
+    },
+    {
+      "angabe": "Privatisierung mit Bau durch privaten Käufer (Hochtief/IVG) scheitert im Mai 2003; danach bauen die Gesellschafter selbst",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Bau_des_Flughafens_Berlin_Brandenburg"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe ohne Geldbetrag"
+    },
+    {
+      "angabe": "Zwei parallele Bahnen, Nordbahn 3600 m, Südbahn 4000 m, Abstand 1900 m, unabhängig voneinander nutzbar, Terminal in der Mitte",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ],
+      "hinweis": "nur eine Quelle; Maße als Nebenangaben"
+    },
+    {
+      "angabe": "Terminal 1: 32 m hoch (Proportion der Zeichnung)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Flughafen_Berlin_Brandenburg"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe"
+    },
+    {
+      "angabe": "Nach Baubeginn zusätzliches Geschoss im Terminal, dazu Gates für den A380; häufige Planänderungen",
+      "quellen": [
+        "https://orf.at/stories/3186867/",
+        "https://de.wikipedia.org/wiki/Bau_des_Flughafens_Berlin_Brandenburg"
+      ]
+    },
+    {
+      "angabe": "Absage am 8. Mai 2012, 27 Tage vor der Eröffnung am 3. Juni 2012, wegen Brandschutz",
+      "quellen": [
+        "https://centreforaviation.com/news/berlin-brandenburg-airport-delays-opening-due-to-technical-issues-on-fire-protection-installations-154108",
+        "https://about.visitberlin.de/en/press/press-releases/ber-opening-postponed",
+        "https://de.wikipedia.org/wiki/Bau_des_Flughafens_Berlin_Brandenburg"
+      ]
+    },
+    {
+      "angabe": "Geplante Entrauchung: Rauch über Ventilatoren erst in den Keller und dann seitwärts nach außen; laut Technikchef 2014 ein Planungsfehler",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Bau_des_Flughafens_Berlin_Brandenburg"
+      ],
+      "hinweis": "nur eine Quelle (Wikipedia mit Beleg Tagesspiegel 2014); Nebenangabe ohne Zahl"
+    }
+  ]
+}
