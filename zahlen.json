@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-24T06:26",
+  "stand": "2026-11-25T06:28",
   "konto": {
     "follower": 6,
-    "beitraege": 22
+    "beitraege": 24
   },
   "medien": [
     {
@@ -45,13 +45,13 @@
       "post": "003-wuppertaler-schwebebahn",
       "art": "carousel",
       "datum": "2026-11-16",
-      "likes": 2,
+      "likes": 3,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 6,
-      "interaktionen": 2
+      "aufrufe": 9,
+      "interaktionen": 3
     },
     {
       "post": "004-frauenkirche-dresden",
@@ -107,11 +107,11 @@
       "datum": "2026-11-18",
       "likes": 2,
       "kommentare": 2,
-      "reichweite": 55,
+      "reichweite": 57,
       "gespeichert": 0,
-      "geteilt": 1,
-      "aufrufe": 74,
-      "interaktionen": 5
+      "geteilt": 3,
+      "aufrufe": 78,
+      "interaktionen": 7
     },
     {
       "post": "006-elbphilharmonie",
@@ -119,11 +119,11 @@
       "datum": "2026-11-18",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
-      "geteilt": 0,
+      "geteilt": 2,
       "aufrufe": 16,
-      "interaktionen": 1
+      "interaktionen": 3
     },
     {
       "post": "007-berliner-fernsehturm",
@@ -155,10 +155,10 @@
       "datum": "2026-11-20",
       "likes": 2,
       "kommentare": 0,
-      "reichweite": 104,
+      "reichweite": 105,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 117,
+      "aufrufe": 118,
       "interaktionen": 2
     },
     {
@@ -170,7 +170,7 @@
       "reichweite": 6,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 12,
+      "aufrufe": 13,
       "interaktionen": 3
     },
     {
@@ -203,10 +203,10 @@
       "datum": "2026-11-22",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 123,
+      "reichweite": 124,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 140,
+      "aufrufe": 141,
       "interaktionen": 2
     },
     {
@@ -239,11 +239,35 @@
       "datum": "2026-11-23",
       "likes": 2,
       "kommentare": 0,
-      "reichweite": 3,
+      "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 7,
+      "aufrufe": 8,
       "interaktionen": 4
+    },
+    {
+      "post": "012-sagrada-familia",
+      "art": "reel",
+      "datum": "2026-11-24",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 13,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 16,
+      "interaktionen": 0
+    },
+    {
+      "post": "012-sagrada-familia",
+      "art": "carousel",
+      "datum": "2026-11-24",
+      "likes": 1,
+      "kommentare": 0,
+      "reichweite": 4,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 10,
+      "interaktionen": 2
     }
   ]
 }
