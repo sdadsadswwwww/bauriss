@@ -20,7 +20,7 @@
   {"name": "Speicherstadt Hamburg", "art": "Industriebau", "region": "DACH"},
   {"name": "Kolosseum", "art": "Antike", "region": "Europa"},
   {"name": "Panamakanal", "art": "Kanal", "region": "Welt"},
-  {"name": "Reichstagsgebäude mit Kuppel", "art": "Regierungsbau", "region": "DACH"},
+  {"name": "Reichstagsgebäude mit Kuppel", "art": "Regierungsbau", "region": "DACH", "post": "021-reichstagsgebaeude"},
   {"name": "Jungfraubahn", "art": "Bahn", "region": "DACH"},
   {"name": "Tower Bridge", "art": "Brücke", "region": "Europa"},
   {"name": "Empire State Building", "art": "Hochhaus", "region": "Welt"},

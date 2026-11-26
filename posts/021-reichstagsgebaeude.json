@@ -1,0 +1,375 @@
+{
+  "nr": "021",
+  "titel": "Reichstagsgebäude",
+  "zeichnungen": "reichstag",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Sitz des Bundestages in Berlin",
+      "zahl": "24",
+      "headline": "Millionen Mark",
+      "aufhaenger": "Bezahlt aus <em>Frankreichs Reparationen</em>.",
+      "figur": {
+        "fn": "reichstagAnsicht"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1871–1894 · Der Weg",
+      "headline": "Zehn Jahre Bauzeit",
+      "text": [
+        "Der Reichstag tagt zuerst in einem baufälligen Haus."
+      ],
+      "punkte": [
+        {
+          "wert": "1871",
+          "name": "Beschluss zum Neubau",
+          "zusatz": ""
+        },
+        {
+          "wert": "1882",
+          "name": "Wallot gewinnt",
+          "zusatz": "unter 189 Entwürfen"
+        },
+        {
+          "wert": "1884",
+          "name": "Grundstein",
+          "zusatz": "am 9. Juni"
+        },
+        {
+          "wert": "1894",
+          "name": "Schlussstein",
+          "zusatz": "am 5. Dezember"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1894 · Die erste Kuppel",
+      "headline": "Stahl und Glas über dem Saal",
+      "text": [
+        "Wallots Kuppel ragt <em>75&nbsp;Meter</em> hoch und bringt Tageslicht in den Plenarsaal. Allein für sie werden 320&nbsp;Tonnen Stahl verbaut."
+      ],
+      "figur": {
+        "fn": "reichstagAnsicht",
+        "kuppel": "alt",
+        "beschriftet": true
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Das Geld kommt aus Frankreich",
+      "text": [
+        "Nach dem Krieg von 1870/71 muss Frankreich Reparationen zahlen. Daraus wird der Bau <em>komplett</em> beglichen."
+      ],
+      "punkte": [
+        {
+          "wert": "24 Mio.",
+          "name": "Mark Baukosten",
+          "zusatz": ""
+        },
+        {
+          "wert": "32 Mio.",
+          "name": "Ziegelsteine",
+          "zusatz": ""
+        },
+        {
+          "wert": "30.000 m³",
+          "name": "Sandstein",
+          "zusatz": "aus Schlesien"
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1884–1999 · Die Zeit",
+      "headline": "Drei Bauzeiten",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1880,
+        "bis": 2003,
+        "phasen": [
+          {
+            "von": 1884.4,
+            "bis": 1894.9,
+            "art": "bau"
+          },
+          {
+            "von": 1961,
+            "bis": 1973,
+            "art": "bau"
+          },
+          {
+            "von": 1995.6,
+            "bis": 1999.3,
+            "art": "bau"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1884.4,
+            "label": "1884",
+            "text": "Grundstein"
+          },
+          {
+            "jahr": 1894.9,
+            "label": "1894",
+            "text": "Schlussstein"
+          },
+          {
+            "jahr": 1933.2,
+            "label": "1933",
+            "text": "Reichstagsbrand"
+          },
+          {
+            "jahr": 1945.3,
+            "label": "1945",
+            "text": "Kämpfe um den Bau"
+          },
+          {
+            "jahr": 1961,
+            "text": "Wiederaufbau beginnt"
+          },
+          {
+            "jahr": 1973,
+            "text": "Wiederaufbau fertig"
+          },
+          {
+            "jahr": 1999.3,
+            "label": "1999",
+            "text": "Übergabe an den Bundestag"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1995 · Der Streit",
+      "headline": "Mit einer Stimme Mehrheit",
+      "text": [
+        "Foster plant zuerst ohne Kuppel. Dann stimmen die Abgeordneten knapp für eine neue aus Glas: <em>47&nbsp;statt 75&nbsp;Meter</em> hoch."
+      ],
+      "figur": {
+        "fn": "reichstagAnsicht",
+        "kuppel": "beide",
+        "beschriftet": true
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Der Kniff",
+      "headline": "360 Spiegel lenken das Licht",
+      "text": [
+        "Ein Trichter aus Spiegeln wirft Tageslicht in den Plenarsaal. Zwei Rampen von je <em>230&nbsp;Metern</em> führen Besucher nach oben."
+      ],
+      "figur": {
+        "fn": "kuppelSchnitt"
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Die Kosten des Umbaus",
+      "headline": "Eine Grenze von 600 Millionen",
+      "text": [
+        "Foster korrigiert seinen Plan bald. Der Bundestag setzt 1994 eine Obergrenze – <em>und sie hält</em>."
+      ],
+      "balken": [
+        {
+          "wert": 250,
+          "anzeige": "250 Mio. DM",
+          "name": "Fosters Zusage",
+          "zusatz": "rund"
+        },
+        {
+          "wert": 600,
+          "anzeige": "600 Mio. DM",
+          "name": "Obergrenze 1994",
+          "zusatz": "eingehalten",
+          "akzent": true
+        }
+      ]
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 1999 der Sitz des Bundestages.",
+      "frage": "Wer hat ihn bezahlt?",
+      "figur": {
+        "fn": "reichstagAnsicht"
+      }
+    },
+    "zeichnung": {
+      "zahl": "360",
+      "aussage": "Spiegel in der Glaskuppel",
+      "figur": {
+        "fn": "reichstagAnsicht"
+      }
+    },
+    "antwort": {
+      "zahl": "24",
+      "einheit": "Millionen Mark",
+      "antwort": "Frankreich, <em>als Reparation</em>.",
+      "zusatz": "Nach dem Krieg von 1870/71 deckt das Geld den Bau."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Reichstagsgebäude",
+    "bundestag.de: Kalenderblatt 5. Dezember 1894",
+    "bundestag.de: Plenarbereich Reichstagsgebäude",
+    "bundestag.de: Kuppel",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "24 Millionen Mark kostete das Reichstagsgebäude, als es 1894 fertig war. Bezahlt wurde es komplett aus den Reparationen, die Frankreich nach dem Krieg von 1870/71 leisten musste.",
+    "Die Glaskuppel kam erst 1999. Für den Umbau galt eine Obergrenze von 600 Millionen D-Mark, und sie hielt.",
+    "Warst du schon oben in der Kuppel?"
+  ],
+  "hashtags": [
+    "reichstagsgebaeude",
+    "reichstag",
+    "berlin",
+    "parlamentsgebaeude",
+    "baugeschichte",
+    "architektur",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Baukosten 24 Millionen Mark, komplett aus den Reparationen Frankreichs nach dem Krieg von 1870/71 beglichen",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude",
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328"
+      ],
+      "hinweis": "Wikipedia: 24 Millionen Goldmark; Umrechnung in Euro nicht verwendet"
+    },
+    {
+      "angabe": "Mehr als 32 Millionen Ziegelsteine und 30.000 m³ (schlesischer) Sandstein",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude",
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328"
+      ],
+      "hinweis": "„schlesisch“ nur bei Wikipedia; Blatt nennt 32 Mio. ohne „mehr als“"
+    },
+    {
+      "angabe": "Grundstein 9. Juni 1884, Schlussstein 5. Dezember 1894, zehnjährige Bauzeit",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude",
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328"
+      ],
+      "hinweis": "Grundstein-Datum nur Wikipedia"
+    },
+    {
+      "angabe": "Beschluss April 1871 für ein eigenes Haus, bis dahin Sitzungen im baufälligen preußischen Abgeordnetenhaus",
+      "quellen": [
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328"
+      ],
+      "hinweis": "nur eine Quelle (Bundestag); Wortlaut: „in einem so schlechten baulichen Zustand“"
+    },
+    {
+      "angabe": "Wallot gewinnt 1882 unter 189 Einsendungen (erste Preise am 24. Juni 1882)",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe"
+    },
+    {
+      "angabe": "Wallot-Kuppel aus Metall und Glas, höchster Punkt 75 m, 320 t Stahl, Tageslicht für den Plenarsaal",
+      "quellen": [
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328",
+        "https://www.bundestag.de/besuche/architektur/reichstag/kuppel",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "75 m bei Bundestag (zwei Seiten) und Wikipedia; 320 t nur Kalenderblatt"
+    },
+    {
+      "angabe": "Gebäude 138 m lang (Maßstab der Zeichnung)",
+      "quellen": [
+        "https://www.bundestag.de/dokumente/textarchiv/2019/kw49-kalenderblatt-125-jahre-reichstag-670328"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe"
+    },
+    {
+      "angabe": "Reichstagsbrand in der Nacht zum 28. Februar 1933; Kämpfe um das Gebäude 28. April bis 1. Mai 1945",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangaben"
+    },
+    {
+      "angabe": "Wiederaufbau durch Paul Baumgarten 1961 bis 1973",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "nur eine Quelle; Nebenangabe"
+    },
+    {
+      "angabe": "Umbau ab Ende Juli 1995, Schlüsselübergabe 19. April 1999",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude",
+        "https://www.bundestag.de/parlament/geschichte/schauplaetze/plenarbereich_reichstagsgebaeude"
+      ],
+      "hinweis": "Juli 1995 nur Wikipedia"
+    },
+    {
+      "angabe": "Foster plant zunächst keine Kuppel; Abgeordnete entscheiden sich mit einer Stimme Mehrheit für die Kuppel",
+      "quellen": [
+        "https://www.bundestag.de/parlament/geschichte/schauplaetze/plenarbereich_reichstagsgebaeude",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "„eine Stimme Mehrheit“ nur bei Bundestag; endgültiger Kuppelentwurf am 8. Mai 1995 (Wikipedia)"
+    },
+    {
+      "angabe": "Glaskuppel: Scheitel 47 m über Gelände (Wallot: 75 m), Kuppelhöhe 23,5 m ab Dachterrasse in 24 m Höhe",
+      "quellen": [
+        "https://www.bundestag.de/besuche/architektur/reichstag/kuppel",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ]
+    },
+    {
+      "angabe": "360 Spiegel im Lichtumlenkelement leiten Tageslicht in den Plenarsaal",
+      "quellen": [
+        "https://www.bundestag.de/besuche/architektur/reichstag/kuppel",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ]
+    },
+    {
+      "angabe": "Zwei gegenläufige spiralförmige Rampen von je 230 m zur Aussichtsplattform in rund 40 m Höhe",
+      "quellen": [
+        "https://www.bundestag.de/besuche/architektur/reichstag/kuppel",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ]
+    },
+    {
+      "angabe": "Foster verspricht den Umbau für rund 250 Millionen D-Mark und korrigiert den Kostenplan wenige Wochen nach dem Zuschlag",
+      "quellen": [
+        "https://www.bundestag.de/parlament/geschichte/schauplaetze/plenarbereich_reichstagsgebaeude"
+      ],
+      "hinweis": "nur eine Quelle (Bundestag, Eigentümer); nicht auf dem Titelblatt"
+    },
+    {
+      "angabe": "Kostenobergrenze 600 Millionen D-Mark (Januar 1994) einschließlich Kuppel, eingehalten",
+      "quellen": [
+        "https://www.bundestag.de/parlament/geschichte/schauplaetze/plenarbereich_reichstagsgebaeude",
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude"
+      ],
+      "hinweis": "Wikipedia: Auflage 600 Mio. Mark einschließlich Kuppel, Umbau „termin- und kostengerecht abgeschlossen“; Monat Januar 1994 nur Bundestag; in-berlin-brandenburg.com nennt ebenfalls rund 600 Mio. Mark"
+    },
+    {
+      "angabe": "Sitz des Bundestages seit 1999",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Reichstagsgebäude",
+        "https://www.bundestag.de/besuche/architektur/reichstag/kuppel"
+      ]
+    }
+  ]
+}
