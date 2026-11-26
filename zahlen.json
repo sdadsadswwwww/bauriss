@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-25T06:28",
+  "stand": "2026-11-26T06:28",
   "konto": {
     "follower": 6,
-    "beitraege": 24
+    "beitraege": 26
   },
   "medien": [
     {
@@ -23,7 +23,7 @@
       "datum": "2026-11-16",
       "likes": 2,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
       "aufrufe": 11,
@@ -251,23 +251,47 @@
       "datum": "2026-11-24",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 13,
+      "reichweite": 14,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 16,
+      "aufrufe": 17,
       "interaktionen": 0
     },
     {
       "post": "012-sagrada-familia",
       "art": "carousel",
       "datum": "2026-11-24",
-      "likes": 1,
+      "likes": 2,
       "kommentare": 0,
       "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 10,
-      "interaktionen": 2
+      "aufrufe": 11,
+      "interaktionen": 3
+    },
+    {
+      "post": "013-golden-gate-bridge",
+      "art": "reel",
+      "datum": "2026-11-25",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 77,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 92,
+      "interaktionen": 0
+    },
+    {
+      "post": "013-golden-gate-bridge",
+      "art": "carousel",
+      "datum": "2026-11-25",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 4,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 15,
+      "interaktionen": 0
     }
   ]
 }
