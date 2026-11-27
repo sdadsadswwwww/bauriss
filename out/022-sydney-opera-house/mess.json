@@ -1,0 +1,285 @@
+{
+ "blaetter": {
+  "stand": "8d2824e30e0fadf9",
+  "liste": [
+   {
+    "nr": 1,
+    "typ": "titel",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Opernhaus am Hafen von Sydney",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 2,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 32,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1956–1957 · Der Wettbewerb",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 3,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 4,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1961/62 · Der Kniff",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 2,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 4,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 21,
+     "zeichnung": 2,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Das Dach",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 1,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 5,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 7,
+     "zeichnung": 13,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1957–1973 · Die Zeit",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 10,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 6,
+    "typ": "balken",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Die Kosten",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 7,
+    "typ": "punkte",
+    "woerter": {
+     "lesetext": 34,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Wer hat bezahlt?",
+     "ort": "lesetext"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 8,
+    "typ": "bild-unten",
+    "woerter": {
+     "lesetext": 28,
+     "zeichnung": 0,
+     "quellen": 0
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "1966 · Der Bruch",
+     "ort": "lesetext"
+    },
+    "linie": {
+     "px": 2,
+     "klasse": "ph"
+    },
+    "massstab": 1,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   },
+   {
+    "nr": 9,
+    "typ": "outro",
+    "woerter": {
+     "lesetext": 17,
+     "zeichnung": 0,
+     "quellen": 26
+    },
+    "kleinste": {
+     "px": 32,
+     "text": "Quellen: Wikipedia: Sydney Opera House ·",
+     "ort": "quellen"
+    },
+    "linie": null,
+    "massstab": null,
+    "beschriftungen": 0,
+    "ueberlauf": 0,
+    "aussen": [],
+    "ueberlappt": [],
+    "schild_voll": false,
+    "zu_klein": []
+   }
+  ]
+ },
+ "reel": {
+  "stand": "8d2824e30e0fadf9",
+  "bilder": [
+   {
+    "bild": "1",
+    "woerter": 16,
+    "kleinste": {
+     "px": 54,
+     "text": "Bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "2",
+    "woerter": 9,
+    "kleinste": {
+     "px": 44,
+     "text": "Sydney Opera House"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "3",
+    "woerter": 22,
+    "kleinste": {
+     "px": 44,
+     "text": "Sydney Opera House"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4",
+    "woerter": 17,
+    "kleinste": {
+     "px": 52,
+     "text": "Folgen: @der_bauriss"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   },
+   {
+    "bild": "4m",
+    "woerter": 7,
+    "kleinste": {
+     "px": 48,
+     "text": "Morgen:"
+    },
+    "aussen": [],
+    "zu_klein": [],
+    "ueberlauf": 0,
+    "in_zeichnung": 0
+   }
+  ]
+ }
+}

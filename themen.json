@@ -31,7 +31,7 @@
   {"name": "Flughafen Berlin Brandenburg", "art": "Verkehrsbau", "region": "DACH", "post": "020-flughafen-ber"},
   {"name": "Semmeringbahn", "art": "Bahn", "region": "DACH"},
   {"name": "Petersdom", "art": "Kirche", "region": "Europa"},
-  {"name": "Sydney Opera House", "art": "Kulturbau", "region": "Welt"},
+  {"name": "Sydney Opera House", "art": "Kulturbau", "region": "Welt", "post": "022-sydney-opera-house"},
   {"name": "Zeche Zollverein", "art": "Industriebau", "region": "DACH"},
   {"name": "Stephansdom Wien", "art": "Kirche", "region": "DACH"},
   {"name": "Öresundbrücke", "art": "Brücke", "region": "Europa"},

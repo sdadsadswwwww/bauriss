@@ -1,0 +1,301 @@
+{
+  "nr": "022",
+  "titel": "Sydney Opera House",
+  "zeichnungen": "sydneyoper",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Opernhaus am Hafen von Sydney",
+      "zahl": "102",
+      "headline": "Millionen Dollar",
+      "aufhaenger": "Bezahlt hat <em>vor allem eine Lotterie</em>.",
+      "figur": {
+        "fn": "operAnsicht"
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "1956–1957 · Der Wettbewerb",
+      "headline": "Eine Skizze gewinnt",
+      "text": [
+        "Die Jury wählt den Entwurf des Dänen Jørn Utzon, obwohl er nur eine <em>grobe Skizze</em> ist."
+      ],
+      "punkte": [
+        {
+          "wert": "233",
+          "name": "Entwürfe gehen ein",
+          "zusatz": ""
+        },
+        {
+          "wert": "1957",
+          "name": "Utzon gewinnt",
+          "zusatz": ""
+        },
+        {
+          "wert": "5000",
+          "name": "Pfund Preisgeld",
+          "zusatz": ""
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1961/62 · Der Kniff",
+      "headline": "Alle Schalen aus einer Kugel",
+      "text": [
+        "Jahrelang findet niemand eine baubare Form für das Dach. Dann erkennt Utzon: Jede Schale lässt sich aus <em>derselben Kugel</em> schneiden."
+      ],
+      "figur": {
+        "fn": "operKugel"
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Das Dach",
+      "headline": "Über eine Million Fliesen",
+      "text": [
+        "Weiße Fliesen aus Schweden bedecken die Schalen. Das Dach ragt bis <em>67&nbsp;Meter</em> hoch auf."
+      ],
+      "figur": {
+        "fn": "operAnsicht",
+        "mass": true,
+        "akzent": false
+      }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1957–1973 · Die Zeit",
+      "headline": "14 Jahre statt vier",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1955,
+        "bis": 1976,
+        "phasen": [
+          {
+            "von": 1959.2,
+            "bis": 1973.8,
+            "art": "bau"
+          }
+        ],
+        "marken": [
+          {
+            "jahr": 1957,
+            "text": "Utzon gewinnt"
+          },
+          {
+            "jahr": 1959.2,
+            "label": "1959",
+            "text": "Baubeginn"
+          },
+          {
+            "jahr": 1963.1,
+            "label": "1963",
+            "text": "Geplante Eröffnung"
+          },
+          {
+            "jahr": 1966.2,
+            "label": "1966",
+            "text": "Utzon geht"
+          },
+          {
+            "jahr": 1973.8,
+            "label": "1973",
+            "text": "Eröffnung"
+          }
+        ]
+      }
+    },
+    {
+      "typ": "balken",
+      "kicker": "Die Kosten",
+      "headline": "Fast 15-mal so teuer",
+      "text": [
+        "Geplant sind sieben Millionen australische Dollar. Am Ende kostet das Haus <em>102&nbsp;Millionen</em>."
+      ],
+      "balken": [
+        {
+          "wert": 7,
+          "anzeige": "7 Mio. $",
+          "name": "Schätzung 1957",
+          "zusatz": ""
+        },
+        {
+          "wert": 102,
+          "anzeige": "102 Mio. $",
+          "name": "Endkosten",
+          "zusatz": "australische Dollar",
+          "akzent": true
+        }
+      ]
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Das Land verkauft Lose",
+      "text": [
+        "New South Wales richtet eigene Lotterien ein. Bis 1986 bringen sie <em>102&nbsp;Millionen</em> Dollar."
+      ],
+      "punkte": [
+        {
+          "wert": "496",
+          "name": "Lotterien",
+          "zusatz": "von 1957 bis 1986"
+        },
+        {
+          "wert": "86,7 Mio.",
+          "name": "verkaufte Lose",
+          "zusatz": ""
+        },
+        {
+          "wert": "100.000",
+          "name": "Pfund Hauptgewinn",
+          "zusatz": ""
+        }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1966 · Der Bruch",
+      "headline": "Der Architekt geht",
+      "text": [
+        "Nach Streit um die Kosten sperrt die Regierung Utzon die Gelder. Im Februar 1966 verlässt er die Baustelle und kehrt <em>nie zurück</em>."
+      ],
+      "figur": {
+        "fn": "operAnsicht",
+        "akzent": false
+      }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": [
+        "Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"
+      ]
+    }
+  ],
+  "reel": {
+    "frage": {
+      "zeile": "Seit 1973 das Opernhaus am Hafen von Sydney.",
+      "frage": "Wer hat es bezahlt?",
+      "figur": {
+        "fn": "operAnsicht"
+      }
+    },
+    "zeichnung": {
+      "zahl": "14",
+      "aussage": "Jahre Bau statt vier",
+      "figur": {
+        "fn": "operAnsicht"
+      }
+    },
+    "antwort": {
+      "zahl": "102",
+      "einheit": "Millionen Dollar",
+      "antwort": "Vor allem <em>eine Lotterie</em>.",
+      "zusatz": "496 Lotterien bringen bis 1986 das Geld zusammen."
+    }
+  },
+  "quellen": [
+    "Wikipedia: Sydney Opera House",
+    "sydneyoperahouse.com: Facts, The spherical solution, Construction begins, Utzon departs the House",
+    "nsw.gov.au: The House the Lotteries Built (NSW Treasury)",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "7 Millionen australische Dollar waren 1957 geplant, 102 Millionen kostete das Sydney Opera House am Ende. Bezahlt wurde es vor allem mit einer eigenen Lotterie.",
+    "Gebaut wurde 14 Jahre statt vier. Den Schlüssel für das Dach fand Jørn Utzon in einer Kugel.",
+    "Kennst du jemanden, der schon in Sydney war?"
+  ],
+  "hashtags": [
+    "sydneyoperahouse",
+    "opernhaussydney",
+    "sydney",
+    "opernhaus",
+    "architektur",
+    "baugeschichte",
+    "geschichte",
+    "bauwerke"
+  ],
+  "belege": [
+    {
+      "angabe": "Endkosten 102 Millionen (australische) Dollar, größtenteils über eine staatliche Lotterie bezahlt",
+      "quellen": [
+        "https://www.sydneyoperahouse.com/our-story/sydney-opera-house-facts.html",
+        "https://www.nsw.gov.au/departments-and-agencies/nsw-treasury/about-us/nsw-treasury-bicentenary/walking-a-tightrope/moments/house-lotteries-built",
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House"
+      ],
+      "hinweis": "Betreiber und NSW Treasury: 102 Mio. $ (Betreiber: „largely paid for by a State Lottery“); Wikipedia: über £50 Mio. (100 Mio. australische Dollar), Fertigstellung nur mit Hilfe einer eigens gegründeten Lotterie"
+    },
+    {
+      "angabe": "Ursprüngliche Schätzung 7 Millionen Dollar (1957); fast 15-mal so teuer",
+      "quellen": [
+        "https://www.sydneyoperahouse.com/our-story/sydney-opera-house-facts.html",
+        "https://www.nsw.gov.au/departments-and-agencies/nsw-treasury/about-us/nsw-treasury-bicentenary/walking-a-tightrope/moments/house-lotteries-built",
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House"
+      ],
+      "hinweis": "Jahr 1957 nur NSW Treasury; Wikipedia: £3,5 Mio. und „um das Fünfzehnfache überzogen“; 102/7 = 14,6, daher „fast 15-mal“"
+    },
+    {
+      "angabe": "496 Lotterien mit 86,7 Millionen Losen brachten von 1957 bis 1986 102 Millionen Dollar",
+      "quellen": [
+        "https://www.nsw.gov.au/departments-and-agencies/nsw-treasury/about-us/nsw-treasury-bicentenary/walking-a-tightrope/moments/house-lotteries-built"
+      ],
+      "hinweis": "Zahl der Lotterien und Lose nur eine Quelle (Behörde, NSW Treasury); Betrag 102 Mio. siehe oben"
+    },
+    {
+      "angabe": "Erste Opera House Lottery mit 100.000 Pfund Hauptgewinn",
+      "quellen": [
+        "https://www.nsw.gov.au/departments-and-agencies/nsw-treasury/about-us/nsw-treasury-bicentenary/walking-a-tightrope/moments/house-lotteries-built"
+      ],
+      "hinweis": "nur eine Quelle (Behörde); Wortlaut: „the much-anticipated Opera House Lottery … with a 100,000-pound first prize“, folgt auf den ersten Spendenaufruf"
+    },
+    {
+      "angabe": "Wettbewerb 1956 mit 233 Entwürfen; Utzon gewinnt 1957, erhält 5000 Pfund; Jury wählt den Entwurf, obwohl er nur eine grobe Skizze war",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House",
+        "https://www.sydneyoperahouse.com/our-story/sydney-opera-house-facts.html"
+      ],
+      "hinweis": "233 in beiden; 1956 und 5000 Pfund nur Betreiber; 1957 und „grobe Skizze“ nur Wikipedia"
+    },
+    {
+      "angabe": "Baubeginn 2. März 1959, Bauzeit 14 Jahre statt geplanter vier; geplante Fertigstellung 26. Januar 1963",
+      "quellen": [
+        "https://www.sydneyoperahouse.com/our-story/sydney-opera-house-facts.html",
+        "https://www.sydneyoperahouse.com/our-story/construction-begins",
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House"
+      ],
+      "hinweis": "14 Jahre bei Betreiber und Wikipedia; „vier Jahre“ nur Betreiber; Termin 1963 bei Wikipedia und NSW Treasury"
+    },
+    {
+      "angabe": "Spherical Solution: alle Schalen aus der Oberfläche einer Kugel abgeleitet; Ende 1961 noch ungelöst, im Januar 1962 im Yellow Book vorgelegt",
+      "quellen": [
+        "https://www.sydneyoperahouse.com/our-story/the-spherical-solution"
+      ],
+      "hinweis": "nur eine Quelle (Betreiber); Wikipedia nennt die „Spherical Solution“ nur in einer Bildunterschrift; Kicker „1961/62“ statt eines genauen Datums"
+    },
+    {
+      "angabe": "Über eine Million Fliesen aus Schweden auf dem Dach; Dach 67 m hoch; Gebäude 184 m lang",
+      "quellen": [
+        "https://www.sydneyoperahouse.com/our-story/the-spherical-solution",
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House"
+      ],
+      "hinweis": "Betreiber: 1.056.006 Fliesen (Höganäs, Schweden), Wikipedia: 1,1 Mio. aus Schweden; 67 m und 184 m nur Wikipedia"
+    },
+    {
+      "angabe": "Streit um Kosten, Regierung sperrt Utzon die Gelder; Utzon verlässt im Februar 1966 die Baustelle und betritt Australien nie wieder",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House",
+        "https://www.sydneyoperahouse.com/our-story/utzon-departs-the-house"
+      ],
+      "hinweis": "Betreiber: Treffen am 28. Februar 1966, Zahlungen gestoppt; „nie wieder“ nur Wikipedia"
+    },
+    {
+      "angabe": "Eröffnung am 20. Oktober 1973 durch Elisabeth II.",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Sydney_Opera_House",
+        "https://www.sydneyoperahouse.com/our-story/sydney-opera-house-facts.html"
+      ]
+    }
+  ]
+}
