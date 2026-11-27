@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-26T06:28",
+  "stand": "2026-11-27T06:29",
   "konto": {
     "follower": 6,
-    "beitraege": 26
+    "beitraege": 28
   },
   "medien": [
     {
@@ -275,22 +275,46 @@
       "datum": "2026-11-25",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 77,
+      "reichweite": 91,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 92,
+      "aufrufe": 107,
       "interaktionen": 0
     },
     {
       "post": "013-golden-gate-bridge",
       "art": "carousel",
       "datum": "2026-11-25",
-      "likes": 0,
+      "likes": 1,
       "kommentare": 0,
       "reichweite": 4,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 15,
+      "aufrufe": 18,
+      "interaktionen": 1
+    },
+    {
+      "post": "014-olympiastadion-muenchen",
+      "art": "reel",
+      "datum": "2026-11-26",
+      "likes": 1,
+      "kommentare": 0,
+      "reichweite": 102,
+      "gespeichert": 0,
+      "geteilt": 1,
+      "aufrufe": 119,
+      "interaktionen": 2
+    },
+    {
+      "post": "014-olympiastadion-muenchen",
+      "art": "carousel",
+      "datum": "2026-11-26",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 2,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 6,
       "interaktionen": 0
     }
   ]
