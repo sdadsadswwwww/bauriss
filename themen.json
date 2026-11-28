@@ -21,7 +21,7 @@
   {"name": "Kolosseum", "art": "Antike", "region": "Europa"},
   {"name": "Panamakanal", "art": "Kanal", "region": "Welt"},
   {"name": "Reichstagsgebäude mit Kuppel", "art": "Regierungsbau", "region": "DACH", "post": "021-reichstagsgebaeude"},
-  {"name": "Jungfraubahn", "art": "Bahn", "region": "DACH"},
+  {"name": "Jungfraubahn", "art": "Bahn", "region": "DACH", "post": "023-jungfraubahn"},
   {"name": "Tower Bridge", "art": "Brücke", "region": "Europa"},
   {"name": "Empire State Building", "art": "Hochhaus", "region": "Welt"},
   {"name": "Edertalsperre", "art": "Staudamm", "region": "DACH"},

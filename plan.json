@@ -24,6 +24,7 @@
     { "datum": "2026-12-01", "post": "019-freiheitsstatue", "freigabe": true, "erstellt": "2026-11-24T05:10" },
     { "datum": "2026-12-02", "post": "020-flughafen-ber", "freigabe": true, "erstellt": "2026-11-25T05:11" },
     { "datum": "2026-12-03", "post": "021-reichstagsgebaeude", "freigabe": true, "erstellt": "2026-11-26T05:10" },
-    { "datum": "2026-12-04", "post": "022-sydney-opera-house", "freigabe": true, "erstellt": "2026-11-27T05:08" }
+    { "datum": "2026-12-04", "post": "022-sydney-opera-house", "freigabe": true, "erstellt": "2026-11-27T05:08" },
+    { "datum": "2026-12-05", "post": "023-jungfraubahn", "freigabe": true, "erstellt": "2026-11-28T05:09" }
   ]
 }

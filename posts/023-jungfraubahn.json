@@ -1,0 +1,121 @@
+{
+  "nr": "023",
+  "titel": "Jungfraubahn",
+  "zeichnungen": "jungfraubahn",
+  "vorlage": "lesbar",
+  "slides": [
+    {
+      "typ": "titel",
+      "unterzeile": "Zahnradbahn durch Eiger und Mönch",
+      "vorsatz": "rund",
+      "zahl": "16",
+      "headline": "Millionen Franken",
+      "aufhaenger": "Doppelt so teuer <em>wie geplant</em>.",
+      "figur": { "fn": "jbBerge", "beschriftung": "titel" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1893 · Die Idee",
+      "headline": "Eine Linie in der Nacht",
+      "text": ["Der Textilindustrielle Adolf Guyer-Zeller sieht einen Zug zur Kleinen Scheidegg. Nachts skizziert er eine Bahn durch Eiger und Mönch <em>bis auf die Jungfrau</em>."],
+      "figur": { "fn": "jbBerge", "beschriftung": "idee", "plan": true }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1903 · Der Kniff",
+      "headline": "Fenster in der Eigerwand",
+      "text": ["Im Berg hält die Bahn an Stationen mit Fenstern im Fels. Jede fertige Etappe bringt <em>zahlende Gäste</em>, lange vor dem Ziel."],
+      "figur": { "fn": "jbFenster" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1896–1912 · Die Zeit",
+      "headline": "16 Jahre bis zum Joch",
+      "figur": {
+        "fn": "zeitleiste",
+        "von": 1895,
+        "bis": 1914,
+        "phasen": [
+          { "von": 1896.57, "bis": 1912.58, "art": "bau" }
+        ],
+        "marken": [
+          { "jahr": 1896.57, "label": "1896", "text": "Spatenstich im Juli" },
+          { "jahr": 1898.72, "label": "1898", "text": "Station Eigergletscher" },
+          { "jahr": 1903.49, "label": "1903", "text": "Station Eigerwand" },
+          { "jahr": 1905.56, "label": "1905", "text": "Station Eismeer" },
+          { "jahr": 1912.58, "label": "1912", "text": "Eröffnung am 1. August" }
+        ]
+      }
+    },
+    {
+      "typ": "punkte",
+      "kicker": "Die Arbeiter",
+      "headline": "Ein hoher Preis",
+      "text": ["Meist italienische Arbeiter sprengen sich in drei Schichten durch den Fels. Die meisten Toten fordern <em>Sprengunglücke</em>."],
+      "punkte": [
+        { "wert": "30", "name": "Bauarbeiter sterben", "zusatz": "" },
+        { "wert": "6", "name": "Streiks", "zusatz": "" },
+        { "wert": "8", "name": "neue Bauleitungen", "zusatz": "" }
+      ]
+    },
+    {
+      "typ": "balken",
+      "kicker": "Die Kosten",
+      "headline": "Doppelt so teuer",
+      "text": ["Guyer-Zeller rechnet mit 7,5 bis 8&nbsp;Millionen Franken. Bis 1912 kostet die Bahn <em>rund 16&nbsp;Millionen</em>."],
+      "balken": [
+        { "wert": 8, "anzeige": "7,5–8 Mio.", "name": "Plan von Guyer-Zeller", "zusatz": "" },
+        { "wert": 16, "anzeige": "16 Mio.", "name": "Kosten bis 1912", "zusatz": "Schweizer Franken", "akzent": true }
+      ]
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "Wer hat bezahlt?",
+      "headline": "Erst Aktien, dann Kredite",
+      "text": ["Guyer-Zeller sammelt Geld über Aktien. Nach seinem Tod 1899 bauen die Erben weiter, oft nur dank <em>kurzfristiger Bankkredite</em>."],
+      "figur": { "fn": "jbBerge", "beschriftung": "etappen" }
+    },
+    {
+      "typ": "bild-unten",
+      "kicker": "1912 · Das Ende",
+      "headline": "Der Gipfel bleibt ohne Bahn",
+      "text": ["Auch weil das Geld fehlt, endet die Bahn auf dem Jungfraujoch: <em>3454&nbsp;Meter</em> hoch, bis heute der höchste Bahnhof Europas."],
+      "figur": { "fn": "jbBerge", "beschriftung": "ende", "plan": true }
+    },
+    {
+      "typ": "outro",
+      "headline": "Ein Bauwerk pro Tag",
+      "text": ["Wie wurde das gebaut? Was hat es gekostet? Wer hat bezahlt?"]
+    }
+  ],
+  "reel": {
+    "frage": { "zeile": "Seit 1912 durch Eiger und Mönch aufs Joch.", "frage": "Wer hat sie bezahlt?", "figur": { "fn": "jbBerge" } },
+    "zeichnung": { "zahl": "3454", "aussage": "Meter über dem Meer", "figur": { "fn": "jbBerge" } },
+    "antwort": { "vorsatz": "rund", "zahl": "16", "einheit": "Millionen Franken", "antwort": "Aktien und <em>Bankkredite</em>.", "zusatz": "Doppelt so viel wie geplant, gebaut in 16 Jahren." }
+  },
+  "quellen": [
+    "Wikipedia: Jungfraubahn",
+    "jungfrau.ch: Bau der Jungfraubahn, Jungfraubahn AG",
+    "Schweizerisches Nationalmuseum (Blog): Der Wettlauf zur Jungfrau",
+    "plattformj.ch: Jungfraubahn (30.12.2011)",
+    "Abruf 11/2026"
+  ],
+  "caption": [
+    "Rund 16 Millionen Franken kostete die Jungfraubahn, etwa doppelt so viel wie geplant. Bezahlt wurde sie mit Aktien und immer mehr Bankkrediten.",
+    "16 Jahre dauerte der Bau, 30 Arbeiter kamen ums Leben. Seit 1912 fährt die Bahn durch Eiger und Mönch hinauf auf 3454 Meter.",
+    "Kennst du jemanden, der schon oben auf dem Jungfraujoch war?"
+  ],
+  "hashtags": ["jungfraubahn", "jungfraujoch", "berneroberland", "zahnradbahn", "ingenieurbau", "baugeschichte", "geschichte", "bauwerke"],
+  "belege": [
+    { "angabe": "Baukosten rund 16 Millionen Franken bis 1912", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/", "https://www.plattformj.ch/artikel/116027/"], "hinweis": "Wikipedia und Nationalmuseum: 16 Mio.; plattformj: rund 16 Mio., genau 15,8 Mio. (nach Via Storia); ohne die Kraftwerke" },
+    { "angabe": "Geplante Kosten 7,5 bis 8 Millionen Franken; also rund doppelt so teuer", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/"], "hinweis": "Wikipedia: acht Millionen; Nationalmuseum: 7,5 Millionen; daher Spanne; 16/8 = 2, 16/7,5 = 2,1" },
+    { "angabe": "Finanziert mit Aktien und Fremdkapital; nach dem Tod Guyer-Zellers Weiterbau nur dank kurzfristiger Bankkredite", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://www.plattformj.ch/artikel/116027/"], "hinweis": "plattformj: Aktien und Fremdverschuldung, Fremdkapital ab 1903 über den Eigenmitteln (nach Via Storia); Wikipedia: Erben führen fort, kurzfristige Bankkredite, Aktie über 500 Franken (Bild)" },
+    { "angabe": "Guyer-Zeller, Textilindustrieller, sieht 1893 einen Zug der Wengernalpbahn zur Kleinen Scheidegg und skizziert nachts die Linie durch Eiger und Mönch bis auf den Jungfraugipfel", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/"] },
+    { "angabe": "Spatenstich 27. Juli 1896; Station Eigergletscher 1898; Eigerwand 28. Juni 1903; Eismeer 25. Juli 1905; Eröffnung 1. August 1912, 16 Jahre nach Baubeginn", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://www.jungfrau.ch/de-ch/jungfraujoch-top-of-europe/bau-der-jungfraubahn/", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/"], "hinweis": "Eigergletscher: Wikipedia 19. September 1898, Nationalmuseum Herbst 1898; Daten der Stationen Eigerwand und Eismeer nur Wikipedia" },
+    { "angabe": "Tunnelstationen mit Ausblick aus dem Fels (Eigerwand in der Nordwand, Eismeer mit Aussichtsfenstern); Etappen eröffnet, um Geld einzunehmen", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/", "https://www.jungfrau.ch/de-ch/unternehmen/jungfraubahnen/jungfraubahn-holding-ag/jungfraubahn-ag/"], "hinweis": "„um Geld einzunehmen“ nur Nationalmuseum; Wikipedia beschreibt Touristenandrang an der Kasse für Eismeer" },
+    { "angabe": "30 Bauarbeiter tot, meist durch Sprengunglücke; sechs Streiks; acht Wechsel der Bauleitung; meist italienische Arbeiter; drei Schichten zu acht Stunden", "quellen": ["https://www.jungfrau.ch/de-ch/jungfraujoch-top-of-europe/bau-der-jungfraubahn/", "https://www.plattformj.ch/artikel/116027/", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/", "https://de.wikipedia.org/wiki/Jungfraubahn"], "hinweis": "30 Tote bei Betreiber, Nationalmuseum und plattformj; acht Bauleitungen nur Betreiber; drei Schichten Wikipedia und plattformj" },
+    { "angabe": "Endstation Jungfraujoch statt Gipfel, nicht zuletzt wegen Geldmangels; Jungfraujoch 3454 m, höchstgelegener Bahnhof Europas", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://www.jungfrau.ch/de-ch/jungfraujoch-top-of-europe/bau-der-jungfraubahn/", "https://www.jungfrau.ch/de-ch/unternehmen/jungfraubahnen/jungfraubahn-holding-ag/jungfraubahn-ag/"], "hinweis": "das Nationalmuseum nennt abweichend 3466 m; Blatt folgt Betreiber und Wikipedia" },
+    { "angabe": "Jungfrau 4158 m hoch", "quellen": ["https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/"], "hinweis": "nur eine Quelle (Nebenangabe)" },
+    { "angabe": "Höhen der Stationen: Kleine Scheidegg rund 2064 m, Eigergletscher 2320 m, Eismeer 3160 m; offene Strecke bis Eigergletscher, danach Tunnel durch Eiger und Mönch", "quellen": ["https://de.wikipedia.org/wiki/Jungfraubahn", "https://blog.nationalmuseum.ch/2025/10/der-wettlauf-zur-jungfrau/", "https://www.jungfrau.ch/de-ch/jungfraujoch-top-of-europe/"], "hinweis": "nur in der Zeichnung, ohne Maßzahl" }
+  ]
+}
