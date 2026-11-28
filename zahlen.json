@@ -1,8 +1,8 @@
 {
-  "stand": "2026-11-27T06:29",
+  "stand": "2026-11-28T06:21",
   "konto": {
-    "follower": 6,
-    "beitraege": 28
+    "follower": 7,
+    "beitraege": 30
   },
   "medien": [
     {
@@ -203,10 +203,10 @@
       "datum": "2026-11-22",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 124,
+      "reichweite": 125,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 141,
+      "aufrufe": 142,
       "interaktionen": 2
     },
     {
@@ -215,7 +215,7 @@
       "datum": "2026-11-22",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
       "aufrufe": 7,
@@ -227,10 +227,10 @@
       "datum": "2026-11-23",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 105,
+      "reichweite": 106,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 122,
+      "aufrufe": 125,
       "interaktionen": 0
     },
     {
@@ -275,10 +275,10 @@
       "datum": "2026-11-25",
       "likes": 0,
       "kommentare": 0,
-      "reichweite": 91,
+      "reichweite": 92,
       "gespeichert": 0,
       "geteilt": 0,
-      "aufrufe": 107,
+      "aufrufe": 109,
       "interaktionen": 0
     },
     {
@@ -287,7 +287,7 @@
       "datum": "2026-11-25",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 4,
+      "reichweite": 5,
       "gespeichert": 0,
       "geteilt": 0,
       "aufrufe": 18,
@@ -299,10 +299,10 @@
       "datum": "2026-11-26",
       "likes": 1,
       "kommentare": 0,
-      "reichweite": 102,
+      "reichweite": 103,
       "gespeichert": 0,
       "geteilt": 1,
-      "aufrufe": 119,
+      "aufrufe": 122,
       "interaktionen": 2
     },
     {
@@ -315,6 +315,30 @@
       "gespeichert": 0,
       "geteilt": 0,
       "aufrufe": 6,
+      "interaktionen": 0
+    },
+    {
+      "post": "015-eurotunnel",
+      "art": "reel",
+      "datum": "2026-11-27",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 64,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 91,
+      "interaktionen": 0
+    },
+    {
+      "post": "015-eurotunnel",
+      "art": "carousel",
+      "datum": "2026-11-27",
+      "likes": 0,
+      "kommentare": 0,
+      "reichweite": 2,
+      "gespeichert": 0,
+      "geteilt": 0,
+      "aufrufe": 3,
       "interaktionen": 0
     }
   ]
