@@ -3,7 +3,7 @@
 <!-- ideen-pool anfang: wird von ideen.py geschrieben, nicht von Hand ändern -->
 ## Reihenfolge aus dem Ideen-Pool
 
-Stand 27.11.2026 04:22. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook (Bewertung und Begründung je Idee, mein Votum als Inhaber). Dieser Abschnitt geht der übrigen Themenliste vor (bei Bauriss auch dem Vorschlag aus `stand`); die Regeln für Recherche, Quellen, Belege und Abstand gelten weiter. Scheitert ein Thema an ihnen, das nächste nehmen und den Grund im Bericht nennen. Ein Jahrestag oder eine neue amtliche Zahl genau am Tag geht weiterhin vor. Der Wochenbericht ändert diesen Abschnitt nicht; er wird bei jedem Abgleich neu geschrieben.
+Stand 28.11.2026 04:22. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook (Bewertung und Begründung je Idee, mein Votum als Inhaber). Dieser Abschnitt geht der übrigen Themenliste vor (bei Bauriss auch dem Vorschlag aus `stand`); die Regeln für Recherche, Quellen, Belege und Abstand gelten weiter. Scheitert ein Thema an ihnen, das nächste nehmen und den Grund im Bericht nennen. Ein Jahrestag oder eine neue amtliche Zahl genau am Tag geht weiterhin vor. Der Wochenbericht ändert diesen Abschnitt nicht; er wird bei jedem Abgleich neu geschrieben.
 
 **Feste Tage** (an diesem Tag dieses Thema):
 
@@ -15,14 +15,14 @@ Stand 27.11.2026 04:22. Quelle: Blatt „Ideen-Pool“ im Unternehmens-Playbook 
 
 **Als Nächstes, in dieser Reihenfolge** (für freie Tage ohne festes Thema):
 
-1. **Sydney Opera House**: Mit einer Lotterie bezahlt, am Ende vielfach teurer als geplant
-2. **Jungfraubahn**: Ein Bahnhof auf 3.454 Metern, durch den Eiger gebohrt
-3. **Speicherstadt Hamburg**: Ein Stadtviertel auf Eichenpfählen
-4. **Hoover-Staumauer**: Vor dem Termin fertig und im Budget: Wie die Staumauer am Colorado gebaut und bezahlt wurde
-5. **Empire State Building**: Mitten in der Weltwirtschaftskrise hochgezogen: Wer hat den Wolkenkratzer bezahlt?
-6. **Großglockner-Hochalpenstraße**: Eine Passstraße über die höchsten Berge Österreichs: Wie wurde sie gebaut, und wer bezahlt sie bis heute über die Maut?
-7. **Völkerschlachtdenkmal**: 91 Meter Stein in Leipzig: Wer hat das Denkmal bezahlt, und wie lange wurde gebaut?
-8. **Sturmflutwehr Oosterschelde**: Ein Sperrwerk aus 62 Toren schützt die Niederlande vor dem Meer: Was hat es gekostet, und wer hat es bezahlt?
+1. **Jungfraubahn**: Ein Bahnhof auf 3.454 Metern, durch den Eiger gebohrt
+2. **Speicherstadt Hamburg**: Ein Stadtviertel auf Eichenpfählen
+3. **Hoover-Staumauer**: Vor dem Termin fertig und im Budget: Wie die Staumauer am Colorado gebaut und bezahlt wurde
+4. **Empire State Building**: Mitten in der Weltwirtschaftskrise hochgezogen: Wer hat den Wolkenkratzer bezahlt?
+5. **Großglockner-Hochalpenstraße**: Eine Passstraße über die höchsten Berge Österreichs: Wie wurde sie gebaut, und wer bezahlt sie bis heute über die Maut?
+6. **Völkerschlachtdenkmal**: 91 Meter Stein in Leipzig: Wer hat das Denkmal bezahlt, und wie lange wurde gebaut?
+7. **Sturmflutwehr Oosterschelde**: Ein Sperrwerk aus 62 Toren schützt die Niederlande vor dem Meer: Was hat es gekostet, und wer hat es bezahlt?
+8. **Semmeringbahn**: Die erste Gebirgsbahn Europas, 1854 eröffnet: Wie kam der Zug über den Semmering, und wer hat den Bau bezahlt?
 
 **Jetzt nicht nehmen** (auch nicht, wenn die Liste sie vorschlägt):
 
